@@ -1,0 +1,130 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.JoinTeamPage
+
+@{
+    ViewBag.Title = "Vista Previa Página de Únete al Equipo";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPreview.cshtml";
+}
+
+<div id="main-carousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-id" data-slide-to="0" class="active"></li>
+    </ol>
+    <div class="carousel-inner">
+        @{
+            <div class="item active">
+                <img src="@Url.Content(Model.HeadImages[0].ImageSectionImage)">
+                <div class="container">
+                    @{
+                        var color1 = "#000000";
+                        if (!string.IsNullOrEmpty(Model.HeadImages[0].ImageSectionColorText))
+                        {
+                            color1 = Model.HeadImages[0].ImageSectionColorText;
+                        }
+                    }
+                    <div class="carousel-caption">
+                        <h1 style="color: @Html.Raw(color1)">@Model.HeadImages[0].ImageSectionText</h1>
+                    </div>
+                </div>
+            </div>
+            for (int i = 1; i < Model.HeadImages.Count; i++)
+            {
+                var color = "#000000";
+                if (!string.IsNullOrEmpty(Model.HeadImages[i].ImageSectionColorText))
+                {
+                    color = Model.HeadImages[i].ImageSectionColorText;
+                }
+                <div class="item">
+                    <img src="@Url.Content(Model.HeadImages[i].ImageSectionImage)">
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h1 style="color: @Html.Raw(color)">@Model.HeadImages[i].ImageSectionText</h1>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+    @*<a class="left carousel-control" href="#carousel-id" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+        <a class="right carousel-control" href="#carousel-id" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>*@
+</div>
+
+<div class="container ">
+    <div class="row">
+        <div class="col-md-offset-2 col-xs-12 col-md-8 margin-top-40">
+            <h1 class="text-center titulo-contacto" style="color: @Html.Raw(Model.JoinTeamPageColorText1)">@Model.JoinTeamPageSubText1</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-1 col-xs-12 col-md-8 margin-top-20 padding-lef-10">
+            <h3 class="sub-title-contacto" style="color: @Html.Raw(Model.JoinTeamPageColorText2)">@Model.JoinTeamPageSubText2</h3>
+        </div>
+    </div>
+    <div class="row margin-bottom-100">
+        <div class="col-md-10 col-md-offset-1 col-xs-12 form-contacto" style="background-color: @Html.Raw(Model.JoinTeamPageColorText1);">
+            <div>
+                <form class="form-horizontal" action="" role="form">
+                    <div class="col-xs-12 col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label for="TeamNames" class="col-md-3 col-sm-4 col-xs-12 control-label">*Nombre (s):</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control input-sm" id="TeamNames" name="TeamNames" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="TeamLastnames" class="col-md-3 col-sm-4 col-xs-12 control-label">*Apellidos:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control input-sm" id="TeamLastnames" name="TeamLastnames" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="TeamPhoneNumber" class="col-md-3 col-sm-4 col-xs-12 control-label">*Teléfono:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control input-sm" id="TeamPhoneNumber" name="TeamPhoneNumber" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="TeamEmail" class="col-md-3 col-sm-4 col-xs-12 control-label">*E-mail:</label>
+                            <div class="col-sm-8">
+                                <input type="email" class="form-control input-sm" id="TeamEmail" name="TeamEmail" placeholder="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label for="TeamInterestArea" class="col-md-4 col-sm-4 col-xs-12 control-label">Área de interés:</label>
+                            <div class="col-sm-7">
+                                <select id="TeamInterestArea" name="TeamInterestArea" class="mt-multiselect btn btn-default" multiple="multiple" data-label="left" data-width="100%" data-action-onchange="true">
+                                    @{
+                                        var listInteres = Model.InterestAreas;
+                                        foreach (var area in listInteres)
+                                        {
+                                            <option value="@area.InterestAreaId">@area.InterestAreaName</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="TeamAddress" class="col-md-4 col-sm-4 col-xs-12 control-label">Dirección:</label>
+                            <div class="col-sm-7">
+                                <textarea style="height: 117px" type="text" class="form-control input-sm" id="TeamAddress" name="TeamAddress" placeholder=""></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-sm-12">
+                        <div class="row">
+                            <div style="text-align: center;">
+                                <span id="mensajeUneteEquipo" class="color-red"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 20px">
+                        <div class="col-xs-12 col-md-12">
+                            <button class="btn" style="background-color: #48c7f3; color: white; border-radius: 0px; float: right; margin-right: 50px">Enviar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

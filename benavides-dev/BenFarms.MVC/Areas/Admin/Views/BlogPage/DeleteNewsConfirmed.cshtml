@@ -1,0 +1,55 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.NewsPage
+@{
+    ViewBag.Title = "Eliminar Página De Noticias";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var urlList = "~/Admin/BlogPage/ListNews?idBlog=" + ViewBag.Blog;
+}
+
+<h2>Eliminar Página Noticias en Edición</h2>
+
+<div>
+    <h4>@Model.NewsPageCustomValue</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NewsPageCustomValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NewsPageCustomValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NewsPageActive)
+        </dt>
+
+        <dd>
+            @{
+                switch (@Model.NewsPageActive)
+                {
+                    case "Activada":
+                        <span class="label label-sm label-success"> Activa </span>break;
+                    case "Desactivada":
+                        <span class="label label-sm label-warning"> Desactivada </span>break;
+                    case "EnEdicion":
+                        <span class="label label-sm label-danger"> En Edición </span>break;
+                }
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NewsPageCreatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NewsPageCreatedDate)
+        </dd>
+
+    </dl>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn blue">Eliminar</button>
+        <a class="btn default" href="@Url.Content(urlList)">Cancelar</a>
+    }
+</div>

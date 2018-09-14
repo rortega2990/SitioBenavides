@@ -1,0 +1,200 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.BlogPage
+
+@{
+    ViewBag.Title = "Editar Página de Blogs";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "BlogPageEdit";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered" id="form_wizard_1">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="icon-layers font-red"></i>
+                    <span class="caption-subject font-red bold uppercase">
+                        Editar Página de Blogs -
+                        <span class="step-title"> Paso 1 de 2 </span>
+                    </span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <form class="form-horizontal" id="submit_form" method="POST" action="" enctype="multipart/form-data">
+                    @Html.AntiForgeryToken()
+                    <div class="form-wizard">
+                        <div class="form-body">
+                            <ul class="nav nav-pills nav-justified steps">
+                                <li>
+                                    <a href="#tab1" data-toggle="tab" class="step">
+                                        <span class="number"> 1 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Texto de Encabezado
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#tab2" data-toggle="tab" class="step">
+                                        <span class="number"> 2 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Texto Descripción del Blog
+                                        </span>
+                                    </a>
+                                </li>                              
+                            </ul>
+                            <div id="bar" class="progress progress-striped" role="progressbar">
+                                <div class="progress-bar progress-bar-success"> </div>
+                            </div>
+                            <div class="tab-content">
+                                <div class="alert alert-danger display-none">
+                                    <button class="close" data-dismiss="alert"></button> Se tienen varios errores. Por favor, revise nuevamente.
+                                </div>
+                                <div class="alert alert-success display-none">
+                                    <button class="close" data-dismiss="alert"></button> La validaión del formulario es correcta.
+                                </div>
+                                <div class="tab-pane active" id="tab1">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Texto de Encabezado</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Categoría de Blog</label>
+                                                            <div class="col-md-4">
+                                                                <select class="bs-select form-control" id="TipoBlog" onchange="javascript: getBlogType();">
+                                                                    @{
+                                                                        if (Model.BlogTypes != null)
+                                                                        {
+                                                                            foreach (var x in Model.BlogTypes)
+                                                                            {
+                                                                                var mon = Model.BlogType != null && Model.BlogType.BlogTypeName == x.BlogTypeName ? "selected=\"selected\"" : "";
+                                                                                <option value="@x.BlogTypeId" @Html.Raw(mon)>@Html.Raw(x.BlogTypeName)</option>
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                </select>
+                                                            </div>
+                                                            <label class="control-label col-md-2">Color de fondo</label>
+                                                            <div class="col-md-4">
+                                                                <input type="text" id="ColorBgHeadBlogPage" name="ColorBgHeadBlogPage" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.BlogPageColorBgHead)" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Texto Principal</label>
+                                                            <div class="col-md-4">
+                                                                <input type="text" id="TextHeadBlogPage" name="TextHeadBlogPage" class="form-control" value="@Model.BlogPageTextHead" />
+                                                            </div>
+                                                            <label class="control-label col-md-2">Color Texto Principal</label>
+                                                            <div class="col-md-4">
+                                                                <input type="text" id="ColorTextHeadBlogPage" name="ColorTextHeadBlogPage" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.BlogPageColorTextHead)" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Título del Blog</label>
+                                                            <div class="col-md-10">
+                                                                <textarea type="text" id="TitleDescBlogPage" name="TitleDescBlogPage" class="form-control">@Model.BlogPageTitleDesc</textarea>
+                                                            </div>                                                                                                                      
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Color Título del Blog</label>
+                                                            <div class="col-md-4">
+                                                                <input type="text" id="ColorTitleDescBlogPage" name="ColorTitleDescBlogPage" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.BlogPageColorTitleDesc)" />
+                                                            </div>
+                                                            <label class="control-label col-md-2">Color de Fondo Título del Blog</label>
+                                                            <div class="col-md-4">
+                                                                <input type="text" id="ColorBgTitleDescBlogPage" name="ColorBgTitleDescBlogPage" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.BlogPageColorBgTitleDesc)" />
+                                                            </div>                                                                                                                    
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group">                                                            
+                                                            <label class="control-label col-md-2">Imagen Encabezado Blog</label>
+                                                            <div class="col-md-4">
+                                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                    <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 300px; height: 200px;">
+                                                                        <img src="@Url.Content(Model.BlogPageImage)" id="imgImageBlogPage" />
+                                                                    </div>
+                                                                    <div>
+                                                                        <span class="btn red btn-outline btn-file">
+                                                                            <span class="fileinput-new"> Seleccionar Imagen </span>
+                                                                            <span class="fileinput-exists"> Cambiar </span>
+                                                                            <input type="file" name="ImageBlogPage" id="ImageBlogPage">
+                                                                        </span>
+                                                                        <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <label class="control-label col-md-2">Color del Texto Truncado</label>
+                                                            <div class="col-md-4">
+                                                                <input type="text" id="ColorTextDescHeadBlogPage" name="ColorTextDescHeadBlogPage" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.BlogPageColorTextDescHead)" />
+                                                            </div> 
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tab2">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Texto Descripción del Blog</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <textarea class="ckeditor form-control" name="TextDescBlogPage" id="TextDescBlogPage">@Html.Raw(Model.BlogPageTextDesc)</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <a href="javascript:;" class="btn default button-previous">
+                                        <i class="fa fa-angle-left"></i> Atrás
+                                    </a>
+                                    <a href="javascript:;" class="btn btn-outline green button-next">
+                                        Continuar
+                                        <i class="fa fa-angle-right"></i>
+                                    </a>
+                                    <a class="btn green button-submit" id="btnApplyBlog">
+                                        Aplicar
+                                        <i class="fa fa-check"></i>
+                                    </a>
+                                    <a class="btn blue" id="btnPreviewBlog">
+                                        Vista Previa
+                                        <i class="fa fa-search"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

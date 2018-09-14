@@ -1,0 +1,214 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.SaDPage
+
+@{
+    ViewBag.Title = "Editar Página de SaD";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "SaDPageEdit";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered" id="form_wizard_1">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="icon-layers font-red"></i>
+                    <span class="caption-subject font-red bold uppercase">
+                        Editar Página de SaD -
+                        <span class="step-title"> Paso 1 de 2 </span>
+                    </span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <form class="form-horizontal" id="submit_form" method="POST" action="" enctype="multipart/form-data">
+                    @*@Html.AntiForgeryToken()*@
+                    <div class="form-wizard">
+                        <div class="form-body">
+                            <ul class="nav nav-pills nav-justified steps">
+                                <li>
+                                    <a href="#tab1" data-toggle="tab" class="step">
+                                        <span class="number"> 1 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Encabezado
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#tab2" data-toggle="tab" class="step">
+                                        <span class="number"> 2 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Número Principal de SaD
+                                        </span>
+                                    </a>
+                                </li>                                
+                            </ul>
+                            <div id="bar" class="progress progress-striped" role="progressbar">
+                                <div class="progress-bar progress-bar-success"> </div>
+                            </div>
+                            <div class="tab-content">
+                                <div class="alert alert-danger display-none">
+                                    <button class="close" data-dismiss="alert"></button> Se tienen varios errores. Por favor, revise nuevamente.
+                                </div>
+                                <div class="alert alert-success display-none">
+                                    <button class="close" data-dismiss="alert"></button> La validaión del formulario es correcta.
+                                </div>
+                                <div class="tab-pane active" id="tab1">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Encabezado</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Texto Encabezado 1</label>
+                                                            <div class="col-md-4">
+                                                                <input type="text" id="Texto1SaD" name="Texto1SaD" class="form-control" value="@Model.SaDPageHeadText1"/>
+                                                            </div>
+                                                            <label class="control-label col-md-2">Color Texto Encabezado 1</label>
+                                                            <div class="col-md-4">
+                                                                <input type="text" id="ColorTexto1SaD" name="ColorTexto1SaD" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.SaDPageHeadTextColor1)" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Texto Encabezado 2</label>
+                                                            <div class="col-md-4">
+                                                                <input type="text" id="Texto2SaD" name="Texto2SaD" class="form-control" value="@Model.SaDPageHeadText2"/>
+                                                            </div>
+                                                            <label class="control-label col-md-2">Color Texto Encabezado 2</label>
+                                                            <div class="col-md-4">
+                                                                <input type="text" id="ColorTexto2SaD" name="ColorTexto2SaD" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.SaDPageHeadTextColor2)" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Imagen de fondo</label>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                        <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;">
+                                                                            <img src="@Url.Content(Model.SaDPageImageBg)" />
+                                                                        </div>
+                                                                        <div>
+                                                                            <span class="btn red btn-outline btn-file">
+                                                                                <span class="fileinput-new"> Seleccionar Imagen </span>
+                                                                                <span class="fileinput-exists"> Cambiar </span>
+                                                                                <input type="file" name="ImageBgSaD" id="ImageBgSaD">
+                                                                            </span>
+                                                                            <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <label class="control-label col-md-2">Imagen Derecha</label>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                        <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;">
+                                                                            <img src="@Url.Content(Model.SaDPageImageLogo)" />
+                                                                        </div>
+                                                                        <div>
+                                                                            <span class="btn red btn-outline btn-file">
+                                                                                <span class="fileinput-new"> Seleccionar Imagen </span>
+                                                                                <span class="fileinput-exists"> Cambiar </span>
+                                                                                <input type="file" name="ImagenLogoSaD" id="ImagenLogoSaD">
+                                                                            </span>
+                                                                            <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tab2">
+                                    <div class="row">
+                                        <div class="col-md-12">
+
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Número Principal de SaD</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Texto de Título</label>
+                                                            <div class="col-md-4">
+                                                                <input type="text" id="TextoTituloSaD" name="TextoTituloSaD" class="form-control" value="@Model.SaDPageSubText1"/>
+                                                            </div>
+                                                            <label class="control-label col-md-2">Color del Texto de Título</label>
+                                                            <div class="col-md-4">
+                                                                <input type="text" id="ColorTextoTituloSaD" name="ColorTextoTituloSaD" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.SaDPageSubTextColor1)" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Número de Teléfono Principal</label>
+                                                            <div class="col-md-4">
+                                                                <input type="text" id="NumeroprincipalSaD" name="NumeroprincipalSaD" class="form-control" value="@Model.SaDPageNumberPrincipalText" />
+                                                            </div>
+                                                            <label class="control-label col-md-2">Color del Texto</label>
+                                                            <div class="col-md-4">
+                                                                <input type="text" id="ColorNumeroprincipalSaD" name="ColorNumeroprincipalSaD" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.SaDPageNumberPrincipalTextColor)" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2 col-md-offset-6">Color de Fondo</label>
+                                                            <div class="col-md-4">
+                                                                <input type="text" id="ColorBgNumeroprincipalSaD" name="ColorBgNumeroprincipalSaD" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.SaDPageNumberPrincipalBgColor)" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <a href="javascript:;" class="btn default button-previous">
+                                        <i class="fa fa-angle-left"></i> Atrás
+                                    </a>
+                                    <a href="javascript:;" class="btn btn-outline green button-next">
+                                        Continuar
+                                        <i class="fa fa-angle-right"></i>
+                                    </a>
+                                    <a class="btn green button-submit" id="btnApplySaD">
+                                        Aplicar
+                                        <i class="fa fa-check"></i>
+                                    </a>
+                                    <a class="btn blue" id="btnPreviewSaD">
+                                        Vista Previa
+                                        <i class="fa fa-search"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

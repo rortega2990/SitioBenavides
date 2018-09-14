@@ -1,0 +1,55 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.Elements.ServiceType
+
+@{
+    ViewBag.Title = "Eliminar Tipo de Servicio";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "ServiceActive";
+}
+
+<h2>Eliminar Tipo de Servicio</h2>
+
+<div>
+    <h4>Tipo de Servicio</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ServiceTypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServiceTypeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ServiceTypeNameDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServiceTypeNameDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ServiceTypeProdutcsDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServiceTypeProdutcsDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ServiceTypeActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServiceTypeActive)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn blue">Eliminar</button>
+        @Html.ActionLink("Cancelar", "Index", null, htmlAttributes: new { @class = "btn default" })
+    }
+</div>

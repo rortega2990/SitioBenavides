@@ -1,0 +1,145 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.BillingPage
+
+@{
+    ViewBag.Title = "Vista Previa Página Tarjetas Benavides";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPreview.cshtml";
+}
+
+<div id="main-carousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-id" data-slide-to="0" class="active"></li>
+    </ol>
+    <div class="carousel-inner">
+        @{
+            var color1 = "#000000";
+            if (!string.IsNullOrEmpty(Model.HeadImages[0].ImageSectionColorText))
+            {
+                color1 = Model.HeadImages[0].ImageSectionColorText;
+            }
+            <div class="item active">
+                <img src="@Url.Content(Model.HeadImages[0].ImageSectionImage)">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1 style="color: @Html.Raw(color1)">@Model.HeadImages[0].ImageSectionText</h1>
+                    </div>
+                </div>
+            </div>
+            for (int i = 1; i < Model.HeadImages.Count; i++)
+            {
+                var color = "#000000";
+                if (!string.IsNullOrEmpty(Model.HeadImages[i].ImageSectionColorText))
+                {
+                    color = Model.HeadImages[i].ImageSectionColorText;
+                }
+                <div class="item">
+                    <img src="@Url.Content(Model.HeadImages[i].ImageSectionImage)">
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h1 style="color: @Html.Raw(color)">@Model.HeadImages[i].ImageSectionText</h1>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+    @*<a class="left carousel-control" href="#carousel-id" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+    <a class="right carousel-control" href="#carousel-id" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>*@
+</div>
+
+<section class="beneficios padded-top-bottom bg-color-white">
+    <div class="row full-width">
+        <div class="col-xs-12 col-sm-5 full-width">
+            @*<img src="~/Content/rsc/imgs/tarjeta.png" alt="" class="img-responsive hidden-xs">
+            <img src="~/Content/rsc/imgs/tarjeta-xs.png" alt="" class="img-responsive visible-xs">*@
+            <img src="@Url.Content(Model.BenefitSection.BenefitSectionImage)" alt="" class="img-responsive hidden-xs">
+            <img src="@Url.Content(Model.BenefitSection.BenefitSectionImageXS)" alt="" class="img-responsive visible-xs">
+        </div>
+        <div class="col-xs-12 col-sm-7">
+            @Html.Raw(@Model.BenefitSection.BenefitSectionDiv)
+        </div>
+        <p class="absolute center-bottom color-blue padded-left-right">
+            @Html.Raw(@Model.BenefitSection.BenefitSectionParagraph)
+        </p>
+    </div>
+</section>
+
+<section class="afiliate-steps">
+    <div class="padded-top-bottom bg-color-blue-marine">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2 class="color-white weight-heavy text-center margin-bottom">afíliate al programa siguiendo los siguientes pasos:</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-offset-2 col-md-4">
+                    <a class="step text-center">
+                        <img class="img-responsive" src="~/Content/rsc/imgs/sucursal.png" alt="">
+                        <h4 class="color-white"><span class="color-blue">1. </span>Pide tu tarjeta en Sucursal, es gratis.</h4>
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <a class="step text-center">
+                        <img class="img-responsive" src="~/Content/rsc/imgs/compu.png" alt="">
+                        <h4 class="color-white"><span class="color-blue">2. </span>Regístrate en <span style="text-decoration:underline;">aquí</span> o al 01800 444 2525</h4>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="aumentar-beneficios padded-top-bottom bg-color-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-md-9">
+                @Html.Raw(@Model.IncrementBenefitSection.IncrementBenefitSectionDiv)
+            </div>
+            @*<img src="~/Content/rsc/imgs/platino.png" alt="" class="img-responsive img-top absolute hidden-xs">
+            <img src="~/Content/rsc/imgs/platino_oferta.png" alt="" class="img-responsive absolute hidden-xs" style="bottom: 0px;">*@
+            <img src="@Url.Content(Model.IncrementBenefitSection.IncrementBenefitSectionImage1)" alt="" class="img-responsive img-top absolute hidden-xs">
+             <img src="@Url.Content(Model.IncrementBenefitSection.IncrementBenefitSectionImage2)" alt="" class="img-responsive absolute hidden-xs" style="bottom: 0px;">
+        </div>
+    </div>
+</section>
+
+<section class="padded-top-bottom bg-color-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="color-red color-red weight-heavy">@Model.LabSection.LabSectionTitle</h2>
+            </div>
+        </div>
+        <div id="bottom-carousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-id" data-slide-to="0" class="active"></li>
+            </ol>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="carousel-inner">
+                        @{
+                            var count = Model.LabSection.ImageSections.Count;
+                            <div class="item active">
+                                <img src="@Url.Content(Model.LabSection.ImageSections[0].ImageSectionImage)">
+                                <div class="container">
+                                    <div class="carousel-caption">
+                                    </div>
+                                </div>
+                            </div>
+                            for (int i = 1; i < count; i++)
+                            {
+                                <div class="item">
+                                    <img src="@Url.Content(Model.LabSection.ImageSections[i].ImageSectionImage)">
+                                    <div class="container">
+                                        <div class="carousel-caption">
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

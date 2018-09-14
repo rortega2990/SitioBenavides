@@ -1,0 +1,106 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.DoctorsOfficePage
+@{
+    ViewBag.Title = "Consultorios Médicos";
+}
+<section>
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">       
+        <ol class="carousel-indicators">
+            @for (int i = 0; i < Model.HeadImages.Count; ++i)
+            {
+                if (i == 0)
+                {
+                    <li data-target="#carousel-example-generic" data-slide-to="@i" class="active"></li>
+                }
+                <li data-target="#carousel-example-generic" data-slide-to="@i"></li>
+            }
+        </ol>
+       
+        <div class="carousel-inner" role="listbox">
+            @for (int i = 0; i < Model.HeadImages.Count; ++i)
+            {
+                string itemClass = "item";
+                if (i == 0)
+                {
+                    itemClass += " active";
+                }
+
+                <div class="@itemClass">
+                    <img src="@Url.Content(Model.HeadImages[i].ImageFileName)" class="img-responsive center-block" alt="banner">
+                </div>
+            }
+        </div>
+        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Anterior</span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Próximo</span>
+        </a>
+    </div>
+</section>
+
+<section>
+    <article>
+        <h1 class="red-header">Consultorios Médicos</h1>
+        <h3 class="blue-header">La atención que necesitas</h3>
+    </article>
+</section>
+
+<section>
+    @*<header class="small-header">Conoce la unidad médica y nuestros servicios</header>*@
+    <article>
+        @*<div class="container">*@
+        <div class="doctors-office-service-container">
+            <a href="http://www.benavides.com.mx/Sucursales"><img src="~/Content/rsc/imgs/Boton-Consul-02.png" /></a>
+
+            </div>
+        </article>
+            <article>
+                @*<div class="container">*@
+                <div class="doctors-office-service-container">
+                    @for (int i = 0; i < Model.ServicesSection.Count; ++i)
+                    {
+                        @*<div style="display:inline-block; align-items:center">*@
+                        <figure class="doctors-office-service">
+                            <img src="@Url.Content(Model.ServicesSection[i].ImageFileName)" />
+                            <figcaption style="color:@Html.Raw(Model.ServicesSection[i].TitleColor)">@Model.ServicesSection[i].Title</figcaption>
+                        </figure>
+                        @*</div>*@
+                    }
+                </div>
+                @*</div>*@
+            </article>
+</section>
+
+
+
+
+
+
+@section scripts {
+    <section class="scripts">
+        <script type="text/javascript">
+            $('.carousel[data-type="multi"] .item').each(function () {
+                var next = $(this).next();
+                if (!next.length) {
+                    next = $(this).siblings(':first');
+                }
+                next.children(':first-child').clone().appendTo($(this));
+
+                for (var i = 0; i < 2; i++) {
+                    next = next.next();
+                    if (!next.length) {
+                        next = $(this).siblings(':first');
+                    }
+
+                    next.children(':first-child').clone().appendTo($(this));
+                }
+            });
+        </script>
+    </section>
+}
+
+
+
+

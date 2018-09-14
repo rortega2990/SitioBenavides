@@ -1,0 +1,43 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.NewsPage
+@{
+    ViewBag.Title = "Vista Previa Página de Noticias";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPreview.cshtml";
+}
+
+<div class="row no-margin-left no-margin-right " style="background-color: @Html.Raw(Model.NewsPageColorBgHead)">
+    <div class="col-md-6 col-xs-12 col-sm-6 no-padding-left no-padding-right" style="margin-top: 10%; z-index: 200;margin-bottom: 5%;">
+        <div class="col-md-offset-2 col-sm-offset-1 col-sm-11 col-md-8 col-xs-12 col-xs-offset-0" style="color: @Html.Raw(Model.NewsPageColorTextHead);">
+            <span style="font-weight: bold;font-size: 3.5em">@Model.NewsPageTextHead</span>
+        </div>
+        <div class="col-md-offset-2 col-sm-offset-1 col-sm-11 col-md-8 col-xs-12 col-xs-offset-0">
+            <a class="btn" style="color: @Html.Raw(Model.NewsPageColorSubTextHead);font-size: 1.5em;background-color: @Html.Raw(Model.NewsPageColorBgSubTextHead)">@Model.NewsPageSubTextHead</a>
+        </div>
+    </div>
+    <div class="col-md-6 col-xs-12 col-sm-6 no-padding-right no-padding-left">
+        <img style="max-height: 500px;width: 100%;"
+             class="img-responsive  no-margin-left no-margin-right"
+             src="@Url.Content(Model.NewsPageImageHead)" />
+    </div>
+</div>
+<div class="container">
+    <div class="row" style="margin-top: 50px;margin-bottom: 100px">
+        <div class="col-md-12 col-xs-12">
+            @if (Model.NewsPageImageDescription != null)
+            {
+                <img class="img-responsive col-md-3 col-xs-6" src="@Url.Content(Model.NewsPageImageDescription)" />
+            }
+            
+            <div class="col-md-9 col-xs-6 text-right">
+                <h3 style="color: @Html.Raw(Model.NewsPageColorTitleDescription1)">@Model.NewsPageTitleDescription1</h3>
+            </div>
+            <p>
+                @Html.Raw(Model.NewsPageTextDescription1);
+            </p>
+            <div class="col-md-9 col-xs-12 text-right">
+                <h4 style="color: @Html.Raw(Model.NewsPageColorTitleDescription2)">@Model.NewsPageTitleDescription2</h4>
+            </div><p>
+                @Html.Raw(Model.NewsPageTextDescription2);
+            </p>
+        </div>
+    </div>
+</div>

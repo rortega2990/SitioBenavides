@@ -1,0 +1,63 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.Elements.ContactUser
+
+@{
+    ViewBag.Title = "Eliminar Usuario de Contacto";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "ContactPageUsersList";
+}
+
+<h2>Eliminar Usuario de Contacto</h2>
+
+<div>
+    <h4>Usuario de Contacto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Names)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Names)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Suggests)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Suggests)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreation)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn blue">Eliminar</button>
+        <a class="btn default" href="~/Admin/ContactPage/ContactUsersList">Cancelar</a>
+    }
+</div>

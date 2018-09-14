@@ -1,0 +1,169 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.ConditionsTermsPage
+
+@{
+    ViewBag.Title = "Editar Página de Términos y Condiciones";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "ConditionsTermsPageEdit";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered" id="form_wizard_1">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="icon-layers font-red"></i>
+                    <span class="caption-subject font-red bold uppercase">
+                        Editar Página de Términos y Condiciones -
+                        <span class="step-title"> Paso 1 de 2 </span>
+                    </span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <form class="form-horizontal" id="submit_form" method="POST" action="" enctype="multipart/form-data">
+                    @Html.AntiForgeryToken()
+                    <div class="form-wizard">
+                        <div class="form-body">
+                            <ul class="nav nav-pills nav-justified steps">
+                                <li>
+                                    <a href="#tab1" data-toggle="tab" class="step">
+                                        <span class="number"> 1 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Encabezado
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#tab2" data-toggle="tab" class="step">
+                                        <span class="number"> 2 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Texto de Privacidad
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div id="bar" class="progress progress-striped" role="progressbar">
+                                <div class="progress-bar progress-bar-success"> </div>
+                            </div>
+                            <div class="tab-content">
+                                <div class="alert alert-danger display-none">
+                                    <button class="close" data-dismiss="alert"></button> Se tienen varios errores. Por favor, revise nuevamente.
+                                </div>
+                                <div class="alert alert-success display-none">
+                                    <button class="close" data-dismiss="alert"></button> La validaión del formulario es correcta.
+                                </div>
+                                <div class="tab-pane active" id="tab1">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Texto de Encabezado</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Color de fondo</label>
+                                                            <div class="col-md-4">
+                                                                <input type="text" id="BgColorHeadConditionsTermsPage" name="BgColorHeadConditionsTermsPage" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.ConditionsTermsPageBgColorHead)" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Texto de Encabezado</label>
+                                                            <div class="col-md-4">
+                                                                <input type="text" id="HeadTextConditionsTermsPage" name="HeadTextConditionsTermsPage" class="form-control" value="@Model.ConditionsTermsPageHeadText"/>
+                                                            </div>
+                                                            <label class="control-label col-md-2">Color del Texto de Encabezado</label>
+                                                            <div class="col-md-4">
+                                                                <input type="text" id="ColorHeadTextConditionsTermsPage" name="ColorHeadTextConditionsTermsPage" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.ConditionsTermsPageColorHeadText)" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tab2">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Texto de Privacidad</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="form-group">
+                                                        
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-2">Color del Texto</label>
+                                                                    <div class="col-md-10">
+                                                                        <input type="text" id="TextColorConditionsTermsPage" name="TextColorConditionsTermsPage" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.ConditionsTermsPageTextColor)" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-2">Título del Texto</label>
+                                                                    <div class="col-md-10">
+                                                                        <textarea class="form-control" name="TextTitleConditionsTermsPage" id="TextTitleConditionsTermsPage" style="height: 200px">@Html.Raw(Model.ConditionsTermsPageTextTitle)</textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group last">
+                                                                    <label class="control-label col-md-2">Texto de Descripción de Privacidad</label>
+                                                                    <div class="col-md-10">
+                                                                        <textarea class="ckeditor form-control" name="TextDescriptionConditionsTermsPage" id="TextDescriptionConditionsTermsPage">@Html.Raw(Model.ConditionsTermsPageTextDescription)</textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <a href="javascript:;" class="btn default button-previous">
+                                        <i class="fa fa-angle-left"></i> Atrás
+                                    </a>
+                                    <a href="javascript:;" class="btn btn-outline green button-next">
+                                        Continuar
+                                        <i class="fa fa-angle-right"></i>
+                                    </a>
+                                    <a class="btn green button-submit" id="btnApplyTerms">
+                                        Aplicar
+                                        <i class="fa fa-check"></i>
+                                    </a>
+                                    <a class="btn blue" id="btnPreviewTerms">
+                                        Vista Previa
+                                        <i class="fa fa-search"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

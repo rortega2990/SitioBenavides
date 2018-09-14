@@ -1,0 +1,184 @@
+﻿@{
+    ViewBag.Title = "Cien Años";
+}
+<link href="~/Content/css/oneHundredYears.css" rel="stylesheet" />
+<section>
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img src="~/assets/pages/img/SITIOBENA_100ANOS_Banner_01.png" class="img-responsive center-block" alt="banner">
+            </div>
+            <div class="item">
+                <a href="http://www.100premiosconenfagrow.com/#inicio-anchor" target="_blank" >
+                    <img src="~/assets/pages/img/SITIOBENA_100ANOS_Banner_02.png" class="img-responsive center-block" alt="banner">
+                </a>
+            </div>
+        </div>
+        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+    </div>
+</section>
+
+<section id="catalogo">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 titular">
+                
+            </div>
+            <div id="flipbookContainer" class="col-xs-12">
+            </div>
+            <!--
+                <div class="_df_book" source="Catalogo.pdf">
+
+                </div>
+                <!-- -->
+        </div>
+    </div>
+</section>
+
+<section id="middle-text">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 titular text-center">
+                100 años siendo especialistas en ti
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="video">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-xs-12 col-sm-4 hidden-xs"></div>
+            <div class="col-md-4 col-xs-12 col-sm-4">
+                <div class="embed-responsive embed-responsive-4by3">
+                    <iframe class="embed-responsive-item" src="//www.youtube.com/embed/XZc172t7AN0"></iframe>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-12 col-sm-4 hidden-xs"></div>
+        </div>
+    </div>
+</section>
+
+<section id="historia-new">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="carousel slide" data-ride="carousel" data-type="multi" data-interval="3000" id="myCarousel">
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <h4>1917</h4>
+                                <img src="~/assets/pages/img/historia1.png" class="img-responsive center-block">
+                                <h5>Los inicios</h5>
+                                <p>Ésta década inició la expansión en el mercado fronterizo.</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <h4>1943</h4>
+                                <img src="~/assets/pages/img/historia2.png" class="img-responsive center-block">
+                                <h5>Crecimiento</h5>
+                                <p>Década de los 60, con el firme propósito de consolidarse en Monterrey, se adquirieron las Bóticas Moebius y las Farmacias San Rafael. También en esta época inició el fortalecimiento del área del Pacífico, con la adquisición de 20 sucursales de la cadena Farmacias Bótica Moderna, S.A.</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <h4>1950</h4>
+                                <img src="~/assets/pages/img/historia3.png" class="img-responsive center-block">
+                                <h5>Mercado Fronterizo </h5>
+                                <p>Contando con 168 sucursales, Benavides adquirió dos cadenas de Farmaciasen la zona Centro y Occidente del país, finalizando en el año de 1989 con 206 sucursales.</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <h4>1960</h4>
+                                <img src="~/assets/pages/img/historia3.png" class="img-responsive center-block">
+                                <h5>Consolidación  </h5>
+                                <p>Las farmacias adquiridas en este años fueron las Tikos y Las Palmas, ubicadas en Torreón y Durango, así como las farmacias Levy de Guadalajara.</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <h4>1943</h4>
+                                <img src="~/assets/pages/img/historia2.png" class="img-responsive center-block">
+                                <h5>Crecimiento</h5>
+                                <p>Década de los 60, con el firme propósito de consolidarse en Monterrey, se adquirieron las Bóticas Moebius y las Farmacias San Rafael. También en esta época inició el fortalecimiento del área del Pacífico, con la adquisición de 20 sucursales de la cadena Farmacias Bótica Moderna, S.A.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#myCarousel" data-slide="prev"><img src="~/assets/pages/img/fizq.png" class="img-responsive center-block"></a>
+                    <a class="right carousel-control" href="#myCarousel" data-slide="next"><img src="~/assets/pages/img/fder.png" class="img-responsive center-block"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts {
+
+<script type="text/javascript">
+
+    var flipBook;
+
+    $(document).ready(function () {
+        Initialize();
+    });
+
+    // Where all the fun happens
+    function Initialize() {
+        var pdf = '/assets/pages/pdf/29sept-prensa.pdf';
+
+        if (pdf != null && pdf != "") {
+            var options = {
+                hard: 'none',
+                webgl: true,
+                height: 1000,
+                duration: 800,
+
+                //CONTROLS POSITION
+                //default is "altPrev,pageNumber,altNext,outline,thumbnail,zoomIn,zoomOut,fullScreen,more"
+                //this example remove outline and thumbnail; add download button in main bar
+                mainControls: "altPrev,pageNumber,altNext,zoomIn,zoomOut,fullScreen,download,more",
+
+                hideControls: "startPage,endPage"
+
+            };
+
+            flipBook = $("#flipbookContainer").flipBook(pdf, options);
+            console.log(flipBook);
+            //NOTE:
+            //Valid Control Names:
+            //altPrev,pageNumber,altNext,outline,thumbnail,zoomIn,zoomOut,fullScreen,more
+            //pageMode,startPage,endPage,download
+
+            //We dont recommend putting pageNumber in moreControls, that doesn't make sense.
+        }
+    }
+</script>
+<script>
+    // Instantiate the Bootstrap carousel
+    $('.carousel[data-type="multi"] .item').each(function () {
+        var next = $(this).next();
+        if (!next.length) {
+            next = $(this).siblings(':first');
+        }
+        next.children(':first-child').clone().appendTo($(this));
+
+        for (var i = 0; i < 2; i++) {
+            next = next.next();
+            if (!next.length) {
+                next = $(this).siblings(':first');
+            }
+
+            next.children(':first-child').clone().appendTo($(this));
+        }
+    });
+</script>
+}

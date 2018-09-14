@@ -1,0 +1,174 @@
+//Utils
+
+.bg-color-opacity {
+    background-color: rgba($color-black, .08);
+}
+.bg-color-gray {
+    background-color: $color-gray;
+}
+.bg-color-black {
+    background-color: $color-black;
+}
+.bg-color-black-dark {
+    background-color: $color-black-dark;
+}
+.bg-color-red {
+    background-color: $color-red;
+}
+.bg-color-red-dark {
+    background-color: $color-red-dark;
+}
+.bg-color-pink {
+    background-color: $color-pink;
+}
+.bg-color-pink-dark {
+    background-color: $color-pink-dark;
+}
+.bg-color-blue-marine {
+    background-color: $color-blue-marine;
+}
+.bg-color-blue {
+    background-color: $color-blue;
+}
+.bg-color-blue-dark {
+    background-color: $color-blue-dark;
+}
+.bg-color-blue-light {
+    background-color: $color-blue-light;
+}
+.bg-color-blue-xlight {
+    background-color: $color-blue-xlight;
+}
+.bg-color-white {
+    background-color: $color-white;
+}
+.color-white {
+    color: $color-white;
+}
+.color-red {
+    color: $color-red;
+}
+.color-blue {
+    color: $color-blue;
+}
+.color-black {
+    color: $color-black;
+}
+.color-blue-marine {
+    color: $color-blue-marine;
+}
+.color-blue-hover {
+    color: $color-blue-hover;
+}
+.color-yellow {
+    color: $color-yellow;
+}
+.full-width {
+    padding: 0px;
+    margin: 0px;
+    position: relative;
+}
+.padded {
+    &-top-bottom {
+        padding-top: 50px;
+        padding-bottom: 35px;
+    }
+    &-left-right {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+    &-top {
+        padding-top: 50px;
+
+        &-sm {
+            padding-top: 10px;
+        }
+        &-md {
+            padding-top: 25px;
+        }
+    }
+    &-bottom {
+        padding-bottom: 50px;
+    }
+    &-all {
+        padding: 30px 50px;
+        @media (max-width: 992px) {
+            padding: 15px 25px;
+        }
+    }
+}
+.margin {
+    &-bottom {
+        margin-bottom: 50px;
+    }
+}
+.numbered-list {
+    color: $color-blue;
+    list-style: none;
+    padding: 0px;
+    font-weight: 800;
+
+    > li {
+        counter-increment: item;
+        margin-bottom: 10px;
+        display: block;
+        
+        > .nested-list {
+            padding-left: 50px;
+            list-style-type: disc;
+
+            > li {
+                > .nested-list {
+                    padding-left: 0px;
+                    list-style-type: none;
+                    font-weight: 400;
+
+                    li {
+                        display: block;
+                        line-height: 1.5em;
+                    }
+                    > li:before {
+                        float: left;
+                        margin-right: 10px;
+                        content: '-';
+                        font-size: 1.5em;
+                    }
+                }
+            }
+        }
+    }
+    > li:before {
+        float: left;
+        margin-right: 10px;
+        content: counter(item)'.';
+        color: $color-red;
+        width: 1.2em;
+        font-weight: 800;
+        font-size: 1.5em;
+        margin-top: -5px;
+    }
+}
+.weight-heavy {
+    font-weight: 800;
+}
+.absolute {
+    position: absolute;
+
+    &.center-bottom {
+        bottom: 0;
+        margin: 15px 0;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        width: 100%;
+    }
+}
+.z-index-1 {
+    z-index: 10;
+}
+.z-index-2 {
+    z-index: 20;
+}
+.overflow-hidden {
+    overflow: hidden;
+}

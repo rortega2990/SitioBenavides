@@ -1,0 +1,235 @@
+﻿
+#quienes-somos{
+	background: #27327b;
+	padding: 5%;
+}
+
+#quienes-somos .titular{
+	font-family: "AG Book Rounded";
+	color:#abe1fa;
+	font-size: 30px;
+}
+
+#quienes-somos .texto{
+	font-family: "AG Book Rounded";
+	color:#fff;
+	font-size: 15px;
+}
+
+#vision{
+	background: #ecebec;
+	padding: 5%;
+}
+
+#vision .titular{
+	font-family: "AG Book Rounded";
+	color:#27327b;
+	font-size: 30px;
+}
+
+#vision .texto{
+	font-family: "AG Book Rounded";
+	color:#27327b;
+	font-size: 15px;
+}
+
+#mision{
+	background: #abe1fa;
+	padding: 5%;
+}
+
+#mision .titular{
+	font-family: "AG Book Rounded";
+	color:#27327b;
+	font-size: 30px;
+}
+
+#mision .texto{
+	font-family: "AG Book Rounded";
+	color:#27327b;
+	font-size: 15px;
+}
+
+#valores{
+	background: #00a0dc;
+	padding: 5%;
+}
+
+#valores .titular{
+	font-family: "AG Book Rounded";
+	color:#fff;
+	font-size: 48px;
+	line-height: 48px;
+	font-weight: bold;
+}
+
+#valores .titular1{
+	font-family: "AG Book Rounded";
+	color:#27327b;
+	font-size: 20px;
+	font-weight: bold;
+	line-height: 20px;
+}
+
+#valores .texto{
+	font-family: "AG Book Rounded";
+	color:#fff;
+	font-size: 13px;
+}
+#valores img {
+	min-height: 141px;
+}
+
+#logo{
+	background: #fff;
+	padding: 3%;
+}
+
+#logo .texto{
+	font-family: "AG Book Rounded";
+	color:#20317c;
+	font-size: 15px;
+	margin-top:25px;
+}
+
+#pilares{
+	background: #6dcff6;
+	padding: 5% 5% 0 5%;
+}
+
+#pilares h2{
+	font-family: "AG Book Rounded";
+	color:#27327b;
+	font-size: 48px;
+	line-height: 48px;
+	font-weight: bold;
+}
+
+#pilares h3{
+	font-family: "AG Book Rounded";
+	
+	font-size: 24px;
+	font-weight: bold;
+}
+
+#pilares .textoint{
+	font-family: "AG Book Rounded";
+	font-size: 16px;
+}
+
+#pilares .section1{
+  background: #bae9fb;
+  padding: 20px;
+  min-height: 350px;
+}
+
+#pilares .section1 .textoint{
+	color:#1f191a;	
+}
+
+#pilares .section1 h3{
+	color:#27327b;	
+}
+
+#pilares .section2{
+  background: #20317c;
+  padding: 20px;
+  min-height: 350px;
+}
+
+#pilares .section2 .textoint{
+	color:#fff;	
+}
+
+#pilares .section2 h3{
+	color:#fff;	
+}
+
+#pilares .section3{
+  background: #bae9fb;
+  padding: 20px;
+  min-height: 350px;
+}
+
+#pilares .section3 .textoint{
+	color:#1f191a;	
+}
+
+#pilares .section3 h3{
+	color:#27327b;	
+}
+
+#pilares .section4{
+  background: #20317c;
+  padding: 20px;
+  min-height: 350px;
+}
+
+#pilares .section4 .textoint{
+	color:#fff;	
+}
+
+#pilares .section4 h3{
+	color:#fff;	
+}
+
+#historia{
+	background: #20317c;
+	    padding: 5% 5% 5% 3%;
+}
+
+#historia .carousel-control{
+  margin-top: 10%;
+}
+
+#historia .carousel-control.left{
+  left: -50px;
+}
+
+#historia .carousel-control.right{
+	right: -40px;
+}
+
+#historia .carousel h4{
+	font-family: "AG Book Rounded";
+	font-size: 24px;
+	font-weight: bold;	
+	color:#fff;
+}
+
+#historia .carousel h5{
+	font-family: "AG Book Rounded";
+	font-size: 18px;
+	font-weight: bold;	
+	color:#fff;
+}
+
+#historia .carousel p{
+	font-family: "AG Book Rounded";
+	font-size: 15px;
+	color:#fff;
+}
+
+.carousel-control 			 { width:  4%; }
+.carousel-control.left,.carousel-control.right {margin-left:15px;background-image:none;}
+@media (max-width: 767px) {
+	.carousel-inner .active.left { left: -100%; }
+	.carousel-inner .next        { left:  100%; }
+	.carousel-inner .prev		 { left: -100%; }
+	.active > div { display:none; }
+	.active > div:first-child { display:block; }
+
+}
+@media (min-width: 767px) and (max-width: 992px ) {
+	.carousel-inner .active.left { left: -50%; }
+	.carousel-inner .next        { left:  50%; }
+	.carousel-inner .prev		 { left: -50%; }
+	.active > div { display:none; }
+	.active > div:first-child { display:block; }
+	.active > div:first-child + div { display:block; }
+}
+@media (min-width: 992px ) {
+	.carousel-inner .active.left { left: -25%; }
+	.carousel-inner .next        { left:  25%; }
+	.carousel-inner .prev		 { left: -25%; }	
+}

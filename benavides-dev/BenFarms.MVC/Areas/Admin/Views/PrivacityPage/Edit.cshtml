@@ -1,0 +1,169 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.PrivacityPage
+
+@{
+    ViewBag.Title = "Editar Página de Privacidad";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "PrivacityPageEdit";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered" id="form_wizard_1">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="icon-layers font-red"></i>
+                    <span class="caption-subject font-red bold uppercase">
+                        Editar Página de Privacidad -
+                        <span class="step-title"> Paso 1 de 2 </span>
+                    </span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <form class="form-horizontal" id="submit_form" method="POST" action="" enctype="multipart/form-data">
+                    @Html.AntiForgeryToken()
+                    <div class="form-wizard">
+                        <div class="form-body">
+                            <ul class="nav nav-pills nav-justified steps">
+                                <li>
+                                    <a href="#tab1" data-toggle="tab" class="step">
+                                        <span class="number"> 1 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Encabezado
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#tab2" data-toggle="tab" class="step">
+                                        <span class="number"> 2 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Texto de Privacidad
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div id="bar" class="progress progress-striped" role="progressbar">
+                                <div class="progress-bar progress-bar-success"> </div>
+                            </div>
+                            <div class="tab-content">
+                                <div class="alert alert-danger display-none">
+                                    <button class="close" data-dismiss="alert"></button> Se tienen varios errores. Por favor, revise nuevamente.
+                                </div>
+                                <div class="alert alert-success display-none">
+                                    <button class="close" data-dismiss="alert"></button> La validaión del formulario es correcta.
+                                </div>
+                                <div class="tab-pane active" id="tab1">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Texto de Encabezado</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Color de fondo</label>
+                                                            <div class="col-md-4">
+                                                                <input type="text" id="BgColorHeadPrivacityPage" name="BgColorHeadPrivacityPage" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.PrivacityPageBgColorHead)" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Texto de Encabezado</label>
+                                                            <div class="col-md-4">
+                                                                <input type="text" id="HeadTextPrivacityPage" name="HeadTextPrivacityPage" class="form-control" value="@Model.PrivacityPageHeadText"/>
+                                                            </div>
+                                                            <label class="control-label col-md-2">Color del Texto de Encabezado</label>
+                                                            <div class="col-md-4">
+                                                                <input type="text" id="ColorHeadTextPrivacityPage" name="ColorHeadTextPrivacityPage" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.PrivacityPageColorHeadText)" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tab2">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Texto de Privacidad</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="form-group">
+                                                        
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-2">Color del Texto</label>
+                                                                    <div class="col-md-10">
+                                                                        <input type="text" id="TextColorPrivacityPage" name="TextColorPrivacityPage" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.PrivacityPageTextColor)" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-2">Título del Texto</label>
+                                                                    <div class="col-md-10">
+                                                                        <textarea class="form-control" name="TextTitlePrivacityPage" id="TextTitlePrivacityPage" style="height: 200px">@Html.Raw(Model.PrivacityPageTextTitle)</textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group last">
+                                                                    <label class="control-label col-md-2">Texto de Descripción de Privacidad</label>
+                                                                    <div class="col-md-10">
+                                                                        <textarea class="ckeditor form-control" name="TextDescriptionPrivacityPage" id="TextDescriptionPrivacityPage">@Html.Raw(Model.PrivacityPageTextDescription)</textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <a href="javascript:;" class="btn default button-previous">
+                                        <i class="fa fa-angle-left"></i> Atrás
+                                    </a>
+                                    <a href="javascript:;" class="btn btn-outline green button-next">
+                                        Continuar
+                                        <i class="fa fa-angle-right"></i>
+                                    </a>
+                                    <a class="btn green button-submit" id="btnApplyPrivacity">
+                                        Aplicar
+                                        <i class="fa fa-check"></i>
+                                    </a>
+                                    <a class="btn blue" id="btnPreviewPrivacity">
+                                        Vista Previa
+                                        <i class="fa fa-search"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

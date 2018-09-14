@@ -1,0 +1,795 @@
+﻿@using BenFarms.MVC.Models
+@model BenFarms.MVC.Models.RegisterViewModel
+@{
+    ViewBag.Page = "Perfil";
+    ViewBag.Title = "Perfil";
+}
+
+<style>
+    .btnEdit {
+        background: #48c7f3 url("../../assets/pages/img/editbtn.jpg") no-repeat 10px 0;
+        height: 24px;
+        padding-left: 10px !important;
+        width: 150px;
+    }
+
+    #perfilForm a {
+        color: #2a3479;
+        text-decoration: underline;
+        font-weight: bold;
+    }
+
+    input, textarea {
+        background-color: #e3e5e8 !important;
+    }
+     tr.odd {
+         background-color: #f3ddde !important;
+     }
+
+    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td {
+        border: none;
+    }
+
+    .table > tbody > tr.even > td {
+        /*padding: 18px;*/
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    tr.title {
+        border-bottom: 3px solid red !important;
+    }
+
+    tr.title th {
+        padding-bottom: 0 !important;
+    }
+
+
+    .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
+        /*z-index: 3;
+        color: #fff;
+        cursor: default;*/
+        background-color: transparent;
+        border-color: transparent;
+        color: #ec2028;
+        font-weight: bold;
+    }
+
+    .pagination > li > a, .pagination > li > span {
+        background-color: transparent;
+        border: none;
+        color: #ec2028;
+        padding: 0;
+    }
+
+    .dataTables_wrapper .dataTables_filter {
+        text-align: center;
+        position: relative;
+        margin: 0 auto;
+        float: none;
+    }
+
+    .dataTables_filter input {
+        width: 325px;
+        height: 30px;
+        border: none !important;
+        border-radius: 0 !important;
+        background: #dcdada url("/assets/pages/img/lupaSearch.png") no-repeat top right;
+        margin-top: 30px;
+    }
+
+    .pagination > .disabled > a, .pagination > .disabled > a:focus, .pagination > .disabled > a:hover, .pagination > .disabled > span, .pagination > .disabled > span:focus, .pagination > .disabled > span:hover {
+        color: #ec2028;
+        cursor: not-allowed;
+        background-color: transparent;
+        border: none;
+    }
+
+    .dataTables_wrapper .dataTables_paginate {
+        text-align: center;
+        float: none;
+    }
+
+    table.dataTable.order-column tbody tr > .sorting_1, table.dataTable.order-column tbody tr > .sorting_2, table.dataTable.order-column tbody tr > .sorting_3, table.dataTable.display tbody tr > .sorting_1, table.dataTable.display tbody tr > .sorting_2, table.dataTable.display tbody tr > .sorting_3 {
+        background-color: transparent;
+    }
+
+    table.dataTable.no-footer {
+        border-bottom: none;
+    }
+
+    table.dataTable tbody tr {
+        background-color: transparent;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        /*box-sizing: border-box;
+        display: inline-block;
+        min-width: 1.5em;*/
+        padding: 0;
+        /*margin-left: 2px;*/
+        text-align: center;
+        text-decoration: none !important;
+        cursor: pointer;
+        /*color: #333 !important;*/
+        /*border: 1px solid transparent;
+        border-radius: 2px;*/
+        border: none;
+    }
+
+    .pagination > li:first-child > a, .pagination > li:first-child > span {
+        margin-left: 0;
+        border: none;
+    }
+
+    .pagination > li > a, .pagination > li > span {
+        /*position: relative;
+        float: left;
+        padding: 6px 12px;
+        margin-left: -1px;*/
+        line-height: 1.42857143;
+        color: #ec2028;
+        text-decoration: none;
+        background-color: transparent;
+        border: none;
+    }
+
+    .pagination > li > a:focus, .pagination > li > a:hover, .pagination > li > span:focus, .pagination > li > span:hover {
+        z-index: 2;
+        color: #ec2028;
+        background-color: transparent;
+        border: none;
+        background: none;
+    }
+
+
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+        color: #ec2028 !important;
+        border: none;
+        background: none !important;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
+        cursor: default;
+        color: #ec2028 !important;
+        border: none;
+        background: transparent;
+        box-shadow: none;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        color: #ec2028 !important;
+        border: none;
+        background: none !important;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button:active {
+        outline: none;
+        background-color: transparent;
+        background: none;
+        box-shadow: none;
+    }
+
+    .table > thead > tr > th {
+        border: none;
+        color: #293479;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    table.dataTable {
+        border-collapse: collapse;
+        width: 100% !important;
+    }
+</style>
+
+
+
+<section class="perfil tab-content">
+    <div id="perfil-mi-cuenta" class="tab-pane active" role="tabpanel">
+        <div class="container">
+            <div class="form_info_01">
+                <form class="form-horizontal bg-color-blue-marine">
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <img class="img-responsive img-circle" src="@Url.Content(@Model.UserImage)" alt="">
+                        </div>
+                        <div class="col-sm-8">
+                            <legend class="color-blue">¡Hola, @Model.Names!</legend>
+                            <dl>
+                                <dt>Tu saldo es de:</dt>
+                                <dd>$@Model.Mount</dd>
+                                <dt>Tu número de tarjeta es:</dt>
+                                <dd>@Model.Card</dd>
+                            </dl>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="form_info_02">
+                <form class="form-vertical" action="" method="POST" role="form" id="perfilForm" enctype="multipart/form-data">
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(m => m.Card)
+                    <legend>Perfil</legend>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Names, new { @class = "control-label", style = "border:0px" })
+                                @Html.TextBoxFor(m => m.Names, new { @class = "form-control input-sm", id = "Names", name = "Names", minlength = "2", maxlength = "100", required = true  })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Email, new { @class = "control-label", style = "border:0px" })
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control input-sm", id = "Email", name = "Email", maxlength = "150", required = true })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Card, new { @class = "control-label", style = "border:0px" })
+                                @Html.TextBoxFor(m => m.Card, new { @class = "form-control input-sm", id = "Card", name = "Card", required = true })
+                            </div>
+
+                            <div class="form-group">
+                                <a data-toggle="modal" data-dismiss="modal" href="#modal-change-password">Cambia tu contraseña</a>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.LastName1, new { @class = "control-label", style = "border:0px" })
+                                @Html.TextBoxFor(m => m.LastName1, new { @class = "form-control input-sm", id = "LastName1", name = "LastName1", minlength = "2", maxlength = "100", required = true })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.CGenre, new { @class = "control-label", style = "border:0px" })
+                                <div class="col-xs-12 text-left" style="margin-bottom: 19px">
+                                    @{
+                                        var sexFem = Model.CGenre == Genre.Female;
+                                        var sexMas = Model.CGenre == Genre.Male;
+                                    }
+                                    <label class="radio-inline" for="generoM">
+                                        @Html.RadioButton("CGenre", "1", sexMas, new { id = "generoM", required = true })
+                                        <img src="~/Content/rsc/icons/hombre.png" alt="">
+                                    </label>
+                                    <label class="radio-inline" for="generoF">
+                                        @Html.RadioButton("CGenre", "2", sexFem, new { id = "generoF", required = true })
+                                        <img src="~/Content/rsc/icons/mujer.png" alt="">
+                                    </label>
+                                </div>
+                                <label for="CGenre" class="error"></label>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.BirthDate, new { @class = "control-label", style = "border:0px" })
+                                @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control form-control-inline input-sm date-picker", id = "BirthDate", name = "BirthDate", required = true, value = Model.BirthDate })
+                            </div>
+
+                            <div class="form-group">
+                                <a data-toggle="tab" aria-controls="perfil-contacto" href="#perfil-contacto">¿Extraviaste tu tarjeta?</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.LastName2, new { @class = "control-label", style = "border:0px" })
+                                @Html.TextBoxFor(m => m.LastName2, new { @class = "form-control input-sm", id = "LastName2", name = "LastName2", minlength = "2", maxlength = "100", required = true })
+                            </div>
+
+                            <div class="form-group">
+                                @*<div class="col-sm-6 col-xs-12">*@
+                                <label class="control-label text-left">Imagen de Perfil</label>
+                                <div class="text-left">
+                                    <div class="form-group">
+                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                            <div class="fileinput-preview thumbnail" data-trigger="fileinput">
+                                                <img src="@Url.Content(Model.UserImage)" />
+                                            </div>
+                                            <div>
+                                                <span class="btn blue btn-outline btn-file">
+                                                    <span class="fileinput-new"> Seleccionar Imagen </span>
+                                                    <span class="fileinput-exists"> Cambiar </span>
+                                                    <input type="file" name="ImagenUsuarioRegistro" id="ImagenUsuarioRegistro">
+                                                </span>
+                                                <a href="javascript:;" class="btn red-soft fileinput-exists" data-dismiss="fileinput" style="margin-right:10px"> Eliminar </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @*</div>*@
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-default btnEdit">Edita tus datos</button>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="perfil-mis-compras" class="tab-pane" role="tabpanel">
+        <div class="container">
+            <div class="form_info_01">
+                <h2 class="color-blue weight-heavy">Mis compras</h2>
+                <div role="tabpanel">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#tab-dinero-electronico" aria-controls="tab-dinero-electronico" role="tab" data-toggle="tab">Dinero Electrónico</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#tab-piezas-gratis" aria-controls="tab-piezas-gratis" role="tab" data-toggle="tab">Piezas Gratis</a>
+                        </li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="tab-dinero-electronico">
+
+                            <div class="table-responsive">
+                                <table class="table table-hover table-striped table-condensed" id="dineroElectronico">
+                                    <thead>
+                                        <tr>
+                                            <th>Fecha</th>
+                                            <th>Producto</th>
+                                            <th>Sucursal</th>
+                                            <th>Ticket</th>
+                                            <th>Importe</th>
+                                            <th>Dinero electrónico</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="tab-piezas-gratis">
+
+                            <div class="table-responsive">
+                                <table class="table table-hover table-striped table-condensed" id="piezasGratis">
+                                    <thead>
+                                        <tr>
+                                            <th>Producto</th>
+                                            <th>Acumuladas</th>
+                                            <th>Regla</th>
+                                            <th>Vigencia</th>
+                                        </tr>
+                                    </thead>
+                                    
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="perfil-mis-promociones" class="tab-pane" role="tabpanel">
+        <div class="container">
+            <div class="form_info_01">
+                <h2 class="color-blue weight-heavy">Promociones</h2>
+                <div role="tabpanel">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#tab-mis-promociones" aria-controls="tab-mis-promociones" role="tab" data-toggle="tab">Mis Promociones</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#tab-promociones-disponibles" aria-controls="tab-promociones-disponibles" role="tab" data-toggle="tab">Promociones Disponibles</a>
+                        </li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="tab-mis-promociones">
+
+                            <div class="table-responsive">
+                                <table class="table table-hover table-striped table-condensed" id="misPromociones">
+                                    <thead>
+                                        <tr>
+                                            <th>Cupón</th>
+                                            <th>Descripción</th>
+                                            <th>Vigencia</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="tab-promociones-disponibles">
+
+                            <div class="table-responsive">
+                                <table class="table table-hover table-striped table-condensed" id="promocionesDisponibles">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                C&oacute;digo
+                                            </th>
+                                            <th>
+                                                Producto
+                                            </th>
+                                            <th>
+                                                Laboratorio
+                                            </th>
+                                            <th>
+                                                Mec&aacute;nica
+                                            </th>
+                                            <th>Vigencia</th>
+                                        </tr>
+                                    </thead>
+
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="perfil-mis-ofertas" class="tab-pane" role="tabpanel">
+        <div class="container">
+            <div class="form_info_01">
+                <h2 class="color-blue weight-heavy">Mis ofertas</h2><br>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <a href="#" class="thumbnail">
+                            <img class="img-responsive" src="~/Content/rsc/imgs/oferta_01.png" alt="">
+                        </a>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <a href="#" class="thumbnail">
+                            <img class="img-responsive" src="~/Content/rsc/imgs/oferta_01.png" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="perfil-suscripciones" class="tab-pane" role="tabpanel">
+        <div class="container">
+            <div class="form_info_01">
+                <h2 class="color-blue weight-heavy">Suscripciones</h2><br>
+                <form class="form-vertical" action="" method="POST" role="form">
+                    <legend>Selecciona por cuál de los siguientes medios de comunicación, te gustaría ser contactado.</legend>
+
+                    <div class="table-responsive">
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th class="col-xs-6"></th>
+                                    <th>Correo Electónico</th>
+                                    <th>Celular</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>Tarjeta Benavides</th>
+                                    <td>
+                                        <label class="radio-inline">
+                                            <input name="cb-email" type="radio" id="cb-email-si" value="si"> Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="cb-email" type="radio" id="cb-email-no" value="no"> No
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label class="radio-inline">
+                                            <input name="cp-email" type="radio" id="cp-email-si" value="si"> Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="cp-email" type="radio" id="cp-email-no" value="no"> No
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Club Peques</th>
+                                    <td>
+                                        <label class="radio-inline">
+                                            <input name="cb-celular" type="radio" id="cb-celular-si" value="si"> Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="cb-celular" type="radio" id="cb-celular-no" value="no"> No
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label class="radio-inline">
+                                            <input name="cp-celular" type="radio" id="cp-celular-si" value="si"> Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="cp-celular" type="radio" id="cp-celular-no" value="no"> No
+                                        </label>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div id="perfil-contacto" class="tab-pane" role="tabpanel">
+        <div class="container">
+            <div class="form_info_01">
+                <h2 class="color-blue weight-heavy" style="margin-top: 50px">Contacto</h2><br>
+                <div class="row">
+                    <form class="form-horizontal" id="perfilContactForm" action="" role="form" style="padding-top:3em">
+                        <div class="col-md-offset-4 col-xs-12 col-md-3 col-sm-6">
+                            <div class="form-group">
+                                <label for="Email" class="control-label color-black">Tu correo electrónico:</label>
+                                <input type="email" class="form-control input-sm" id="Email" name="Email" value="@Model.Email">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="Subject" class="control-label color-black">Tu asunto:</label>
+                                <input type="text" class="form-control input-sm" id="Subject" name="Subject" placeholder="">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="Comments" class="control-label color-black">Tus Comentarios:</label>
+                                <textarea style="height: 220px" class="form-control" id="Comments" name="Comments" placeholder=""></textarea>
+                            </div>
+
+                        </div>
+                        
+                        <div class="col-xs-12 col-md-12 col-sm-12">
+                            <div class="row">
+                                <div style="text-align: center;">
+                                    <span id="mensajeContacto" class="color-red"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 20px">
+                            <div class="col-xs-12 col-md-12">
+                                <button type="submit" class="btn" style="background-color: #48c7f3; color: white; border-radius: 0px; float: right; margin-right: 50px">Enviar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="perfil-terminos-condiciones" class="tab-pane" role="tabpanel">
+        @Html.Partial("_ConditionsTermsPartial", Model.ConditionsTermsPage)
+    </div>
+</section>
+
+@Html.Partial("_ChangePasswordPartial", new ResetPasswordViewModel())
+
+
+
+@section scripts {
+    <section class="scripts">
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+                ComponentsDateTimePickers.init();
+
+                //ConsultaTickets
+                var v = getSiteRootUrl();
+                var card = $("#Card").val();
+                var table = $('#dineroElectronico');
+
+                // begin first table
+                table.dataTable({
+                    "responsive": true,
+                    "info": false,
+                    "ajax": v + "/Promotions/LoadTickets?card="+card,
+			        "columns": [
+				        { "data": "Fecha" },
+				        { "data": "Producto" },
+				        { "data": "Sucursal" },
+				        { "data": "Ticket" },
+				        { "data": "Importe" },
+				        { "data": "DineroElectronico" }
+                    ],
+                    
+                    // Internationalisation. For more info refer to http://datatables.net/manual/i18n
+                    "language": {
+                        "aria": {
+                            "sortAscending": ": activate to sort column ascending",
+                            "sortDescending": ": activate to sort column descending"
+                        },
+                        "search": "",
+                        "searchPlaceholder": "Encuentra tu producto...",
+                        "emptyTable": "No existen datos a mostrar",
+                        "info": "Mostrando _START_ a _END_ de _TOTAL_ elementos",
+                        "infoEmpty": "No se encuentran elementos",
+                        "infoFiltered": "(Total de elementos: _MAX_)",
+                        "lengthMenu": "Mostrar _MENU_",
+                        //"search": "Buscar:",
+                        "zeroRecords": "No existen coincidencias",
+                        "paginate": {
+                            "previous": "<",
+                            "next": ">",
+                            "last": "Último",
+                            "first": "Primero"
+                        }
+                    },
+
+                    "dom": '<"top"f>rt<"bottom"lp><"clear">',
+
+                    "bStateSave": true, // save datatable state(pagination, sort, etc) in cookie.
+
+                    "bLengthChange": false,
+                    // set the initial value
+                    "pageLength": 10,
+                    "pagingType": "simple_numbers",
+                    "order": [
+                        [0, "asc"]
+                    ] // set first column as a default sort by asc
+                });
+                
+                //ConsultaAcumulacion
+                var table1 = $('#piezasGratis');
+
+                // begin first table
+                table1.dataTable({
+                    "responsive": true,
+                    "info": false,
+                    "ajax": v + "/Promotions/LoadAcumulacion?card=" + card,
+                    "columns": [
+				        { "data": "Producto" },
+				        { "data": "Acumuladas" },
+				        { "data": "Regla" },
+				        { "data": "Vigencia" }
+                    ],
+
+                    // Internationalisation. For more info refer to http://datatables.net/manual/i18n
+                    "language": {
+                        "aria": {
+                            "sortAscending": ": activate to sort column ascending",
+                            "sortDescending": ": activate to sort column descending"
+                        },
+                        "search": "",
+                        "searchPlaceholder": "Encuentra tu producto...",
+                        "emptyTable": "No existen datos a mostrar",
+                        "info": "Mostrando _START_ a _END_ de _TOTAL_ elementos",
+                        "infoEmpty": "No se encuentran elementos",
+                        "infoFiltered": "(Total de elementos: _MAX_)",
+                        "lengthMenu": "Mostrar _MENU_",
+                        //"search": "Buscar:",
+                        "zeroRecords": "No existen coincidencias",
+                        "paginate": {
+                            "previous": "<",
+                            "next": ">",
+                            "last": "Último",
+                            "first": "Primero"
+                        }
+                    },
+
+                    "dom": '<"top"f>rt<"bottom"lp><"clear">',
+
+                    "bStateSave": true, // save datatable state(pagination, sort, etc) in cookie.
+
+                    "bLengthChange": false,
+                    // set the initial value
+                    "pageLength": 10,
+                    "pagingType": "simple_numbers",
+                    "order": [
+                        [0, "asc"]
+                    ] // set first column as a default sort by asc
+                });
+                
+                //ConsultarPromocionesDisponibles
+                var table2 = $('#misPromociones');
+
+                // begin first table
+                table2.dataTable({
+                    "responsive": true,
+                    "info": false,
+                    "ajax": v + "/Promotions/LoadPromocionesDisponibles?card=" + card,
+                    "columns": [
+				        { "data": "Cupon" },
+				        { "data": "Promocion" },
+				        { "data": "Vigencia" }
+                    ],
+
+                    // Internationalisation. For more info refer to http://datatables.net/manual/i18n
+                    "language": {
+                        "aria": {
+                            "sortAscending": ": activate to sort column ascending",
+                            "sortDescending": ": activate to sort column descending"
+                        },
+                        "search": "",
+                        "searchPlaceholder": "Encuentra tu producto...",
+                        "emptyTable": "No existen datos a mostrar",
+                        "info": "Mostrando _START_ a _END_ de _TOTAL_ elementos",
+                        "infoEmpty": "No se encuentran elementos",
+                        "infoFiltered": "(Total de elementos: _MAX_)",
+                        "lengthMenu": "Mostrar _MENU_",
+                        //"search": "Buscar:",
+                        "zeroRecords": "No existen coincidencias",
+                        "paginate": {
+                            "previous": "<",
+                            "next": ">",
+                            "last": "Último",
+                            "first": "Primero"
+                        }
+                    },
+
+                    "dom": '<"top"f>rt<"bottom"lp><"clear">',
+
+                    "bStateSave": true, // save datatable state(pagination, sort, etc) in cookie.
+
+                    "bLengthChange": false,
+                    // set the initial value
+                    "pageLength": 10,
+                    "pagingType": "simple_numbers",
+                    "order": [
+                        [0, "asc"]
+                    ] // set first column as a default sort by asc
+                });
+                
+                var table3 = $('#promocionesDisponibles');
+
+                // begin first table
+                table3.dataTable({
+                    "responsive": true,
+                    "info": false,
+                    "ajax": {
+                        "url": v + '/Content/promociones.txt',
+                        "dataSrc": ""
+                    },
+                    "columns": [
+                        { "data": "CodigoGratis" },
+                        { "data": "NombreProdAcumula" },
+                        { "data": "Laboratorio" },
+                        {
+                            "data": "Regla",
+                            "render": function (data, type, full, meta) {
+                                return full.Regla + " obtén " + full.CodigoGratis;
+                            }
+                        },
+                        { "data": "LimitePeriodicidad" }
+                    ],
+
+                    // Internationalisation. For more info refer to http://datatables.net/manual/i18n
+                    "language": {
+                        "aria": {
+                            "sortAscending": ": activate to sort column ascending",
+                            "sortDescending": ": activate to sort column descending"
+                        },
+                        "search": "",
+                        "searchPlaceholder": "Encuentra tu producto...",
+                        "emptyTable": "No existen datos a mostrar",
+                        "info": "Mostrando _START_ a _END_ de _TOTAL_ elementos",
+                        "infoEmpty": "No se encuentran elementos",
+                        "infoFiltered": "(Total de elementos: _MAX_)",
+                        "lengthMenu": "Mostrar _MENU_",
+                        //"search": "Buscar:",
+                        "zeroRecords": "No existen coincidencias",
+                        "paginate": {
+                            "previous": "<",
+                            "next": ">",
+                            "last": "Último",
+                            "first": "Primero"
+                        }
+                    },
+
+                    "dom": '<"top"f>rt<"bottom"lp><"clear">',
+
+                    "bStateSave": true, // save datatable state(pagination, sort, etc) in cookie.
+
+                    "bLengthChange": false,
+                    // set the initial value
+                    "pageLength": 10,
+                    "pagingType": "simple_numbers",
+                    "order": [
+                        [0, "asc"]
+                    ] // set first column as a default sort by asc
+                });
+
+
+
+            });
+
+
+
+
+        </script>
+    </section>
+}

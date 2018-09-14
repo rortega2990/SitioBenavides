@@ -1,0 +1,346 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.WhoWeArePage
+@{
+    ViewBag.Title = "Quienes somos";
+}
+
+@section styles {
+    <link href="@Url.Content("~/Content/css/who-we-are.css")" rel="stylesheet" type="text/css" />
+}
+
+<section>
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            @*<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>*@
+            @for (int i = 0; i < Model.HeadImages.Count; ++i)
+            {
+                if (i == 0)
+                {
+                    <li data-target="#carousel-example-generic" data-slide-to="@i" class="active"></li>
+                }
+                <li data-target="#carousel-example-generic" data-slide-to="@i"></li> 
+            }
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            @*<div class="item active">
+                <img src="assets/img/banner1.png" class="img-responsive center-block" alt="banner">
+            </div>
+            <div class="item">
+                <img src="assets/img/banner1.png" class="img-responsive center-block" alt="banner">
+            </div>*@
+
+            @for (int i = 0; i < Model.HeadImages.Count; ++i)
+            {
+                string itemClass = "item";
+                if (i == 0)
+                {
+                    itemClass += " active";
+                }
+
+                <div class="@itemClass">
+                    <img src="@Url.Content(Model.HeadImages[i].ImageFileName)" class="img-responsive center-block" alt="banner">
+                </div>
+            }
+
+        </div>
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Anterior</span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Próximo</span>
+        </a>
+    </div>
+</section>
+
+
+
+<section id="quienes-somos"  style="background-color:@Model.WhoWeAreSection.BackgroundColor">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12 titular" style="color:@Model.WhoWeAreSection.TitleTextColor">
+                @*¿Quiénes Somos?*@
+                @Model.WhoWeAreSection.Title
+            </div>
+            <div class="col-md-8 col-sm-8 col-xs-12 texto" style="color:@Model.WhoWeAreSection.MessageTextColor">
+                @*Líder en el mercado de venta a detalle de productos de salud y bienestar. Con 100 años de experiencia, tenemos presencia en más de 183 ciudades en 26 estados. Contamos con una red de 1,100 farmacias, 500 consultorios y un centro de distribución de alta tecnología. La cadena operada por casi 9,200 personas, anualmente atiende a más de 100 millones de clientes ofreciendo un catálogo de más de 16,000 diferentes productos de marcas comerciales y propias enfocados a ayudar a la salud y bienestar de sus clientes.*@
+                @*Model.WhoWeAreSection.Message*@
+                Líder en el mercado de venta a detalle de productos de salud y bienestar. Con 100 años de experiencia, tenemos presencia en más de 203 ciudades en 24 estados. Contamos con una red de 1,145 farmacias, 530 consultorios y un centro de distribución de alta tecnología. La cadena operada por casi 10,226 personas, anualmente atiende a más de 100 millones de clientes ofreciendo un catálogo de más de 16,000 diferentes productos de marcas comerciales y propias enfocados a ayudar a la salud y bienestar de sus clientes. 
+                <br />
+                                       CONAPRED: <a href="http://www.benavides.com.mx/UploadedFiles/CONAPRED-carta.pdf ">Carta</a> 
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<section id="vision" style="background-color:@Model.VisionSection.BackgroundColor">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12 titular" style="color:@Model.VisionSection.TitleTextColor">
+                @*Nuestra visión*@
+                @Model.VisionSection.Title
+            </div>
+            <div class="col-md-8 col-sm-8 col-xs-12 texto" style="color:@Model.VisionSection.MessageTextColor">
+                @*Ser la cadena de farmacias líder en México que cuenta con la mejor oferta de soluciones de salud y bienestar, reconocidos por nuestro servicio, rapidez, conveniencia, innovación y confiabilidad.*@
+                @Model.VisionSection.Message
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+<section id="mision" style="background-color:@Model.MisionSection.BackgroundColor">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12 titular" style="color:@Model.MisionSection.TitleTextColor">
+                @*Nuestra misión*@
+                @Model.MisionSection.Title
+            </div>
+            <div class="col-md-8 col-sm-8 col-xs-12 texto" style="color:@Model.MisionSection.MessageTextColor">
+                @*Ayudamos a las personas a mejorar su calidad de vida a través de soluciones integrales de salud y bienestar.*@
+                @Model.MisionSection.Message
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<section id="valores">
+    <div>
+        <p class="titular">Nuestros Valores</p>
+    </div>
+    <div class="container">
+             @{ 
+                    var len = Model.ValuesSection.Count;
+                    for (int i = 0; i < len; i += 3)
+                    {
+                        var innerLoopLimit = Math.Min(i + 3, len);
+                            <div class="row col-md-12 col-xs-12">                    
+                                @for (int j = i; j < innerLoopLimit; ++j)
+                                {
+                                    <div class="col-md-4 col-xs-12">
+                                        <img src="@Url.Content(Model.ValuesSection[j].ImageFileName)" class="img-responsive center-block">
+                                        <p class="text-center titular1" style="color:@Model.ValuesSection[j].TileColor">@Model.ValuesSection[j].Title</p>
+                                        <p class="text-center texto" style="color:@Model.ValuesSection[j].TextColor">
+                                        @*Asegurar las oportunidades de desarrollo basadas en el mérito y en los aspectos personales.*@
+                                            @Model.ValuesSection[j].Text
+                                        </p>
+                                    </div>
+                                }
+                            </div>
+                    }
+               }
+
+        @*<div class="row">
+           
+            <div class="col-md-2 col-sm-2 col-xs-12">
+                <img src="assets/img/icon1.png" class="img-responsive center-block">
+                <p class="text-center titular1">Personas</p>
+                <p class="text-center texto">Asegurar las oportunidades de desarrollo basadas en el mérito y en los aspectos personales.</p>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-12">
+                <img src="assets/img/icon2.png" class="img-responsive center-block">
+                <p class="text-center titular1">Trabajo en Equipo</p>
+                <p class="text-center texto">Fomentar la participación de todos para lograr un objetivo común, compartiendo información y conocimientos.</p>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-12">
+                <img src="assets/img/icon3.png" class="img-responsive center-block">
+                <p class="text-center titular1">Conducta Ética</p>
+                <p class="text-center texto">Actuar con profesionalismo, integridad, moral, lealtad y respeto a las personas.</p>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-12">
+                <img src="assets/img/icon4.png" class="img-responsive center-block">
+                <p class="text-center titular1">Cultura de Servicio al Cliente</p>
+                <p class="text-center texto">Centrar nuestro esfuerzo en la satisfacción del cliente.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-2 col-xs-12">
+                <img src="assets/img/icon5.png" class="img-responsive center-block">
+                <p class="text-center titular1">Innovación</p>
+                <p class="text-center texto">Promover la creatividad para el incremento continuo de la eficiencia operacional y la máxima calidad en servicio con criterios de rentabilidad.</p>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-12">
+                <img src="assets/img/icon6.png" class="img-responsive center-block">
+                <p class="text-center titular1">Orientación a Resultados</p>
+                <p class="text-center texto">Dirigir nuestras actuaciones hacia el logro de los objetivos del proyecto empresarial y de la rentabilidad para nuestros accionistas, tratando de superar sus expectativas. </p>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-12">
+                <img src="assets/img/icon7.png" class="img-responsive center-block">
+                <p class="text-center titular1">Compromiso</p>
+                <p class="text-center texto">Equipo de trabajo esforzado, enfocados, entusiasmados que actúa de una forma que va más allá de los intereses de la organización.</p>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-12">
+                <img src="assets/img/icon8.png" class="img-responsive center-block">
+                <p class="text-center titular1">Comunicación Abierta</p>
+                <p class="text-center texto">De una manera honesta y franca siempre hablando con la verdad de manera respetuosa.</p>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-12">
+                <img src="assets/img/icon9.png" class="img-responsive center-block">
+                <p class="text-center titular1">Comunidad y Responsabilidad Social</p>
+                <p class="text-center texto">Comprometerse social y culturalmente con nuestra comunidad. </p>
+            </div>
+        </div>*@
+    </div>
+</section>
+
+
+<section id="logo" style="background-color: @Model.AdSection.BackgroundColor color:@Model.AdSection.MessageTextColor">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                @*<img src="assets/img/logo1.png" class="img-responsive center-block">*@
+                <img src="@Url.Content(Model.AdSection.ImageFileName)" class="img-responsive center-block">
+            </div>
+            <div class="col-md-8 col-sm-8 col-xs-12 texto">
+                @*Ser la cadena de farmacias líder en México que cuenta con la mejor oferta de soluciones de salud y bienestar, reconocidos por nuestro servicio, rapidez, conveniencia, innovación y confiabilidad.*@
+                @Model.AdSection.Message
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="pilares">
+    <div class="container">
+        <div class="row">
+            <h2>Pilares</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-3 col-xs-12 section1">
+                <h3>Expertos Confiables</h3>
+                <p class="textoint">
+                    Proveemos la atención que nuestros clientes buscan a través de  especialistas dedicados a atender sus necesidades en salud, belleza y bienestar.
+                </p>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12 section2">
+                <h3>Accesible para todos</h3>
+                <p class="textoint">
+                    Atendemos a todas las personas y nos convertimos en el amigo atento y leal que quieren y necesitan.
+                </p>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12 section3">
+                <h3>Atendiendo a las personas y sus comunidades</h3>
+                <p class="textoint">
+                    Nos esforzamos por tener un impacto positivo en la vida de las personas, construyendo relaciones a largo plazo y ofreciendo soluciones específicas a sus necesidades.
+                </p>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12 section4">
+                <h3>Innovaciones Vanguardistas</h3>
+                <p class="textoint">
+                    Ofrecemos las soluciones más vanguardistas y confiables en salud, belleza, bienestar y cuidado personal.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="historia">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="carousel slide" data-ride="carousel" data-type="multi" data-interval="3000" id="myCarousel">
+                    <div class="carousel-inner">
+                        @for (int i = 0; i < Model.HistoryImages.Count; ++i)
+                        {
+                            string itemClass = "item";
+                            if (i == 0)
+                            {
+                                itemClass += " active";
+                            }
+
+                            <div class="@itemClass">
+                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <h4 style="color:@Model.HistoryImages[i].TileColor">@Model.HistoryImages[i].Title</h4>
+                                    <img src="@Url.Content(Model.HistoryImages[i].ImageFileName)" class="img-responsive center-block"/>
+                                    <h5 style="color:@Model.HistoryImages[i].SubTitleColor">@Model.HistoryImages[i].SubTitle</h5>
+                                    <p style="color:@Model.HistoryImages[i].TextColor">@Model.HistoryImages[i].Text</p>
+                                </div>
+                           </div>
+                        }
+                        @*<div class="item active">
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                        <h4>1917</h4>
+                                        <img src="assets/img/historia1.png" class="img-responsive center-block">
+                                        <h5>Los inicios</h5>
+                                        <p>Ésta década inició la expansión en el mercado fronterizo.</p>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                        <h4>1943</h4>
+                                        <img src="assets/img/historia2.png" class="img-responsive center-block">
+                                        <h5>Crecimiento</h5>
+                                        <p>Década de los 60, con el firme propósito de consolidarse en Monterrey, se adquirieron las Bóticas Moebius y las Farmacias San Rafael. También en esta época inició el fortalecimiento del área del Pacífico, con la adquisición de 20 sucursales de la cadena Farmacias Bótica Moderna, S.A.</p>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                        <h4>1950</h4>
+                                        <img src="assets/img/historia3.png" class="img-responsive center-block">
+                                        <h5>Mercado Fronterizo </h5>
+                                        <p>Contando con 168 sucursales, Benavides adquirió dos cadenas de Farmaciasen la zona Centro y Occidente del país, finalizando en el año de 1989 con 206 sucursales.</p>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                        <h4>1960</h4>
+                                        <img src="assets/img/historia3.png" class="img-responsive center-block">
+                                        <h5>Consolidación  </h5>
+                                        <p>Las farmacias adquiridas en este años fueron las Tikos y Las Palmas, ubicadas en Torreón y Durango, así como las farmacias Levy de Guadalajara.</p>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                        <h4>1943</h4>
+                                        <img src="assets/img/historia2.png" class="img-responsive center-block">
+                                        <h5>Crecimiento</h5>
+                                        <p>Década de los 60, con el firme propósito de consolidarse en Monterrey, se adquirieron las Bóticas Moebius y las Farmacias San Rafael. También en esta época inició el fortalecimiento del área del Pacífico, con la adquisición de 20 sucursales de la cadena Farmacias Bótica Moderna, S.A.</p>
+                                    </div>
+                                </div>*@
+                            </div>
+                        <a class="left carousel-control" href="#myCarousel" data-slide="prev"><img src="@Url.Content("~/Content/rsc/imgs/who-we-are-left-arrow.png")" class="img-responsive center-block"></a>
+                        <a class="right carousel-control" href="#myCarousel" data-slide="next"><img src="@Url.Content("~/Content/rsc/imgs/who-we-are-right-arrow.png")" class="img-responsive center-block"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+   
+</section>
+
+@section scripts {
+    <section class="scripts">
+        <script type="text/javascript">
+            $('.carousel[data-type="multi"] .item').each(function () {
+                var next = $(this).next();
+                if (!next.length) {
+                    next = $(this).siblings(':first');
+                }
+                next.children(':first-child').clone().appendTo($(this));
+
+                for (var i = 0; i < 2; i++) {
+                    next = next.next();
+                    if (!next.length) {
+                        next = $(this).siblings(':first');
+                    }
+
+                    next.children(':first-child').clone().appendTo($(this));
+                }
+            });
+        </script>
+    </section>
+}

@@ -1,0 +1,379 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.BranchPage
+@{
+    ViewBag.Title = "landingno7";
+    ViewBag.Page = "Branch";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var Ciudades = (List<SelectListItem>)ViewBag.Ciudades;
+}
+
+
+
+@*@{
+    ViewBag.Title = "landingno7";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}*@
+
+@*<h2>landingno7</h2>*@
+
+<style>
+    /*
+        .colores {
+        margin-top: 0; /*Para que no tenga margen superior
+        background-color: #dbfd96; /*si por alguna razón no se cargan las imagenes tienes un fondo preestablecido
+        }
+    */
+
+    .parteIzquierda {
+          text-align:right;
+          margin:0px;
+          padding:0px;
+          border:0px solid black;
+        /*height: 500px;*/ 
+        /*Le asignas un tamaño por defecto...*/
+        /*Estableces una imagen de fondo*/
+    }
+
+    .parteDerecha {
+        border:0px solid black;
+        align-content:flex-end;
+        text-align:left;
+        /*height: 500px;*/
+    }
+    /*Dandole color de fondo y alineación a las etiquetas*/
+    /*h1, h2 {
+        color: #008080;
+        text-align: center;
+    }*/
+
+    /*img {
+        width: 50%;
+        height: 50%;
+    }*/
+</style>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-CRfk8RhTz7Lsu9OEhUTsILKokv2sHfE&sensor=true">
+</script>
+<link href="~/Content/css/ben.css" rel="stylesheet" />
+
+<div id="main-carousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#main-carousel" data-slide-to="0" class="active"></li>
+    </ol>
+    <div class="carousel-inner">
+            <div class="item active">
+
+                <img alt="" class="img-responsive" style="cursor:inherit" src="~/Content/rsc/imgs/landing no7-03_1280x1400.jpg" />
+            </div>
+
+                           
+    </div>
+    @*<a class="left carousel-control" href="#main-carousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+    <a class="right carousel-control" href="#main-carousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>*@
+</div>
+
+
+<div id="main-carousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#main-carousel" data-slide-to="0" class="active"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="item active">
+         
+            <div id="gmap" class="full-width" style="background-color:#8D72B1;">
+
+                <p  style="color:white;padding-top:20px; padding-left:30px;  "  >
+
+                    <strong>
+                        Farmacias Benavides,
+                        tu nuevo destino de Belleza  localiza tu sucursal mas cercana
+                    </strong>
+
+                </p>
+
+                @using (Html.BeginForm("SearchLandingNo7", "Promotions", FormMethod.Get, new { id = "searchForm" }))
+            {
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="background-color:#8D72B1;">
+
+                        <div class="col-md-4 col-sm-4 col-xs-6">
+                            @Html.DropDownList("City", Ciudades, new { @class = "form-control", id = "selectCities" })
+                        </div>
+
+                        @*<div class="col-md-4 col-sm-4 col-xs-6">
+                    @Html.DropDownList("City", new List<SelectListItem>(), new { @class = "form-control", id = "selectSucursales" })
+                             </div>*@
+
+                        <button id="searchButton" style="margin-top:3px;  padding:0; border:none"><img src="~/Content/rsc/imgs/btnbuscar.png"></button>
+
+                    </div>
+
+                }
+                <br />
+                <br />
+                <div id="map_canvas" style="height: 400px;"></div>
+            </div>
+
+            
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+<section class="bi-card text-right" style="background-color:#8D72B1">
+    <article  class="carousel-inner" >
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <!--Contenido de la Izquierda-->
+                @*style="background-image: url('../../Content/rsc/imgs/Banner-LEALTAD_636652716138393435.png');"*@
+                       @*<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 parteIzquierda"   >
+                    <img src="~/Content/rsc/imgs/landing no7-04_640.jpg"   class="carousel-inner" />
+                </div>*@
+                <!--Contenido de la Derecha-->
+                @*<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">*@
+              
+
+
+                @*</div>*@
+            </div>
+            @*<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <p>Hello</p>
+
+
+
+            </div>*@
+        </div>
+    </article>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+@section scripts {
+    <section class="scripts">
+
+        <script type="text/javascript">
+
+            $(document).ready(function() {
+                //var stateSelectionControl = $("#selectCities");
+                //stateSelectionControl.change(function () {
+                //    var CityId = this.value;
+                //    var base = getSiteRootUrl();
+
+                //    $.ajax({
+                //        url: base + '/Promotions/GetBranches/' + CityId,
+                //        data: { id: CityId },
+                //        cache: false,
+                //        type: "GET",
+                //        async: true,
+                //        success: function (data) {
+                //            var cities = $('#selectSucursales');
+                //            cities.empty(); // remove any existing options
+                //            var markup = "<option value='0'>Seleccione Sucursal</option>";
+                //            for (var i = 0; i < data.length; i++)
+                //            {
+                //                markup += "<option value=" + data[i].Value + ">" + data[i].Text + "</option>";
+                //            }
+
+                //            cities.html(markup).show();
+                //        },
+                //        error: function (reponse) {
+                //            alert("error : " + reponse);
+                //        }
+                //    });
+
+                //});
+               // stateSelectionControl.trigger("change");
+
+
+
+             
+
+
+                submitFormButton = $("#searchButton");
+                submitFormButton.on("click", function (event) {
+                    var cityIndex = $("select[id='selectCities'] option:selected").index();
+                    var itemCount = $('#selectCities').children('option').length;
+
+                    console.log("index: " + cityIndex);
+                    console.log("items: " + itemCount);
+
+                    if (cityIndex < 1 || cityIndex >= itemCount)
+                    {
+                        errorMessagesPanel = $("#errorMessagesPanel");
+                        //errorMessagesPanel.show();
+                        errorMessagesPanel.css('visibility', 'visible');
+                        return false;
+                    }
+                    else
+                    {
+                        $("#searchForm").submit();
+                    }
+                    return true;
+                });
+
+                Initialize();
+            });
+
+            //function chargecities
+
+            // Where all the fun happens
+            function Initialize() {
+
+                var dataArray = [];
+                //var base = GetUrlBase();
+                var base = getSiteRootUrl();
+
+                // Google has tweaked their interface somewhat - this tells the api to use that new UI
+                google.maps.visualRefresh = true;
+                //var Tunisie = new google.maps.LatLng(25.67507, -100.31847);
+
+                // These are options that set initial zoom level, where the map is centered globally to start, and the type of map to show
+                var mapOptions = {
+                    zoom: 5,
+                    center: { lat: 23.67507, lng: -96.31847 },
+                    mapTypeId: google.maps.MapTypeId.G_NORMAL_MAP
+                };
+
+                // This makes the div with id "map_canvas" a google map
+                var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+                if (navigator.geolocation) {
+                    console.log(navigator.geolocation);
+                    mostrarMensaje("obteniendo posición...");
+                    navigator.geolocation.getCurrentPosition(function(pos, z) {
+                        map.setZoom(10);
+                        map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+                        var marker = new google.maps.Marker({
+                            position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
+                            map: map,
+                            title: "Tu posición"
+                        });
+                        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png');
+                        ocultarMensaje();
+                    }, errorPosicionar);
+                } else {
+                    mostrarMensaje('Tu navegador no soporta geolocalización');
+                }
+
+
+                //geoposicionar();
+
+
+
+                $.getJSON(base + '/api/v1/branches/GetNo7', function (data) {
+                    $.each(data, function (i, suc) {
+
+                        dataArray[i] = { "Id": suc.BranchId, "PlaceName": suc.BranchName, "GeoLong": suc.BranchLongitude, "GeoLat": suc.BranchLatitude, "Address": suc.BranchAddress, "City": suc.City.Name, "Hour": suc.BranchHour }
+                    });
+                    $.each(dataArray, function (i, item) {
+                        var marker = new google.maps.Marker({
+                            'position': new google.maps.LatLng(item.GeoLat, item.GeoLong),
+                            'map': map,
+                            'title': item.PlaceName
+                        });
+
+                        // Make the marker-pin blue!
+                        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+
+                        // put in some information about each json object - in this case, the opening hours.
+                        var infowindow = new google.maps.InfoWindow({
+                            content: "<div class='infoDiv' style='width: 200px; height: 300px;'><h1>" + item.PlaceName + "</h1><hr/><b>Dirección: </b>" + item.Address + "<br> <b>Ciudad: </b>" + item.City + " <br><b>Horario: </b>" + item.Hour + "<br></div>"
+                        });
+
+                        // finally hook up an "OnClick" listener to the map so it pops up out info-window when the marker-pin is clicked!
+                        google.maps.event.addListener(marker, 'click', function () {
+                            infowindow.open(map, marker);
+                        });
+
+                    });
+                });
+
+                // Using the JQuery "each" selector to iterate through the JSON list and drop marker pins
+
+
+            }
+
+            /***********************************************
+                En esta función se hace la solicitud de geolocalización y el primer
+                control para ver si el navegador soporta el servicio
+            ***********************************************/
+
+            function geoposicionar(map) {
+
+                if (navigator.geolocation) {
+                    mostrarMensaje("obteniendo posición...");
+                    navigator.geolocation.getCurrentPosition(centrarMapa, errorPosicionar);
+                } else {
+                    mostrarMensaje('Tu navegador no soporta geolocalización');
+                }
+            }
+
+            /***********************************************
+                Control de errores en caso de que la llamada
+                navigator.geolocation.getCurrentPosition(centrarMapa,errorPosicionar);
+                termine generando un error
+            ***********************************************/
+
+            function errorPosicionar(error) {
+                switch (error.code) {
+                case error.TIMEOUT:
+                    mostrarMensaje('Request timeout');
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    mostrarMensaje('Tu posición no está disponible');
+                    break;
+                case error.PERMISSION_DENIED:
+                    mostrarMensaje('Tu navegador ha bloqueado la solicitud de geolocalización');
+                    break;
+                case error.UNKNOWN_ERROR:
+                    mostrarMensaje('Error desconocido');
+                    break;
+                }
+            }
+
+            /***********************************************
+                Esta función se ejecuta si la llamada a  navigator.geolocation.getCurrentPosition
+                tiene éxito. La latitud y la longitud vienen dentro del objeto coords.
+            ***********************************************/
+
+            function centrarMapa(pos, z) {
+                map.setZoom(10);
+                map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+                var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
+                    map: map,
+                    title: "Tu posición"
+                });
+                marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png');
+                ocultarMensaje();
+            }
+
+            /***********************************************
+                Gestión de mensajes
+            ***********************************************/
+
+            function mostrarMensaje(str) {
+                $('#texto').html(str);
+                $('#capa_mensajes').css({ "visibility": "visible" });
+            }
+
+            function ocultarMensaje() {
+                $('#capa_mensajes').css({ "visibility": "hidden" });
+            }
+
+        </script>
+    </section>
+}

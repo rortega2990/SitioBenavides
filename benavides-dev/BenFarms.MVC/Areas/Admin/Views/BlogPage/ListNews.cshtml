@@ -1,0 +1,114 @@
+﻿@model IEnumerable<BenavidesFarm.DataModels.Models.Pages.NewsPage>
+
+@{
+    ViewBag.Title = "Noticias de Blog";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "NewsPageIndex";
+    var listar = ViewBag.Listar == 1;
+
+    var idBlog = "";
+    if (!listar)
+    {
+        idBlog = "~/Admin/BlogPage/EditNews?idBlog=" + ViewBag.Blog;
+    }
+}
+
+<div class="portlet light bordered">
+    <div class="portlet-title">
+        <div class="caption font-dark">
+            <i class="icon-settings font-dark"></i>
+            <span class="caption-subject bold uppercase"> Listado Páginas de Noticias del Blog: @ViewBag.BlogPage </span>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="btn-group">
+                        <a class="btn default" href="~/Admin/BlogPage">Atrás</a>
+                    </div>
+                    <div class="btn-group">
+                        @{
+                            if (!string.IsNullOrEmpty(idBlog))
+                            {
+                                <a href="@Url.Content(idBlog)" class="btn sbold green"><i class="fa fa-plus"></i> Añadir Noticia </a>
+                            }
+                        }
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped table-bordered table-hover order-column" id="sample_1">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NewsPageCustomValue)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NewsPageActive)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NewsPageCreatedDate)
+                    </th>
+                    <th>Vista Previa</th>
+                    @{
+                        if (!listar)
+                        {
+                            <th>Editar</th>
+                            <th>Eliminar</th>
+                        }
+                    }                    
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => @item.NewsPageCustomValue)
+                        </td>
+                        <td>
+                            @{
+                                switch (item.NewsPageActive)
+                                {
+                                    case "Activada": <span class="label label-sm label-success"> Activa </span>break;
+                                    case "Desactivada": <span class="label label-sm label-warning"> Desactivada </span>break;
+                                    case "EnEdicion": <span class="label label-sm label-danger"> En Edición </span>break;
+                                }
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NewsPageCreatedDate)
+                        </td>
+                        <td>
+                            @{
+                                var mEdit = "~/Admin/BlogPage/PreviewNews/" + item.NewsPageId;
+                                <a href="@Url.Content(mEdit)" target="_blank"><li class="glyphicon glyphicon-search " style="color:lawngreen">Ver Página</li></a>
+                            }
+                        </td>
+
+                        @{
+                            if (!listar)
+                            {
+                                var mEditProm = "~/Admin/BlogPage/EditNews?idNews=" + item.NewsPageId + "&idBlog=" + item.BlogPageId;
+                                var mAct = "~/Admin/BlogPage/DeleteNews?idNews=" + item.NewsPageId+"&idBlog="+ item.BlogPageId;
+
+                                if (item.NewsPageActive == "EnEdicion")
+                                {
+                                    <td>
+                                        <a href="@Url.Content(mEditProm)"><li class="glyphicon glyphicon-edit " style="color: blue"> Editar</li></a>
+                                    </td>
+                                    <td>
+                                        
+                                        <a href="@Url.Content(mAct)"><li class="glyphicon glyphicon-trash" style="color: goldenrod"> Eliminar</li></a>
+                                    </td>
+                                }
+                            }
+                        }                       
+                    </tr>
+                 }
+            </tbody>
+        </table>
+    </div>
+</div>

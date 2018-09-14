@@ -1,0 +1,30 @@
+// base
+$font-family: "AG Book Rounded", arial;
+
+$color-white: #ffffff !default;
+$color-blue: #2a3479 !default;
+$color-blue-dark: darken(#2a3479, 10%) !default;
+$color-blue-light: #c8e9fb !default;
+$color-blue-hover: #337ab7 !default;
+$color-blue-marine: #48c7f3 !default;
+$color-blue-xlight: lighten(#c8e9fb, 5%) !default;
+$color-gray: #ececec !default;
+$color-grey: #555555 !default;
+$color-red: #ec2028 !default;
+$color-red-light: lighten(#ec2028, 40%) !default;;
+$color-red-dark: darken(#ec2028, 25%) !default;
+$color-pink: #f5accc !default;
+$color-pink-dark: darken(#f5accc, 25%) !default;
+$color-purple: #554092 !default;
+$color-purple-dark: #473d5e !default;
+$color-black: #231f20 !default;
+$color-black-dark: #191919 !default;
+$color-green: #53c78c !default;
+$color-yellow: #ffd476 !default;
+
+$line-height: 1.4 !default;
+$font-color: #222 !default;
+$font-color-blue: $color-blue !default;
+$font-color-blue-light: $color-blue-light !default;
+$font-color-blue-marine: $color-blue-marine !default;
+$font-color-white: $color-white !default;

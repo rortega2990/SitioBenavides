@@ -1,0 +1,77 @@
+﻿@model IEnumerable<BenavidesFarm.DataModels.Models.Pages.Elements.SaDTypeNumber>
+
+@{
+    ViewBag.Title = "Listado de Números de SaD";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "SaDActive";
+}
+
+<div class="portlet light bordered">
+    <div class="portlet-title">
+        <div class="caption font-dark">
+            <i class="icon-settings font-dark"></i>
+            <span class="caption-subject bold uppercase"> Listado de Números de SaD </span>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="btn-group">
+                        <a href="~/Admin/SaDType/Create" class="btn sbold green"><i class="fa fa-plus"></i>Nuevo Número SaD</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped table-bordered table-hover order-column" id="sample_1">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SaDTypeNumberCity)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SaDTypeNumberPhone)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SaDTypeNumberActive)
+                    </th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SaDTypeNumberCity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SaDTypeNumberPhone)
+                        </td>
+                        <td>
+                            @{
+                                if (item.SaDTypeNumberActive == true)
+                                {
+                                    <span class="label label-sm label-success"> Activa </span>
+                                }
+                                else
+                                {
+                                    <span class="label label-sm label-warning"> Desactivada </span>
+                                }
+                            }
+                        </td>
+                        <td>
+                            @{ var mEdit = "~/Admin/SaDType/Edit/" + item.SaDTypeNumberId;}
+                            <a href="@Url.Content(mEdit)"><li class="glyphicon glyphicon-pencil " style="color:lawngreen"></li></a>
+                        </td>
+                        <td>
+                            @{ var mDel = "~/Admin/SaDType/Delete/" + item.SaDTypeNumberId;}
+                            <a href="@Url.Content(mDel)"><li class="glyphicon glyphicon-trash " style="color:orangered"></li></a>
+                        </td>
+                    </tr>
+                                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,132 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.ContactPage
+
+@{
+    ViewBag.Title = "Vista Previa Página de Contacto";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPreview.cshtml";
+}
+
+<div class="banner" style="background-color: @Html.Raw(Model.ContactPageBgColorHead)">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="banner-caption">
+                    <br>
+                    <span class="caption-lg" style="color: @Html.Raw(Model.ContactPageColorHeadText)">@Model.ContactPageHeadText</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row text-left no-margin-left no-margin-right ">
+    <h1 class="col-md-10 col-md-offset-1 col-xs-12 margin-top-40 titulo-contacto" style="color: @Html.Raw(Model.ContactPageColorSubText1);">@Model.ContactPageSubText1</h1>
+</div>
+<div class="row text-left no-margin-left no-margin-right">
+    <h2 class="col-md-10 col-md-offset-1  col-xs-12 margin-top-10 encabezado-contacto" style="color: @Html.Raw(Model.ContactPageColorSubText2);">
+        @Model.ContactPageSubText2
+    </h2>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1 col-xs-12 form-contacto" style="background-color: @Html.Raw(Model.ContactPageColorTextFooter)">
+            <div>
+                <form class="form-horizontal" action="" role="form">
+                    @Html.AntiForgeryToken()
+                    <div class="col-xs-12 col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label for="ContactNames" class="col-md-3 col-sm-4 col-xs-12 control-label">
+                                *Nombre (s):
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control input-sm" id="ContactNames" name="ContactNames" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ContactPhoneNumber"
+                                   class="col-md-3 col-sm-4 col-xs-12 control-label">*Teléfono:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control input-sm" id="ContactPhoneNumber" name="ContactPhoneNumber" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ContactEmail" class="col-md-3 col-sm-4 col-xs-12 control-label">*E-mail:</label>
+                            <div class="col-sm-8">
+                                <input type="email" class="form-control input-sm" id="ContactEmail" name="ContactEmail" placeholder="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label for="ContactSuggests" class="col-md-4 col-sm-4 col-xs-12 control-label">
+                                *Preguntas o Sugerencias:
+                            </label>
+                            <div class="col-sm-7">
+                                <textarea style="height: 117px" type="text" class="form-control input-sm" id="ContactSuggests" name="ContactSuggests" placeholder=""></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-sm-12">
+                        <div class="row">
+                            <div style="text-align: center;">
+                                <span id="mensajeContacto" class="color-red"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 20px">
+                        <div class="col-xs-12 col-md-12">
+                            <button class="btn" style="background-color: #48c7f3; color: white; border-radius: 0px; float: right; margin-right: 50px">Enviar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row  no-margin-right margin-left-15 margin-bottom-100">
+        <div class="col-md-12  col-sm-12 col-sm-offset-0 col-xs-12 no-padding-left margin-top-30">
+            <h1 style="color: @Html.Raw(Model.ContactPageColorTextFooter);" class="titulo-contacto text-center ">
+                Coorporativo Benavides
+            </h1>
+            <div class="col-md-12 margin-top-30 no-padding-left">
+                <div class="col-md-4 col-sm-6 ">
+                    <div class="col-md-12 no-padding-left">
+                        <span class="categoria-contacto" style="color: @Html.Raw(Model.ContactPageColorTextFooter);">Dirección</span>
+                    </div>
+                    <div class="col-md-12 no-padding-left margin-top-10 margin-bottom-10 title-info-contacto ">
+                        @{
+                            var tele = @Model.ContactPageTelAddress.Replace(" ", "");
+                        }
+                        <span>
+                            @Model.ContactPageAddress<br>Tel:<a href="tel:@Html.Raw(tele)">@Model.ContactPageTelAddress</a>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 ">
+                    <div class="col-md-12 no-padding-left">
+                        <span class="categoria-contacto" style="color: @Html.Raw(Model.ContactPageColorTextFooter)">Servicio al cliente</span>
+                    </div>
+                    <div class="col-md-12 no-padding-left  margin-top-10 margin-bottom-10 title-info-contacto">
+                        @{
+                            var tele2 = @Model.ContactPageTelSaD.Replace(" ", "");
+                        }
+                        <a href="mailto:@Html.Raw(Model.ContactPageEmailSaD)">@Model.ContactPageEmailSaD</a><br>Tel:<a href="tel:@Html.Raw(tele2)">@Model.ContactPageTelSaD</a>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 ">
+                    <div class="col-md-12 no-padding-left">
+                        <span class="categoria-contacto" style="color: @Html.Raw(Model.ContactPageColorTextFooter);">Atención a proveedores</span>
+                    </div>
+                    <div class="col-md-12 no-padding-left margin-top-10 margin-bottom-10 title-info-contacto ">
+                        @{
+                            var tele3 = @Model.ContactPageTelAaP.Replace(" ", "");
+                        }
+                        <span>
+                            Tel:<a href="tel:@Html.Raw(tele3)">@Model.ContactPageTelAaP</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

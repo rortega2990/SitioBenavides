@@ -1,0 +1,47 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.Elements.DocumentFiles
+
+@{
+    ViewBag.Title = "Eliminar Archivo de Documento";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "ProviderPageActive";
+}
+
+<h2>Eliminar Archivo de Documento</h2>
+
+<div>
+    <h4>Archivo de Documento</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NameDescriptiveFile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameDescriptiveFile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AddressFile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AddressFile)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.DocumentType.DocumentName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DocumentType.DocumentName)
+        </dd>*@
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn blue">Eliminar</button>
+        @Html.ActionLink("Cancelar", "Index", null, htmlAttributes: new { @class = "btn default" })
+    }
+</div>

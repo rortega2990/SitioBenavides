@@ -1,0 +1,25 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.PrivacityPage
+@{
+    ViewBag.Title = "Privacidad";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="banner" style="background-color: @Html.Raw(Model.PrivacityPageBgColorHead)">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="banner-caption">
+                    <br>
+                    <span class="caption-lg" style="color: @Html.Raw(Model.PrivacityPageColorHeadText)">@Model.PrivacityPageHeadText</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container margin-top-100 titulo-contacto">
+    <p style="color: @Html.Raw(Model.PrivacityPageTextColor);">@Model.PrivacityPageTextTitle</p>
+    <p class="margin-top-20 text-left margin-bottom-100"
+       style="color: @Html.Raw(Model.PrivacityPageTextColor);font-weight: 300">@Html.Raw(Model.PrivacityPageTextDescription)
+    </p>
+</div>

@@ -1,0 +1,76 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.Elements.Pillar
+
+@{
+    ViewBag.Title = "Editar Pilar";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "PillarActive";
+}
+
+<h2>Editar Pilar</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.PillarId)
+
+    <div class="form-horizontal">
+        <h4>Pilar</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PillarName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.PillarName, new { htmlAttributes = new { @class = "form-control", required = true } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PillarDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.TextAreaFor(model => model.PillarDescription, new { @class = "form-control" })
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.PillarLink, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.PillarLink, new { htmlAttributes = new { @class = "form-control", required = true } })
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="control-label col-md-2">Imagen del Pilar</label>
+            <div class="col-md-4">
+                <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 300px; height: 200px;">
+                        <img src="@Url.Content(Model.PillarImage)" id="imgImagePillar" />
+                    </div>
+                    <div>
+                        <span class="btn red btn-outline btn-file">
+                            <span class="fileinput-new"> Seleccionar Imagen </span>
+                            <span class="fileinput-exists"> Cambiar </span>
+                            <input type="file" name="PillarImage" id="PillarImage">
+                        </span>
+                        <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PillarActive, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.PillarActive)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-6">
+                <a id="btnUploadPillarImage" class="btn blue">Aceptar</a>
+                @Html.ActionLink("Cancelar", "Index", null, htmlAttributes: new { @class = "btn default" })
+            </div>
+        </div>
+    </div>
+}

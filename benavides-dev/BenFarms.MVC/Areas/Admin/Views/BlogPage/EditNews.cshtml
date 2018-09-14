@@ -1,0 +1,405 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.NewsPage
+
+@{
+    ViewBag.Title = "Editar Página de Blogs";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "BlogPageEdit";
+    var idNews = Model.NewsPageId;
+    var idBlog = ViewBag.Blog;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered" id="form_wizard_1">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="icon-layers font-red"></i>
+                    <span class="caption-subject font-red bold uppercase">
+                        Editar Página de Noticias -
+                        <span class="step-title"> Paso 1 de 3 </span>
+                    </span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <form class="form-horizontal" id="submit_form" method="POST" action="" enctype="multipart/form-data">
+                    @Html.AntiForgeryToken()
+                    <div class="form-wizard">
+                        <div class="form-body">
+                            <ul class="nav nav-pills nav-justified steps">
+                                <li>
+                                    <a href="#tab1" data-toggle="tab" class="step">
+                                        <span class="number"> 1 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Texto de Encabezado
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#tab2" data-toggle="tab" class="step">
+                                        <span class="number"> 2 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Descripción 1 de la Noticia
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#tab3" data-toggle="tab" class="step">
+                                        <span class="number"> 3 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Descripción 2 de la Noticia
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div id="bar" class="progress progress-striped" role="progressbar">
+                                <div class="progress-bar progress-bar-success"> </div>
+                            </div>
+                            <div class="tab-content">
+                                <div class="alert alert-danger display-none">
+                                    <button class="close" data-dismiss="alert"></button> Se tienen varios errores. Por favor, revise nuevamente.
+                                </div>
+                                <div class="alert alert-success display-none">
+                                    <button class="close" data-dismiss="alert"></button> La validaión del formulario es correcta.
+                                </div>
+                                <div class="tab-pane active" id="tab1">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Texto de Encabezado</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Color de Fondo</label>
+                                                            <div class="col-md-4">
+                                                                @{
+                                                                    if (!string.IsNullOrEmpty(Model.NewsPageColorBgHead))
+                                                                    {
+                                                                        <input type="text" id="ColorBgHeadNewsPage" name="ColorBgHeadNewsPage" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.NewsPageColorBgHead)" />
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <input type="text" id="ColorBgHeadNewsPage" name="ColorBgHeadNewsPage" class="form-control demo" data-control="wheel" value="" />
+                                                                    }
+                                                                }                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Texto Principal</label>
+                                                            <div class="col-md-4">
+                                                                @{
+                                                                    if (!string.IsNullOrEmpty(Model.NewsPageTextHead))
+                                                                    {
+                                                                        <textarea type="text" id="TextHeadNewsPage" name="TextHeadNewsPage" class="form-control">@Model.NewsPageTextHead</textarea>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <textarea type="text" id="TextHeadNewsPage" name="TextHeadNewsPage" class="form-control"></textarea>
+                                                                    }
+                                                                }                                                                
+                                                            </div>
+                                                            <label class="control-label col-md-2">Color Texto Principal</label>
+                                                            <div class="col-md-4">
+                                                                @{
+                                                                    if (!string.IsNullOrEmpty(Model.NewsPageColorTextHead))
+                                                                    {
+                                                                        <input type="text" id="ColorTextHeadNewsPage" name="ColorTextHeadNewsPage" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.NewsPageColorTextHead)" />
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <input type="text" id="ColorTextHeadNewsPage" name="ColorTextHeadNewsPage" class="form-control demo" data-control="wheel" value="" />
+                                                                    }
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Texto Secundario</label>
+                                                            <div class="col-md-10">
+                                                                @{
+                                                                    if (!string.IsNullOrEmpty(Model.NewsPageSubTextHead))
+                                                                    {
+                                                                        <textarea type="text" id="SubTextHeadNewsPage" name="SubTextHeadNewsPage" class="form-control">@Model.NewsPageSubTextHead</textarea>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <textarea type="text" id="SubTextHeadNewsPage" name="SubTextHeadNewsPage" class="form-control"></textarea>
+                                                                    }
+                                                                }                                                                
+                                                            </div>                                                            
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Color Texto Secundario</label>
+                                                            <div class="col-md-4">
+                                                                @{
+                                                                    if (!string.IsNullOrEmpty(Model.NewsPageColorSubTextHead))
+                                                                    {
+                                                                        <input type="text" id="ColorSubTextHeadNewsPage" name="ColorSubTextHeadNewsPage" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.NewsPageColorSubTextHead)" />
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <input type="text" id="ColorSubTextHeadNewsPage" name="ColorSubTextHeadNewsPage" class="form-control demo" data-control="wheel" value="" />
+                                                                    }
+                                                                }
+                                                            </div>
+                                                            <label class="control-label col-md-2">Color de Fondo Texto Secundario</label>
+                                                            <div class="col-md-4">
+                                                                @{
+                                                                    if (!string.IsNullOrEmpty(Model.NewsPageColorBgSubTextHead))
+                                                                    {
+                                                                        <input type="text" id="ColorBgSubTextHeadNewsPage" name="ColorBgSubTextHeadNewsPage" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.NewsPageColorBgSubTextHead)" />
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <input type="text" id="ColorBgSubTextHeadNewsPage" name="ColorBgSubTextHeadNewsPage" class="form-control demo" data-control="wheel" value="" />
+                                                                    }
+                                                                }  
+                                                            </div>                                                            
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <label class="control-label col-md-2">Imagen Encabezado Noticia</label>
+                                                        <div class="col-md-4">
+                                                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 300px; height: 200px;">
+                                                                    @{
+                                                                        if (!string.IsNullOrEmpty(Model.NewsPageImageHead))
+                                                                        {
+                                                                            <img src="@Url.Content(Model.NewsPageImageHead)" id="imgImageHeadNewsPage" />
+                                                                        }
+                                                                    }
+                                                                </div>
+                                                                <div>
+                                                                    <span class="btn red btn-outline btn-file">
+                                                                        <span class="fileinput-new"> Seleccionar Imagen </span>
+                                                                        <span class="fileinput-exists"> Cambiar </span>
+                                                                        <input type="file" name="ImageHeadNewsPage" id="ImageHeadNewsPage">
+                                                                    </span>
+                                                                    <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <label class="control-label col-md-2">Imagen Título de Noticia</label>
+                                                        <div class="col-md-4">
+                                                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 300px; height: 200px;">
+                                                                    @{
+                                                                        if (!string.IsNullOrEmpty(Model.NewsPageImageDescription))
+                                                                        {
+                                                                            <img src="@Url.Content(Model.NewsPageImageDescription)" id="imgImageDescriptionNewsPage" />
+                                                                        }
+                                                                    }
+                                                                </div>
+                                                                <div>
+                                                                    <span class="btn red btn-outline btn-file">
+                                                                        <span class="fileinput-new"> Seleccionar Imagen </span>
+                                                                        <span class="fileinput-exists"> Cambiar </span>
+                                                                        <input type="file" name="ImageDescriptionNewsPage" id="ImageDescriptionNewsPage">
+                                                                    </span>
+                                                                    <a href="javascript:;" class="btn red" data-dismiss="fileinput"> Eliminar </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tab2">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Descripción 1 de la Noticia</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Título 1 de la Noticia</label>
+                                                            <div class="col-md-10">
+                                                                @{
+                                                                    if (!string.IsNullOrEmpty(Model.NewsPageTitleDescription1))
+                                                                    {
+                                                                        <textarea type="text" id="TitleDescription1NewsPage" name="TitleDescription1NewsPage" class="form-control">@Model.NewsPageTitleDescription1</textarea>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <textarea type="text" id="TitleDescription1NewsPage" name="TitleDescription1NewsPage" class="form-control"></textarea>
+                                                                    }
+                                                                }
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group">                                                            
+                                                            <label class="control-label col-md-2">Color Título 1 de la Noticia</label>
+                                                            <div class="col-md-10">
+                                                                @{
+                                                                    if (!string.IsNullOrEmpty(Model.NewsPageColorTitleDescription1))
+                                                                    {
+                                                                        <input type="text" id="ColorTitleDescription1NewsPage" name="ColorTitleDescription1NewsPage" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.NewsPageColorTitleDescription1)" />
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <input type="text" id="ColorTitleDescription1NewsPage" name="ColorTitleDescription1NewsPage" class="form-control demo" data-control="wheel" value="" />
+                                                                    }
+                                                                }                                                                  
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    @*<div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Color Descripción 1 de la Noticia</label>
+                                                            <div class="col-md-10">
+                                                                @{
+                                                                    if (!string.IsNullOrEmpty(Model.NewsPageColorTextDescription1))
+                                                                    {
+                                                                        <input type="text" id="ColorTextDescription1NewsPage" name="ColorTextDescription1NewsPage" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.NewsPageColorTextDescription1)" />
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <input type="text" id="ColorTextDescription1NewsPage" name="ColorTextDescription1NewsPage" class="form-control demo" data-control="wheel" value="" />
+                                                                    }
+                                                                }
+
+                                                            </div>
+                                                        </div>
+                                                    </div>*@
+                                                    <div class="row">
+                                                        <div class="form-group">                                                            
+                                                            <label class="control-label col-md-2">Descripcón 1 de la Noticia</label>
+                                                            <div class="col-md-10">
+                                                                @{
+                                                                    if (!string.IsNullOrEmpty(Model.NewsPageTextDescription1))
+                                                                    {
+                                                                        <textarea class="ckeditor form-control" name="TextDescription1NewsPage" id="TextDescription1NewsPage">@Html.Raw(Model.NewsPageTextDescription1)</textarea>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <textarea class="ckeditor form-control" name="TextDescription1NewsPage" id="TextDescription1NewsPage"></textarea>
+                                                                    }
+                                                                } 
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tab3">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Descripción 2 de la Noticia</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Título 2 de la Noticia</label>
+                                                            <div class="col-md-10">
+                                                                @{
+                                                                    if (!string.IsNullOrEmpty(Model.NewsPageTitleDescription2))
+                                                                    {
+                                                                        <textarea type="text" id="TitleDescription2NewsPage" name="TitleDescription2NewsPage" class="form-control">@Model.NewsPageTitleDescription2</textarea>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <textarea type="text" id="TitleDescription2NewsPage" name="TitleDescription2NewsPage" class="form-control"></textarea>
+                                                                    }
+                                                                }
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Color Título 2 de la Noticia</label>
+                                                            <div class="col-md-10">
+                                                                @{
+                                                                    if (!string.IsNullOrEmpty(Model.NewsPageColorTitleDescription2))
+                                                                    {
+                                                                        <input type="text" id="ColorTitleDescription2NewsPage" name="ColorTitleDescription2NewsPage" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.NewsPageColorTitleDescription2)" />
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <input type="text" id="ColorTitleDescription2NewsPage" name="ColorTitleDescription2NewsPage" class="form-control demo" data-control="wheel" value="" />
+                                                                    }
+                                                                }
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Descripcón 2 de la Noticia</label>
+                                                            <div class="col-md-10">
+                                                                @{
+                                                                    if (!string.IsNullOrEmpty(Model.NewsPageTextDescription2))
+                                                                    {
+                                                                        <textarea class="ckeditor form-control" name="TextDescription2NewsPage" id="TextDescription2NewsPage">@Html.Raw(Model.NewsPageTextDescription2)</textarea>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <textarea class="ckeditor form-control" name="TextDescription2NewsPage" id="TextDescription2NewsPage"></textarea>
+                                                                    }
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <span class="hidden" id="idNews" idNews="@idNews"></span>
+                                    <span class="hidden" id="idBlog" idBlog="@idBlog"></span>
+                                    <a href="javascript:;" class="btn default button-previous">
+                                        <i class="fa fa-angle-left"></i> Atrás
+                                    </a>
+                                    <a href="javascript:;" class="btn btn-outline green button-next">
+                                        Continuar
+                                        <i class="fa fa-angle-right"></i>
+                                    </a>
+                                    <a class="btn green button-submit" id="btnApplyNews">
+                                        Aplicar
+                                        <i class="fa fa-check"></i>
+                                    </a>
+                                    <a class="btn blue" id="btnPreviewNews">
+                                        Vista Previa
+                                        <i class="fa fa-search"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

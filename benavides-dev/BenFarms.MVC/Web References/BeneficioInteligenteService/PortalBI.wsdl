@@ -1,0 +1,988 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://lms.com.mx/WSPortalBI" xmlns:s1="http://lms.com.mx/WebServices/LealtadBenavides" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://lms.com.mx/WSPortalBI" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://lms.com.mx/WSPortalBI">
+      <s:import namespace="http://lms.com.mx/WebServices/LealtadBenavides" />
+      <s:element name="ValidaAcceso">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ProgramaID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Llave" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sistema" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tarjeta" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidaAccesoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ValidaAccesoResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Result">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Error" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RecuperarPassword">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ProgramaID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Llave" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sistema" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tarjeta" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CorreoElectronico" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RecuperarPasswordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RecuperarPasswordResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CambiarPassword">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ProgramaID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Llave" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sistema" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tarjeta" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PasswordAnterior" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PasswordNuevo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CambiarPasswordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CambiarPasswordResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EnviarCorreoCliente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ProgramaID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Llave" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sistema" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tarjeta" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="TipoCorreo" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EnviarCorreoClienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EnviarCorreoClienteResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultarTickets">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ProgramaID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Llave" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sistema" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tarjeta" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="TotalRegistros" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultarTicketsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultarTicketsResult" type="tns:TicketResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TicketResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Error" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReturnValue" type="tns:ArrayOfTicket" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTicket">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Ticket" nillable="true" type="tns:Ticket" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Ticket">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Fecha" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Hora" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TipoMovimiento" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TipoMovimiento_str" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sucursal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumTicket" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Importe" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="DineroAcumulado" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Articulos" type="tns:ArrayOfProducto" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfProducto">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Producto" nillable="true" type="tns:Producto" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Producto">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Codigo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cantidad" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrecioUnitario" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Importe" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="DineroElectronico" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ActivarPromocion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ProgramaID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Llave" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sistema" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tarjeta" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IDPromocion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActivarPromocionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ActivarPromocionResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActivarAcceso">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ProgramaID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Llave" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sistema" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tarjeta" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ApPaterno" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ApMaterno" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TelefonoCelular" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Sexo" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="TieneHijos" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="EsClubPeques" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="FechaNacimiento" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cPeques" type="tns:ClubPeques" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CorreoElectronico" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="AceptaTerminos" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="FlagCorreoBI" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="FlagCoreoCP" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="FlagSMSBI" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="FlagSMSCP" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="TelefonoCasa" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ImgTitular" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ClubPeques">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="EsEmbarazada" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaNacimientoBebe" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="HijosMenor3anios" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CuantosHijos" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Datoshijos" type="tns:ArrayOfDatosHijos" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDatosHijos">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosHijos" nillable="true" type="tns:DatosHijos" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosHijos">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaNac" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Genero" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ActivarAccesoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ActivarAccesoResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerDatosCliente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ProgramaID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Llave" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sistema" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tarjeta" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerDatosClienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerDatosClienteResult" type="tns:ClientesResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ClientesResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Error" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReturnValue" type="tns:Cliente" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Cliente">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ImgTitular" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumTarjeta" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ApPaterno" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ApMaterno" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Correo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TelCasa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TelMovil" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaNacimiento" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Genero" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TieneHijos" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="esClubPeques" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="FlagCorreoBI" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="FlagCorreoCP" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="FlagSMSBI" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="FlagSMSCP" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="cPeques" type="tns:ClubPeques" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tarjeta_intMontoAcumulados" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CancelaSuscripcion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ProgramaID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Llave" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sistema" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tarjeta" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="FlagCorreoBI" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="FlagCorreoCP" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="FlagSMSBI" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="FlagSMSCP" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelaSuscripcionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CancelaSuscripcionResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActualizaDatos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ProgramaID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Llave" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sistema" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tarjeta" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ApPaterno" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ApMaterno" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CorreoElectronico" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TelefonoCelular" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Sexo" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="TieneHijos" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="EsClubPeques" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="FechaNacimiento" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cPeques" type="tns:ClubPeques" />
+            <s:element minOccurs="0" maxOccurs="1" name="TelefonoCasa" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ImgTitular" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActualizaDatosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ActualizaDatosResult" type="tns:Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultaAcumulacionPendiente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ProgramaID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Llave" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sucursal" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tarjeta" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultaAcumulacionPendienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultaAcumulacionPendienteResult" type="s1:ConsultaAcumulacionPendienteResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultarPromocionDisponible">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ProgramaID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="Llave" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sistema" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tarjeta" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultarPromocionDisponibleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultarPromocionDisponibleResult" type="tns:PromocionResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PromocionResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Error" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReturnValue" type="tns:ArrayOfPromocion" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPromocion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Promocion" nillable="true" type="tns:Promocion" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Promocion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PromoID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Mensaje" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cupon" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Vigencia" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ObtenerConsultaPromocion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ProgramaID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Llave" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Sistema" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="TipoPromocion" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="Laboratorio" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Estatus" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="Producto" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="TipoMecanica" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="fechaInicio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FechaVencimiento" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerConsultaPromocionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerConsultaPromocionResult" type="tns:PromoResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PromoResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Error" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PromoPiezasGratisResult" type="tns:ArrayOfPiezaGratis" />
+          <s:element minOccurs="0" maxOccurs="1" name="PromoPiezaDineroResult" type="tns:ArrayOfPiezasDineroE" />
+          <s:element minOccurs="0" maxOccurs="1" name="PromoDinerEResult" type="tns:ArrayOfDineroElec" />
+          <s:element minOccurs="0" maxOccurs="1" name="PromoCuponResult" type="tns:ArrayOfCupones" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPiezaGratis">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PiezaGratis" nillable="true" type="tns:PiezaGratis" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PiezaGratis">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Segmento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CodigoAcumula" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NombreProdAcumula" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Regla" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LimitePiezas" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LimitePeriodicidad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CodigoGratis" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Laboratorio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Proveedor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaInicio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaFin" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaConteo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Estatus" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comentarios" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Categoria" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubCategoria" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPiezasDineroE">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PiezasDineroE" nillable="true" type="tns:PiezasDineroE" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PiezasDineroE">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Segmento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CodigoAcumula" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NombreProdAcumula" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Regla" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LimitePiezas" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LimitePeriodicidad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DineroElectronico" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Laboratorio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Proveedor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaInicio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaFin" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaConteo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Estatus" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comentarios" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDineroElec">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DineroElec" nillable="true" type="tns:DineroElec" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DineroElec">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Segmento" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cantidad" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="SKU" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NombreProducto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Beneficio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaInicio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaFin" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Estatus" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCupones">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Cupones" nillable="true" type="tns:Cupones" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Cupones">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Cupon" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IDPromo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaInicio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaFin" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MensajePos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TarjetaSegmento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sucursal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Estatus" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SoloUso" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="EncriptarPassword">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EncriptarPasswordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EncriptarPasswordResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PromoCumpleanios">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ProgramaID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="Llave" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sistema" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tarjeta" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PromoCumpleaniosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PromoCumpleaniosResult" type="tns:PromoCumpleaños" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PromoCumpleaños">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Error" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnValue" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://lms.com.mx/WebServices/LealtadBenavides">
+      <s:complexType name="ConsultaAcumulacionPendienteResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Data" type="s1:ArrayOfDataConsultaAcumulacion" />
+          <s:element minOccurs="0" maxOccurs="1" name="CodigoRespuesta_StrCodigo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CodigoRespuesta_strDescripcion" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDataConsultaAcumulacion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="dataConsultaAcumulacion" nillable="true" type="s1:dataConsultaAcumulacion" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="dataConsultaAcumulacion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="NombreLab" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NombreProducto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cupon" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VigenciaFin" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PiezasFaltaCompra" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tarjeta_strNumero" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sku" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Acumulado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DescripcionMecanica" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ValidaAccesoSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidaAcceso" />
+  </wsdl:message>
+  <wsdl:message name="ValidaAccesoSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidaAccesoResponse" />
+  </wsdl:message>
+  <wsdl:message name="RecuperarPasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:RecuperarPassword" />
+  </wsdl:message>
+  <wsdl:message name="RecuperarPasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:RecuperarPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="CambiarPasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:CambiarPassword" />
+  </wsdl:message>
+  <wsdl:message name="CambiarPasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:CambiarPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="EnviarCorreoClienteSoapIn">
+    <wsdl:part name="parameters" element="tns:EnviarCorreoCliente" />
+  </wsdl:message>
+  <wsdl:message name="EnviarCorreoClienteSoapOut">
+    <wsdl:part name="parameters" element="tns:EnviarCorreoClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultarTicketsSoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultarTickets" />
+  </wsdl:message>
+  <wsdl:message name="ConsultarTicketsSoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultarTicketsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ActivarPromocionSoapIn">
+    <wsdl:part name="parameters" element="tns:ActivarPromocion" />
+  </wsdl:message>
+  <wsdl:message name="ActivarPromocionSoapOut">
+    <wsdl:part name="parameters" element="tns:ActivarPromocionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ActivarAccesoSoapIn">
+    <wsdl:part name="parameters" element="tns:ActivarAcceso" />
+  </wsdl:message>
+  <wsdl:message name="ActivarAccesoSoapOut">
+    <wsdl:part name="parameters" element="tns:ActivarAccesoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerDatosClienteSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerDatosCliente" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerDatosClienteSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerDatosClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="CancelaSuscripcionSoapIn">
+    <wsdl:part name="parameters" element="tns:CancelaSuscripcion" />
+  </wsdl:message>
+  <wsdl:message name="CancelaSuscripcionSoapOut">
+    <wsdl:part name="parameters" element="tns:CancelaSuscripcionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ActualizaDatosSoapIn">
+    <wsdl:part name="parameters" element="tns:ActualizaDatos" />
+  </wsdl:message>
+  <wsdl:message name="ActualizaDatosSoapOut">
+    <wsdl:part name="parameters" element="tns:ActualizaDatosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaAcumulacionPendienteSoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultaAcumulacionPendiente" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaAcumulacionPendienteSoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultaAcumulacionPendienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultarPromocionDisponibleSoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultarPromocionDisponible" />
+  </wsdl:message>
+  <wsdl:message name="ConsultarPromocionDisponibleSoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultarPromocionDisponibleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerConsultaPromocionSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerConsultaPromocion" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerConsultaPromocionSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerConsultaPromocionResponse" />
+  </wsdl:message>
+  <wsdl:message name="EncriptarPasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:EncriptarPassword" />
+  </wsdl:message>
+  <wsdl:message name="EncriptarPasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:EncriptarPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="PromoCumpleaniosSoapIn">
+    <wsdl:part name="parameters" element="tns:PromoCumpleanios" />
+  </wsdl:message>
+  <wsdl:message name="PromoCumpleaniosSoapOut">
+    <wsdl:part name="parameters" element="tns:PromoCumpleaniosResponse" />
+  </wsdl:message>
+  <wsdl:portType name="PortalBISoap">
+    <wsdl:operation name="ValidaAcceso">
+      <wsdl:input message="tns:ValidaAccesoSoapIn" />
+      <wsdl:output message="tns:ValidaAccesoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarPassword">
+      <wsdl:input message="tns:RecuperarPasswordSoapIn" />
+      <wsdl:output message="tns:RecuperarPasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CambiarPassword">
+      <wsdl:input message="tns:CambiarPasswordSoapIn" />
+      <wsdl:output message="tns:CambiarPasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EnviarCorreoCliente">
+      <wsdl:input message="tns:EnviarCorreoClienteSoapIn" />
+      <wsdl:output message="tns:EnviarCorreoClienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarTickets">
+      <wsdl:input message="tns:ConsultarTicketsSoapIn" />
+      <wsdl:output message="tns:ConsultarTicketsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ActivarPromocion">
+      <wsdl:input message="tns:ActivarPromocionSoapIn" />
+      <wsdl:output message="tns:ActivarPromocionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ActivarAcceso">
+      <wsdl:input message="tns:ActivarAccesoSoapIn" />
+      <wsdl:output message="tns:ActivarAccesoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerDatosCliente">
+      <wsdl:input message="tns:ObtenerDatosClienteSoapIn" />
+      <wsdl:output message="tns:ObtenerDatosClienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelaSuscripcion">
+      <wsdl:input message="tns:CancelaSuscripcionSoapIn" />
+      <wsdl:output message="tns:CancelaSuscripcionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizaDatos">
+      <wsdl:input message="tns:ActualizaDatosSoapIn" />
+      <wsdl:output message="tns:ActualizaDatosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaAcumulacionPendiente">
+      <wsdl:input message="tns:ConsultaAcumulacionPendienteSoapIn" />
+      <wsdl:output message="tns:ConsultaAcumulacionPendienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarPromocionDisponible">
+      <wsdl:input message="tns:ConsultarPromocionDisponibleSoapIn" />
+      <wsdl:output message="tns:ConsultarPromocionDisponibleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerConsultaPromocion">
+      <wsdl:input message="tns:ObtenerConsultaPromocionSoapIn" />
+      <wsdl:output message="tns:ObtenerConsultaPromocionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EncriptarPassword">
+      <wsdl:input message="tns:EncriptarPasswordSoapIn" />
+      <wsdl:output message="tns:EncriptarPasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PromoCumpleanios">
+      <wsdl:input message="tns:PromoCumpleaniosSoapIn" />
+      <wsdl:output message="tns:PromoCumpleaniosSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PortalBISoap" type="tns:PortalBISoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ValidaAcceso">
+      <soap:operation soapAction="http://lms.com.mx/WSPortalBI/ValidaAcceso" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarPassword">
+      <soap:operation soapAction="http://lms.com.mx/WSPortalBI/RecuperarPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CambiarPassword">
+      <soap:operation soapAction="http://lms.com.mx/WSPortalBI/CambiarPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnviarCorreoCliente">
+      <soap:operation soapAction="http://lms.com.mx/WSPortalBI/EnviarCorreoCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarTickets">
+      <soap:operation soapAction="http://lms.com.mx/WSPortalBI/ConsultarTickets" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivarPromocion">
+      <soap:operation soapAction="http://lms.com.mx/WSPortalBI/ActivarPromocion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivarAcceso">
+      <soap:operation soapAction="http://lms.com.mx/WSPortalBI/ActivarAcceso" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerDatosCliente">
+      <soap:operation soapAction="http://lms.com.mx/WSPortalBI/ObtenerDatosCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelaSuscripcion">
+      <soap:operation soapAction="http://lms.com.mx/WSPortalBI/CancelaSuscripcion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizaDatos">
+      <soap:operation soapAction="http://lms.com.mx/WSPortalBI/ActualizaDatos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaAcumulacionPendiente">
+      <soap:operation soapAction="http://lms.com.mx/WSPortalBI/ConsultaAcumulacionPendiente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarPromocionDisponible">
+      <soap:operation soapAction="http://lms.com.mx/WSPortalBI/ConsultarPromocionDisponible" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerConsultaPromocion">
+      <soap:operation soapAction="http://lms.com.mx/WSPortalBI/ObtenerConsultaPromocion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EncriptarPassword">
+      <soap:operation soapAction="http://lms.com.mx/WSPortalBI/EncriptarPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PromoCumpleanios">
+      <soap:operation soapAction="http://lms.com.mx/WSPortalBI/PromoCumpleanios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PortalBISoap12" type="tns:PortalBISoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ValidaAcceso">
+      <soap12:operation soapAction="http://lms.com.mx/WSPortalBI/ValidaAcceso" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarPassword">
+      <soap12:operation soapAction="http://lms.com.mx/WSPortalBI/RecuperarPassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CambiarPassword">
+      <soap12:operation soapAction="http://lms.com.mx/WSPortalBI/CambiarPassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnviarCorreoCliente">
+      <soap12:operation soapAction="http://lms.com.mx/WSPortalBI/EnviarCorreoCliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarTickets">
+      <soap12:operation soapAction="http://lms.com.mx/WSPortalBI/ConsultarTickets" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivarPromocion">
+      <soap12:operation soapAction="http://lms.com.mx/WSPortalBI/ActivarPromocion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivarAcceso">
+      <soap12:operation soapAction="http://lms.com.mx/WSPortalBI/ActivarAcceso" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerDatosCliente">
+      <soap12:operation soapAction="http://lms.com.mx/WSPortalBI/ObtenerDatosCliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelaSuscripcion">
+      <soap12:operation soapAction="http://lms.com.mx/WSPortalBI/CancelaSuscripcion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizaDatos">
+      <soap12:operation soapAction="http://lms.com.mx/WSPortalBI/ActualizaDatos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaAcumulacionPendiente">
+      <soap12:operation soapAction="http://lms.com.mx/WSPortalBI/ConsultaAcumulacionPendiente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarPromocionDisponible">
+      <soap12:operation soapAction="http://lms.com.mx/WSPortalBI/ConsultarPromocionDisponible" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerConsultaPromocion">
+      <soap12:operation soapAction="http://lms.com.mx/WSPortalBI/ObtenerConsultaPromocion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EncriptarPassword">
+      <soap12:operation soapAction="http://lms.com.mx/WSPortalBI/EncriptarPassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PromoCumpleanios">
+      <soap12:operation soapAction="http://lms.com.mx/WSPortalBI/PromoCumpleanios" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PortalBI">
+    <wsdl:port name="PortalBISoap" binding="tns:PortalBISoap">
+      <soap:address location="https://beneficiointeligente.com.mx/WSBI/PortalBI.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PortalBISoap12" binding="tns:PortalBISoap12">
+      <soap12:address location="https://beneficiointeligente.com.mx/WSBI/PortalBI.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

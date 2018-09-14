@@ -1,0 +1,874 @@
+﻿<!DOCTYPE html>
+
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="Preview page of Metronic Admin Theme #1 for advanced bootstrap file input examples" name="description" />
+    <meta content="" name="author" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+
+    <link href="~/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <link href="~/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/bootstrap-colorpicker/css/colorpicker.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/jquery-minicolors/jquery.minicolors.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/bootstrap-touchspin/bootstrap.touchspin.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN THEME GLOBAL STYLES -->
+    <link href="~/assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+    <link href="~/assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
+    <!-- END THEME GLOBAL STYLES -->
+    <!-- BEGIN THEME LAYOUT STYLES -->
+    <link href="~/assets/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color" />
+    <link href="~/assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css"/>
+    
+    <link href="~/Content/css/jquery.filer.css" rel="stylesheet" type="text/css"/>
+    <link href="~/Content/css/jquery.filer-dragdropbox-theme.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/waitMe.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/css/blog_style.css" rel="stylesheet" type="text/css" />
+
+    <!-- END THEME LAYOUT STYLES -->
+    <link rel="shortcut icon" href="~/favicon.ico" />
+</head>
+<!-- END HEAD -->
+
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+    <div class="page-wrapper">
+        <!-- BEGIN HEADER -->
+        <div class="page-header navbar navbar-fixed-top">
+            <!-- BEGIN HEADER INNER -->
+            <div class="page-header-inner ">
+                <!-- BEGIN LOGO -->
+                <div class="page-logo">
+                    <a href="~/Admin/Home">
+                        <img src="~/Content/rsc/icons/header_logo_01.png" alt="logo" class="logo-default" />
+                    </a>
+                    <div class="menu-toggler sidebar-toggler">
+                        <span></span>
+                    </div>
+                </div>
+                <!-- END LOGO -->
+                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+                <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span></span>
+                </a>
+                <!-- END RESPONSIVE MENU TOGGLER -->
+                <!-- BEGIN TOP NAVIGATION MENU -->
+                @Html.Partial("_MenuPartial")
+                <!-- END TOP NAVIGATION MENU -->
+            </div>
+            <!-- END HEADER INNER -->
+        </div>
+        <!-- END HEADER -->
+        <!-- BEGIN HEADER & CONTENT DIVIDER -->
+        <div class="clearfix"> </div>
+        <!-- END HEADER & CONTENT DIVIDER -->
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN SIDEBAR -->
+            <div class="page-sidebar-wrapper">
+                <!-- BEGIN SIDEBAR -->
+                <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+                <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+                <div class="page-sidebar navbar-collapse collapse">
+                    <!-- BEGIN SIDEBAR MENU -->
+                    <!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
+                    <!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
+                    <!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
+                    <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+                    <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
+                    <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+                    <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+                        <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
+                        <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                        <li class="sidebar-toggler-wrapper hide">
+                            <div class="sidebar-toggler">
+                                <span></span>
+                            </div>
+                        </li>
+                        <!-- END SIDEBAR TOGGLER BUTTON -->
+                        <!-- DOC: To remove the search box from the sidebar you just need to completely remove the below "sidebar-search-wrapper" LI element -->
+                        <li class="sidebar-search-wrapper">
+                            <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+                            <!-- DOC: Apply "sidebar-search-bordered" class the below search form to have bordered search box -->
+                            <!-- DOC: Apply "sidebar-search-bordered sidebar-search-solid" class the below search form to have bordered & solid search box -->
+                            <!-- END RESPONSIVE QUICK SEARCH FORM -->
+                        </li>
+
+                        <li class="heading">
+                            <h3 class="uppercase">Dashboard</h3>
+                        </li>
+
+                        @{
+                            string page = ViewBag.Page;
+                            string homeActive = "", homePageActive = "", homePageIndex = "", homePageEdit = "";
+                            string offerPageActive = "", offerPageIndex = "", offerPageEdit = "", offerActive = "";
+                            string blogPageActive = "", blogPageIndex = "", blogPageEdit = "", blogActive = "";
+                            string cardPageActive = "", cardPageIndex = "", cardPageEdit = "";
+                            string fosePageActive = "", fosePageIndex = "", fosePageEdit = "";
+                            string branchPageActive = "", branchPageIndex = "", branchPageEdit = "", branchActive = "";
+                            string servicePageActive = "", servicePageIndex = "", servicePageEdit = "", serviceActive = "";
+                            string saDPageActive = "", saDPageIndex = "", saDPageEdit = "", saDActive = "";
+                            string investorPageActive = "", investorPageIndex = "", investorPageEdit = "", reportActive = "";
+                            string providerPageActive = "", providerPageIndex = "", providerPageEdit = "", providerActive = "";
+                            string termsPageActive = "", termsPageIndex = "", termsPageEdit = "";
+                            string contactPageActive = "", contactPageIndex = "", contactPageEdit = "", contactPageUsersList = "";
+                            string teamPageActive = "", teamPageIndex = "", teamPageEdit = "", teamPageUsersList = "", teamPageArea = "", teamPageRegion = "", teamPageMailConfiguration = "";
+                            string privatePageActive = "", privatePageIndex = "", privatePageEdit = "";
+                            string userPageActive = "", userPageIndex = "", userPageReg = "", userPageEdit = "";
+                            string laboratoryPageActive = "", whoWeArePageActive = "";
+                            string whoWeAreIndexPageActive = "", whoWeAreEditPageActive = "";
+                            string doctorsOfficePageActive = "";
+                            string doctorsOfficeIndexPageActive = "", doctorsOfficeEditPageActive = "";
+                            switch (page)
+                            {
+                                case "Home":
+                                    homeActive = "active";
+                                    break;
+                                case "HomePageIndex":
+                                    homePageActive = "active";
+                                    homePageIndex = "active";
+                                    break;
+                                case "HomePageEdit":
+                                    homePageActive = "active";
+                                    homePageEdit = "active";
+                                    break;
+                                /* case "OfferPageIndex":
+                                     offerPageActive = "active";
+                                     offerPageIndex = "active";
+                                     break;
+                                 case "OfferPageEdit":
+                                     offerPageActive = "active";
+                                     offerPageEdit = "active";
+                                     break;
+                                 case "OfferActive":
+                                     offerPageActive = "active";
+                                     offerActive = "active";
+                                     break;*/
+                                case "BlogPageIndex":
+                                    blogPageActive = "active";
+                                    blogPageIndex = "active";
+                                    break;
+                                case "BlogPageEdit":
+                                    blogPageActive = "active";
+                                    blogPageEdit = "active";
+                                    break;
+                                case "BlogActive":
+                                    blogPageActive = "active";
+                                    blogActive = "active";
+                                    break;
+                                case "CardPageIndex":
+                                    cardPageActive = "active";
+                                    cardPageIndex = "active";
+                                    break;
+                                case "CardPageEdit":
+                                    cardPageActive = "active";
+                                    cardPageEdit = "active";
+                                    break;
+                                case "FosePageIndex":
+                                    fosePageActive = "active";
+                                    fosePageIndex = "active";
+                                    break;
+                                case "FosePageEdit":
+                                    fosePageActive = "active";
+                                    fosePageEdit = "active";
+                                    break;
+                                case "BranchPageIndex":
+                                    branchPageActive = "active";
+                                    branchPageIndex = "active";
+                                    break;
+                                case "BranchPageEdit":
+                                    branchPageActive = "active";
+                                    branchPageEdit = "active";
+                                    break;
+                                case "BranchActive":
+                                    branchPageActive = "active";
+                                    branchActive = "active";
+                                    break;
+                                case "ServicePageIndex":
+                                    servicePageActive = "active";
+                                    servicePageIndex = "active";
+                                    break;
+                                case "ServicePageEdit":
+                                    servicePageActive = "active";
+                                    servicePageEdit = "active";
+                                    break;
+                                case "ServiceActive":
+                                    servicePageActive = "active";
+                                    serviceActive = "active";
+                                    break;
+                                case "SaDPageIndex":
+                                    saDPageActive = "active";
+                                    saDPageIndex = "active";
+                                    break;
+                                case "SaDPageEdit":
+                                    saDPageActive = "active";
+                                    saDPageEdit = "active";
+                                    break;
+                                case "SaDActive":
+                                    saDPageActive = "active";
+                                    saDActive = "active";
+                                    break;
+                                case "InvestorPageIndex":
+                                    investorPageActive = "active";
+                                    investorPageIndex = "active";
+                                    break;
+                                case "InvestorPageEdit":
+                                    investorPageActive = "active";
+                                    investorPageEdit = "active";
+                                    break;
+                                case "InvestorPageActive":
+                                    investorPageActive = "active";
+                                    reportActive = "active";
+                                    break;
+                                case "ProviderPageIndex":
+                                    providerPageActive = "active";
+                                    providerPageIndex = "active";
+                                    break;
+                                case "ProviderPageEdit":
+                                    providerPageActive = "active";
+                                    providerPageEdit = "active";
+                                    break;
+                                case "ProviderPageActive":
+                                    providerPageActive = "active";
+                                    providerActive = "active";
+                                    break;
+                                case "ContactPageIndex":
+                                    contactPageActive = "active";
+                                    contactPageIndex = "active";
+                                    break;
+                                case "ContactPageEdit":
+                                    contactPageActive = "active";
+                                    contactPageEdit = "active";
+                                    break;
+                                case "ContactPageUsersList":
+                                    contactPageActive = "active";
+                                    contactPageUsersList = "active";
+                                    break;
+                                case "TeamPageIndex":
+                                    teamPageActive = "active";
+                                    teamPageIndex = "active";
+                                    break;
+                                case "TeamPageEdit":
+                                    teamPageActive = "active";
+                                    teamPageEdit = "active";
+                                    break;
+                                case "TeamPageUsersList":
+                                    teamPageActive = "active";
+                                    teamPageUsersList = "active";
+                                    break;
+                                case "TeamPageArea":
+                                    teamPageActive = "active";
+                                    teamPageArea = "active";
+                                    break;
+                                case "TeamPageRegion":
+                                    teamPageActive = "active";
+                                    teamPageRegion = "active";
+                                    break;
+                                case "TeamPageMailConfiguration":
+                                    teamPageActive = "active";
+                                    teamPageMailConfiguration = "active";
+                                    break;
+                                case "PrivacityPageIndex":
+                                    privatePageActive = "active";
+                                    privatePageIndex = "active";
+                                    break;
+                                case "PrivacityPageEdit":
+                                    privatePageActive = "active";
+                                    privatePageEdit = "active";
+                                    break;
+                                case "ConditionsTermsPageIndex":
+                                    termsPageActive = "active";
+                                    termsPageIndex = "active";
+                                    break;
+                                case "ConditionsTermsPageEdit":
+                                    termsPageActive = "active";
+                                    termsPageEdit = "active";
+                                    break;
+                                case "UserPageIndex":
+                                    userPageActive = "active";
+                                    userPageIndex = "active";
+                                    break;
+                                case "UserPageEdit":
+                                    userPageActive = "active";
+                                    userPageEdit = "active";
+                                    break;
+                                case "UserPageReg":
+                                    userPageActive = "active";
+                                    userPageReg = "active";
+                                    break;
+                                case "Laboratory":
+                                    laboratoryPageActive = "active";
+                                    break;
+                                case "WhoWeAre":
+                                    whoWeArePageActive = "active";
+                                    whoWeAreIndexPageActive = "active";
+                                    break;
+                                case "WhoWeAreEdit":
+                                    whoWeAreEditPageActive = "active";
+                                    break;
+                                case "DoctorsOffice":
+                                    doctorsOfficePageActive = "active";
+                                    doctorsOfficeIndexPageActive = "active";
+                                    break;
+                                case "DoctorsOfficeEdit":
+                                    doctorsOfficeEditPageActive = "active";
+                                    break;
+                            }
+                            }
+                        
+                        <li class="nav-item @homeActive">
+                            <a href="~/Admin/Home" class="nav-link nav-toggle">
+                                <i class="icon-home"></i>
+                                <span class="title">Principal</span>
+                            </a>
+                        </li>
+
+                        <li class="heading">
+                            <h3 class="uppercase">páginas</h3>
+                        </li>
+
+                        <li class="nav-item @homePageActive">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="icon-star"></i>
+                                <span class="title">Inicio</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item @homePageIndex">
+                                    <a href="~/Admin/HomePage" class="nav-link ">
+                                        <span class="title">Páginas Anteriores</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item @homePageEdit">
+                                    <a href="~/Admin/HomePage/Edit" class="nav-link ">
+                                        <span class="title">Editar Página</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        @*<li class="nav-item @offerPageActive">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="icon-like"></i>
+                                <span class="title">Ofertas</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item @offerPageIndex">
+                                    <a href="~/Admin/OfferPage" class="nav-link ">
+                                        <span class="title">Páginas Anteriores</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item @offerPageEdit">
+                                    <a href="~/Admin/OfferPage/Edit" class="nav-link ">
+                                        <span class="title">Editar Página</span>
+                                    </a>
+                                </li> 
+                                <li class="nav-item @offerActive">
+                                    <a href="~/Admin/OfferType" class="nav-link ">
+                                        <span class="title">Gestionar Categorías de Ofertas</span>
+                                    </a>
+                                </li>                                 
+                            </ul>
+                        </li>*@
+                        <li class="nav-item @blogPageActive">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="socicon-blogger"></i>
+                                <span class="title">Blogs</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item @blogPageIndex">
+                                    <a href="~/Admin/BlogPage" class="nav-link ">
+                                        <span class="title">Páginas Anteriores</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item @blogPageEdit">
+                                    <a href="~/Admin/BlogPage/Edit" class="nav-link ">
+                                        <span class="title">Editar Página</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item @blogActive">
+                                    <a href="~/Admin/BlogType" class="nav-link ">
+                                        <span class="title">Gestionar Categorías de Blogs</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item @cardPageActive">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="icon-credit-card"></i>
+                                <span class="title">Tarjetas</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item @cardPageIndex">
+                                    <a href="~/Admin/BillingPage" class="nav-link ">
+                                        <span class="title">Páginas Anteriores</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item @cardPageEdit">
+                                    <a href="~/Admin/BillingPage/Edit" class="nav-link ">
+                                        <span class="title">Editar Página</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item @fosePageActive">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="icon-puzzle"></i>
+                                <span class="title">Fose</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item @fosePageIndex">
+                                    <a href="~/Admin/FosePage" class="nav-link ">
+                                        <span class="title">Páginas Anteriores</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item @fosePageEdit">
+                                    <a href="~/Admin/FosePage/Edit" class="nav-link ">
+                                        <span class="title">Editar Página</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item @branchPageActive ">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="fa fa-institution"></i>
+                                <span class="title">Sucursales</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item @branchPageIndex">
+                                    <a href="~/Admin/BranchPage" class="nav-link ">
+                                        <span class="title">Páginas Anteriores</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item @branchPageEdit">
+                                    <a href="~/Admin/BranchPage/Edit" class="nav-link ">
+                                        <span class="title">Editar Página</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item @branchActive">
+                                    <a href="~/Admin/Branch" class="nav-link ">
+                                        <span class="title">Gestionar Sucursales</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item @servicePageActive">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="fa fa-phone"></i>
+                                <span class="title">Servicios</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item @servicePageIndex">
+                                    <a href="~/Admin/ServicePage" class="nav-link ">
+                                        <span class="title">Páginas Anteriores</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item @servicePageEdit ">
+                                    <a href="~/Admin/ServicePage/Edit" class="nav-link ">
+                                        <span class="title">Editar Página</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item @serviceActive ">
+                                    <a href="~/Admin/ServiceType" class="nav-link ">
+                                        <span class="title">Gestionar Servicios</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item @saDPageActive">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="fa fa-diamond"></i>
+                                <span class="title">SaD</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item @saDPageIndex ">
+                                    <a href="~/Admin/SaDPage" class="nav-link ">
+                                        <span class="title">Páginas Anteriores</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item @saDPageEdit ">
+                                    <a href="~/Admin/SaDPage/Edit" class="nav-link ">
+                                        <span class="title">Editar Página</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item @saDActive ">
+                                    <a href="~/Admin/SaDType" class="nav-link ">
+                                        <span class="title">Gestionar Números de SaD</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item @investorPageActive ">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="fa fa-bars"></i>
+                                <span class="title">Inversionistas</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item @investorPageIndex ">
+                                    <a href="~/Admin/InvestorPage" class="nav-link ">
+                                        <span class="title">Páginas Anteriores</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item @investorPageEdit ">
+                                    <a href="~/Admin/InvestorPage/Edit" class="nav-link ">
+                                        <span class="title">Editar Página</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item @reportActive ">
+                                    <a href="~/Admin/ReportType" class="nav-link ">
+                                        <span class="title">Gestionar Tipos de Reportes</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item @providerPageActive ">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="fa fa-user-times"></i>
+                                <span class="title">Proveedores</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item @providerPageIndex ">
+                                    <a href="~/Admin/ProviderPage" class="nav-link ">
+                                        <span class="title">Páginas Anteriores</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item @providerPageEdit ">
+                                    <a href="~/Admin/ProviderPage/Edit" class="nav-link ">
+                                        <span class="title">Editar Página</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item @providerActive ">
+                                    <a href="~/Admin/DocumentType" class="nav-link ">
+                                        <span class="title">Gestionar Tipos de Documentos</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item @contactPageActive ">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="fa fa-mail-reply-all"></i>
+                                <span class="title">Contacto</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item @contactPageIndex ">
+                                    <a href="~/Admin/ContactPage" class="nav-link ">
+                                        <span class="title">Páginas Anteriores</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item @contactPageEdit ">
+                                    <a href="~/Admin/ContactPage/Edit" class="nav-link ">
+                                        <span class="title">Editar Página</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item @contactPageUsersList ">
+                                    <a href="~/Admin/ContactPage/ContactUsersList" class="nav-link ">
+                                        <span class="title">Lista de Usuarios de Contacto</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item @teamPageActive ">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="fa fa-angellist"></i>
+                                <span class="title">Únete al equipo</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item @teamPageIndex ">
+                                    <a href="~/Admin/JoinTeamPage" class="nav-link ">
+                                        <span class="title">Páginas Anteriores</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item @teamPageEdit ">
+                                    <a href="~/Admin/JoinTeamPage/Edit" class="nav-link ">
+                                        <span class="title">Editar Página</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item @teamPageUsersList ">
+                                    <a href="~/Admin/JoinTeamPage/JoinedUsersList" class="nav-link ">
+                                        <span class="title">Lista de Usuarios Únete al Equipo</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item @teamPageArea">
+                                    <a href="~/Admin/InterestArea" class="nav-link ">
+                                        <span class="title">Gestionar Áreas de Interés</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item @teamPageRegion">
+                                    <a href="~/Admin/InterestRegion" class="nav-link ">
+                                        <span class="title">Gestionar Regiones de Interés</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item @teamPageMailConfiguration">
+                                    <a href="~/Admin/MailConfiguration" class="nav-link ">
+                                        <span class="title">Gestionar Configuraciones de servidor</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item @privatePageActive ">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="fa fa-archive"></i>
+                                <span class="title">Privacidad</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item @privatePageIndex ">
+                                    <a href="~/Admin/PrivacityPage" class="nav-link ">
+                                        <span class="title">Páginas Anteriores</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item @privatePageEdit ">
+                                    <a href="~/Admin/PrivacityPage/Edit" class="nav-link ">
+                                        <span class="title">Editar Página</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item @laboratoryPageActive ">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="fa fa-terminal"></i>
+                                <span class="title">Laboratorios</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item @laboratoryPageActive ">
+                                    <a href="~/Admin/Laboratory" class="nav-link ">
+                                        <span class="title">Gestionar Laboratorios</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item @whoWeArePageActive ">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="fa fa-terminal"></i>
+                                <span class="title">Quiénes somos</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item @whoWeAreIndexPageActive ">
+                                    <a href="~/Admin/WhoWeAre" class="nav-link ">
+                                        <span class="title">Páginas Anteriores</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item @whoWeAreEditPageActive ">
+                                    <a href="~/Admin/WhoWeAre/Edit" class="nav-link ">
+                                        <span class="title">Editar Página</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item @doctorsOfficePageActive">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="fa fa-terminal"></i>
+                                <span class="title">Consultorios</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item @doctorsOfficeIndexPageActive">
+                                    <a href="~/Admin/DoctorsOffice" class="nav-link ">
+                                        <span class="title">Páginas Anteriores</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item @doctorsOfficeEditPageActive">
+                                    <a href="~/Admin/DoctorsOffice/Edit" class="nav-link ">
+                                        <span class="title">Editar Página</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                        <li class="nav-item @termsPageActive ">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="fa fa-terminal"></i>
+                                <span class="title">Términos y Condiciones</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item @termsPageIndex ">
+                                    <a href="~/Admin/ConditionsTermsPage" class="nav-link ">
+                                        <span class="title">Páginas Anteriores</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item @termsPageEdit ">
+                                    <a href="~/Admin/ConditionsTermsPage/Edit" class="nav-link ">
+                                        <span class="title">Editar Página</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="heading">
+                            <h3 class="uppercase">usuarios</h3>
+                        </li>
+
+                        <li class="nav-item @userPageActive ">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="fa fa-users"></i>
+                                <span class="title">Usuarios</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item @userPageIndex ">
+                                    <a href="~/Admin/UserPage/" class="nav-link ">
+                                        <span class="title">Gestionar Usuarios del Admin</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item @userPageEdit">
+                                    <a href="~/Admin/UserPage/EditProfile" class="nav-link ">
+                                        <span class="title">Editar Mi Perfil</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item @userPageReg ">
+                                    <a href="~/Admin/UserPage/UserReg" class="nav-link ">
+                                        <span class="title">Usuarios registrados</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                    </ul>
+                    <!-- END SIDEBAR MENU -->
+                    <!-- END SIDEBAR MENU -->
+                </div>
+                <!-- END SIDEBAR -->
+            </div>
+            <!-- END SIDEBAR -->
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <div class="page-content">
+                    @RenderBody()
+                </div>
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+        <!-- BEGIN FOOTER -->
+        <div class="page-footer">
+            <div class="scroll-to-top">
+                <i class="icon-arrow-up"></i>
+            </div>
+        </div>
+        <!-- END FOOTER -->
+    </div>
+
+    <script src="~/Content/lib/jquery.js"></script>
+    <script src="~/Content/dist/jquery.validate.js"></script>
+    <script src="~/Content/dist/jquery.maskedinput.js"></script>
+    <script src="~/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/Content/js/jquery/jquery-ui.min.js"></script>
+    <script src="~/Content/js/jquery/jquery.zoom.min.js"></script>
+    <script src="~/Content/js/bootstrap-select.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="~/assets/global/plugins/respond.min.js"></script>
+    <script src="~/assets/global/plugins/excanvas.min.js"></script>
+    <script src="~/assets/global/plugins/ie8.fix.min.js"></script>
+    <![endif]-->
+    <!-- BEGIN CORE PLUGINS -->
+    <script src="~/assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <!-- END CORE PLUGINS -->
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="~/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery-validation/js/additional-methods.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery-minicolors/jquery.minicolors.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap-select/js/bootstrap-select.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/ckeditor/ckeditor.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap-pwstrength/pwstrength-bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/autosize/autosize.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/fuelux/js/spinner.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap-touchspin/bootstrap.touchspin.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/scripts/datatable.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js" type="text/javascript"></script>
+    
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN THEME GLOBAL SCRIPTS -->
+    <script src="~/assets/global/scripts/app.min.js" type="text/javascript"></script>
+    <!-- END THEME GLOBAL SCRIPTS -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="~/assets/pages/scripts/form-input-mask.js" type="text/javascript"></script>
+    <script src="~/assets/pages/scripts/ui-bootbox.min.js" type="text/javascript"></script>
+    <script src="~/assets/pages/scripts/components-date-time-pickers.min.js" type="text/javascript"></script>
+    <script src="~/assets/pages/scripts/form-wizard.min.js" type="text/javascript"></script>
+    <script src="~/assets/pages/scripts/components-color-pickers.min.js" type="text/javascript"></script>
+    <script src="~/assets/pages/scripts/components-bootstrap-select.min.js" type="text/javascript"></script>
+    <script src="~/assets/pages/scripts/components-form-tools.min.js" type="text/javascript"></script>
+    <script src="~/assets/pages/scripts/components-bootstrap-touchspin.min.js" type="text/javascript"></script>
+    <script src="~/assets/pages/scripts/portlet-draggable.min.js" type="text/javascript"></script>
+    <script src="~/assets/pages/scripts/table-datatables-managed.js" type="text/javascript"></script>
+    <script src="~/assets/pages/scripts/table-datatables-editable.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL SCRIPTS -->
+    <!-- BEGIN THEME LAYOUT SCRIPTS -->
+    <script src="~/assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
+    <script src="~/assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
+    <script src="~/assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+    <script src="~/assets/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
+
+    <script src="~/Content/js/jquery/jquery.filer.min.js" type="text/javascript"></script>
+    <script src="~/Content/js/jquery/jquery.fileuploads.init.js" type="text/javascript"></script>
+    <!-- END THEME LAYOUT SCRIPTS -->
+
+    <script src="~/Content/js/webAdminScript.js"></script>
+    <script src="~/Content/js/waitMe.min.js"></script>
+    <script src="~/Content/js/my_wait_me.js"></script>
+    <script src="~/Content/js/url-utils.js"></script>
+
+
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>

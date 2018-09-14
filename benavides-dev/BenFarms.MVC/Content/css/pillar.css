@@ -1,0 +1,164 @@
+﻿.carousel-control 			 { width:  4%; }
+.carousel-control.left,.carousel-control.right {margin-left:15px;background-image:none;margin-top: 60px !important;}
+#main-carousel {
+    width: 80% !important;
+    margin: 0 auto;
+}
+
+.pillarImageBox {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.pillarImageBox img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.pillarText1 {
+        font-size: 15px;
+        line-height: 1;
+    }
+
+.pillarText2 {
+    font-size: 12px;
+}
+
+.pillarTitle {
+    background-color: #baeafc;
+    text-align: center;
+    width: 100%;
+    font-size: 18px;
+    color: #7899a5;
+    line-height: 2;
+    cursor: pointer;
+}
+
+    .pillarTitle.active {
+        background: #baeafc;
+    }
+
+
+.pillarTitle:active {
+    text-decoration: none;
+}
+
+.pillarDescription {
+    background-color: #fff;
+    color: #20317c;
+    font-size: 12px;
+    border-color: #000;
+    transition: border .2s ease-in-out;
+    width: 100%;
+    padding: 33px 12px;
+    display: none;
+    min-height: 127px;
+    box-shadow: -10px 10px 10px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+a:hover, a:active {
+    text-decoration: none;
+}
+
+.overbox {
+    background-color: #00c8f5;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    -ms-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.col-sm-3:hover .overbox, .col-sm-3.active .overbox {
+    opacity: 0.5;
+}
+
+
+.quote {
+    min-height: 161px;
+    padding-top: 30px;
+    text-align: justify;
+    width: 90%;
+    margin: 0 auto;
+    padding-left: 40px;
+
+}
+
+.quote img {
+    width: 120px !important;
+    box-shadow: 2px 5px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1000 !important;
+    margin: 0 auto;
+}
+
+.carousel-inner {
+    min-height: 161px;
+}
+
+
+.carousel-control {
+    width: 4%;
+}
+
+.quoteText {
+    z-index: -1 !important;
+    margin-left: -30px;
+    margin-top: -20px;
+    background: url("/assets/pages/img/quotes.png") no-repeat;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
+    padding: 40px 60px;
+}
+
+
+
+@media (max-width: 767px) {
+	.carousel-inner .active.left { left: -100%; }
+	.carousel-inner .next        { left:  100%; }
+	.carousel-inner .prev		 { left: -100%; }
+	.active > div { display:none; }
+	.active > div:first-child { display:block; }
+    .quote {
+        padding-left: 0px;
+    }
+    .quoteText {
+    z-index: -1 !important;
+    margin-left: 0px;
+    margin-top: 0px;
+    background: url("/assets/pages/img/quotes.png") no-repeat;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
+    padding: 20px;
+    }
+    .carousel-control.left, .carousel-control.right  {
+        margin-left: 0px;
+    }
+
+}
+@media (min-width: 767px) and (max-width: 992px ) {
+	.carousel-inner .active.left { left: -50%; }
+	.carousel-inner .next        { left:  50%; }
+	.carousel-inner .prev		 { left: -50%; }
+	.active > div { display:none; }
+	.active > div:first-child { display:block; }
+	.active > div:first-child + div { display:block; }
+}
+@media (min-width: 992px ) {
+	.carousel-inner .active.left { left: -25%; }
+	.carousel-inner .next        { left:  25%; }
+	.carousel-inner .prev		 { left: -25%; }	
+}

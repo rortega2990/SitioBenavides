@@ -1,0 +1,435 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.BillingPage
+@{
+    ViewBag.Title = "Tarjetas Benavides";
+}
+
+<style type="text/css">
+    .modalbox .box {
+        background-color: rgba(0,0,0,.0001) !important;
+        opacity: 1;
+        filter: alpha(opacity=100);
+        margin: 0 auto;
+        min-width: 210px;
+        padding: 10px;
+        width: 70%;
+        margin-top: 70px;
+        border: 0px solid Black;
+    }
+
+    .modalbox .title {
+        border-bottom: 1px solid #ccc;
+        font-family: verdana;
+        font-size: 22px;
+        letter-spacing: 0.2em;
+        margin: 0;
+        padding: 0 0 10px;
+        text-transform: uppercase;
+        color: #fff;
+    }
+
+    .modalbox .content {
+        display: block;
+        font-family: Verdana;
+        font-size: 18px;
+        line-height: 22px;
+        padding: 10px 0 0;
+        color: #fff;
+    }
+
+    .modalbox .close {
+        color: #fff;
+        display: block;
+        float: right;
+        font-family: Verdana;
+        font-size: 22px;
+        height: 25px;
+        text-decoration: none;
+    }
+
+
+    .modalbox {
+        text-align: center;
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        color: #333333;
+    }
+
+        .modalbox:target {
+            display: block;
+            outline: none;
+        }
+
+
+    .link-modal {
+        width: 90%;
+        text-align: center;
+        margin: 0 auto;
+        padding-top: 400px;
+        padding-left: 15px;
+    }
+
+
+        .link-modal a {
+            border: 0px solid #fff;
+            color: #fff;
+            font-family: Verdana;
+            font-size: 20px;
+            letter-spacing: 0.3em;
+            padding: 10px;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+</style>
+
+<div id="main-carousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-id" data-slide-to="0" class="active"></li>
+    </ol>
+    <div class="carousel-inner">
+        @{
+            <div class="item active">
+                <img src="@Url.Content(Model.HeadImages[0].ImageSectionImage)">
+                <div class="container">
+                    @{
+                        var color1 = "#000000";
+                        if (!string.IsNullOrEmpty(Model.HeadImages[0].ImageSectionColorText))
+                        {
+                            color1 = Model.HeadImages[0].ImageSectionColorText;
+                        }
+                    }
+                    <div class="carousel-caption">
+                        <h1 style="color: @Html.Raw(color1)">@Model.HeadImages[0].ImageSectionText</h1>
+                    </div>
+                </div>
+            </div>
+            for (int i = 1; i < Model.HeadImages.Count; i++)
+            {
+                var color = "#000000";
+                if (!string.IsNullOrEmpty(Model.HeadImages[i].ImageSectionColorText) )
+                {
+                    color = Model.HeadImages[i].ImageSectionColorText;
+                }
+                <div class="item">
+                    <img src="@Url.Content(Model.HeadImages[i].ImageSectionImage)">
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h1 style="color: @Html.Raw(color)">@Model.HeadImages[i].ImageSectionText</h1>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+    @*<a class="left carousel-control" href="#carousel-id" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+    <a class="right carousel-control" href="#carousel-id" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>*@
+</div>
+
+
+<section class="beneficios padded-top-bottom" style="background-color:#1cafec">
+    <div class="row full-width">
+        <img src="~/Content/rsc/imgs/Bena_BeneficiosLealtad.png" style="border:0px solid black;" class="img-responsive center-block" usemap="#BenaMap" />
+        <map name="BenaMap">
+            <area shape="rect" coords="730,421,949,456" target="_blank"  alt="Ver Promociones" href="http://www.benavides.com.mx/VerPromociones">
+        </map>
+
+    </div>
+</section>
+
+
+<section class="afiliate-steps">
+    <div class="padded-top-bottom bg-color-blue-marine">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2 class="color-white weight-heavy text-center margin-bottom">afíliate al programa siguiendo los siguientes pasos:</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-offset-2 col-md-4">
+                    <a class="step text-center">
+                        <img class="img-responsive" src="~/Content/rsc/imgs/sucursal.png" alt="">
+                        <h4 class="color-white"><span class="color-blue">1. </span>Pide tu tarjeta en Sucursal, es gratis.</h4>
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <a class="step text-center">
+                        <img class="img-responsive" src="~/Content/rsc/imgs/compu.png" alt="">
+                        <h4 class="color-white"><span class="color-blue">2. </span>Regístrate <span style="text-decoration:underline;">aquí</span> o al 01800 444 2525</h4>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@*<section class="aumentar-beneficios padded-top-bottom bg-color-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-md-9">
+                @Html.Raw(@Model.IncrementBenefitSection.IncrementBenefitSectionDiv)
+            </div>
+            <img src="@Url.Content(Model.IncrementBenefitSection.IncrementBenefitSectionImage1)" alt="" class="img-responsive img-top absolute hidden-xs">
+            <img src="@Url.Content(Model.IncrementBenefitSection.IncrementBenefitSectionImage2)" alt="" class="img-responsive absolute hidden-xs" style="bottom: 0px;">
+        </div>
+    </div>
+</section>*@
+
+<section class="padded-top-bottom bg-color-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="color-red color-red weight-heavy">@Model.LabSection.LabSectionTitle</h2>
+            </div>
+        </div>
+        <div id="bottom-carousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-id" data-slide-to="0" class="active"></li>
+            </ol>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="carousel-inner">
+                        @{
+                            var count = Model.LabSection.ImageSections.Count;
+                            <div class="item active">
+                                <img src="@Url.Content(Model.LabSection.ImageSections[0].ImageSectionImage)">
+                                <div class="container">
+                                    <div class="carousel-caption">
+                                    </div>
+                                </div>
+                            </div>
+                            for (int i = 1; i < count; i++)
+                            {
+                                <div class="item">
+                                    <img src="@Url.Content(Model.LabSection.ImageSections[i].ImageSectionImage)">
+                                    <div class="container">
+                                        <div class="carousel-caption">
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modalbox" id="myModal">
+    <div class="box">
+
+        @*<a type="button" class="btn pull-left" data-dismiss="modal">Cancel</a>*@
+        <a class="btn-lg pull-left" style="font-size:25px;" data-dismiss="modal" href="#">X</a>
+
+        @*<a class="close" href="#">X</a>*@
+        <div class="content">
+            <img style="margin-left:40px;padding-left:110px;" src="~/Content/POPup2.png" />
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="modal-cities" class="modal fade">
+
+    <div class="modal-dialog">
+        <div class="modal-content bg-color-blue">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">¿En que ciudad te encuentras?</h4>
+            </div>
+
+            <div class="modal-body">
+                <div id="searchCriteriaRegion">
+                    
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-4 form-group">
+                                <select id="statesSelect" class="form-control"></select>
+                            </div>
+                            <div class="col-xs-12 col-sm-4 form-group">
+                                <select id="citiesSelect" class="form-control"></select>
+                            </div>
+                            <div class="col-xs-5 col-sm-3 form-group">
+                                <button id="searchButton" class="form-control btn btn-default">Buscar</button>
+                            </div>
+                        </div>
+                  
+                    
+                        <div class="row error" style="visibility:hidden" id="errorMessagesPanel">
+                            <div class="col-xs-8 no-margin">
+                                <h4>Debe seleccionar un municipio</h4>
+                            </div>
+                        </div>
+                    
+                    
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div   height:300px">
+                                    <div class="table-responsive">
+                                        <table class="table table-condensed">
+                                            <thead>
+                                                <tr>
+                                                    <th>Resultados</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="resultsDisplayRegion" class="text-left"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                   
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts{
+<section class="scripts">
+
+    <script type="text/javascript">
+        $(function () {
+            var base = getSiteRootUrl();
+            var laboratoriesLink = $("#laboratories");
+            statesSelect = $("#statesSelect");
+            citiesSelect = $("#citiesSelect");
+            searchButton = $("#searchButton");
+            
+
+            var replaceComboBoxItems = function (targetJQueryObject, data, options) {
+                targetJQueryObject.empty();
+                if (options.customText)
+                {
+                    var markup = "<option value='0'>" + options.customText + "</option>";
+                }
+                for (var i = 0; i < data.length; i++) {
+                    markup += "<option value=" + data[i][options.value] + ">" + data[i][options.text] + "</option>";
+                }
+
+                targetJQueryObject.html(markup).show();
+            };
+
+            var populateSearchResultsTable = function (regionJQueryObject, data) {
+                regionJQueryObject.empty();
+                var l = data.length;
+
+                var html = "";
+                for(i = 0; i < l; ++i)
+                {
+                    html += "<tr><td>" + data[i].Name + "</td></tr>";
+                }
+
+                regionJQueryObject.html(html);
+                
+            };
+
+            statesSelect.on("change", function () {
+                var stateId = this.value;
+                $.ajax({
+                    url: base + "/api/v1/stateslaboratories/GetCitiesWithLaboratories",
+                    data: { state: stateId },
+                    cache: false,
+                    type: "GET",
+                    async: true,
+                    success: function (data) {
+                        var options = {
+                            value: "Id",
+                            text: "Name",
+                            customText: "Seleccione Ciudad"
+                        };
+                        replaceComboBoxItems(citiesSelect, data, options);
+                    },
+                    error: function (reponse) {
+                       // alert("error : " + reponse);
+                    }
+                });
+
+            });
+
+            searchButton.on("click", function () {
+                var cityIndex = $("select[id='citiesSelect'] option:selected").index();
+                var itemCount = $('#citiesSelect').children('option').length;
+                var targetRegion = $("#resultsDisplayRegion");
+                targetRegion.empty();
+
+                errorMessagesPanel = $("#errorMessagesPanel");
+                if (cityIndex < 1 || cityIndex >= itemCount) {
+                    errorMessagesPanel.css('visibility', 'visible');
+                }
+                else
+                {
+                    errorMessagesPanel.css('visibility', 'hidden');
+                    var stateId = statesSelect.val();
+                    var cityId = citiesSelect.val();
+
+                    $.ajax({
+                        url: base + "/api/v1/stateslaboratories/getLaboratoriesForStateAndCity",
+                        data: { state: stateId, city: cityId },
+                        cache: false,
+                        type: "GET",
+                        async: true,
+                        success: function (data) {
+                            populateSearchResultsTable(targetRegion, data);
+                        },
+                        error: function (reponse) {
+                            alert("error : " + reponse);
+                        }
+                    });
+                }
+
+            });
+
+            laboratoriesLink.on("click", function () {
+               /* var targetRegion = $("#resultsDisplayRegion");
+                targetRegion.empty();
+                $.ajax({
+                    url: base + "/api/v1/stateslaboratories/GetStatesWithLaboratories",
+                    cache: false,
+                    type: "GET",
+                    async: true,
+                    success: function (data) {
+                        var options = {
+                            value: "Id",
+                            text: "Name"
+                        };
+                        replaceComboBoxItems(statesSelect, data, options);
+                        statesSelect.trigger("change");
+                        var errorRegion = $("#errorMessagesPanel");
+                        errorRegion.css('visibility', 'hidden');
+                        $('#modal-cities').modal('show');
+                    },
+                    error: function (reponse) {
+                        alert("error : " + reponse);
+                    }
+                });
+                return false;*/
+                window.open("UploadedFiles/laboratories.pdf", '_blank');
+            });
+
+
+        });
+    </script>
+    
+
+
+</section>
+
+@*<script type="text/javascript">
+    $(window).on('load',function(){
+
+        if (window.innerWidth > 500) {
+            return $('#myModal').modal('show');
+        }
+    });
+</script>*@
+
+}

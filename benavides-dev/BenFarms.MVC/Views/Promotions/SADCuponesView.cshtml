@@ -1,0 +1,38 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using BenFarms.MVC.Models
+@model BenFarms.MVC.Models.BirthdayViewModel
+
+
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+    }
+</style>
+
+
+<div class="products">
+    <div class="zoom">
+        <a class="btn btn-link btn-xs zoom-in"><span class="fa fa-plus"></span></a>
+        <a class="btn btn-link btn-xs zoom-out"><span class="fa fa-minus"></span></a>
+        <div class="zoom-slider-wrapper">
+            <div class="zoom-slider">
+                <a class="btn zoom-icon-handler ui-slider-handle"></a>
+            </div>
+        </div>
+    </div>
+    <span class="product" id="valueImage">
+        <img src="~/Content/rsc/imgs/ServicioADomicilio-CDMX.jpg" valueimage="~/Content/rsc/imgs/ServicioADomicilio-CDMX.jpg" alt="" class="products-img img-responsive" />
+    </span>
+</div>
+
+
+
+
+<span valueimage="~/Content/rsc/imgs/ServicioADomicilio-CDMX.jpg" id="valuePdf"> </span>
+
+

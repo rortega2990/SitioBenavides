@@ -1,0 +1,209 @@
+﻿@using BenFarms.MVC.Models
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
+    <title>Farmacias Benavides - @ViewBag.Title</title>
+    <link rel="shortcut icon" href="~/Content/rsc/icons/faviconBenavides.ico" />
+    <meta content="ben" name="author" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0" name="viewport" />
+
+    @*@Styles.Render("~/Content/datepicker/css")*@
+    @*@Styles.Render("~/Content/css")*@
+
+    <!-- Flipbook StyleSheet -->
+    <link href="~/dflip/css/dflip.css" rel="stylesheet" type="text/css">
+
+    <!-- Icons Stylesheet -->
+    <link href="~/dflip/css/themify-icons.css" rel="stylesheet" type="text/css">
+
+    @*<link href="~/DTPlug/Content/dataTables/demo_table.css" rel="stylesheet" />
+    <link href="~/DTPlug/Content/dataTables/demo_table_jui.css" rel="stylesheet" />*@
+
+    <link href="~/DTPlug/Content/themes/smoothness/jquery-ui-1.7.2.custom.css" rel="stylesheet" />
+    <link href="~/DTPlug/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/jAlert/jquery.alerts.css" rel="stylesheet" />
+
+    <link href="~/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/bootstrap-multiselect/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+
+
+    @*<link href="~/assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+    <link href="~/assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />*@
+
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/bootstrap-select.css" rel="stylesheet" />
+    <link href="~/Content/css/ben.css" rel="stylesheet" />
+    <link href="~/Content/css/waitMe.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/webStyle.css" rel="stylesheet" />
+    <link href="~/Content/css/albe.css" rel="stylesheet" />
+    @RenderSection("styles",required:false)
+</head>
+<body>
+    <div id="body">
+
+        <header>
+            <nav class="navbar navbar-default bg-color-white" role="navigation">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="~/Home"><img class="img-responsive" src="~/Content/rsc/icons/header_logo_01.png" alt=""></a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        @Html.Partial("_MenuPartial")
+                        
+                    </div>
+                    
+                    <!-- /.navbar-collapse -->
+                </div>
+            </nav>
+            @Html.Partial("_PerfilPartial")
+        </header>
+
+        <div id="main" role="main">
+            @RenderBody()
+
+            @Html.Partial("_RegisterPartial", new RegisterViewModel())
+
+            @Html.Partial("_LoginPartial", new LoginViewModel())
+        </div>
+
+        <footer>
+            @*<script src="~/Content/js/jquery/XaxisLight.js"></script>*@
+
+            <!-- Lightning Bolt Begins -->
+            <script type="text/javascript" id="lightning_bolt" src="//cdn-akamai.mookie1.com/LB/LightningBolt.js"></script>
+            <!-- Lightning Bolt Ends -->
+
+
+
+
+            <div class="container">
+                <div class="row">
+                    <div class="icons">
+                        @*<div class="col-xs-12 col-sm-6">
+                            <img src="~/Content/rsc/icons/logo bena.png" alt="">
+                        </div>*@
+                        <div class="col-xs-12 col-sm-12">
+                            <div class="social-media text-right">
+                                <a href="https://www.facebook.com/FarmaciasBenavides" class="facebook"><span class="fa fa-facebook-official fa-2x"></span></a>
+                                <a href="https://twitter.com/FarmaBenavides" class="twitter"><span class="fa fa-twitter fa-2x"></span></a>
+                                <a href="https://www.instagram.com/farmaciasbenavides" class="instagram"><span class="fa fa-instagram fa-2x"></span></a>
+                                <a href="https://www.youtube.com/user/FarmaciasBenavides" class="youtube"><span class="fa fa-youtube-play fa-2x"></span></a>
+                                <a href="https://mx.linkedin.com/company/farmacias-benavides" class="linkedin"><span class="fa fa-linkedin fa-2x"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="extra-links">
+                            <div class="col-xs-12">
+                                <a href="@Url.Action("Index", "Service")" class="text-uppercase">Servicios</a>
+                                <a href="@Url.Action("Index", "Investor")" class="text-uppercase">Inversionistas</a>
+                                <a href="@Url.Action("Index", "Provider")" class="text-uppercase">Proveedores</a>
+                                <a href="~/Contact" class="text-uppercase">Contacto</a>
+                                <a href="@Url.Action("Index", "JoinTeam")" class="text-uppercase">Únete al equipo</a>
+                                <a href="@Url.Action("Index", "Privacity")" class="text-uppercase">Privacidad</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="rights">
+                            <div class="col-xs-12">
+                                <h5 class="text-uppercase"><small>@DateTime.Now.Year Derechos reservados farmacia benavides, Aviso de privacidad / Políticas de privacidad</small></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    @*@Scripts.Render("~/bundles/jqueryapp")*@
+    @*@Scripts.Render("~/bundles/datepicker")
+      @Scripts.Render("~/bundles/app")*@
+    @*@RenderSection("scripts", required: false)*@
+
+    <!-- jQuery 1.9.1 or above -->
+    @*<script src="~/dflip/js/libs/jquery.min.js" type="text/javascript"></script>*@
+
+    <script src="~/Content/lib/jquery.js"></script>
+    @*<script src="~/Content/dist/jquery.validate.js"></script>*@
+    <script src="~/Content/dist/jquery.maskedinput.js"></script>
+    @*<script src="~/Content/js/jquery/jquery.min.js"></script>*@
+    <script src="~/Content/js/jquery/jquery-ui.min.js"></script>
+    <script src="~/Content/js/jquery/jquery.zoom.min.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/bootstrap-select.js"></script>
+    <script src="~/assets/global/scripts/datatable.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/datatables/dataTables.responsive1.js" type="text/javascript"></script>
+
+    <script src="~/Content/js/DtPlugins/jquery.jeditable.js"></script>
+    <script src="~/Content/js/DtPlugins/jquery.validate.js"></script>
+    <script src="~/Content/js/DtPlugins/jquery.dataTables.editable.js"></script>
+    <script src="~/Content/jAlert/jquery.alerts.js"></script>
+    <script src="~/Content/js/DtPlugins/jquery.jeditable.datepicker.js"></script>
+
+
+
+
+
+    @*<script src="~/assets/pages/scripts/table-datatables-managed.js" type="text/javascript"></script>*@
+
+    <!--[if lt IE 9]>
+    <script src="~/assets/global/plugins/respond.min.js"></script>
+    <script src="~/assets/global/plugins/excanvas.min.js"></script>
+    <script src="~/assets/global/plugins/ie8.fix.min.js"></script>
+    <![endif]-->
+    <script src="~/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap-multiselect/js/bootstrap-multiselect.js" type="text/javascript"></script>
+
+    <!-- Flipbook main Js file -->
+    <script src="~/dflip/js/dflip.js" type="text/javascript"></script>
+
+    <script src="~/assets/global/scripts/app.min.js" type="text/javascript"></script>
+    <script src="~/assets/pages/scripts/ui-bootbox.min.js" type="text/javascript"></script>
+    <script src="~/assets/pages/scripts/components-date-time-pickers.min.js" type="text/javascript"></script>
+    <script src="~/assets/pages/scripts/components-bootstrap-multiselect.min.js" type="text/javascript"></script>
+
+    <script src="~/assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
+    <script src="~/assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
+
+    <script src="~/Content/js/app.js"></script>
+    <script src="~/Content/js/branch-offices.js"></script>
+    <script src="~/Content/js/webScript.js"></script>
+    <script src="~/Content/js/url-utils.js"></script>
+
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-50340007-1', 'auto');
+  ga('send', 'pageview');
+
+    </script>
+
+
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

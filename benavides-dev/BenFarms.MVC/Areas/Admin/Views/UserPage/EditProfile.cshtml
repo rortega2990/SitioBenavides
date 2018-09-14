@@ -1,0 +1,524 @@
+﻿@using BenFarms.MVC.Models
+@model BenFarms.MVC.Models.RegisterViewModel
+
+@{
+    ViewBag.Title = "Editar Perfil";
+    ViewBag.Page = "UserPageEdit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "UserPageEdit";
+}
+
+<style>
+    .error {
+    font-style: normal;
+    font-size: 12px;
+    color: tomato;
+    text-align: left !important
+  /*border: 1px solid #e73d4a !important;*/
+}
+</style>
+
+<!-- END PAGE HEADER-->
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN PROFILE CONTENT -->
+        <div class="profile-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="portlet light ">
+                        <div class="portlet-title tabbable-line">
+                            <div class="caption caption-md">
+                                <i class="icon-globe theme-font hide"></i>
+                                <span class="caption-subject font-blue-madison bold uppercase">Cuenta de Perfil de Usuario</span>
+                            </div>
+                            <ul class="nav nav-tabs">
+                                <li id="liInfo" class="active">
+                                    <a href="#tab_1_1" data-toggle="tab">Información Personal</a>
+                                </li>
+                                <li id="liLogo">
+                                    <a href="#tab_1_2" data-toggle="tab">Cambiar Imagen de Logo</a>
+                                </li>
+                                <li id="liEmail">
+                                    <a href="#tab_1_3" data-toggle="tab">Cambiar Email</a>
+                                </li>
+                                <li id="liPass">
+                                    <a href="#tab_1_4" data-toggle="tab">Cambiar Contraseña</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="tab-content">                                
+                                <div class="tab-pane active" id="tab_1_1">
+                                    <form role="form" action="" method="post" id="formInfo">
+                                        @Html.HiddenFor(model => model.UserId)
+                                        @Html.AntiForgeryToken()
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.Names, htmlAttributes: new { @class = "control-label" })
+                                                @Html.EditorFor(model => model.Names, new { htmlAttributes = new { @class = "form-control", required = true } })
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.LastName1, htmlAttributes: new { @class = "control-label" })
+                                                @Html.EditorFor(model => model.LastName1, new { htmlAttributes = new { @class = "form-control", required = true } })
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.LastName2, htmlAttributes: new { @class = "control-label" })
+                                                @Html.EditorFor(model => model.LastName2, new { htmlAttributes = new { @class = "form-control", required = true } })
+                                            </div>
+                                            <div class="form-group date">
+                                                @Html.LabelFor(m => m.BirthDate, new { @class = " control-label" })
+                                                @*@Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control input-sm", id = "BirthDate", name = "BirthDate", required = true })*@
+                                                <input type="text" class="form-control" name="BirthDate" id="BirthDate" value="@Model.BirthDate" />
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.LabelFor(m => m.CGenre, new { @class = " control-label text-left" })
+                                                <div class="text-left">
+                                                    <label class="radio-inline" for="generoM">
+                                                        @Html.RadioButton("CGenre", "1", Model.CGenre == Genre.Male, new { id = "generoM", required = true })
+                                                        <img src="~/Content/rsc/icons/hombre.png" alt="">
+                                                    </label>
+                                                    <label class="radio-inline" for="generoF">
+                                                        @Html.RadioButton("CGenre", "2", Model.CGenre == Genre.Female, new { id = "generoF", required = true })
+                                                        <img src="~/Content/rsc/icons/mujer.png" alt="">
+                                                    </label>
+                                                </div>
+                                                <label for="CGenre" class="error"></label>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.LabelFor(m => m.PhoneNumber, new { @class = " control-label" })
+                                                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control input-sm", id = "PhoneNumber", name = "PhoneNumber" })
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.CodePostal, htmlAttributes: new { @class = "control-label" })
+                                                @Html.EditorFor(model => model.CodePostal, new { htmlAttributes = new { @class = "form-control" } })
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label" })
+                                                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+                                            </div>
+                                        </div>
+                                        <div class="margin-top-10">
+                                            <button type="submit" class="btn green"> Aplicar Cambios</button>
+                                            @Html.ActionLink("Cancelar", "Index", null, htmlAttributes: new { @class = "btn default" })
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="tab-pane" id="tab_1_2">
+                                    <form action="" method="post" role="form" enctype="multipart/form-data" id="formLogo">
+                                        @Html.HiddenFor(model => model.UserId)
+                                        @Html.AntiForgeryToken()
+                                        <div class="form-group">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 200px;">
+                                                    @{
+                                                        if (!string.IsNullOrEmpty(Model.UserImage))
+                                                        {
+                                                            <img src="@Url.Content(Model.UserImage)" />
+                                                        }
+                                                    }
+                                                    
+                                                </div> 
+                                                <div>
+                                                    <span class="btn red btn-outline btn-file">
+                                                        <span class="fileinput-new"> Seleccionar Imagen </span>
+                                                        <span class="fileinput-exists"> Cambiar </span>
+                                                        <input type="file" name="UserImage" id="UserImage" required>
+                                                    </span>
+                                                    <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="margin-top-10">
+                                            <button type="submit" class="btn green"> Aplicar Cambios</button>
+                                            <a href="javascript:;" class="btn default"> Cancelar </a>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="tab-pane" id="tab_1_3">
+                                    <form action="" method="post" id="formEmail">
+                                        @Html.HiddenFor(model => model.UserId)
+                                        @Html.AntiForgeryToken()                                        
+                                        <div class="form-group">
+                                            <label class="control-label">Email</label>
+                                            <input type="email" class="form-control" name="Email" id="Email" required maxlength="150" value="@Model.Email" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Contraseña</label>
+                                            <input type="password" class="form-control" id="Password" name="Password" required />
+                                        </div>
+                                        <div class="margin-top-10">
+                                            <button type="submit" class="btn green"> Cambiar Email</button>
+                                            <a href="javascript:;" class="btn default"> Cancelar </a>
+                                        </div>
+                                    </form>                                                                        
+                                </div>
+                                <div class="tab-pane" id="tab_1_4">
+                                    <form action="" method="post" id="formPass">
+                                        @Html.HiddenFor(model => model.UserId)
+                                        @Html.AntiForgeryToken()
+                                        <div class="form-group">
+                                            <label class="control-label">Contraseña anterior</label>
+                                            <input type="password" class="form-control pass" name="Password" id="Password" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Contraseña Nueva</label>
+                                            <input type="password" class="form-control" name="NewPassword" id="NewPassword" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Repetir Contraseña Nueva</label>
+                                            <input type="password" class="form-control" name="ConfirmPassword" id="ConfirmPassword" required />
+                                        </div>
+                                        <div class="margin-top-10">
+                                            <button type="submit" class="btn green"> Cambiar</button>
+                                            @Html.ActionLink("Cancelar", "Index", null, htmlAttributes: new { @class = "btn default" })
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <section class="scripts">
+        <script type="text/javascript">
+            
+            $(document).ready(function () {
+                
+                $("#PhoneNumber").inputmask("mask", {
+                    "mask": "(999) 999-9999"
+                });
+
+                $("#CodePostal").inputmask("mask", {
+                    "mask": "99999"
+                });
+
+                $("#BirthDate").inputmask("d/m/y", {
+                    "placeholder": "dd/mm/yyyy"
+                });
+
+                $("#formInfo").validate({
+                    rules: {
+                        Names: { required: true, minlength: 2, maxlength: 100, usercheck: true },
+                        LastName1: { required: true, minlength: 2, maxlength: 100, usercheck: true },
+                        LastName2: { required: true, minlength: 2, maxlength: 100, usercheck: true },
+                        BirthDate: { required: true },
+                        City: { minlength: 2, maxlength: 100, lettersDigits: true },
+                        CGenre: { required: true }
+                    },
+                    messages: {
+                        Names: {
+                            required: "El campo Nombre es requerido",
+                            minlength: jQuery.validator.format("Entre al menos {0} caracteres"),
+                            usercheck: "Solo se permiten letras."
+                        },
+                        LastName1: {
+                            required: "El campo Apellido Paterno es requerido",
+                            minlength: jQuery.validator.format("Entre al menos {0} caracteres"),
+                            usercheck: "Solo se permiten letras."
+                        },
+                        LastName2: {
+                            required: "El campo Apellido Materno es requerido",
+                            minlength: jQuery.validator.format("Entre al menos {0} caracteres"),
+                            usercheck: "Solo se permiten letras."
+                        },
+                        City: {
+                            minlength: jQuery.validator.format("Entre al menos {0} caracteres"),
+                            lettersDigits: "Solo se permiten letras, números y signos de puntuación."
+                        },
+                        CGenre: { required: "El campo Género es requerido" },
+                        BirthDate: {
+                            required: "El campo Fecha de nacimiento es requerido"
+                        },
+                    },
+                    submitHandler: function () {                        
+                        var w = GetUrlBase();                        
+                        $.ajax({
+                            type: 'POST',
+                            url: w + '/Admin/UserPage/EditInfo',
+                            data: $("#formInfo").serialize(),
+                            success: function (responseData) {
+                                if (responseData.Success) {
+                                    bootbox.dialog({
+                                        message: responseData.Message,
+                                        title: "Información",
+                                        buttons: {
+                                            main: {
+                                                label: "Aceptar",
+                                                className: "blue"
+                                            }
+                                        }
+                                    });
+                                } else {
+                                    if (!resporesponseDatanse.Success) {
+                                        bootbox.dialog({
+                                            message: responseData.Message,
+                                            title: "Error",
+                                            buttons: {
+                                                main: {
+                                                    label: "Aceptar",
+                                                    className: "red"
+                                                }
+                                            }
+                                        });
+                                    }
+                                }
+                            },
+                            error:
+                                function (errormessage) {
+                                    bootbox.dialog({
+                                        message: "Ha ocurrido un error interno en el servidor.",
+                                        title: "Error",
+                                        buttons: {
+                                            main: {
+                                                label: "Aceptar",
+                                                className: "red"
+                                            }
+                                        }
+                                    });
+                                }
+                        });
+                    }
+                });
+
+                $("#formLogo").validate({
+                    rules: {
+                        UserImage: {
+                            required: true,
+                        },
+                    },
+                    messages: {
+                        UserImage: {
+                            required: "La imagen es requerida para cambiar",
+                        },
+                    },
+                    submitHandler: function () {
+                        var w = GetUrlBase();
+                        var data = new FormData();
+                        var UserImage = $("#UserImage").get(0).files;
+                        // Add the uploaded image content to the form data collection
+                        if (UserImage.length > 0) {
+                            data.append("UserImage", UserImage[0]);
+                        }
+                        data.append("UserId", $("#UserId").val());
+                        $.ajax({
+                            type: 'POST',
+                            url: w + '/Admin/UserPage/EditImage',
+                            contentType: false,
+                            processData: false,
+                            data: data,
+                            success: function (responseData) {
+                                if (responseData.Success) {
+                                    bootbox.dialog({
+                                        message: responseData.Message,
+                                        title: "Información",
+                                        buttons: {
+                                            main: {
+                                                label: "Aceptar",
+                                                className: "blue",
+                                                callback: function () {
+                                                    $("#imguser").attr("src", responseData.Data);
+                                                }
+                                            }
+                                        }
+                                    });
+                                } else {
+                                    if (!responseData.Success) {
+                                        bootbox.dialog({
+                                            message: responseData.Message,
+                                            title: "Error",
+                                            buttons: {
+                                                main: {
+                                                    label: "Aceptar",
+                                                    className: "red"
+                                                }
+                                            }
+                                        });
+                                    }
+                                }
+                            },
+                            error:
+                                function (errormessage) {
+                                    bootbox.dialog({
+                                        message: responseData.Message,
+                                        title: "Ha ocurrido un error interno en el servidor.",
+                                        buttons: {
+                                            main: {
+                                                label: "Aceptar",
+                                                className: "red"
+                                            }
+                                        }
+                                    });
+                                }
+                        });
+                    }
+                });
+
+                $("#formEmail").validate({
+                    rules: {
+                        Email: {
+                            required: true,
+                            emailcheck: true,
+                            maxlength: 150
+                        },
+                        Password: {
+                            required: true,
+                        },
+                    },
+                    messages: {
+                        Email: {
+                            required: "El campo Email es requerido",
+                            emailcheck: "Entre una dirección de correo válida"
+                        },
+                        Password: {
+                            required: "El campo Contraseña es requerido"
+                        }
+                    },
+                    submitHandler: function () {
+                        var w = GetUrlBase();
+                        $.ajax({
+                            type: 'POST',
+                            url: w + '/Admin/UserPage/EditEmail',
+                            data: $("#formEmail").serialize(),
+                            success: function (responseData) {
+                                if (responseData.Success) {
+                                    bootbox.dialog({
+                                        message: responseData.Message,
+                                        title: "Información",
+                                        buttons: {
+                                            main: {
+                                                label: "Aceptar",
+                                                className: "blue",
+                                                callback: function () {
+                                                    $("#Password").val('');
+                                                    document.getElementById("spanUserName").innerHTML = $("#Email").val();
+                                                }
+                                            }
+                                        }
+                                    });
+                                } else {
+                                    if (!responseData.Success) {
+                                        bootbox.dialog({
+                                            message: responseData.Message,
+                                            title: "Error",
+                                            buttons: {
+                                                main: {
+                                                    label: "Aceptar",
+                                                    className: "red"
+                                                }
+                                            }
+                                        });
+                                    }
+                                }
+                            },
+                            error:
+                                function (errormessage) {
+                                    bootbox.dialog({
+                                        message: "Ha ocurrido un error interno en el servidor.",
+                                        title: "Error",
+                                        buttons: {
+                                            main: {
+                                                label: "Aceptar",
+                                                className: "red"
+                                            }
+                                        }
+                                    });
+                                }
+                        });
+                    }
+                });
+
+                $("#formPass").validate({
+                    rules: {
+                        Password: {
+                            required: true,
+                        },
+                        NewPassword: {
+                            required: true,
+                            pwcheck: true,
+                            minlength: 6,
+                            maxlength: 50
+                        },
+                        ConfirmPassword: {
+                            required: true,
+                            equalTo: "#NewPassword"
+                        },
+                    },
+                    messages: {
+                        Password: {
+                            required: "El campo Contraseña es requerido",
+                        },
+                        NewPassword: {
+                            required: "El campo Nueva Contraseña es requerido",
+                            pwcheck: "La contraseña es débil. Entre letras minúsculas y mayúsculas, números y caracteres especiales: !,%,&,#,$,^,*,?,_,~",
+                            minlength: jQuery.validator.format("Entre al menos {0} caracteres")
+                        },
+                        ConfirmPassword: {
+                            required: "El campo Confirmar Nueva Contraseña es requerido",
+                            equalTo: "La contraseña no coincide"
+                        }
+                    },
+                    submitHandler: function () {
+                        var w = GetUrlBase();
+                        $.ajax({
+                            type: 'POST',
+                            url: w + '/Admin/UserPage/EditPass',
+                            data: $("#formPass").serialize(),
+                            success: function (responseData) {
+                                if (responseData.Success) {
+                                    bootbox.dialog({
+                                        message: responseData.Message,
+                                        title: "Información",
+                                        buttons: {
+                                            main: {
+                                                label: "Aceptar",
+                                                className: "blue",
+                                                callback: function () {
+                                                    $(".pass").val('');
+                                                    $("#NewPassword").val('');
+                                                    $("#ConfirmPassword").val('');
+                                                }
+                                            }
+                                        }
+                                    });
+                                } else {
+                                    if (!responseData.Success) {
+                                        bootbox.dialog({
+                                            message: responseData.Message,
+                                            title: "Error",
+                                            buttons: {
+                                                main: {
+                                                    label: "Aceptar",
+                                                    className: "red"
+                                                }
+                                            }
+                                        });
+                                    }
+                                }
+                            },
+                            error:
+                                function (errormessage) {
+                                    bootbox.dialog({
+                                        message: "Ha ocurrido un error interno en el servidor.",
+                                        title: "Error",
+                                        buttons: {
+                                            main: {
+                                                label: "Aceptar",
+                                                className: "red"
+                                            }
+                                        }
+                                    });
+                                }
+                        });
+                    }
+                });
+            });
+            
+        </script>
+    </section>
+}

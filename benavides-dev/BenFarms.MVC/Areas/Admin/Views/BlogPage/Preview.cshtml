@@ -1,0 +1,123 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.BlogPage
+@{
+    ViewBag.Title = "Vista Previa Página de Blogs";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPreview.cshtml";
+    var urlBlog = "#";
+    if (ViewBag.BlogId != null)
+    {
+        urlBlog = "~/Admin/BlogPage/PreviewBlog?id=" + ViewBag.BlogId;
+    }
+}
+
+<style>
+    .animated-component:hover img {
+        -moz-transform: none !important;
+        -webkit-transform: none !important;
+        transform: none;
+        !important;
+    }
+
+    .shadow {
+        position: absolute;
+        z-index: 2000;
+        color: #fff;
+        cursor: pointer;
+        display: block;
+        height: 100%;
+        left: 0;
+        /*opacity: 0;*/
+        /*position: absolute;*/
+        display: none;
+        top: 0;
+        transition: all 0.3s ease 0s;
+        width: 100%;
+        background-color: rgba(221, 70, 76, 0.5);
+    }
+</style>
+
+<div class="row no-margin-left no-margin-right " style="background-color: @Html.Raw(Model.BlogPageColorBgHead)">
+    <div class="col-md-6 col-xs-12 col-sm-6 no-padding-left no-padding-right"
+         style="margin-top: 5%;margin-bottom: 5%;z-index: 200">
+        <div class="col-md-offset-2 col-sm-offset-1 col-sm-11 col-md-8 col-xs-12 col-xs-offset-0"
+             style="color: @Html.Raw(Model.BlogPageColorTextHead);">
+            <div class="item text">
+                <h1>@Model.BlogPageTextHead</h1>
+            </div>
+        </div>
+        <div class="col-md-offset-2 col-sm-offset-1 col-sm-11 col-md-8 col-xs-12 col-xs-offset-0">
+            <div class="item text">
+                <h3 style="padding: 6px 12px;text-align: left;vertical-align: middle; background-color: @Html.Raw(Model.BlogPageColorBgTitleDesc); color:@Html.Raw(Model.BlogPageColorTitleDesc); border: 1px solid transparent;border-radius: 4px;cursor: pointer; display: inline-block;">
+                    @Model.BlogPageTitleDesc
+                </h3>
+            </div>
+
+        </div>
+        <div class="col-md-offset-2 col-sm-offset-1 col-sm-11 col-md-8 col-xs-12 col-xs-offset-0">
+            <p style="color:@Html.Raw(Model.BlogPageColorTextDescHead);">
+                @{
+                    var text = Model.BlogPageTextDesc.Substring(0, Model.BlogPageTextDesc.Length > 150 ? 150 : Model.BlogPageTextDesc.Length).Replace("<p>", "");
+                }
+                @Html.Raw(text)
+            </p>
+        </div>
+        <div class="col-md-offset-2 col-sm-offset-1 col-sm-11 col-md-8 col-xs-12 col-xs-offset-0">
+            <a href="@Url.Content(urlBlog)" style="color: blue;font-size: 20px;font-weight:600 "><p>Leer más...</p></a>
+        </div>
+
+    </div>
+    <div class="col-md-6 col-xs-12 col-sm-6 no-padding-right no-padding-left">
+        <img class="img-responsive  no-margin-left no-margin-right"
+             src="@Url.Content(Model.BlogPageImage)" />
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row" style="margin-top: 100px;margin-bottom: 100px">
+        @{
+            var i = 0;
+            foreach (var n in Model.News)
+            {
+                i++;
+                var overlayId = "overlay" + i;
+                <div class="col-xs-12 col-sm-6 col-md-4 full-width margin-bottom-20" style="padding: 10px;" onmouseleave="hiddeOverlay()">
+                    <a class="animated-component">
+                        <img class="img-responsive" src="@Url.Content(n.NewsPageImageHead)" alt="" style="max-height: 250px">
+                        <div id="@overlayId" class="shadow" style="display: none;">
+                            <div style="margin-top: 40%;" class="col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-md-11 col-sm-11 col-xs-11">
+                                <h4>@n.NewsPageTextHead</h4>
+                                <p style="margin: 0 0 1px;">@n.NewsPageSubTextHead</p>
+                                <a href="#" style="color: white">Leer más...</a>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="snack" style="cursor:pointer;position:absolute;z-index:2000;padding-bottom: 5px;width: 25%;text-align: center;margin-top: -25px;background-color: red;color: white;margin-left: 20px;border-radius: 5px 5px 0 0">
+                        <a id="@i" style="color: white" onclick="mostrar(this);">@n.NewsPageTextHead</a>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+@section scripts {
+    <section class="scripts">
+
+        <script type="text/javascript">
+
+            function mostrar(element) {
+                var id=$(element).attr('id');
+                id="#overlay"+id;
+
+                $(element).parent().attr('style','display:none');
+                $(id).attr('style','display:block');
+
+            }
+            function hiddeOverlay() {
+                $(".snack").attr('style','cursor:pointer;position:absolute;z-index:2000;padding-bottom: 5px;width: 25%;text-align: center;margin-top: -25px;background-color: red;color: white;margin-left: 20px;border-radius: 5px 5px 0 0');
+                $(".shadow").attr('style','display:none');
+            }
+
+        </script>
+    </section>
+}

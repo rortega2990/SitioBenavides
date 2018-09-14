@@ -1,0 +1,61 @@
+﻿@model BenFarms.MVC.Areas.Admin.Models.ConfirmDeletionViewModel
+
+@{
+    ViewBag.Title = "ConfirmDeletion";
+}
+<h2 class="caption-subject bold uppercase">@Model.Title</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Id
+        </dt>
+        <dd>
+            @Html.DisplayFor(model =>model.CustomValue)     
+        </dd>
+
+        <dt>
+            Activa
+        </dt>
+
+        <dd>
+            @if (Model.Active)
+            {
+                <span class="label label-sm label-success"> Activa </span>     
+            }
+            else
+            {
+                <span class="label label-sm label-warning"> Desactivada </span>
+            }
+        </dd>
+
+        <dt>
+            Fecha de creación
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreationDate)
+        </dd>
+
+    </dl>
+
+    @if (Model.Active == false)
+    {
+        using (Html.BeginForm("Delete", Model.Controller, new { id = Model.Id },FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn blue">Eliminar</button>
+            @*<a class="btn default" href='@Url.Content("~/Admin/WhoWeAre")'>Cancelar</a>*@
+            @Html.ActionLink("Cancelar", "Index", new { Controller = Model.Controller }, new { @class = "btn default" })
+        }
+    }
+    else
+    {
+        @Html.ActionLink("Cancelar", "Index", new { Controller = Model.Controller }, new { @class = "btn default" })
+    }
+
+
+</div>
+
+

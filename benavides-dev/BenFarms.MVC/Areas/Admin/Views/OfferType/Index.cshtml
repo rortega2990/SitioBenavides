@@ -1,0 +1,70 @@
+﻿@model IEnumerable<BenavidesFarm.DataModels.Models.Pages.Elements.OfferType>
+
+@{
+    ViewBag.Title = "Listado de Categorías de Ofertas";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "OfferActive";
+}
+
+<div class="portlet light bordered">
+    <div class="portlet-title">
+        <div class="caption font-dark">
+            <i class="icon-settings font-dark"></i>
+            <span class="caption-subject bold uppercase"> Listado de Categorías de Ofertas </span>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <div class="row">
+                <div class="col-md-6">
+                    <button id="btnNewOfferType" class="btn green">
+                        Nueva Categoría de Oferta
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped table-hover table-bordered" id="tableOfferType">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.OfferTypeName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.OfferTypeActive)
+                    </th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.OfferTypeName
+                        </td>
+                        <td>
+                            @{
+                                if (item.OfferTypeActive == true)
+                                {
+                                    <span class="label label-sm label-success">Activa</span>
+                                }
+                                else
+                                {
+                                    <span class="label label-sm label-warning">Desactivada</span>
+                                }
+                            }
+                        </td>
+                        <td>
+                            <a class="edit" href="javascript:;" id="@item.OfferTypeId">Editar</a>
+                        </td>
+                        <td>
+                            <a class="delete" href="javascript:;" id="@item.OfferTypeId">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

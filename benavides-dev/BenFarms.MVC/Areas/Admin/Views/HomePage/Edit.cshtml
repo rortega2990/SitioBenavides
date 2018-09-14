@@ -1,0 +1,1129 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.HomePage
+
+@{
+    ViewBag.Title = "Editar Página de Inicio";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "HomePageEdit";
+}
+
+@helper DisplayImageFileSelectionSection(string imageFileName, string controlName, string caption)
+{
+    @*<div class="form-group">*@
+    <label class="control-label">@caption</label>
+        <br />
+        <div class="fileinput fileinput-new" data-provides="fileinput" style="margin-bottom:10px">
+            <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 200px">
+                <img src="@Url.Content(imageFileName)" />
+            </div>
+            <div>
+                <span class="btn red btn-outline btn-file">
+                    <span class="fileinput-new"> Seleccionar Imagen </span>
+                    <span class="fileinput-exists"> Cambiar </span>
+                    <input type="file" name="@controlName" id="@controlName">
+                </span>
+                <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+            </div>
+        </div>
+        @*</div>*@
+}
+
+@helper DisplayQuadEditSection(BenavidesFarm.DataModels.Models.Pages.Sections.SingleQuadSectionItem singleQuadItem, int quadNumber)
+{
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-md-12 text-center" style="background-color:#e7e7e7">
+                <h4 style="color:black">Cuadro número @quadNumber</h4>
+            </div>
+
+            <div class="col-xs-12 col-md-9">
+                <label class="control-label">Texto</label>
+                <input type="text" class="form-control" name='@String.Concat("QuadText",quadNumber)' id='@String.Concat("QuadText",quadNumber)' value="@singleQuadItem.Text" required />
+            </div>
+            <div class="col-xs-12 col-md-3">
+                <label class="control-label">Fondo</label>
+                <input class="form-control demo minicolors-input" type="text"
+                       name='@String.Concat("QuadBackgroundColor",quadNumber)' id='@String.Concat("QuadBackgroundColor",quadNumber)'
+                       data-control="wheel" value="@Html.Raw(singleQuadItem.BackgroundColor)" required />
+            </div>
+
+            <div class="col-xs-12 col-md-12">
+                <label class="control-label">Vínculo</label>
+                <input type="text" class="form-control" name='@String.Concat("QuadLink",quadNumber)' value="@singleQuadItem.Link" id='@String.Concat("QuadLink",quadNumber)' required />
+            </div>
+
+            <div class="col-xs-12 col-md-12">
+                @DisplayImageFileSelectionSection(singleQuadItem.ImageFileName, String.Concat("QuadImageFileName", quadNumber), "Imagen")
+            </div>
+        </div>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered" id="form_wizard_1">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="icon-layers font-red"></i>
+                    <span class="caption-subject font-red bold uppercase">
+                        Editar Página de Inicio -
+                        <span class="step-title"> Paso 1 de 6 </span>
+                    </span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <form class="form-horizontal" id="submit_form" method="POST" action="" enctype="multipart/form-data">
+                    @*@Html.AntiForgeryToken()*@
+                    <div class="form-wizard">
+                        <div class="form-body">
+                            <ul class="nav nav-pills nav-justified steps">
+                                <li>
+                                    <a href="#tab1" data-toggle="tab" class="step">
+                                        <span class="number"> 1 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Encabezado
+                                        </span>
+                                    </a>
+                                </li>
+                                @*<li>
+                                        <a href="#tab2" data-toggle="tab" class="step">
+                                            <span class="number"> 2 </span>
+                                            <span class="desc">
+                                                <i class="fa fa-check"></i> Ofertas
+                                            </span>
+                                        </a>
+                                    </li>*@
+                                <li>
+                                    <a href="#tab3" data-toggle="tab" class="step">
+                                        <span class="number"> 2 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Tarjetas
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#tabDoctorsOffice" data-toggle="tab" class="step">
+                                        <span class="number"> 3 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Consultorios
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#tab4" data-toggle="tab" class="step">
+                                        <span class="number"> 4 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Fose
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#tabQuads" data-toggle="tab" class="step">
+                                        <span class="number"> 5 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Información
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#tab5" data-toggle="tab" class="step">
+                                        <span class="number"> 6 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Blog
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div id="bar" class="progress progress-striped" role="progressbar">
+                                <div class="progress-bar progress-bar-success"> </div>
+                            </div>
+                            <div class="tab-content">
+                                <div class="alert alert-danger display-none">
+                                    <button class="close" data-dismiss="alert"></button> Se tienen varios errores. Por favor, revise nuevamente.
+                                </div>
+                                <div class="alert alert-success display-none">
+                                    <button class="close" data-dismiss="alert"></button> La validaión del formulario es correcta.
+                                </div>
+                                <div class="tab-pane active" id="tab1">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Imágnes de Encabezado</span>
+                                                    </div>
+                                                    <div class="actions">
+                                                        <a id="btnAdicionarEncabezadoConVincluo" class="btn btn-default btn-sm">
+                                                            <i class="fa fa-plus"></i> Adicionar
+                                                        </a>
+                                                        <a class="btn btn-sm btn-icon-only btn-default fullscreen" href="javascript:;"></a>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    @{
+                                                        var idsServer = "";
+                                                    }
+                                                    <div class="row" id="sortable_portlets">
+                                                        <div class="col-md-12 column sortable" id="sortablePortlets">
+                                                            @{
+                                                                for (int i = 0; i < Model.HeadImages.Count; i++)
+                                                                {
+                                                                    var idHead = Model.HeadImages[i].ImageSectionId;
+                                                                    idsServer += idHead + ",";
+                                                                    var divEncabezado = "server_divEncabezado_" + idHead;
+                                                                    var textoEncabezado = "server_TextEncabezado_" + idHead;
+                                                                    var colorEncabezado = "server_ColorTextEncabezado_" + idHead;
+                                                                    var headerLink = "server_HeaderLink_" + idHead;
+                                                                    var activada = Model.HeadImages[i].ImageSectionPageId == Model.HomePageId;
+
+                                                                    <div class="col-md-6 portlet portlet-sortable box blue-hoki" id="@divEncabezado">
+                                                                        <div class="portlet-title">
+                                                                            <div class="caption">
+                                                                                <i class="fa fa-gift"></i>Encabezado
+                                                                            </div>
+                                                                            <div class="actions">
+                                                                                <a class="btn btn-default btn-sm" id="@Model.HeadImages[i].ImageSectionId" onclick="javascript: deleteElemExistente(this);">
+                                                                                    <i class="fa fa-remove"></i> Eliminar
+                                                                                </a>
+                                                                                <a class="btn btn-sm btn-icon-only btn-default fullscreen" href="javascript:;"></a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="portlet-body">
+                                                                            <div class="form-group">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-12">
+                                                                                            <label class="control-label">Texto</label>
+                                                                                            <div>
+                                                                                                <input type="text" id="@textoEncabezado" name="@textoEncabezado" class="form-control" value="@Model.HeadImages[i].ImageSectionText" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-12">
+                                                                                            <label class="control-label">Color</label>
+                                                                                            <div>
+                                                                                                <input type="text" id="@colorEncabezado" name="@colorEncabezado" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.HeadImages[i].ImageSectionColorText)" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-12">
+                                                                                            <label class="control-label">Vínculo</label>
+                                                                                            <div>
+                                                                                                <input type="text" id="@headerLink" name="@headerLink" class="form-control" value="@Model.HeadImages[i].Link" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-12">
+                                                                                            <div style="margin-top: 20px">
+                                                                                                <span class="label label-sm label-success"> Activa </span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-12">
+                                                                                            <label class="control-label">Imagen</label>
+                                                                                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                                                <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 100px;">
+                                                                                                    <img src="@Url.Content(Model.HeadImages[i].ImageSectionImage)" />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                }
+                                                            }
+                                                            <div class="portlet portlet-sortable-empty"> </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @*<div class="tab-pane" id="tab2">
+                                        <div class="row">
+                                            <div class="col-md-12">
+
+                                                <div class="portlet light portlet-fit bordered">
+                                                    <div class="portlet-title">
+                                                        <div class="caption">
+                                                            <i class="icon-layers font-green"></i>
+                                                            <span class="caption-subject font-green bold uppercase">Ofertas</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="portlet-body">
+                                                        <div class="row">
+                                                            <div class="col-md-5">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Título de sección</label>
+                                                                    <div>
+                                                                        <input type="text" class="form-control" id="TituloOfertas" name="TituloOfertas" value="@Model.OfferSection.OfferSectionTitle">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-5 col-md-offset-1">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Color del Texto</label>
+                                                                    <div>
+                                                                        <input type="text" id="ColorTituloOfertas" name="ColorTituloOfertas" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.OfferSection.OfferSectionColorTitle)" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <div class="col-md-5">
+                                                                    <div class="form-group">
+                                                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                            <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 150px; height: 250px;">
+                                                                                <img src="@Url.Content(Model.OfferSection.Products[0].ProductImage)"/>
+                                                                            </div>
+                                                                            <div>
+                                                                                <span class="btn red btn-outline btn-file">
+                                                                                    <span class="fileinput-new"> Seleccionar Imagen </span>
+                                                                                    <span class="fileinput-exists"> Cambiar </span>
+                                                                                    <input type="file" name="ImagenOfertas1" id="ImagenOfertas1">
+                                                                                </span>
+                                                                                <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-5 col-md-offset-2">
+                                                                    <div class="form-group">
+                                                                        <label class="control-label">Tipo de Oferta</label>
+                                                                        <div>
+                                                                            <select class="bs-select form-control" id="TipoOfertas1" name="TipoOfertas1">
+                                                                                @{
+                                                                                    if (Model.OfferTypes != null)
+                                                                                    {
+                                                                                        foreach (var x in Model.OfferTypes)
+                                                                                        {
+                                                                                            var mon = Model.OfferSection.Products[0].OfferType.OfferTypeId == x.OfferTypeId ? "selected=\"selected\"" : "";
+                                                                                            <option value="@x.OfferTypeId" @Html.Raw(mon)>@x.OfferTypeName</option>
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            </select>
+                                                                        </div>
+
+                                                                        <label class="control-label">Texto 1</label>
+                                                                        <div>
+                                                                            <input type="text" id="TextoImagenOfertas1" name="TextoImagenOfertas1" class="form-control" value="@Model.OfferSection.Products[0].ProductTitle.TitleTypeMessage" />
+                                                                        </div>
+                                                                        <label class="control-label">Texto resaltado 1</label>
+                                                                        <div>
+                                                                            <input type="text" id="SpanImagenOfertas1" name="SpanImagenOfertas1" class="form-control" value="@Model.OfferSection.Products[0].ProductTitle.TitleTypeSpan" />
+                                                                        </div>
+                                                                        <label class="control-label">Color 1</label>
+                                                                        <div>
+                                                                            <input type="text" id="ColorImagenOfertas1" name="ColorImagenOfertas1" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.OfferSection.Products[0].ProductTitle.TitleTypeColor)" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="col-md-5">
+                                                                    <div class="form-group">
+                                                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                            <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 150px; height: 250px;">
+                                                                                <img src="@Url.Content(Model.OfferSection.Products[1].ProductImage)" />
+                                                                            </div>
+                                                                            <div>
+                                                                                <span class="btn red btn-outline btn-file">
+                                                                                    <span class="fileinput-new"> Seleccionar Imagen </span>
+                                                                                    <span class="fileinput-exists"> Cambiar </span>
+                                                                                    <input type="file" name="ImagenOfertas2" id="ImagenOfertas2">
+                                                                                </span>
+                                                                                <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-5 col-md-offset-2">
+                                                                    <div class="form-group">
+                                                                        <label class="control-label">Tipo de Oferta</label>
+                                                                        <div>
+                                                                            <select class="bs-select form-control" id="TipoOfertas2" name="TipoOfertas2">
+                                                                                @{
+                                                                                    if (Model.OfferTypes != null)
+                                                                                    {
+                                                                                        foreach (var x in Model.OfferTypes)
+                                                                                        {
+                                                                                            var mon = Model.OfferSection.Products[1].OfferType.OfferTypeId == x.OfferTypeId ? "selected=\"selected\"" : "";
+                                                                                            <option value="@x.OfferTypeId" @Html.Raw(mon)>@x.OfferTypeName</option>
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            </select>
+                                                                        </div>
+
+                                                                        <label class="control-label">Texto 2</label>
+                                                                        <div>
+                                                                            <input type="text" id="TextoImagenOfertas2" name="TextoImagenOfertas2" class="form-control" value="@Model.OfferSection.Products[1].ProductTitle.TitleTypeMessage" />
+                                                                        </div>
+                                                                        <label class="control-label">Texto resaltado 2</label>
+                                                                        <div>
+                                                                            <input type="text" id="SpanImagenOfertas2" name="SpanImagenOfertas2" class="form-control" value="@Model.OfferSection.Products[1].ProductTitle.TitleTypeSpan" />
+                                                                        </div>
+                                                                        <label class="control-label">Color 2</label>
+                                                                        <div>
+                                                                            <input type="text" id="ColorImagenOfertas2" name="ColorImagenOfertas2" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.OfferSection.Products[1].ProductTitle.TitleTypeColor)" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="col-md-5">
+                                                                    <div class="form-group">
+                                                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                            <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 150px; height: 250px;">
+                                                                                <img src="@Url.Content(Model.OfferSection.Products[2].ProductImage)" />
+                                                                            </div>
+                                                                            <div>
+                                                                                <span class="btn red btn-outline btn-file">
+                                                                                    <span class="fileinput-new"> Seleccionar Imagen </span>
+                                                                                    <span class="fileinput-exists"> Cambiar </span>
+                                                                                    <input type="file" name="ImagenOfertas3" id="ImagenOfertas3">
+                                                                                </span>
+                                                                                <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-5 col-md-offset-2">
+                                                                    <div class="form-group">
+                                                                        <label class="control-label">Tipo de Oferta</label>
+                                                                        <div>
+                                                                            <select class="bs-select form-control" id="TipoOfertas3" name="TipoOfertas3">
+                                                                                @{
+                                                                                    if (Model.OfferTypes != null)
+                                                                                    {
+                                                                                        foreach (var x in Model.OfferTypes)
+                                                                                        {
+                                                                                            var mon = Model.OfferSection.Products[2].OfferType.OfferTypeId == x.OfferTypeId ? "selected=\"selected\"" : "";
+                                                                                            <option value="@x.OfferTypeId" @Html.Raw(mon)>@x.OfferTypeName</option>
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            </select>
+                                                                        </div>
+
+                                                                        <label class="control-label">Texto 3</label>
+                                                                        <div>
+                                                                            <input type="text" id="TextoImagenOfertas3" name="TextoImagenOfertas3" class="form-control" value="@Model.OfferSection.Products[2].ProductTitle.TitleTypeMessage" />
+                                                                        </div>
+                                                                        <label class="control-label">Texto resaltado 3</label>
+                                                                        <div>
+                                                                            <input type="text" id="SpanImagenOfertas3" name="SpanImagenOfertas3" class="form-control" value="@Model.OfferSection.Products[2].ProductTitle.TitleTypeSpan" />
+                                                                        </div>
+                                                                        <label class="control-label">Color 3</label>
+                                                                        <div>
+                                                                            <input type="text" id="ColorImagenOfertas3" name="ColorImagenOfertas3" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.OfferSection.Products[2].ProductTitle.TitleTypeColor)" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <br />
+                                                        <div class="row">
+                                                            <div class="col-md-5 col-md-offset-1">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                            <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 150px; height: 250px;">
+                                                                                <img src="@Url.Content(Model.OfferSection.Products[3].ProductImage)" />
+                                                                            </div>
+                                                                            <div>
+                                                                                <span class="btn red btn-outline btn-file">
+                                                                                    <span class="fileinput-new"> Seleccionar Imagen </span>
+                                                                                    <span class="fileinput-exists"> Cambiar </span>
+                                                                                    <input type="file" name="ImagenOfertas4" id="ImagenOfertas4">
+                                                                                </span>
+                                                                                <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-5 col-md-offset-3">
+                                                                    <div class="form-group">
+                                                                        <label class="control-label">Tipo de Oferta</label>
+                                                                        <div>
+                                                                            <select class="bs-select form-control" id="TipoOfertas4" name="TipoOfertas4">
+                                                                                @{
+                                                                                    if (Model.OfferTypes != null)
+                                                                                    {
+                                                                                        foreach (var x in Model.OfferTypes)
+                                                                                        {
+                                                                                            var mon = Model.OfferSection.Products[3].OfferType.OfferTypeId == x.OfferTypeId ? "selected=\"selected\"" : "";
+                                                                                            <option value="@x.OfferTypeId" @Html.Raw(mon)>@x.OfferTypeName</option>
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            </select>
+
+                                                                        </div>
+                                                                        <label class="control-label">Texto 4</label>
+                                                                        <div>
+                                                                            <input type="text" id="TextoImagenOfertas4" name="TextoImagenOfertas4" class="form-control" value="@Model.OfferSection.Products[3].ProductTitle.TitleTypeMessage" />
+                                                                        </div>
+                                                                        <label class="control-label">Texto resaltado 4</label>
+                                                                        <div>
+                                                                            <input type="text" id="SpanImagenOfertas4" name="SpanImagenOfertas4" class="form-control" value="@Model.OfferSection.Products[3].ProductTitle.TitleTypeSpan" />
+                                                                        </div>
+                                                                        <label class="control-label">Color 4</label>
+                                                                        <div>
+                                                                            <input type="text" id="ColorImagenOfertas4" name="ColorImagenOfertas4" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.OfferSection.Products[3].ProductTitle.TitleTypeColor)" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-5 col-md-offset-1">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                            <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 150px; height: 250px;">
+                                                                                <img src="@Url.Content(Model.OfferSection.Products[4].ProductImage)" />
+                                                                            </div>
+                                                                            <div>
+                                                                                <span class="btn red btn-outline btn-file">
+                                                                                    <span class="fileinput-new"> Seleccionar Imagen </span>
+                                                                                    <span class="fileinput-exists"> Cambiar </span>
+                                                                                    <input type="file" name="ImagenOfertas5" id="ImagenOfertas5">
+                                                                                </span>
+                                                                                <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-5 col-md-offset-3">
+                                                                    <div class="form-group">
+                                                                        <label class="control-label">Tipo de Oferta</label>
+                                                                        <div>
+                                                                            <select class="bs-select form-control" id="TipoOfertas5" name="TipoOfertas5">
+                                                                                @{
+                                                                                    if (Model.OfferTypes != null)
+                                                                                    {
+                                                                                        foreach (var x in Model.OfferTypes)
+                                                                                        {
+                                                                                            var mon = Model.OfferSection.Products[4].OfferType.OfferTypeId == x.OfferTypeId ? "selected=\"selected\"" : "";
+                                                                                            <option value="@x.OfferTypeId" @Html.Raw(mon)>@x.OfferTypeName</option>
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            </select>
+                                                                        </div>
+                                                                        <label class="control-label">Texto 5</label>
+                                                                        <div>
+                                                                            <input type="text" id="TextoImagenOfertas5" name="TextoImagenOfertas5" class="form-control" value="@Model.OfferSection.Products[4].ProductTitle.TitleTypeMessage" />
+                                                                        </div>
+                                                                        <label class="control-label">Texto resaltado 5</label>
+                                                                        <div>
+                                                                            <input type="text" id="SpanImagenOfertas5" name="SpanImagenOfertas5" class="form-control" value="@Model.OfferSection.Products[4].ProductTitle.TitleTypeSpan" />
+                                                                        </div>
+                                                                        <label class="control-label">Color 5</label>
+                                                                        <div>
+                                                                            <input type="text" id="ColorImagenOfertas5" name="ColorImagenOfertas5" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.OfferSection.Products[4].ProductTitle.TitleTypeColor)" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>*@
+                                <div class="tab-pane" id="tab3">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Tarjetas</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="row">
+                                                        <div class="col-md-5">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Título de sección</label>
+                                                                <div>
+                                                                    <input type="text" class="form-control" id="TituloTarjetas" name="TituloTarjetas" value="@Model.CardSection.CardSectionTitle">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-5 col-md-offset-1">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Color del Texto</label>
+                                                                <div>
+                                                                    <input type="text" id="ColorTituloTarjetas" name="ColorTituloTarjetas" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.CardSection.CardSectionColorTitle)" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Url Tarjetas Beneficios</label>
+                                                                <input type="url" class="form-control" id="UrlImagenTarjetas" name="UrlImagenTarjetas" value="@Model.CardSection.CardSectionUrl">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Imagen Web</label>
+                                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                    <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 400px; height: 200px;">
+                                                                        <img src="@Url.Content(Model.CardSection.CardSectionImage)" />
+                                                                    </div>
+                                                                    <div>
+                                                                        <span class="btn red btn-outline btn-file">
+                                                                            <span class="fileinput-new"> Seleccionar Imagen </span>
+                                                                            <span class="fileinput-exists"> Cambiar </span>
+                                                                            <input type="file" name="ImagenTarjetasWeb" id="ImagenTarjetasWeb">
+                                                                        </span>
+                                                                        <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Imagen Movil</label>
+                                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                    <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 400px; height: 200px;">
+                                                                        <img src="@Url.Content(Model.CardSection.CardSectionImageXS)" />
+                                                                    </div>
+                                                                    <div>
+                                                                        <span class="btn red btn-outline btn-file">
+                                                                            <span class="fileinput-new"> Seleccionar Imagen </span>
+                                                                            <span class="fileinput-exists"> Cambiar </span>
+                                                                            <input type="file" name="ImagenTarjetasMovil" id="ImagenTarjetasMovil">
+                                                                        </span>
+                                                                        <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div id="tabDoctorsOffice" class="tab-pane">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Consultorios</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="row">
+                                                        <div class="col-xs-12 col-md-6">
+                                                            <label class="control-label">Título</label>
+                                                            <input type="text" class="form-control" id="DoctorsOfficeTitle" name="DoctorsOfficeTitle" value="@Model.DoctorsOfficeSection.Title" />
+                                                        </div>
+                                                        <div class="col-xs-12 col-md-6">
+                                                            <label class="control-label">Color del título</label>
+                                                            <input type="text" data-control="wheel" class="form-control demo"
+                                                                   id="DoctorsOfficeTitleColor" name="DoctorsOfficeTitleColor" value="@Html.Raw(Model.DoctorsOfficeSection.TitleColor)" />
+                                                        </div>
+                                                        <div class="col-xs-12 col-md-6">
+                                                            <label class="control-label">Mensaje</label>
+                                                            <input type="text" class="form-control" id="DoctorsOfficeMessageText" name="DoctorsOfficeMessageText"
+                                                                   value="@Model.DoctorsOfficeSection.SectionMessageText" />
+                                                        </div>
+                                                        <div class="col-xs-12 col-md-6">
+                                                            <label class="control-label">Color del mensaje</label>
+                                                            <input type="text" data-control="wheel" class="form-control demo"
+                                                                   id="DoctorsOfficeMessageTextColor" name="DoctorsOfficeMessageTextColor"
+                                                                   value="@Html.Raw(Model.DoctorsOfficeSection.SectionMessageTextColor)" />
+                                                        </div>
+                                                        <div class="col-xs-12 col-md-6">
+                                                            <label class="control-label">Vínculo</label>
+                                                            <input type="text" class="form-control" id="DoctorsOfficeLink" name="DoctorsOfficeLink" value="@Model.DoctorsOfficeSection.Link" />
+                                                        </div>
+                                                        <div class="col-xs-12 col-md-6">
+                                                            <label class="control-label">Color de fondo</label>
+                                                            <input type="text" data-control="wheel" class="form-control demo"
+                                                                   id="DoctorsOfficeBackgroundColor" name="DoctorsOfficeBackgroundColor"
+                                                                   value="@Html.Raw(Model.DoctorsOfficeSection.BackgroundColor)" />
+                                                        </div>
+
+                                                        <div class="col-xs-12 col-md-6">
+                                                            @DisplayImageFileSelectionSection(Model.DoctorsOfficeSection.ImageFileName, "DoctorsOfficeImageFileName",
+                                                                                    "Imagen")
+                                                        </div>
+                                                        <div class="col-xs-12 col-md-6">
+                                                            @DisplayImageFileSelectionSection(Model.DoctorsOfficeSection.LogoImageFileName, "DoctorsOfficeLogoImageFileName",
+                                                                                            "Logo")
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+                                <div class="tab-pane" id="tab4">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Boots Beauty Brands</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="row">
+                                                        <div class="col-md-5">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Título de sección</label>
+                                                                <div>
+                                                                    <input type="text" class="form-control" id="TituloFose" name="TituloFose" value="@Model.FoseSection.FoseSectionTitle">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-5 col-md-offset-1">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Color del Texto Título de Sección</label>
+                                                                <div>
+                                                                    <input type="text" id="ColorTituloFose" name="ColorTituloFose" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.FoseSection.FoseSectionColorTitle)" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-5">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Texto Superior</label>
+                                                                <div>
+                                                                    <input type="text" class="form-control" id="TextoFose1" name="TextoFose1" value="@Model.FoseSection.FoseSectionWord1">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-5 col-md-offset-1">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Color del Texto Superior</label>
+                                                                <div>
+                                                                    <input type="text" id="ColorTextoFose1" name="ColorTextoFose1" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.FoseSection.FoseSectionColorWord1)" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-5">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Texto Inferior</label>
+                                                                <div>
+                                                                    <input type="text" class="form-control" id="TextoFose2" name="TextoFose2" value="@Model.FoseSection.FoseSectionWord2">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-5 col-md-offset-1">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Color del Texto Inferior</label>
+                                                                <div>
+                                                                    <input type="text" id="ColorTextoFose2" name="ColorTextoFose2" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.FoseSection.FoseSectionColorWord2)" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-5">
+                                                            <div class="form-group">
+                                                                <label>Imagen Logo</label>
+                                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                    <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 400px; height: 200px;">
+                                                                        <img src="@Url.Content(Model.FoseSection.FoseSectionImageLogo)" />
+                                                                    </div>
+                                                                    <div>
+                                                                        <span class="btn red btn-outline btn-file">
+                                                                            <span class="fileinput-new"> Seleccionar Imagen </span>
+                                                                            <span class="fileinput-exists"> Cambiar </span>
+                                                                            <input type="file" name="ImagenFoseLogo" id="ImagenFoseLogo">
+                                                                        </span>
+                                                                        <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-5 col-md-offset-1">
+                                                            <div class="form-group">
+                                                                <label>Imagen Producto</label>
+                                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                    <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 400px; height: 200px;">
+                                                                        <img src="@Url.Content(Model.FoseSection.FoseSectionImage)" />
+                                                                    </div>
+                                                                    <div>
+                                                                        <span class="btn red btn-outline btn-file">
+                                                                            <span class="fileinput-new"> Seleccionar Imagen </span>
+                                                                            <span class="fileinput-exists"> Cambiar </span>
+                                                                            <input type="file" name="ImagenFoseProducto" id="ImagenFoseProducto">
+                                                                        </span>
+                                                                        <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="tabQuads" class="tab-pane">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Información general</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="row">
+                                                        @DisplayQuadEditSection(Model.FourQuadSection.Quad1, 1)
+                                                        @DisplayQuadEditSection(Model.FourQuadSection.Quad2, 2)
+                                                        @DisplayQuadEditSection(Model.FourQuadSection.Quad3, 3)
+                                                        @DisplayQuadEditSection(Model.FourQuadSection.Quad4, 4)
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="tab-pane" id="tab5">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Blog</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="row">
+                                                        <div class="col-md-5">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Título de sección</label>
+                                                                <div>
+                                                                    <input type="text" class="form-control" id="TituloBlog" name="TituloBlog" value="@Model.BlogSection.BlogSectionTitle">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-5 col-md-offset-1">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Color del Texto Título de Sección</label>
+                                                                <div>
+                                                                    <input type="text" id="ColorTituloBlog" name="ColorTituloBlog" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.BlogSection.BlogSectionColorTitle)" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label>Imagen 1</label>
+                                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                    <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 200px;">
+                                                                        <img src="@Url.Content(Model.BlogSection.Products[0].ProductImage)" />
+                                                                    </div>
+                                                                    <div>
+                                                                        <span class="btn red btn-outline btn-file">
+                                                                            <span class="fileinput-new"> Seleccionar Imagen </span>
+                                                                            <span class="fileinput-exists"> Cambiar </span>
+                                                                            <input type="file" name="ImagenBlog1" id="ImagenBlog1">
+                                                                        </span>
+                                                                        <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label">Categoría de Blog 1</label>
+                                                                <div style="width: 200px">
+                                                                    <select class="bs-select form-control" id="TipoBlog1" name="TipoBlog1">
+                                                                        @{
+                                                                            if (Model.BlogTypes != null)
+                                                                            {
+                                                                                foreach (var x in Model.BlogTypes)
+                                                                                {
+                                                                                    var mon = Model.BlogSection.Products[0].BlogType.BlogTypeId == x.BlogTypeId ? "selected=\"selected\"" : "";
+                                                                                    <option value="@x.BlogTypeId" @Html.Raw(mon)>@x.BlogTypeName</option>
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label">Texto 1</label>
+                                                                <div>
+                                                                    <input type="text" id="TextoBlog1" name="TextoBlog1" class="form-control" style="width: 200px" value="@Model.BlogSection.Products[0].ProductTitle.TitleTypeMessage" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label">Color Texto 1</label>
+                                                                <div>
+                                                                    <input type="text" id="ColorTextoBlog1" name="ColorTextoBlog1" class="form-control demo" data-control="wheel" style="width: 200px" value="@Model.BlogSection.Products[0].ProductTitle.TitleTypeColor)" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label">Color Fondo 1</label>
+                                                                <div>
+                                                                    <input type="text" id="ColorBgTextoBlog1" name="ColorBgTextoBlog1" class="form-control demo" data-control="wheel" style="width: 200px" value="@Model.BlogSection.Products[0].ProductTitle.TitleTypeBgColor)" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label">Color Hover 1</label>
+                                                                <div>
+                                                                    <input type="text" id="ColorOverTextoBlog1" name="ColorOverTextoBlog1" class="form-control demo" data-control="wheel" style="width: 200px" value="@Model.BlogSection.Products[0].ProductTitle.TitleTypeHoverColor)" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label>Imagen 2</label>
+                                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                    <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 200px;">
+                                                                        <img src="@Url.Content(Model.BlogSection.Products[1].ProductImage)" />
+                                                                    </div>
+                                                                    <div>
+                                                                        <span class="btn red btn-outline btn-file">
+                                                                            <span class="fileinput-new"> Seleccionar Imagen </span>
+                                                                            <span class="fileinput-exists"> Cambiar </span>
+                                                                            <input type="file" name="ImagenBlog2" id="ImagenBlog2">
+                                                                        </span>
+                                                                        <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label">Categoría de Blog 2</label>
+                                                                <div style="width: 200px">
+                                                                    <select class="bs-select form-control" id="TipoBlog2" name="TipoBlog2">
+                                                                        @{
+                                                                            if (Model.BlogTypes != null)
+                                                                            {
+                                                                                foreach (var x in Model.BlogTypes)
+                                                                                {
+                                                                                    var mon = Model.BlogSection.Products[1].BlogType.BlogTypeId == x.BlogTypeId ? "selected=\"selected\"" : "";
+                                                                                    <option value="@x.BlogTypeId" @Html.Raw(mon)>@x.BlogTypeName</option>
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label">Texto 2</label>
+                                                                <div>
+                                                                    <input type="text" id="TextoBlog2" name="TextoBlog2" class="form-control" style="width: 200px" value="@Model.BlogSection.Products[1].ProductTitle.TitleTypeMessage" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label">Color Texto 2</label>
+                                                                <div>
+                                                                    <input type="text" id="ColorTextoBlog2" name="ColorTextoBlog2" class="form-control demo" data-control="wheel" style="width: 200px" value="@Model.BlogSection.Products[1].ProductTitle.TitleTypeColor)" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label">Color Fondo 2</label>
+                                                                <div>
+                                                                    <input type="text" id="ColorBgTextoBlog2" name="ColorBgTextoBlog2" class="form-control demo" data-control="wheel" style="width: 200px" value="@Model.BlogSection.Products[1].ProductTitle.TitleTypeBgColor)" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label">Color Hover 2</label>
+                                                                <div>
+                                                                    <input type="text" id="ColorOverTextoBlog2" name="ColorOverTextoBlog2" class="form-control demo" data-control="wheel" style="width: 200px" value="@Model.BlogSection.Products[1].ProductTitle.TitleTypeHoverColor)" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label>Imagen 3</label>
+                                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                    <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 200px;">
+                                                                        <img src="@Url.Content(Model.BlogSection.Products[2].ProductImage)" />
+                                                                    </div>
+                                                                    <div>
+                                                                        <span class="btn red btn-outline btn-file">
+                                                                            <span class="fileinput-new"> Seleccionar Imagen </span>
+                                                                            <span class="fileinput-exists"> Cambiar </span>
+                                                                            <input type="file" name="ImagenBlog3" id="ImagenBlog3">
+                                                                        </span>
+                                                                        <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label">Categoría de Blog 3</label>
+                                                                <div style="width: 200px">
+                                                                    <select class="bs-select form-control" id="TipoBlog3" name="TipoBlog3">
+                                                                        @{
+                                                                            if (Model.BlogTypes != null)
+                                                                            {
+                                                                                foreach (var x in Model.BlogTypes)
+                                                                                {
+                                                                                    var mon = Model.BlogSection.Products[2].BlogType.BlogTypeId == x.BlogTypeId ? "selected=\"selected\"" : "";
+                                                                                    <option value="@x.BlogTypeId" @Html.Raw(mon)>@x.BlogTypeName</option>
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label">Texto 3</label>
+                                                                <div>
+                                                                    <input type="text" id="TextoBlog3" name="TextoBlog3" class="form-control" style="width: 200px" value="@Model.BlogSection.Products[2].ProductTitle.TitleTypeMessage" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label">Color Texto 3</label>
+                                                                <div>
+                                                                    <input type="text" id="ColorTextoBlog3" name="ColorTextoBlog3" class="form-control demo" data-control="wheel" style="width: 200px" value="@Model.BlogSection.Products[2].ProductTitle.TitleTypeColor)" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label">Color Fondo 3</label>
+                                                                <div>
+                                                                    <input type="text" id="ColorBgTextoBlog3" name="ColorBgTextoBlog3" class="form-control demo" data-control="wheel" style="width: 200px" value="@Model.BlogSection.Products[2].ProductTitle.TitleTypeBgColor)" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label">Color Hover 3</label>
+                                                                <div>
+                                                                    <input type="text" id="ColorOverTextoBlog3" name="ColorOverTextoBlog3" class="form-control demo" data-control="wheel" style="width: 200px" value="@Model.BlogSection.Products[2].ProductTitle.TitleTypeHoverColor)" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label>Imagen 4</label>
+                                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                    <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 200px;">
+                                                                        <img src="@Url.Content(Model.BlogSection.Products[3].ProductImage)" />
+                                                                    </div>
+                                                                    <div>
+                                                                        <span class="btn red btn-outline btn-file">
+                                                                            <span class="fileinput-new"> Seleccionar Imagen </span>
+                                                                            <span class="fileinput-exists"> Cambiar </span>
+                                                                            <input type="file" name="ImagenBlog4" id="ImagenBlog4">
+                                                                        </span>
+                                                                        <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label">Categoría de Blog 4</label>
+                                                                <div style="width: 200px">
+                                                                    <select class="bs-select form-control" id="TipoBlog4" name="TipoBlog4">
+                                                                        @{
+                                                                            if (Model.BlogTypes != null)
+                                                                            {
+                                                                                foreach (var x in Model.BlogTypes)
+                                                                                {
+                                                                                    var mon = Model.BlogSection.Products[3].BlogType.BlogTypeId == x.BlogTypeId ? "selected=\"selected\"" : "";
+                                                                                    <option value="@x.BlogTypeId" @Html.Raw(mon)>@x.BlogTypeName</option>
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label">Texto 4</label>
+                                                                <div>
+                                                                    <input type="text" id="TextoBlog4" name="TextoBlog4" class="form-control" style="width: 200px" value="@Model.BlogSection.Products[3].ProductTitle.TitleTypeMessage" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label">Color Texto 4</label>
+                                                                <div>
+                                                                    <input type="text" id="ColorTextoBlog4" name="ColorTextoBlog4" class="form-control demo" data-control="wheel" style="width: 200px" value="@Model.BlogSection.Products[3].ProductTitle.TitleTypeColor)" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label">Color Fondo 4</label>
+                                                                <div>
+                                                                    <input type="text" id="ColorBgTextoBlog4" name="ColorBgTextoBlog4" class="form-control demo" data-control="wheel" style="width: 200px" value="@Model.BlogSection.Products[3].ProductTitle.TitleTypeBgColor)" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="control-label">Color Hover 4</label>
+                                                                <div>
+                                                                    <input type="text" id="ColorOverTextoBlog4" name="ColorOverTextoBlog4" class="form-control demo" data-control="wheel" style="width: 200px" value="@Model.BlogSection.Products[3].ProductTitle.TitleTypeHoverColor)" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <a href="javascript:;" class="btn default button-previous">
+                                        <i class="fa fa-angle-left"></i> Atrás
+                                    </a>
+                                    <a href="javascript:;" class="btn btn-outline green button-next">
+                                        Continuar
+                                        <i class="fa fa-angle-right"></i>
+                                    </a>
+                                    <a class="btn green button-submit" id="btnApplyHome">
+                                        Aplicar
+                                        <i class="fa fa-check"></i>
+                                    </a>
+                                    <a class="btn blue" id="btnPreviewHome">
+                                        Vista Previa
+                                        <i class="fa fa-search"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <span id="idsServidor" idsServer="@idsServer" name="idsServidor"></span>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

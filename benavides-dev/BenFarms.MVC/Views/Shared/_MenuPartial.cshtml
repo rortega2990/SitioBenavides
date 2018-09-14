@@ -1,0 +1,103 @@
+﻿@using Microsoft.AspNet.Identity
+
+<ul class="nav navbar-nav navbar-right">
+    @{
+        string homeActive = "", branchActive = "", sadActive = "";
+        if (ViewBag.Page == "Home")
+        {
+            homeActive = "active";
+        }
+        else
+        {
+            if (ViewBag.Page == "Branch")
+            {
+                branchActive = "active";
+            }
+            else
+            {
+                if (ViewBag.Page == "SaD")
+                {
+                    sadActive = "active";
+                }
+            }
+        }
+    }
+    <li class="@homeActive">@Html.ActionLink("Inicio", "Index", "Home")</li>
+    <li class="@sadActive">@Html.ActionLink("Servicio a Domicilio", "Index", "SaD")</li>
+    <li class="@branchActive">@Html.ActionLink("Farmacias", "Index", "Branch")</li>
+    <li><a href="http://e-facturate.com/benavides/">Facturación en línea</a></li>
+    <li><a href="http://www.fotobenavides.com/Sitios/benavides/index_benavides_1.asp">FotoBenavides</a></li>
+    @if (Request.IsAuthenticated)
+    {
+        var imagenCuenta = "~/Content/rsc/imgs/users.png";
+        //if (Session.Keys.Count > 0)
+        //{
+        //    imagenCuenta = Session["imageUser"].ToString();
+        //}
+        if (Request.Cookies["imageUser"] != null)
+        {
+            var value = Request.Cookies["imageUser"].Value;
+            if (!string.IsNullOrEmpty(value))
+            {
+                imagenCuenta = Server.HtmlEncode(value);
+            }
+        }
+        
+        @*<li class="search"><a href="#"><span class="fa fa-search"></span></a></li>*@
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                <img class="img-circle" src="@Url.Content(imagenCuenta)" style="width:29px;height:29px"></a>
+                <ul class="dropdown-menu" role="menu">
+                    <div class="arrow"></div>
+                    <li><a href="@Url.Action("Index", "Perfil")">Mi Perfil</a></li>
+                    @if(User.IsInRole("Admin"))
+                    {
+                        <li><a href="~/Admin">Administrar</a></li>
+                    }
+                    <li><a id="linCerrarSesion" href="javascript:Logout();">Cerrar sesión</a></li>
+                    @*<li><a href="#">Solo para ti</a></li>*@
+                </ul>
+            </li>
+    }
+    else
+    {
+        @*<li id="menuRegistrate"><a data-toggle="modal" href="#modal-register">Regístrate</a></li>*@
+            
+            @*<li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img class="img-circle" src="~/Content/rsc/imgs/users.png" style="width:29px;height:29px"></a>
+                <ul id="menuOverlay" class="dropdown-menu" role="menu">
+                    <div class="arrow"></div>
+                    <li id="menuTuCuenta"><a data-toggle="modal" href="#modal-tu-cuenta">INICIA SESIÓN</a></li>
+                </ul>
+            </li>*@
+
+
+        <li class="dropdown">
+            <a data-toggle="modal" href="#modal-tu-cuenta">Iniciar sesión</a>
+            @*<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                    <img class="img-circle" src="~/Content/rsc/imgs/users.png" style="width:29px;height:29px">
+                </a>
+                <ul id="menuOverlay" class="dropdown-menu" role="menu">
+                    <div class="arrow"></div>
+                    <li id="menuTuCuenta"><a data-toggle="modal" href="#modal-tu-cuenta">Iniciar sesión</a></li>
+                </ul>*@
+        </li>
+    }
+
+    @if (Request.Browser.IsMobileDevice) {
+        //Html.Raw ("<p>Hola</p>");
+
+        //Html.Raw ("< a href = 'tel:01 800 248 5555' >< img src = '~/Content/rsc/icons/web.png' class='img-responsive' style='float:right;' /></a>");
+        //Server.HtmlDecode ("< a href = 'tel:01 800 248 5555' >< img src = '~/Content/rsc/icons/web.png' class='img-responsive' style='float:right;' /></a>");
+    }
+    else {
+        //  IHtmlString str = new HtmlString("<p>Hola</p>");
+        IHtmlString str = new HtmlString("<a href='tel:01 800 248 5555'><img src='http://localhost:44638/Content/rsc/icons/web.png' class='img-responsive' style='float:right;' /></a>");
+        @Html.Raw(str);
+        //Html.Value("<p>Hola</p>");
+        // Html.Display("< a href = 'tel:01 800 248 5555' >< img src = '~/Content/rsc/icons/web.png' class='img-responsive' style='float:right;' /></a>");
+        //Server.HtmlDecode("< a href = 'tel:01 800 248 5555' >< img src = '~/Content/rsc/icons/web.png' class='img-responsive' style='float:right;' /></a>");
+    }
+
+
+</ul>

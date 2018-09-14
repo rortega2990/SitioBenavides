@@ -1,0 +1,49 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.Elements.DocumentType
+
+@{
+    ViewBag.Title = "Editar Tipo de Documento";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "ProviderPageActive";
+}
+
+    <h2>Editar Tipo de Documento</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.DocumentTypeId)
+
+        <div class="form-horizontal">
+            <h4>Tipo de Documento</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DocumentName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.DocumentName, new { htmlAttributes = new { @class = "form-control", required = true } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DocumentDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.DocumentDescription, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DocumentActive, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.DocumentActive)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-6">
+                    <button type="submit" class="btn blue">Aceptar</button>
+                    @Html.ActionLink("Cancelar", "Index", null, htmlAttributes: new { @class = "btn default" })
+                </div>
+            </div>
+        </div>
+    }

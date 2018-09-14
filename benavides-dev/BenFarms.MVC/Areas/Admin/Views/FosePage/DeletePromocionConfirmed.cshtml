@@ -1,0 +1,55 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.PromocionPage
+@{
+    ViewBag.Title = "Eliminar Página De Promoción";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var urlList = "~/Admin/FosePage/ListPromocions?idFose=" + ViewBag.Fose;
+}
+
+<h2>Eliminar Página Promoción en Edición</h2>
+
+<div>
+    <h4>@Model.PromocionPageCustomValue</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PromocionPageCustomValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PromocionPageCustomValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PromocionPageActive)
+        </dt>
+
+        <dd>
+            @{
+                switch (@Model.PromocionPageActive)
+                {
+                    case "Activada":
+                        <span class="label label-sm label-success"> Activa </span>break;
+                    case "Desactivada":
+                        <span class="label label-sm label-warning"> Desactivada </span>break;
+                    case "EnEdicion":
+                        <span class="label label-sm label-danger"> En Edición </span>break;
+                }
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PromocionPageCreatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PromocionPageCreatedDate)
+        </dd>
+
+    </dl>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn blue">Eliminar</button>
+        <a class="btn default" href="@Url.Content(urlList)">Cancelar</a>
+    }
+</div>

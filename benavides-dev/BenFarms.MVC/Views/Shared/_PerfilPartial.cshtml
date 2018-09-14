@@ -1,0 +1,18 @@
+﻿@if (Request.IsAuthenticated && ViewBag.Page == "Perfil")
+{
+    <nav class="navbar bg-color-blue-dark text-center sub-header-nav" role="navigation">
+        <div class="container">
+            <ul class="nav navbar-nav" role="tablist">
+                <li class="active"><a data-toggle="tab" aria-controls="perfil-mi-cuenta" href="#perfil-mi-cuenta">Mi cuenta</a></li>
+                <li><a data-toggle="tab" aria-controls="perfil-mis-beneficios" href="#perfil-mis-beneficios">Mis Beneficios</a></li>
+                <li><a data-toggle="tab" aria-controls="perfil-mis-compras" href="#perfil-mis-compras">Mis compras</a></li>
+                <li><a data-toggle="tab" aria-controls="perfil-mis-promociones" href="#perfil-mis-promociones">Mis Promociones</a></li>
+                <li><a data-toggle="tab" aria-controls="perfil-contacto" href="#perfil-contacto">Contacto</a></li>
+                @*<li><a data-toggle="tab" aria-controls="perfil-mis-ofertas" href="#perfil-mis-ofertas">Mis ofertas</a></li>
+                <li><a data-toggle="tab" aria-controls="perfil-suscripciones" href="#perfil-suscripciones">Suscripciones</a></li>*@
+                @*<li><a data-toggle="tab" aria-controls="perfil-club-peques" href="#perfil-club-peques">Club Peques</a></li>*@
+                <li><a data-toggle="tab" aria-controls="perfil-terminos-condiciones" href="#perfil-terminos-condiciones">Términos y Condiciones</a></li>
+            </ul>
+        </div>
+    </nav>
+}

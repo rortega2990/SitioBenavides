@@ -1,0 +1,55 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.Elements.Pillar
+
+@{
+    ViewBag.Title = "Eliminar Pilar";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "PillarActive";
+}
+
+<h2>Eliminar Pilar</h2>
+
+<div>
+    <h4>Pilar</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PillarName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PillarName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PillarDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PillarDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PillarLink)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PillarLink)
+        </dd>
+
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.PillarActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PillarActive)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn blue">Eliminar</button>
+        @Html.ActionLink("Cancelar", "Index", "Pillar", null, htmlAttributes: new { @class = "btn default" })
+    }
+</div>

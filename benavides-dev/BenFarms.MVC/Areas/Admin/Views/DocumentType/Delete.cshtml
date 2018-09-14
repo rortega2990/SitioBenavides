@@ -1,0 +1,47 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.Elements.DocumentType
+
+@{
+    ViewBag.Title = "Eliminar Tipo de Documento";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "ProviderPageActive";
+}
+
+<h2>Eliminar Tipo de Documento</h2>
+
+<div>
+    <h4>Tipo de Documento</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DocumentName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DocumentName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DocumentDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DocumentDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DocumentActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DocumentActive)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn blue">Eliminar</button>
+        @Html.ActionLink("Cancelar", "Index", null, htmlAttributes: new { @class = "btn default" })
+    }
+</div>

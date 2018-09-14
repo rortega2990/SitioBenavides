@@ -1,0 +1,38 @@
+﻿@using Microsoft.AspNet.Identity
+<div class="top-menu">
+    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+    {
+        @Html.AntiForgeryToken()
+        var imagenCuenta = "~/Content/rsc/imgs/users.png";
+        //if (Session.Keys.Count > 0)
+        //{
+        //    imagenCuenta = Session["imageUser"].ToString();
+        //}
+        if (Request.Cookies["imageUser"] != null)
+        {
+            imagenCuenta = Server.HtmlEncode(Request.Cookies["imageUser"].Value);
+        }
+        <ul class="nav navbar-nav pull-right">
+            <li class="dropdown dropdown-user">
+                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                    <img alt="" class="img-circle" src="@Url.Content(imagenCuenta)" id="imguser"/>
+                    @*<i class="icon-user fa-3x"></i>*@
+                    <span class="username username-hide-on-mobile" id="spanUserName"> @User.Identity.Name </span>
+                    <i class="fa fa-angle-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-default">
+                    <li>
+                        <a href="~/Admin/UserPage/EditProfile">
+                            <i class="icon-user"></i> Mi Perfil
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:document.getElementById('logoutForm').submit()">
+                            <i class="icon-close"></i> Cerrar sesión
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    }
+</div>

@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0AE1E59D-08BE-4F21-B7BD-0F438CDFAF61}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BenavidesFarm.DataModels</RootNamespace>
+    <AssemblyName>BenavidesFarm.DataModels</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>730d87fe</NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Migrations\201704230945223_Initial.cs" />
+    <Compile Include="Migrations\201704230945223_Initial.Designer.cs">
+      <DependentUpon>201704230945223_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705180111514_CreateLaboratoriesTable.cs" />
+    <Compile Include="Migrations\201705180111514_CreateLaboratoriesTable.Designer.cs">
+      <DependentUpon>201705180111514_CreateLaboratoriesTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706011441170_FourQuadSection.cs" />
+    <Compile Include="Migrations\201706011441170_FourQuadSection.Designer.cs">
+      <DependentUpon>201706011441170_FourQuadSection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706020307026_AddDoctorsOfficeSectionToHome.cs" />
+    <Compile Include="Migrations\201706020307026_AddDoctorsOfficeSectionToHome.Designer.cs">
+      <DependentUpon>201706020307026_AddDoctorsOfficeSectionToHome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706082127471_AddWhoWeArePage.cs" />
+    <Compile Include="Migrations\201706082127471_AddWhoWeArePage.Designer.cs">
+      <DependentUpon>201706082127471_AddWhoWeArePage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706090111481_AddColorToTextPropertiesOfWhoWeAreTitledSection.cs" />
+    <Compile Include="Migrations\201706090111481_AddColorToTextPropertiesOfWhoWeAreTitledSection.Designer.cs">
+      <DependentUpon>201706090111481_AddColorToTextPropertiesOfWhoWeAreTitledSection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706100245230_AddedPilarsAndValuesSectionsToWhoWeAre.cs" />
+    <Compile Include="Migrations\201706100245230_AddedPilarsAndValuesSectionsToWhoWeAre.Designer.cs">
+      <DependentUpon>201706100245230_AddedPilarsAndValuesSectionsToWhoWeAre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706200335321_AddedConsultAndFoseOptionsToBranch.cs" />
+    <Compile Include="Migrations\201706200335321_AddedConsultAndFoseOptionsToBranch.Designer.cs">
+      <DependentUpon>201706200335321_AddedConsultAndFoseOptionsToBranch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706271509012_AddedDoctorsOfficeSection.cs" />
+    <Compile Include="Migrations\201706271509012_AddedDoctorsOfficeSection.Designer.cs">
+      <DependentUpon>201706271509012_AddedDoctorsOfficeSection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707020226405_AddMailConfigurationToJoinTeamSection.cs" />
+    <Compile Include="Migrations\201707020226405_AddMailConfigurationToJoinTeamSection.Designer.cs">
+      <DependentUpon>201707020226405_AddMailConfigurationToJoinTeamSection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707051923536_AddLinkURLToImageSection.cs" />
+    <Compile Include="Migrations\201707051923536_AddLinkURLToImageSection.Designer.cs">
+      <DependentUpon>201707051923536_AddLinkURLToImageSection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707251611166_CreatePillarsTable.cs" />
+    <Compile Include="Migrations\201707251611166_CreatePillarsTable.Designer.cs">
+      <DependentUpon>201707251611166_CreatePillarsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707251616272_CreateQuotesTable.cs" />
+    <Compile Include="Migrations\201707251616272_CreateQuotesTable.Designer.cs">
+      <DependentUpon>201707251616272_CreateQuotesTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707251812560_CreatePillarPagesTable.cs" />
+    <Compile Include="Migrations\201707251812560_CreatePillarPagesTable.Designer.cs">
+      <DependentUpon>201707251812560_CreatePillarPagesTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Pages\DoctorsOfficePage.cs" />
+    <Compile Include="Models\Pages\Elements\Estados.cs" />
+    <Compile Include="Models\Pages\Elements\EstadosMunicipios .cs" />
+    <Compile Include="Models\Pages\Elements\InterestArea.cs" />
+    <Compile Include="Models\Pages\Elements\InterestRegion.cs" />
+    <Compile Include="Models\Pages\Elements\Laboratory.cs" />
+    <Compile Include="Models\Pages\Elements\MailConfiguration.cs" />
+    <Compile Include="Models\Pages\Elements\Municipios.cs" />
+    <Compile Include="Models\Pages\Elements\Pillar.cs" />
+    <Compile Include="Models\Pages\Elements\Quote.cs" />
+    <Compile Include="Models\Pages\Elements\ValidationAttributes\MailCollectionAttribute.cs" />
+    <Compile Include="Models\Pages\NewsPage.cs" />
+    <Compile Include="Models\Pages\Elements\Branch.cs" />
+    <Compile Include="Models\Pages\Elements\ContactViewModel.cs" />
+    <Compile Include="Models\Pages\Elements\BlogType.cs" />
+    <Compile Include="Models\Pages\Elements\OfferType.cs" />
+    <Compile Include="Models\Pages\BlogPage.cs" />
+    <Compile Include="Models\Pages\PillarPage.cs" />
+    <Compile Include="Models\Pages\ProductPage.cs" />
+    <Compile Include="Models\Pages\Elements\SaDTypeNumber.cs" />
+    <Compile Include="Models\Pages\Elements\DocumentFiles.cs" />
+    <Compile Include="Models\Pages\Elements\DocumentType.cs" />
+    <Compile Include="Models\Pages\PagePreview.cs" />
+    <Compile Include="Models\Pages\Elements\ContactUser.cs" />
+    <Compile Include="Models\Pages\Elements\JoinTeamViewModel.cs" />
+    <Compile Include="Models\Pages\PrivacityPage.cs" />
+    <Compile Include="Models\Pages\PromocionPage.cs" />
+    <Compile Include="Models\Pages\ConditionsTermsPage.cs" />
+    <Compile Include="Models\Pages\ProviderPage.cs" />
+    <Compile Include="Models\Pages\ContactPage.cs" />
+    <Compile Include="Models\Pages\FosePage.cs" />
+    <Compile Include="Models\IdentityConfig.cs" />
+    <Compile Include="Models\MyApplicationDbContext.cs" />
+    <Compile Include="Models\MyApplicationUser.cs" />
+    <Compile Include="Models\Pages\BranchPage.cs" />
+    <Compile Include="Models\Pages\InvestorPage.cs" />
+    <Compile Include="Models\Pages\JoinTeamPage.cs" />
+    <Compile Include="Models\Pages\Elements\ReportFiles.cs" />
+    <Compile Include="Models\Pages\Elements\ReportType.cs" />
+    <Compile Include="Models\Pages\SaDPage.cs" />
+    <Compile Include="Models\Pages\OfferPage.cs" />
+    <Compile Include="Models\Pages\Sections\BenefitSection.cs" />
+    <Compile Include="Models\Pages\BillingPage.cs" />
+    <Compile Include="Models\Pages\Sections\BlogSection.cs" />
+    <Compile Include="Models\Pages\Sections\CardSection.cs" />
+    <Compile Include="Models\Pages\HomePage.cs" />
+    <Compile Include="Models\Pages\Elements\TitleType.cs" />
+    <Compile Include="Models\Pages\Sections\DoctorsOfficePageSection.cs" />
+    <Compile Include="Models\Pages\Sections\DoctorsOfficeSection.cs" />
+    <Compile Include="Models\Pages\Sections\FourQuadSection.cs" />
+    <Compile Include="Models\Pages\Sections\ImageSection.cs" />
+    <Compile Include="Models\Pages\Sections\IncrementBenefitSection.cs" />
+    <Compile Include="Models\Pages\Sections\ISectionWithImage.cs" />
+    <Compile Include="Models\Pages\Sections\LabSection.cs" />
+    <Compile Include="Models\Pages\Sections\FoseSection.cs" />
+    <Compile Include="Models\Pages\Sections\OfferSection.cs" />
+    <Compile Include="Models\Pages\Elements\Product.cs" />
+    <Compile Include="Models\Pages\Sections\SingleQuadSectionItem.cs" />
+    <Compile Include="Models\Pages\Sections\WhoWeAreSimpleRowItemWithImage.cs" />
+    <Compile Include="Models\Pages\Sections\WhoWeAreTitledSection.cs" />
+    <Compile Include="Models\Pages\Sections\WhoWeAreSimpleRowItem.cs" />
+    <Compile Include="Models\Pages\ServicePage.cs" />
+    <Compile Include="Models\Pages\Elements\UserJoinedToTeam.cs" />
+    <Compile Include="Models\Pages\Elements\ServiceType.cs" />
+    <Compile Include="Models\Pages\WhoWeArePage.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlFileContainer.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SqlFileContainer.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201704230945223_Initial.resx">
+      <DependentUpon>201704230945223_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705180111514_CreateLaboratoriesTable.resx">
+      <DependentUpon>201705180111514_CreateLaboratoriesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706011441170_FourQuadSection.resx">
+      <DependentUpon>201706011441170_FourQuadSection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706020307026_AddDoctorsOfficeSectionToHome.resx">
+      <DependentUpon>201706020307026_AddDoctorsOfficeSectionToHome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706082127471_AddWhoWeArePage.resx">
+      <DependentUpon>201706082127471_AddWhoWeArePage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706090111481_AddColorToTextPropertiesOfWhoWeAreTitledSection.resx">
+      <DependentUpon>201706090111481_AddColorToTextPropertiesOfWhoWeAreTitledSection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706100245230_AddedPilarsAndValuesSectionsToWhoWeAre.resx">
+      <DependentUpon>201706100245230_AddedPilarsAndValuesSectionsToWhoWeAre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706200335321_AddedConsultAndFoseOptionsToBranch.resx">
+      <DependentUpon>201706200335321_AddedConsultAndFoseOptionsToBranch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706271509012_AddedDoctorsOfficeSection.resx">
+      <DependentUpon>201706271509012_AddedDoctorsOfficeSection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707020226405_AddMailConfigurationToJoinTeamSection.resx">
+      <DependentUpon>201707020226405_AddMailConfigurationToJoinTeamSection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707051923536_AddLinkURLToImageSection.resx">
+      <DependentUpon>201707051923536_AddLinkURLToImageSection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707251611166_CreatePillarsTable.resx">
+      <DependentUpon>201707251611166_CreatePillarsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707251616272_CreateQuotesTable.resx">
+      <DependentUpon>201707251616272_CreateQuotesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707251812560_CreatePillarPagesTable.resx">
+      <DependentUpon>201707251812560_CreatePillarPagesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SqlFileContainer.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SqlFileContainer.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\branches.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\Yasmany\Desktop\old res\states_cities.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\Yasmany\Desktop\old res\cities.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\Yasmany\Desktop\old res\states.sql" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

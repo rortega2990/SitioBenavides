@@ -1,0 +1,70 @@
+﻿@model IEnumerable<BenavidesFarm.DataModels.Models.Pages.Elements.BlogType>
+
+@{
+    ViewBag.Title = "Listado de Categorías de Blogs";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "BlogActive";
+}
+
+<div class="portlet light bordered">
+    <div class="portlet-title">
+        <div class="caption font-dark">
+            <i class="icon-settings font-dark"></i>
+            <span class="caption-subject bold uppercase"> Listado de Categorías de Blogs </span>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <div class="row">
+                <div class="col-md-6">
+                    <button id="btnNewBlogType" class="btn green">
+                        Nueva Categoría de Blog
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped table-hover table-bordered" id="tableBlogType">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BlogTypeName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BlogTypeActive)
+                    </th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.BlogTypeName
+                        </td>
+                        <td>
+                            @{
+                                if (item.BlogTypeActive == true)
+                                {
+                                    <span class="label label-sm label-success">Activa</span>
+                                }
+                                else
+                                {
+                                    <span class="label label-sm label-warning">Desactivada</span>
+                                }
+                            }
+                        </td>
+                        <td>
+                            <a class="edit" href="javascript:;" id="@item.BlogTypeId">Editar</a>
+                        </td>
+                        <td>
+                            <a class="delete" href="javascript:;" id="@item.BlogTypeId">Eliminar</a>
+                        </td>
+                    </tr>
+                                }
+            </tbody>
+        </table>
+    </div>
+</div>

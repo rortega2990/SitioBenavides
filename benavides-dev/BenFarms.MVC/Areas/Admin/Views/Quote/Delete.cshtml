@@ -1,0 +1,49 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.Elements.Quote
+
+@{
+    ViewBag.Title = "Eliminar Cita";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "QuoteActive";
+}
+
+<h2>Eliminar Cita</h2>
+
+<div>
+    <h4>Cita</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.QuoteText)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuoteText)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuoteAuthor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuoteAuthor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuoteAuthorSign)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuoteAuthorSign)
+        </dd>
+
+
+        
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn blue">Eliminar</button>
+        @Html.ActionLink("Cancelar", "Index", "Quote", null, htmlAttributes: new { @class = "btn default" })
+    }
+</div>

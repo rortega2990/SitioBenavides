@@ -1,0 +1,193 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.HomePage
+
+@{
+    ViewBag.Title = "Vista Previa Página de Inicio";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPreview.cshtml";
+}
+
+<div id="main-carousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-id" data-slide-to="0" class="active"></li>
+    </ol>
+    <div class="carousel-inner">
+        @{
+            <div class="item active">
+                <a href="@Html.Raw(Model.HeadImages[0].Link)">
+                    <img src="@Url.Content(Model.HeadImages[0].ImageSectionImage)">
+                    <div class="container">
+                        @{
+                            var color1 = "#000000";
+
+                            if (!string.IsNullOrEmpty(Model.HeadImages[0].ImageSectionColorText))
+                            {
+                                color1 = Model.HeadImages[0].ImageSectionColorText;
+                            }
+                        }
+                        <div class="carousel-caption">
+                            <h1 style="color: @Html.Raw(color1)">@Model.HeadImages[0].ImageSectionText</h1>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            for (int i = 1; i < Model.HeadImages.Count; i++)
+            {
+                var color = "#000000";
+                if (!string.IsNullOrEmpty(Model.HeadImages[i].ImageSectionColorText))
+                {
+                    color = Model.HeadImages[i].ImageSectionColorText;
+                }
+
+                <div class="item">
+                    <a href="@Html.Raw(Model.HeadImages[i].Link)">
+                        <img src="@Url.Content(Model.HeadImages[i].ImageSectionImage)">
+                        <div class="container">
+                            <div class="carousel-caption">
+                                <h1 style="color: @Html.Raw(color)">@Model.HeadImages[i].ImageSectionText</h1>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            }
+        }
+    </div>
+    @*<a class="left carousel-control" href="#carousel-id" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+    <a class="right carousel-control" href="#carousel-id" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>*@
+</div>
+
+<div class="section-header bg-color-white text-center">
+    <h2 style="color: @Html.Raw(Model.OfferSection.OfferSectionColorTitle)">@Model.OfferSection.OfferSectionTitle</h2>
+</div>
+<section class="month-products">
+    <div class="top bg-color-blue-marine">
+        <div class="container-fluid full-width">
+            <div class="row full-width">
+                <div class="col-xs-12 col-sm-4 full-width">
+                    <a class="animated-component text-center" href="#">
+                        <h3>@Html.Raw(Model.OfferSection.Products[0].ToStringMix())</h3>
+                        <img class="img-responsive" src="@Url.Content(Model.OfferSection.Products[0].ProductImage)" alt="">
+                    </a>
+                    <div class="bottom-line bg-color-blue hidden-xs"></div>
+                </div>
+                <div class="col-xs-12 col-sm-4 full-width bg-color-opacity">
+                    <a class="animated-component text-center" href="#">
+                        <h3>@Html.Raw(Model.OfferSection.Products[1].ToStringMix())</h3>
+                        <img class="img-responsive" src="@Url.Content(Model.OfferSection.Products[1].ProductImage)" alt="">
+                    </a>
+                    <div class="bottom-line bg-color-blue hidden-xs"></div>
+                </div>
+                <div class="col-xs-12 col-sm-4 full-width">
+                    <a class="animated-component text-center" href="#">
+                        <h3>@Html.Raw(Model.OfferSection.Products[2].ToStringMix())</h3>
+                        <img class="img-responsive" src="@Url.Content(Model.OfferSection.Products[2].ProductImage)" alt="">
+                    </a>
+                    <div class="bottom-line bg-color-blue"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bottom bg-color-red">
+        <div class="container-fluid full-width">
+            <div class="row full-width">
+                <div class="col-xs-12 col-sm-6 full-width bg-color-opacity">
+                    <a class="animated-component text-center" href="#">
+                        <h3>@Html.Raw(Model.OfferSection.Products[3].ToStringMix())</h3>
+                        <img class="img-responsive" src="@Url.Content(Model.OfferSection.Products[3].ProductImage)" alt="">
+                    </a>
+                    <div class="bottom-line bg-color-red-dark hidden-xs"></div>
+                </div>
+                <div class="col-xs-12 col-sm-6 full-width">
+                    <a class="animated-component text-center" href="#">
+                        <h3>@Html.Raw(Model.OfferSection.Products[4].ToStringMix())</h3>
+                        <img class="img-responsive" src="@Url.Content(Model.OfferSection.Products[4].ProductImage)" alt="">
+                    </a>
+                    <div class="bottom-line bg-color-red-dark"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="section-header bg-color-white text-center">
+    <a href="#" style="text-decoration:none">
+        <h2 style="color: @Html.Raw(Model.CardSection.CardSectionColorTitle)">@Model.CardSection.CardSectionTitle</h2>
+    </a>
+</div>
+<section class="bi-card bg-color-blue-marine text-right">
+    <a href="#">
+        <img src="@Url.Content(Model.CardSection.CardSectionImage)" alt="" class="img-responsive hidden-xs">
+        <img src="@Url.Content(Model.CardSection.CardSectionImageXS)" alt="" class="img-responsive visible-xs">
+     </a>
+</section>
+
+<div class="section-header bg-color-white text-center">
+    <a href="#" style="text-decoration:none">
+        <h2 style="color: @Html.Raw(Model.FoseSection.FoseSectionColorTitle)">@Model.FoseSection.FoseSectionTitle</h2>
+    </a>
+</div>
+<section class="makeup bg-color-black text-right">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 text-left">
+                <div class="item text">
+                    <h3 style="color: @Html.Raw(Model.FoseSection.FoseSectionColorWord1)">@Model.FoseSection.FoseSectionWord1</h3>
+                    <h2 style="color: @Html.Raw(Model.FoseSection.FoseSectionColorWord2)">@Model.FoseSection.FoseSectionWord2</h2>
+                </div>
+                <img src="@Url.Content(Model.FoseSection.FoseSectionImageLogo)" alt="" class="img-responsive makeup-logos hidden-xs">
+            </div>
+            <div class="col-xs-12 col-sm-6 text-right">
+                <div class="item text-right">
+                    <img src="@Url.Content(Model.FoseSection.FoseSectionImage)" alt="" class="img-responsive">
+                </div>
+                <img src="@Url.Content(Model.FoseSection.FoseSectionImageLogo)" alt="" class="img-responsive makeup-logos visible-xs">
+            </div>
+        </div>
+    </div>
+    <div class="bottom-line bg-color-black-dark"></div>
+</section>
+
+<div class="section-header bg-color-white text-center">
+    <h2 style="color: @Html.Raw(Model.BlogSection.BlogSectionColorTitle)">@Model.BlogSection.BlogSectionTitle</h2>
+</div>
+<section class="blog">
+    <div class="top bg-color-white">
+        <div class="container-fluid full-width">
+            <div class="row full-width">
+                <div class="col-xs-12 col-sm-3 full-width">
+                    <a class="item text-center" style="{color: @Html.Raw(Model.BlogSection.Products[0].ProductTitle.TitleTypeColor)}:hover {color: @Html.Raw(Model.BlogSection.Products[0].ProductTitle.TitleTypeHoverColor)}">
+                        <img class="img-responsive" src="@Url.Content(Model.BlogSection.Products[0].ProductImage)" alt="">
+                        <div class="bottom-line" style="background-color: @Html.Raw(Model.BlogSection.Products[0].ProductTitle.TitleTypeBgColor)">
+                            <h3>@Model.BlogSection.Products[0].ProductTitle.TitleTypeMessage</h3>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-3 full-width">
+
+                    <a class="item text-center" style="{color: @Html.Raw(Model.BlogSection.Products[1].ProductTitle.TitleTypeColor)}:hover {color: @Html.Raw(Model.BlogSection.Products[1].ProductTitle.TitleTypeHoverColor)}">
+                        <img class="img-responsive" src="@Url.Content(Model.BlogSection.Products[1].ProductImage)" alt="">
+                        <div class="bottom-line" style="background-color: @Html.Raw(Model.BlogSection.Products[1].ProductTitle.TitleTypeBgColor)">
+                            <h3>@Model.BlogSection.Products[1].ProductTitle.TitleTypeMessage</h3>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-3 full-width">
+                    <a class="item text-center" style="{color: @Html.Raw(Model.BlogSection.Products[2].ProductTitle.TitleTypeColor)}:hover {color: @Html.Raw(Model.BlogSection.Products[2].ProductTitle.TitleTypeHoverColor)}">
+                        <img class="img-responsive" src="@Url.Content(Model.BlogSection.Products[2].ProductImage)" alt="">
+                        <div class="bottom-line" style="background-color: @Html.Raw(Model.BlogSection.Products[2].ProductTitle.TitleTypeBgColor)">
+                            <h3>@Model.BlogSection.Products[2].ProductTitle.TitleTypeMessage</h3>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-3 full-width">
+                    <a class="item text-center" style="{color: @Html.Raw(Model.BlogSection.Products[3].ProductTitle.TitleTypeColor)}:hover {color: @Html.Raw(Model.BlogSection.Products[3].ProductTitle.TitleTypeHoverColor)}">
+                        <img class="img-responsive" src="@Url.Content(Model.BlogSection.Products[3].ProductImage)" alt="">
+                        <div class="bottom-line" style="background-color: @Html.Raw(Model.BlogSection.Products[3].ProductTitle.TitleTypeBgColor)">
+                            <h3>@Model.BlogSection.Products[3].ProductTitle.TitleTypeMessage</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

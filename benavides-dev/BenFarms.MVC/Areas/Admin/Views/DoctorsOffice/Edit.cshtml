@@ -1,0 +1,323 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.DoctorsOfficePage
+
+@{
+    ViewBag.Title = "Editar Página de Quiénes somos";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "DoctorsOfficeEdit";
+}
+
+
+@helper EmbedBoxImgStyleInWebPage()
+{
+    <style>
+        .box img {
+            position: relative !important
+        }
+    </style>
+}
+
+@EmbedBoxImgStyleInWebPage()
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered" id="form_wizard_1">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="icon-layers font-red"></i>
+                    <span class="caption-subject font-red bold uppercase">
+                        Editar Página de Quiénes somos -
+                        <span class="step-title"> Paso 1 de 2 </span>
+                    </span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <form class="form-horizontal" id="submit_form" method="POST" action="" enctype="multipart/form-data">
+                    @*@Html.AntiForgeryToken()*@
+                    <div class="form-wizard">
+                        <div class="form-body">
+                            <input type="hidden" id="Id" value="@Model.Id" name="Id" />
+                            <ul class="nav nav-pills nav-justified steps">
+                                <li>
+                                    <a href="#tabHeadImages" data-toggle="tab" class="step">
+                                        <span class="number"> 1 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Encabezado
+                                        </span>
+                                    </a>
+                                </li>
+                               
+                                <li>
+                                    <a href="#tabValues" data-toggle="tab" class="step">
+                                        <span class="number"> 2 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Valores
+                                        </span>
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div id="bar" class="progress progress-striped" role="progressbar">
+                                <div class="progress-bar progress-bar-success"> </div>
+                            </div>
+                            <div class="tab-content">
+                                <div class="alert alert-danger display-none">
+                                    <button class="close" data-dismiss="alert"></button> Se tienen varios errores. Por favor, revise nuevamente.
+                                </div>
+                                <div class="alert alert-success display-none">
+                                    <button class="close" data-dismiss="alert"></button> La validaión del formulario es correcta.
+                                </div>
+
+                                @*Header*@
+                                <div class="tab-pane active" id="tabHeadImages">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Imágnes de Encabezado</span>
+                                                    </div>
+                                                    <div class="actions">
+                                                        <a id="btnAddDoctorsOfficeHeadImage" class="btn btn-default btn-sm">
+                                                            <i class="fa fa-plus"></i> Adicionar
+                                                        </a>
+                                                        <a class="btn btn-sm btn-icon-only btn-default fullscreen" href="javascript:;"></a>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    @{
+                                                        var idsServer = "";
+                                                        var serverContainerPrefix = "serverImageContainer_";
+                                                        var clientContainerPrefix = "clientImageContainer_";
+                                                    }
+                                                    <div class="row" id="sortable_portlets">
+                                                        <div class="col-md-12 column sortable" id="sortablePortlets">
+                                                            @{
+                                                                for (int i = 0; i < Model.HeadImages.Count; i++)
+                                                                {
+
+                                                                    var iStr = i.ToString() + "_" + Model.HeadImages[i].Id.ToString();
+                                                                    var idHead = i;
+                                                                    var textoEncabezado = "HeadImages[" + iStr + "].Title";
+                                                                    var divEncabezado = serverContainerPrefix + "HeadImages_" + iStr;
+                                                                    var sectionId = Model.HeadImages[i].Id.ToString();
+                                                                    var colorEncabezado = "HeadImages[" + iStr + "].TitleColor";
+                                                                    var headingId = "HeadImages[" + iStr + "].Id";
+
+
+
+                                                                    <div class="col-md-6 portlet portlet-sortable box blue-hoki" id="@divEncabezado">
+                                                                        <div class="portlet-title">
+                                                                            <div class="caption">
+                                                                                <i class="fa fa-gift"></i>Encabezado
+                                                                            </div>
+                                                                            <div class="actions">
+                                                                                <a class="btn btn-default btn-sm" id="@sectionId" onclick="javascript: deleteElemWhoWeAre(@divEncabezado);">
+                                                                                    <i class="fa fa-remove"></i> Eliminar
+                                                                                </a>
+                                                                                <a class="btn btn-sm btn-icon-only btn-default fullscreen" href="javascript:;"></a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="portlet-body">
+                                                                            <input type="hidden" id="@iStr" name="HeadImages.Index" value="@iStr" />
+                                                                            <input type="hidden" id="@headingId" name="@headingId" value="@Model.HeadImages[i].Id" />
+                                                                            <div class="form-group">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-12">
+                                                                                            <label class="control-label">Color</label>
+                                                                                            <div>
+                                                                                                <input type="text" id="@colorEncabezado" name="@colorEncabezado" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.HeadImages[i].TitleColor)" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-12">
+                                                                                            <label class="control-label">Título</label>
+                                                                                            <div>
+                                                                                                <input type="text" id="@textoEncabezado" name="@textoEncabezado" class="form-control" value="@Model.HeadImages[i].Title" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-12">
+                                                                                            <div style="margin-top: 20px">
+                                                                                                <span class="label label-sm label-success"> Activa </span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-12">
+
+
+
+
+                                                                                            <label class="control-label">Imagen</label>
+                                                                                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                                                <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 100px;">
+                                                                                                    <img src="@Url.Content(Model.HeadImages[i].ImageFileName)" />
+                                                                                                </div>                                                                                           
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                }
+
+                                                                <div class="portlet portlet-sortable-empty"> </div>
+                                                            }
+                                                            <div class="portlet portlet-sortable-empty"> </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @*Values*@
+                                <div class="tab-pane active" id="tabValues">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Servicios</span>
+                                                    </div>
+                                                    <div class="actions">
+                                                        <a id="btnAddDoctorsOfficeServiceImage" class="btn btn-default btn-sm">
+                                                            <i class="fa fa-plus"></i> Adicionar
+                                                        </a>
+                                                        <a class="btn btn-sm btn-icon-only btn-default fullscreen" href="javascript:;"></a>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="row" id="sortable_portlets_values">
+                                                        <div class="col-md-12 column sortable" id="sortablePortletsValues">
+                                                            @{
+                                                                for (int i = 0; i < Model.ServicesSection.Count; i++)
+                                                                {
+
+                                                                    var iStr = i.ToString() + "_" + Model.ServicesSection[i].Id.ToString();
+                                                                    var idHead = i;
+                                                                    var textoEncabezado = "ServicesSection[" + iStr + "].Title";
+                                                                    var divEncabezado = clientContainerPrefix + "ValuesSection_" + iStr;
+                                                                    var sectionId = Model.ServicesSection[i].Id.ToString();
+                                                                    var colorEncabezado = "ServicesSection[" + iStr + "].TitleColor";
+                                                                    var headingId = "ServicesSection[" + iStr + "].Id";
+                                                                    var image = "clientImageContainer_ServicesSection[" + iStr + "].ImageFileName";
+
+                                                                    <div class="col-md-6 portlet portlet-sortable box blue-hoki" id="@divEncabezado">
+                                                                        <div class="portlet-title">
+                                                                            <div class="caption">
+                                                                                <i class="fa fa-gift"></i>Encabezado
+                                                                            </div>
+                                                                            <div class="actions">
+                                                                                <a class="btn btn-default btn-sm" id="@sectionId" onclick="javascript: deleteElemWhoWeAre(@divEncabezado);">
+                                                                                    <i class="fa fa-remove"></i> Eliminar
+                                                                                </a>
+                                                                                <a class="btn btn-sm btn-icon-only btn-default fullscreen" href="javascript:;"></a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="portlet-body">
+                                                                            <input type="hidden" id="@iStr" name="ServicesSection.Index" value="@iStr" />
+                                                                            <input type="hidden" id="@headingId" name="@headingId" value="@Model.ServicesSection[i].Id" />
+                                                                            <div class="form-group">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-12">
+                                                                                            <label class="control-label">Color</label>
+                                                                                            <div>
+                                                                                                <input type="text" id="@colorEncabezado" name="@colorEncabezado" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.ServicesSection[i].TitleColor)" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-12">
+                                                                                            <label class="control-label">Título</label>
+                                                                                            <div>
+                                                                                                <input type="text" id="@textoEncabezado" name="@textoEncabezado" class="form-control" value="@Model.ServicesSection[i].Title" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-12">
+                                                                                            <div style="margin-top: 20px">
+                                                                                                <span class="label label-sm label-success"> Activa </span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-12">
+                                                                                            <label class="control-label">Imagen</label>
+                                                                                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                                                <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 100px;">
+                                                                                                    <img src="@Url.Content(Model.ServicesSection[i].ImageFileName)" />
+                                                                                                </div>
+
+                                                                                                <div>
+                                                                                                        <span class="btn red btn-outline btn-file">
+                                                                                                            <span class="fileinput-new"> Seleccionar Imagen </span>
+                                                                                                            <span class="fileinput-exists"> Cambiar </span>
+                                                                                                            <input type="file" name="@image" id="@image">
+                                                                                                        </span>
+                                                                                                        <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                                                                                                    </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                }
+
+                                                                <div class="portlet portlet-sortable-empty"> </div>
+                                                            }
+                                                            <div class="portlet portlet-sortable-empty"> </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @*Form buttons*@
+                                <div class="form-actions">
+                                    <div class="row">
+                                        <div class="col-md-offset-3 col-md-9">
+                                            <a href="javascript:;" class="btn default button-previous">
+                                                <i class="fa fa-angle-left"></i> Atrás
+                                            </a>
+                                            <a href="javascript:;" class="btn btn-outline green button-next">
+                                                Continuar
+                                                <i class="fa fa-angle-right"></i>
+                                            </a>
+                                            <a class="btn green button-submit" id="btnApplyDoctorsOffice">
+                                                Aplicar
+                                                <i class="fa fa-check"></i>
+                                            </a>
+                                            <a class="btn blue" id="btnPreviewDoctorsOffice">
+                                                Vista Previa
+                                                <i class="fa fa-search"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <span id="idsServidor" idsServer="@idsServer" name="idsServidor"></span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

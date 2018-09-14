@@ -1,0 +1,113 @@
+﻿@model IEnumerable<BenavidesFarm.DataModels.Models.Pages.ProductPage>
+
+@{
+    ViewBag.Title = "Productos";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "FosePageIndex";
+    var listar = ViewBag.Listar == 1;
+    var v = listar ? 1 : 2;
+    var listPromocion = "~/Admin/FosePage/ListPromocions?idPromo=" + ViewBag.PromocionPageId + "&idFose=" + ViewBag.Fose + "&v=" + v;
+    var idPromo = "";
+    if (!listar)
+    {
+        idPromo = "~/Admin/FosePage/EditPromocionProduct?idPromo=" + ViewBag.PromocionPageId + "&idFose=" + ViewBag.Fose;
+    }
+}
+
+<div class="portlet light bordered">
+    <div class="portlet-title">
+        <div class="caption font-dark">
+            <i class="icon-settings font-dark"></i>
+            <span class="caption-subject bold uppercase"> Listado Páginas de Productos de Promoción: @ViewBag.PromocionPage</span>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="btn-group">
+                        <a class="btn default" href="@Url.Content(listPromocion)">Atrás</a>
+                    </div>
+                    <div class="btn-group">
+                        @{
+                            if (!string.IsNullOrEmpty(idPromo))
+                            {
+                                <a href="@Url.Content(idPromo)" class="btn sbold green"><i class="fa fa-plus"></i> Añadir Producto </a>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped table-bordered table-hover order-column" id="sample_1">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProductPageCustomValue)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProductPageActive)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProductPageCreatedDate)
+                    </th>
+                    <th>Vista Previa</th>
+                    @{
+                        if (!listar)
+                        {
+                            <th>Editar</th>
+                            <th>Eliminar</th>
+                        }
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => @item.ProductPageCustomValue)
+                        </td>
+                        <td>
+                            @{
+                                switch (item.ProductPageActive)
+                                {
+                                    case "Activada": <span class="label label-sm label-success"> Activa </span>break;
+                                    case "Desactivada": <span class="label label-sm label-warning"> Desactivada </span>break;
+                                    case "EnEdicion": <span class="label label-sm label-danger"> En Edición </span>break;
+                                }
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProductPageCreatedDate)
+                        </td>
+                        <td>
+                            @{ var mPrev = "~/Admin/FosePage/PreviewPromocionProduct/" + item.ProductPageId;}
+                            <a href="@Url.Content(mPrev)" target="_blank"><li class="glyphicon glyphicon-search " style="color:lawngreen">Ver página</li></a>
+                        </td>
+
+                        @{
+                            if (!listar)
+                            {
+                                var mEditProm = "~/Admin/FosePage/EditPromocionProduct?idProd=" + item.ProductPageId + "&idPromo=" + item.PromocionPageId + "&idFose=" + ViewBag.Fose;
+                                var mAct = "~/Admin/FosePage/DeletePromocionProduct?idProd=" + item.ProductPageId + "&idPromo=" + item.PromocionPageId + "&idFose=" + ViewBag.Fose;
+
+                                if (item.ProductPageActive == "EnEdicion")
+                                {
+                                    <td>
+                                        <a href="@Url.Content(mEditProm)"><li class="glyphicon glyphicon-edit " style="color: blue"> Editar Página </li></a>
+                                    </td>
+                                    <td>
+
+                                        <a href="@Url.Content(mAct)"><li class="glyphicon glyphicon-trash" style="color: goldenrod"> Eliminar</li></a>
+                                    </td>
+                                }
+                            }
+                        }
+
+                    </tr>
+                  }
+            </tbody>
+        </table>
+    </div>
+</div>

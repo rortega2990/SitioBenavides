@@ -1,0 +1,283 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.OfferPage
+
+@{
+    ViewBag.Title = "Editar Página de Ofertas";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "OfferPageEdit";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered" id="form_wizard_1">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="icon-layers font-red"></i>
+                    <span class="caption-subject font-red bold uppercase">
+                        Editar Página de Ofertas -
+                        <span class="step-title"> Paso 1 de 2 </span>
+                    </span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <form class="form-horizontal" id="submit_form" method="POST" action="" enctype="multipart/form-data">
+                    @Html.AntiForgeryToken()
+                    <div class="form-wizard">
+                        <div class="form-body">
+                            <ul class="nav nav-pills nav-justified steps">
+                                <li>
+                                    <a href="#tab1" data-toggle="tab" class="step">
+                                        <span class="number"> 1 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Texto de Encabezado
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#tab2" data-toggle="tab" class="step">
+                                        <span class="number"> 2 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Imagen de Productos
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div id="bar" class="progress progress-striped" role="progressbar">
+                                <div class="progress-bar progress-bar-success"> </div>
+                            </div>
+                            <div class="tab-content">
+                                <div class="alert alert-danger display-none">
+                                    <button class="close" data-dismiss="alert"></button> Se tienen varios errores. Por favor, revise nuevamente.
+                                </div>
+                                <div class="alert alert-success display-none">
+                                    <button class="close" data-dismiss="alert"></button> La validaión del formulario es correcta.
+                                </div>
+                                <div class="tab-pane active" id="tab1">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Texto de Encabezado</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Tipo de Oferta</label>
+                                                            @{
+                                                                var va = Model.OfferType == null ? "selected=\"selected\"" : "";                                                                
+                                                            }
+                                                            <div class="col-md-4">
+                                                                <select class="bs-select form-control" id="TipoOferta" onchange="javascript: getOfferType();">
+                                                                    @{
+                                                                        if (Model.OfferTypes != null)
+                                                                        {
+                                                                            foreach (var x in Model.OfferTypes)
+                                                                            {
+                                                                                var mon = Model.OfferType.OfferTypeName == x.OfferTypeName ? "selected=\"selected\"" : "";
+                                                                                <option value="@x.OfferTypeId" @Html.Raw(mon)>@Html.Raw(x.OfferTypeName)</option>
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                </select>
+                                                            </div>
+                                                            <label class="control-label col-md-2">Color de fondo</label>
+                                                            <div class="col-md-4" id="divColorFondoOfertas">
+                                                                <input type="text" id="ColorFondoOfertas" name="ColorFondoOfertas" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.OfferPageFillColor)" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Texto 1</label>
+                                                            <div class="col-md-2">
+                                                                <input type="text" id="TextoOfertas1" name="TextoOfertas1" class="form-control" value="@Model.OfferPageText1"/>
+                                                            </div>
+                                                            <label class="control-label col-md-2">Texto 2</label>
+                                                            <div class="col-md-2">
+                                                                <input type="text" id="TextoOfertas2" name="TextoOfertas2" class="form-control" value="@Model.OfferPageText2" />
+                                                            </div>
+                                                            <label class="control-label col-md-2">Texto 3</label>
+                                                            <div class="col-md-2">
+                                                                <input type="text" id="TextoOfertas3" name="TextoOfertas3" class="form-control" value="@Model.OfferPageText3" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Color Texto 1</label>
+                                                            <div class="col-md-2" id="divColorTextoOfertas1">
+                                                                <input type="text" id="ColorTextoOfertas1" name="ColorTextoOfertas1" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.OfferPageColorText1)" />
+                                                            </div>
+                                                            <label class="control-label col-md-2">Color Texto 2</label>
+                                                            <div class="col-md-2" id="divColorTextoOfertas2">
+                                                                <input type="text" id="ColorTextoOfertas2" name="ColorTextoOfertas2" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.OfferPageColorText2)" />
+                                                            </div>
+                                                            <label class="control-label col-md-2">Color Texto 3</label>
+                                                            <div class="col-md-2" id="divColorTextoOfertas3">
+                                                                <input type="text" id="ColorTextoOfertas3" name="ColorTextoOfertas3" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.OfferPageColorText3)" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Texto Resaltado 1</label>
+                                                            <div class="col-md-2">
+                                                                <input type="text" id="TextoResaltadoOfertas1" name="TextoResaltadoOfertas1" class="form-control" value="@Model.OfferPageSpan1" />
+                                                            </div>
+                                                            <label class="control-label col-md-2">Texto Resaltado 2</label>
+                                                            <div class="col-md-2">
+                                                                <input type="text" id="TextoResaltadoOfertas2" name="TextoResaltadoOfertas2" class="form-control" value="@Model.OfferPageSpan2" />
+                                                            </div>
+                                                            <label class="control-label col-md-2">Texto Resaltado 3</label>
+                                                            <div class="col-md-2">
+                                                                <input type="text" id="TextoResaltadoOfertas3" name="TextoResaltadoOfertas3" class="form-control" value="@Model.OfferPageSpan3" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Color Texto Resaltado 1</label>
+                                                            <div class="col-md-2" id="divColorTextoResaltadoOfertas1">
+                                                                <input type="text" id="ColorTextoResaltadoOfertas1" name="ColorTextoResaltadoOfertas1" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.OfferPageColorSpan1)" />
+                                                            </div>
+                                                            <label class="control-label col-md-2">Color Texto Resaltado 2</label>
+                                                            <div class="col-md-2" id="divColorTextoResaltadoOfertas2">
+                                                                <input type="text" id="ColorTextoResaltadoOfertas2" name="ColorTextoResaltadoOfertas2" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.OfferPageColorSpan2)" />
+                                                            </div>
+                                                            <label class="control-label col-md-2">Color Texto Resaltado 3</label>
+                                                            <div class="col-md-2" id="divColorTextoResaltadoOfertas3">
+                                                                <input type="text" id="ColorTextoResaltadoOfertas3" name="ColorTextoResaltadoOfertas3" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.OfferPageColorSpan3)" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="form-group" id="divRowTipoTexto">
+                                                            <label class="control-label col-md-2" id="labelTipoTexto1">Tipo de Texto 1</label>
+                                                            @{
+                                                                var sel1 = Model.OfferPageTextType1 == "em" ? "selected=\"selected\"" : "";
+                                                                var selGrande1 = Model.OfferPageTextType1 == "lg" ? "selected=\"selected\"" : "";
+                                                                var selMediano1 = Model.OfferPageTextType1 == "md" ? "selected=\"selected\"" : "";
+                                                                var selChico1 = Model.OfferPageTextType1 == "xs" ? "selected=\"selected\"" : "";
+
+                                                                var sel2 = Model.OfferPageTextType2 == "em" ? "selected=\"selected\"" : "";
+                                                                var selGrande2 = Model.OfferPageTextType2 == "lg" ? "selected=\"selected\"" : "";
+                                                                var selMediano2 = Model.OfferPageTextType2 == "md" ? "selected=\"selected\"" : "";
+                                                                var selChico2 = Model.OfferPageTextType2 == "xs" ? "selected=\"selected\"" : "";
+
+                                                                var sel3 = Model.OfferPageTextType3 == "em" ? "selected=\"selected\"" : "";
+                                                                var selGrande3 = Model.OfferPageTextType3 == "lg" ? "selected=\"selected\"" : "";
+                                                                var selMediano3 = Model.OfferPageTextType3 == "md" ? "selected=\"selected\"" : "";
+                                                                var selChico3 = Model.OfferPageTextType3 == "xs" ? "selected=\"selected\"" : "";
+                                                            }
+                                                            <div class="col-md-2" id="divTipoTexto1">
+                                                                <select class="bs-select form-control" id="TipoTexto1">
+                                                                    <option value="em" @Html.Raw(sel1)>Seleccionar</option>
+                                                                    <option value="lg" @Html.Raw(selGrande1)>Grande</option>
+                                                                    <option value="md" @Html.Raw(selMediano1)>Mediano</option>
+                                                                    <option value="xs" @Html.Raw(selChico1)>Pequeño</option>
+                                                                </select>
+                                                            </div>                                                            
+                                                            <label class="control-label col-md-2" id="labelTipoTexto2">Tipo de Texto 2</label>
+                                                            <div class="col-md-2" id="divTipoTexto2">
+                                                                <select class="bs-select form-control" id="TipoTexto2">
+                                                                    <option value="em" @Html.Raw(sel2)>Seleccionar</option>
+                                                                    <option value="lg" @Html.Raw(selGrande2)>Grande</option>
+                                                                    <option value="md" @Html.Raw(selMediano2)>Mediano</option>
+                                                                    <option value="xs" @Html.Raw(selChico2)>Pequeño</option>
+                                                                </select>
+                                                            </div>
+                                                            <label class="control-label col-md-2" id="labelTipoTexto3">Tipo de Texto 3</label>
+                                                            <div class="col-md-2" id="divTipoTexto3">
+                                                                <select class="bs-select form-control" id="TipoTexto3">
+                                                                    <option value="em" @Html.Raw(sel3)>Seleccionar</option>
+                                                                    <option value="lg" @Html.Raw(selGrande3)>Grande</option>
+                                                                    <option value="md" @Html.Raw(selMediano3)>Mediano</option>
+                                                                    <option value="xs" @Html.Raw(selChico3)>Pequeño</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tab2">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Imagen de Productos</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 950px; height: 500px; line-height: 500px;">
+                                                                    @{
+                                                                        if (Model.OfferImage.Substring(Model.OfferImage.LastIndexOf('.')) == ".pdf")
+                                                                        {
+                                                                            var file = Path.GetFileNameWithoutExtension(Model.OfferImage) + ".pdf";
+                                                                            @file;
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <img src="@Url.Content(Model.OfferImage)" id="imgImagenProductosOfertas" />
+                                                                        }
+                                                                    }                                                                    
+                                                                </div>
+                                                                <div>
+                                                                    <span class="btn red btn-outline btn-file">
+                                                                        <span class="fileinput-new"> Seleccionar Imagen </span>
+                                                                        <span class="fileinput-exists"> Cambiar </span>
+                                                                        <input type="file" name="ImagenProductosOfertas" id="ImagenProductosOfertas">
+                                                                    </span>
+                                                                    <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <a href="javascript:;" class="btn default button-previous">
+                                        <i class="fa fa-angle-left"></i> Atrás
+                                    </a>
+                                    <a href="javascript:;" class="btn btn-outline green button-next">
+                                        Continuar
+                                        <i class="fa fa-angle-right"></i>
+                                    </a>
+                                    <a class="btn green button-submit" id="btnApplyOffer">
+                                        Aplicar
+                                        <i class="fa fa-check"></i>
+                                    </a>
+                                    <a class="btn blue" id="btnPreviewOffer">
+                                        Vista Previa
+                                        <i class="fa fa-search"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

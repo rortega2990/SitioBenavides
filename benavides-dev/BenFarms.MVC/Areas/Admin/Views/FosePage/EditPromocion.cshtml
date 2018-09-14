@@ -1,0 +1,378 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.PromocionPage
+
+@{
+    ViewBag.Title = "Editar Página de Promoción";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "FosePageEdit";
+    var idPromo = Model.PromocionPageId;
+    var idFose = ViewBag.Fose;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered" id="form_wizard_1">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="icon-layers font-red"></i>
+                    <span class="caption-subject font-red bold uppercase">
+                        Editar Página de Promociones -
+                        <span class="step-title"> Paso 1 de 3 </span>
+                    </span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <form class="form-horizontal" id="submit_form" method="POST" action="" enctype="multipart/form-data">
+                    @Html.AntiForgeryToken()
+                    <div class="form-wizard">
+                        <div class="form-body">
+                            <ul class="nav nav-pills nav-justified steps">
+                                <li>
+                                    <a href="#tab1" data-toggle="tab" class="step">
+                                        <span class="number"> 1 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Imagen de Promoción en Fose
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#tab2" data-toggle="tab" class="step">
+                                        <span class="number"> 1 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Imágenes de Encabezado de Página de Promoción
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#tab3" data-toggle="tab" class="step">
+                                        <span class="number"> 2 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Textos de Encabezado de Página de Promoción
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#tab4" data-toggle="tab" class="step">
+                                        <span class="number"> 3 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Textos de Título de Página de Promoción
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div id="bar" class="progress progress-striped" role="progressbar">
+                                <div class="progress-bar progress-bar-success"> </div>
+                            </div>
+                            <div class="tab-content">
+                                <div class="alert alert-danger display-none">
+                                    <button class="close" data-dismiss="alert"></button> Se tienen varios errores. Por favor, revise nuevamente.
+                                </div>
+                                <div class="alert alert-success display-none">
+                                    <button class="close" data-dismiss="alert"></button> La validaión del formulario es correcta.
+                                </div>
+                                <div class="tab-pane" id="tab1">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Imagen de Promoción en Fose</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Texto de Imagen de Promoción</label>
+                                                            <div class="col-md-4">
+                                                                @{
+                                                                    if (!string.IsNullOrEmpty(Model.PromocionPageTextFose))
+                                                                    {
+                                                                        <input type="text" id="TextFosePromocionPage" name="TextFosePromocionPage" class="form-control" value="@Model.PromocionPageTextFose" />
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <input type="text" id="TextFosePromocionPage" name="TextFosePromocionPage" class="form-control" value="" />
+                                                                    }
+                                                                }
+                                                            </div>
+                                                            <label class="control-label col-md-2">Color del Texto de Imagen de Promoción</label>
+                                                            <div class="col-md-4">
+                                                                @{
+                                                                    if (!string.IsNullOrEmpty(Model.PromocionPageTextColorFose))
+                                                                    {
+                                                                        <input type="text" id="TextColorFosePromocionPage" name="TextColorFosePromocionPage" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.PromocionPageTextColorFose)" />
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <input type="text" id="TextColorFosePromocionPage" name="TextColorFosePromocionPage" class="form-control demo" data-control="wheel" value="" />
+                                                                    }
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-md-12">
+                                                            <label class="control-label col-md-2">Imagen de Promoción en Fose</label>
+                                                            <div class="col-md-10">
+                                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                    <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width:500px; height: 200px;">
+                                                                        @{
+                                                                            if (!string.IsNullOrEmpty(Model.PromocionPageHeadImage))
+                                                                            {
+                                                                                <img src="@Url.Content(Model.PromocionPageHeadImage)" id="HeadImagePromocionPageSrc" />
+                                                                            }
+                                                                        }
+                                                                    </div>
+                                                                    <div>
+                                                                        <span class="btn red btn-outline btn-file">
+                                                                            <span class="fileinput-new"> Seleccionar Imagen </span>
+                                                                            <span class="fileinput-exists"> Cambiar </span>
+                                                                            <input type="file" name="HeadImagePromocionPage" id="HeadImagePromocionPage">
+                                                                        </span>
+                                                                        <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane active" id="tab2">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Imágenes de Encabezado de Página de Promoción</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="row">
+                                                        <div class="form-group col-md-6">
+                                                            <label class="control-label col-md-4">Imagen de Logo</label>
+                                                            <div class="col-md-4">
+                                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                    <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width:200px; height: 200px;">
+                                                                        @{
+                                                                            if (!string.IsNullOrEmpty(Model.PromocionPageImageLogo1))
+                                                                            {
+                                                                                <img src="@Url.Content(Model.PromocionPageImageLogo1)" id="ImageLogo1PromocionPageSrc" />
+                                                                            }
+                                                                        }
+                                                                    </div>                                                                    
+                                                                    <div>
+                                                                        <span class="btn red btn-outline btn-file">
+                                                                            <span class="fileinput-new"> Seleccionar Imagen </span>
+                                                                            <span class="fileinput-exists"> Cambiar </span>
+                                                                            <input type="file" name="ImageLogo1PromocionPage" id="ImageLogo1PromocionPage">
+                                                                        </span>
+                                                                        <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            <label class="control-label col-md-4">Imagen de Producto</label>
+                                                            <div class="col-md-4">
+                                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                    <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width:200px; height: 200px;">
+                                                                        @{
+                                                                            if (!string.IsNullOrEmpty(Model.PromocionPageImageLogo2))
+                                                                            {
+                                                                                <img src="@Url.Content(Model.PromocionPageImageLogo2)" id="ImageLogo2PromocionPageSrc" />
+                                                                            }
+                                                                        }
+                                                                    </div>
+                                                                    <div>
+                                                                        <span class="btn red btn-outline btn-file">
+                                                                            <span class="fileinput-new"> Seleccionar Imagen </span>
+                                                                            <span class="fileinput-exists"> Cambiar </span>
+                                                                            <input type="file" name="ImageLogo2PromocionPage" id="ImageLogo2PromocionPage">
+                                                                        </span>
+                                                                        <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tab3">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Textos de Encabezado de Página de Promoción</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Color de fondo</label>
+                                                            <div class="col-md-4">
+                                                                @{
+                                                                    if (!string.IsNullOrEmpty(Model.PromocionPageColorHeadBg))
+                                                                    {
+                                                                        <input type="text" id="ColorHeadBgPromocionPage" name="ColorHeadBgPromocionPage" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.PromocionPageColorHeadBg)" />
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <input type="text" id="ColorHeadBgPromocionPage" name="ColorHeadBgPromocionPage" class="form-control demo" data-control="wheel" value="" />
+                                                                    }
+                                                                }                                                                
+                                                            </div>                                                           
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Texto</label>
+                                                            <div class="col-md-4">
+                                                                @{
+                                                                    if (!string.IsNullOrEmpty(Model.PromocionPageHeadText))
+                                                                    {
+                                                                        <input type="text" id="HeadTextPromocionPage" name="HeadTextPromocionPage" class="form-control" value="@Model.PromocionPageHeadText" />
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <input type="text" id="HeadTextPromocionPage" name="HeadTextPromocionPage" class="form-control" value="" />
+                                                                    }
+                                                                }    
+                                                                
+                                                            </div>
+                                                            <label class="control-label col-md-2">Color Texto</label>
+                                                            <div class="col-md-4">
+                                                                @{
+                                                                    if (!string.IsNullOrEmpty(Model.PromocionPageHeadtextColor))
+                                                                    {
+                                                                        <input type="text" id="HeadtextColorPromocionPage" name="HeadtextColorPromocionPage" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.PromocionPageHeadtextColor)" />
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <input type="text" id="HeadtextColorPromocionPage" name="HeadtextColorPromocionPage" class="form-control demo" data-control="wheel" value="" />
+                                                                    }
+                                                                } 
+                                                            </div>                                                               
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Texto Resaltado</label>
+                                                            <div class="col-md-4">
+                                                                @{
+                                                                    if (!string.IsNullOrEmpty(Model.PromocionPageSpanHeadText))
+                                                                    {
+                                                                        <input type="text" id="SpanHeadTextPromocionPage" name="SpanHeadTextPromocionPage" class="form-control" value="@Html.Raw(Model.PromocionPageSpanHeadText)" />
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <input type="text" id="SpanHeadTextPromocionPage" name="SpanHeadTextPromocionPage" class="form-control" value="" />
+                                                                    }
+                                                                }                                                                 
+                                                            </div>
+                                                            <label class="control-label col-md-2">Color Texto Resaltado</label>
+                                                            <div class="col-md-4">
+                                                                @{
+                                                                    if (!string.IsNullOrEmpty(Model.PromocionPageSpanHeadtextColor))
+                                                                    {
+                                                                        <input type="text" id="SpanHeadtextColorPromocionPage" name="SpanHeadtextColorPromocionPage" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.PromocionPageSpanHeadtextColor)" />
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <input type="text" id="SpanHeadtextColorPromocionPage" name="SpanHeadtextColorPromocionPage" class="form-control demo" data-control="wheel" value="" />
+                                                                    }
+                                                                }                                                                 
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tab4">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Textos de Título de Página de Promoción</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Texto Título 1</label>
+                                                            <div class="col-md-4">
+                                                                @{
+                                                                    if (!string.IsNullOrEmpty(Model.PromocionPageSubText1))
+                                                                    {
+                                                                        <input type="text" id="SubText1PromocionPage" name="SubText1PromocionPage" class="form-control" value="@Html.Raw(Model.PromocionPageSubText1)" />
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <input type="text" id="SubText1PromocionPage" name="SubText1PromocionPage" class="form-control" />
+                                                                    }
+                                                                }  
+                                                                
+                                                            </div>
+                                                            <label class="control-label col-md-2">Texto Título 2</label>    
+                                                            <div class="col-md-4">
+                                                                @{
+                                                                    if (!string.IsNullOrEmpty(Model.PromocionPageSubText2))
+                                                                    {
+                                                                        <input type="text" id="SubText2PromocionPage" name="SubText2PromocionPage" class="form-control" value="@Html.Raw(Model.PromocionPageSubText2)" />
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <input type="text" id="SubText2PromocionPage" name="SubText2PromocionPage" class="form-control" value="" />
+                                                                    }
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-9">
+
+                                    <span class="hidden" id="idPromo" idPromo="@idPromo"></span>
+                                    <span class="hidden" id="idFose" idFose="@idFose"></span>
+                                    <a href="javascript:;" class="btn default button-previous">
+                                        <i class="fa fa-angle-left"></i> Atrás
+                                    </a>
+                                    <a href="javascript:;" class="btn btn-outline green button-next">
+                                        Continuar
+                                        <i class="fa fa-angle-right"></i>
+                                    </a>
+                                    <a class="btn green button-submit" id="btnApplyPromocion">
+                                        Aplicar
+                                        <i class="fa fa-check"></i>
+                                    </a>
+                                    <a class="btn blue" id="btnPreviewPromocion">
+                                        Vista Previa
+                                        <i class="fa fa-search"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

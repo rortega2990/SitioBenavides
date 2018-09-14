@@ -1,0 +1,147 @@
+﻿@model BenFarms.MVC.Areas.Admin.Models.LaboratoryInputModel
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var states = (IEnumerable<SelectListItem>)ViewBag.States;
+    var errors = (IEnumerable<String>)ViewBag.Errors;
+    ViewBag.Page = "Laboratory";
+}
+
+<h2>Agregar/Editar Laboratorio</h2>
+
+
+@if (errors != null && errors.Count() > 0)
+{
+    <div class="text-danger">
+        <h3>Se encontraron errores durante la operación</h3>
+        <ul>
+            @foreach(String error in errors)
+            {
+                <li><h4>@error</h4></li>
+            }
+        </ul>
+    </div>
+}
+
+@using (Html.BeginForm("AddOrUpdate","Laboratory",FormMethod.Post,new { @class="form-horizontal"}))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Nombre del Laboratorio", required = true } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StateId, "Estado", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.DropDownListFor(model => model.StateId, states, new {  @class = "form-control", @id = "statesSelect", currentState= Model.StateId })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CityId, "Municipio", htmlAttributes: new { @class = "control-label col-md-2"})
+            <div class="col-md-6">
+                <select id="citiesSelect" class="form-control" name="CityId" data-current-city="@Model.CityId">
+
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Active, "Activo", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.CheckBoxFor(model => model.Active)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-6">
+              @* @Html.ActionLink("Agregar", "AddOrUpdate",null, htmlAttributes: new { @class = "btn blue" })*@
+                <button type="submit" class="btn btn blue">Aceptar</button>
+                @Html.ActionLink("Atras", "Index", null, htmlAttributes: new { @class = "btn default" })
+            </div>
+        </div>
+
+        <input type="hidden" name="Id" value="@Model.Id" />
+    </div>
+}
+
+
+@section scripts{
+    <section class="scripts">
+        <script type="text/javascript">
+            $(function () {
+                var base = getSiteRootUrl();
+                statesSelect = $("#statesSelect");
+                citiesSelect = $("#citiesSelect");
+
+                var replaceComboBoxItems = function (targetJQueryObject, data, options) {
+                    targetJQueryObject.empty();
+                    if (options.customText) {
+                        var markup = "<option value='0'>" + options.customText + "</option>";
+                    }
+                    for (var i = 0; i < data.length; i++) {
+                        markup += "<option value='" + data[i][options.value] + "'>" + data[i][options.text] + "</option>";
+                    }
+
+                    targetJQueryObject.html(markup).show();
+                };
+
+                var populateSearchResultsTable = function (regionJQueryObject, data) {
+                    regionJQueryObject.empty();
+                    var l = data.length;
+
+                    var html = "";
+                    for (i = 0; i < l; ++i) {
+                        html += "<tr><td>" + data[i].Name + "</td></tr>";
+                    }
+
+                    regionJQueryObject.html(html);
+
+                };
+                var currentCity = citiesSelect.attr("data-current-city");
+
+                statesSelect.on("change", function () {
+                    var stateId = this.value;
+                    $.ajax({
+                        url: base + "/Branch/GetCities/" + stateId,
+                        data: { state: stateId },
+                        cache: false,
+                        type: "GET",
+                        async: true,
+                        success: function (data) {
+                            var options = {
+                                value: "Value",
+                                text: "Text",
+                                customText: "Seleccione Ciudad"
+                            };
+                            replaceComboBoxItems(citiesSelect, data, options);
+                            console.log("current city:" + currentCity);
+                            if (currentCity > 0)
+                            {
+                                citiesSelect.val(currentCity);
+                            }
+                            
+                        },
+                        error: function (reponse) {
+                            alert("error : " + reponse);
+                        }
+                    });
+
+                });
+
+                statesSelect.trigger('change');
+                
+            });
+        </script>
+
+    </section>
+}
+
+

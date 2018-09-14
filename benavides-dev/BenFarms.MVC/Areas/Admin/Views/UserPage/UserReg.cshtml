@@ -1,0 +1,84 @@
+﻿@model IEnumerable<BenFarms.MVC.Models.RegisterViewModel>
+
+@{
+    ViewBag.Title = "Listado de Usuarios Registrados";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "UserPageReg";
+}
+
+<div class="portlet light bordered">
+    <div class="portlet-title">
+        <div class="caption font-dark">
+            <i class="icon-settings font-dark"></i>
+            <span class="caption-subject bold uppercase"> Listado de Usuarios Registrados</span>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="btn-group">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped table-bordered table-hover order-column" id="sample_1">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Names)
+                    </th>
+                    <th>
+                        Apellidos
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PhoneNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CreationDate)
+                    </th>
+                    <th>
+                        Ver
+                    </th>
+                    <th>
+                        Eliminar
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Names)
+                        </td>
+                        <td>
+                            @{var ape = item.LastName1 + " " + item.LastName2;}
+                            @ape
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PhoneNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreationDate)
+                        </td>
+                        <td>
+                            @{ var mDet = "~/Admin/UserPage/DetailsRegUser/" + item.UserId;}
+                            <a href="@Url.Content(mDet)"><li class="fa fa-search" style="color:blue"></li></a>
+                        </td>
+                        <td>
+                            @{ var mDel = "~/Admin/UserPage/DeleteRegUser/" + item.UserId;}
+                            <a href="@Url.Content(mDel)"><li class="glyphicon glyphicon-trash " style="color:orangered"></li></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

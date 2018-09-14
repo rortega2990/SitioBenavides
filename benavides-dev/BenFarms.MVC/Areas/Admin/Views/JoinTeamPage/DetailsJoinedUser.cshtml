@@ -1,0 +1,74 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.Elements.UserJoinedToTeam
+
+@{
+    ViewBag.Title = "Detalles Usuario de Únete al Equipo";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "TeamPageUsersList";
+}
+
+<h2>Detalles Usuario de Únete al Equipo</h2>
+
+<div>
+    <h4>Usuario Únete al Equipo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Names)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Names)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lastnames)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lastnames)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd> 
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd> 
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>     
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.InterestArea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InterestArea)
+        </dd>  
+                
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreation)
+        </dd>
+
+    </dl>
+
+    <a class="btn default" href="~/Admin/JoinTeamPage/JoinedUsersList">Atrás</a>
+</div>

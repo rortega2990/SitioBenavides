@@ -1,0 +1,114 @@
+﻿@model IEnumerable<BenavidesFarm.DataModels.Models.Pages.BlogPage>
+
+@{
+    ViewBag.Title = "Listado de Páginas de Blogs";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "BlogPageIndex";
+}
+
+<div class="portlet light bordered">
+    <div class="portlet-title">
+        <div class="caption font-dark">
+            <i class="icon-settings font-dark"></i>
+            <span class="caption-subject bold uppercase"> Listado Páginas de Blogs </span>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="btn-group">
+                        <a href="~/Admin/BlogPage/Edit" class="btn sbold green"><i class="fa fa-plus"></i> Editar Página </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped table-bordered table-hover order-column" id="sample_1">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BlogPageCustomValue)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BlogType.BlogTypeName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BlogPageActive)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BlogPageCreatedDate)
+                    </th>
+                    <th>Vista Previa</th>
+                    <th>Noticias</th>
+                    <th>Activar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BlogPageCustomValue)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BlogType.BlogTypeName)
+                        </td>
+                        <td>
+                            @{
+                                switch (item.BlogPageActive)
+                                {
+                                    case "Activada": <span class="label label-sm label-success"> Activa </span>break;
+                                    case "Desactivada": <span class="label label-sm label-warning"> Desactivada </span>break;
+                                    case "EnEdicion": <span class="label label-sm label-danger"> En Edición </span>break;
+                                }
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BlogPageCreatedDate)
+                        </td>
+                        <td>
+                            @{ var mEdit = "~/Admin/BlogPage/Preview/" + item.BlogPageId;}
+                            <a href="@Url.Content(mEdit)" target="_blank"><li class="glyphicon glyphicon-search " style="color:lawngreen">Ver Página</li></a>
+                        </td>
+                        <td>
+                            @{
+                                if (item.BlogPageActive != "EnEdicion")
+                                {
+                                    var mProm = "~/Admin/BlogPage/ListNews?idBlog=" + item.BlogPageId + "&v=1";
+                                    <a href="@Url.Content(mProm)"><li class="glyphicon glyphicon-search" style="color: darkorchid"> Ver Noticias</li></a>
+                                }
+                                else
+                                {
+                                    var mProm = "~/Admin/BlogPage/ListNews?idBlog=" + item.BlogPageId + "&v=2";
+                                    <a href="@Url.Content(mProm)"><li class="glyphicon glyphicon-edit" style="color: mediumblue"> Editar Noticias</li></a>
+                                }
+                            }
+                        </td>
+                        <td>
+                            @{
+                                if (item.BlogPageActive == "EnEdicion" || item.BlogPageActive == "Desactivada")
+                                {
+                                    if (item.News.Count > 0)
+                                    {
+                                        var mAct = "~/Admin/BlogPage/Active/" + item.BlogPageId;
+                                        <a href="@Url.Content(mAct)"><li class="fa fa-check" style="color: goldenrod"> Activar</li></a>
+                                    }
+                                }
+                            }
+                        </td>
+                        <td>
+                            @{
+                                if (item.BlogPageActive == "EnEdicion")
+                                {
+                                    var mAct = "~/Admin/BlogPage/Delete/" + item.BlogPageId;
+                                    <a href="@Url.Content(mAct)"><li class="glyphicon glyphicon-trash" style="color: goldenrod"> Eliminar</li></a>
+                                }
+                            }
+                        </td>
+                    </tr>
+               }
+            </tbody>
+        </table>
+    </div>
+</div>

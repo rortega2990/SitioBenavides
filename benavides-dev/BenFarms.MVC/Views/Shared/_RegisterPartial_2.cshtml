@@ -1,0 +1,198 @@
+﻿@model BenFarms.MVC.Models.RegisterViewModel
+<style>
+    h3 {
+        margin-top: 0 !important;
+    }
+    #modal-register .modal-header, #modal-cities .modal-header {
+        padding-bottom: 0 !important;
+        padding-top: 20px !important;
+    }
+    .modal-body {
+        padding-top: 0 !important;
+    }
+
+    .modal-title-header {
+        margin-bottom: 20px !important;
+    }
+
+    .form-horizontal .control-label {
+        padding-right: 0 !important;
+    }
+
+    .input-sm {
+        height: 25px !important;
+
+    }
+
+    .text-left {
+        text-align: left !important;
+    }
+    .modal-footer {
+        border-top: none !important;
+    }
+</style>           
+
+<form class="form-horizontal" id="registerForm" action="" role="form" enctype="multipart/form-data">
+    <div id="modal-register" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content bg-color-blue">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+
+                <div class="modal-body">
+
+                    @*@Html.AntiForgeryToken()*@
+
+                    <h3 class="modal-title-header">¡Bienvenido a Tarjeta Benavides!</h3>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-md-7 col-sm-7 col-lg-7">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Card, new { @class = "col-sm-5 col-xs-12 control-label" })
+                                <div class="col-sm-7 col-xs-12">
+                                    @Html.TextBoxFor(m => m.Card, new { @class = "form-control input-sm", id = "Card", name = "Card", required = true })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Names, new { @class = "col-sm-5 col-xs-12 control-label" })
+                                <div class="col-sm-7 col-xs-12">
+                                    @Html.TextBoxFor(m => m.Names, new { @class = "form-control input-sm", id = "Names", name = "Names", minlength = "2", maxlength = "100", required = true })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.LastName1, new { @class = "col-sm-5 col-xs-12 control-label" })
+                                <div class="col-sm-7 col-xs-12">
+                                    @Html.TextBoxFor(m => m.LastName1, new { @class = "form-control input-sm", id = "LastName1", name = "LastName1", minlength = "2", maxlength = "100", required = true })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.LastName2, new { @class = "col-sm-5 col-xs-12 control-label" })
+                                <div class="col-sm-7 col-xs-12">
+                                    @Html.TextBoxFor(m => m.LastName2, new { @class = "form-control input-sm", id = "LastName2", name = "LastName2", minlength = "2", maxlength = "100", required = true })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Email, new { @class = "col-sm-5 col-xs-12 control-label" })
+                                <div class="col-sm-7 col-xs-12">
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control input-sm", id = "Email", name = "Email", maxlength = "150", required = true })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-sm-5 col-xs-12 control-label" })
+                                <div class="col-sm-7 col-xs-12">
+                                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control input-sm", id = "PhoneNumber", name = "PhoneNumber" })
+                                </div>
+                            </div>
+                            @*<div class="form-group date">
+                                @Html.LabelFor(m => m.BirthDate, new { @class = "col-sm-5 col-xs-12 control-label" })
+                                <div class="col-sm-7 col-xs-12">
+                                    @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control form-control-inline input-sm date-picker", id = "BirthDate", name = "BirthDate", required = true })
+                                </div>
+                            </div>*@
+                            
+                            <div class="form-group date">
+                                <label class="col-sm-5 col-xs-12 control-label" for="BirthDate">*Fecha de nacimiento:</label>
+                                <div class="col-sm-7 col-xs-12">
+                                    <input class="form-control form-control-inline input-sm date-picker" id="BirthDate" name="BirthDate" required="True" type="text" value="" aria-required="true" data-date-format='dd/mm/yyyy'>
+                                </div>
+                            </div>
+
+                            
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Password, new { @class = "col-sm-5 col-xs-12 control-label" })
+                                <div class="col-sm-7 col-xs-12">
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control input-sm", id = "Password", name = "Password", minlength = "5", maxlength = "150", required = true })
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-sm-5 col-xs-12 control-label" })
+                                <div class="col-sm-7 col-xs-12">
+                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control input-sm", id = "ConfirmPassword", name = "ConfirmPassword", required = true })
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-5 col-md-5 col-xs-12 col-lg-5">
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.CGenre, new { @class = "col-sm-12 col-xs-12 right-control control-label text-left" })
+                                        <div class="col-xs-12  text-left">
+                                            <label class="radio-inline" for="generoM">
+                                                @Html.RadioButton("CGenre", "1", false, new { id = "generoM", required = true })
+                                                <img src="~/Content/rsc/icons/hombre.png" alt="">
+                                            </label>
+                                            <label class="radio-inline" for="generoF">
+                                                @Html.RadioButton("CGenre", "2", false, new { id = "generoF", required = true })
+                                                <img src="~/Content/rsc/icons/mujer.png" alt="">
+                                            </label>
+                                        </div>
+                                        <label for="CGenre" class="error"></label>
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-offset-1 col-sm-6 col-xs-12">
+                                    <label class="col-xs-12 control-label text-left">Imagen de Perfil</label>
+                                    <div class="col-xs-12 text-left">
+                                        <div class="form-group">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                <div class="fileinput-preview thumbnail" data-trigger="fileinput">
+                                                    <img class="img-responsive" src="~/Content/rsc/imgs/users.png">
+                                                </div>
+                                                <div>
+                                                    <span class="btn blue btn-outline btn-file">
+                                                        <span class="fileinput-new"> Seleccionar Imagen </span>
+                                                        <span class="fileinput-exists"> Cambiar </span>
+                                                        <input type="file" name="ImagenUsuarioRegistro" id="ImagenUsuarioRegistro">
+                                                    </span>
+                                                    <a href="javascript:;" class="btn red-soft fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*<div class="form-group">
+                                <div class="col-xs-12">
+                                    @Html.LabelFor(m => m.Password, new { @class = "col-sm-12 col-xs-12 right-control control-label text-right" })
+                                    <div class="col-sm-7">
+                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control input-sm", id = "Password", name = "Password", minlength = "5", maxlength = "150", required = true })
+                                    </div>
+                                </div>
+                            </div>*@
+                            
+                            
+                            
+                            
+                        </div>
+                    </div>
+
+                  
+                </div>
+                <div class="row">
+                    <div style="text-align: center;">
+                        <span id="mensajeRegister" class="color-red"></span>
+                    </div>
+                </div> 
+
+                <div class="modal-footer">
+                    <div class="block_info">
+                        <ol>
+                            <li>Acepto términos y condiciones</li>
+                            <li>Acepto recibir información de Farmacias Benavides</li>
+                            <li>(*) Campos obligatorios</li>
+                        </ol>
+                    </div>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Regresar</button>
+                    <button type="submit" class="btn btn-primary" id="btnRegistro">Aceptar</button>
+                </div> 
+            </div>
+        </div>
+    </div>
+    
+
+</form>
+

@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
+    <title>Farmacias Benavides - @ViewBag.Title</title>
+    <meta content="ben" name="author" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0" name="viewport" />
+
+    @*@Styles.Render("~/Content/datepicker/css")*@
+    @*@Styles.Render("~/Content/css")*@
+
+    <!-- Flipbook StyleSheet -->
+    <link href="~/dflip/css/dflip.css" rel="stylesheet" type="text/css">
+
+    <!-- Icons Stylesheet -->
+    <link href="~/dflip/css/themify-icons.css" rel="stylesheet" type="text/css">
+
+    <link href="~/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/bootstrap-multiselect/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
+
+    @*<link href="~/assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+        <link href="~/assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />*@
+
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/bootstrap-select.css" rel="stylesheet" />
+    <link href="~/Content/css/ben.css" rel="stylesheet" />
+    <link href="~/Content/css/waitMe.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/webStyle.css" rel="stylesheet" />
+    <link href="~/Content/css/albe.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="body">
+
+        <header>
+            <nav class="navbar navbar-default bg-color-white" role="navigation">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#"><img class="img-responsive" src="~/Content/rsc/icons/header_logo_01.png" alt=""></a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#">Inicio</a></li>
+                            <li><a href="#">Servicio a Domicilio</a></li>
+                            <li><a href="#">Sucursales</a></li>
+                            <li><a href="#">Facturación en línea</a></li>
+                            <li><a href="#">FotoBenavides</a></li>
+                            <li><a href="#">Regístrate</a></li>
+                            <li class="search"><a href="#"><span class="fa fa-search"></span></a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img class="img-circle" src="~/Content/rsc/imgs/users.png" style="width:29px;height:29px"></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <div class="arrow"></div>
+                                    <li><a href="#">Tu cuenta</a></li>
+                                    <li><a href="#">Cerrar sesión</a></li>
+                                    <li><a href="#">Solo para ti</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <div id="main" role="main">
+            @RenderBody()
+        </div>
+
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="icons">
+                        @*<div class="col-xs-12 col-sm-6">
+                            <img src="~/Content/rsc/icons/logo bena.png" alt="">
+                        </div>*@
+                        <div class="col-xs-12 col-sm-12">
+                            <div class="social-media text-right">
+                                <a href="#" class="facebook"><span class="fa fa-facebook-official fa-2x"></span></a>
+                                <a href="#" class="twitter"><span class="fa fa-twitter fa-2x"></span></a>
+                                <a href="#" class="instagram"><span class="fa fa-instagram fa-2x"></span></a>
+                                <a href="#" class="youtube"><span class="fa fa-youtube-play fa-2x"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="extra-links">
+                            <div class="col-xs-12">
+                                <a href="#" class="text-uppercase">Servicios</a>
+                                <a href="#" class="text-uppercase">Inversionistas</a>
+                                <a href="#" class="text-uppercase">Proveedores</a>
+                                <a href="#" class="text-uppercase">Contacto</a>
+                                <a href="#" class="text-uppercase">Únete al equipo</a>
+                                <a href="#" class="text-uppercase">Fotobenavides</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="rights">
+                            <div class="col-xs-12">
+                                <h5 class="text-uppercase"><small>@DateTime.Now.Year Derechos reservados farmacia benavides, Aviso de privacidad / Políticas de privacidad</small></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    @*@Scripts.Render("~/bundles/jqueryapp")*@
+    @*@Scripts.Render("~/bundles/datepicker")
+        @Scripts.Render("~/bundles/app")*@
+    @*@RenderSection("scripts", required: false)*@
+
+    <!-- jQuery 1.9.1 or above -->
+    @*<script src="~/dflip/js/libs/jquery.min.js" type="text/javascript"></script>*@
+
+    <script src="~/Content/lib/jquery.js"></script>
+    <script src="~/Content/dist/jquery.validate.js"></script>
+    <script src="~/Content/dist/jquery.maskedinput.js"></script>
+    @*<script src="~/Content/js/jquery/jquery.min.js"></script>*@
+    <script src="~/Content/js/jquery/jquery-ui.min.js"></script>
+    <script src="~/Content/js/jquery/jquery.zoom.min.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/bootstrap-select.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="~/assets/global/plugins/respond.min.js"></script>
+    <script src="~/assets/global/plugins/excanvas.min.js"></script>
+    <script src="~/assets/global/plugins/ie8.fix.min.js"></script>
+    <![endif]-->
+    <script src="~/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap-multiselect/js/bootstrap-multiselect.js" type="text/javascript"></script>
+
+    <!-- Flipbook main Js file -->
+    <script src="~/dflip/js/dflip.js" type="text/javascript"></script>
+
+    <script src="~/assets/global/scripts/app.min.js" type="text/javascript"></script>
+    <script src="~/assets/pages/scripts/ui-bootbox.min.js" type="text/javascript"></script>
+    <script src="~/assets/pages/scripts/components-date-time-pickers.min.js" type="text/javascript"></script>
+    <script src="~/assets/pages/scripts/components-bootstrap-multiselect.min.js" type="text/javascript"></script>
+
+    <script src="~/assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
+    <script src="~/assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
+
+    <script src="~/Content/js/app.js"></script>
+    <script src="~/Content/js/branch-offices.js"></script>
+    <script src="~/Content/js/webScript.js"></script>
+
+    @RenderSection("scripts", required: false)
+    @RenderSection("styles", required: false)
+</body>
+</html>

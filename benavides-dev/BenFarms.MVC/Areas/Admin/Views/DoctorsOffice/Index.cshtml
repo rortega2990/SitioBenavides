@@ -1,0 +1,95 @@
+﻿@model IEnumerable<BenavidesFarm.DataModels.Models.Pages.DoctorsOfficePage>
+
+@{
+    ViewBag.Title = "Listado de Páginas de Consultorios";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "DoctorsOffice";
+}
+
+
+<div class="portlet light bordered">
+    <div class="portlet-title">
+        <div class="caption font-dark">
+            <i class="icon-settings font-dark"></i>
+            <span class="caption-subject bold uppercase"> Listado Páginas de Consultorios </span>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="btn-group">
+                        <a href="~/Admin/DoctorsOffice/Edit" class="btn sbold green"><i class="fa fa-plus"></i> Editar Página </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped table-bordered table-hover order-column" id="sample_1">
+            <thead>
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Estado
+                    </th>
+                    <th>
+                        Fecha de Creación
+                    </th>
+                    <th>Vista Previa</th>
+                    <th>Activar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @{
+                                if (item.Active)
+                                {
+                                    <span class="label label-sm label-success"> Activa </span>
+                                }
+                                else
+                                {
+                                    <span class="label label-sm label-warning"> Desactivada </span>
+
+                                }
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreationDate)
+                        </td>
+                        <td>
+                            @{ var mEdit = "~/Admin/DoctorsOffice/PreviewPageById/" + item.Id;}
+                            <a href="@Url.Content(mEdit)" target="_blank"><li class="glyphicon glyphicon-search " style="color: lawngreen"></li></a>
+                        </td>
+                        <td>
+                            @{
+                                var mAct = "~/Admin/DoctorsOffice/SetState/" + item.Id;
+                                if (!item.Active)
+                                {
+                                    <a href="@Url.Content(mAct)"><li class="fa fa-check" style="color:goldenrod">Activar</li></a>
+                                }
+                            }
+                        </td>
+                        <td>
+                            @{
+                                if (item.Active == false)
+                                {
+                                    var deleteLink = "~/Admin/DoctorsOffice/ConfirmDeletion/" + item.Id;
+                                    <a href="@Url.Content(deleteLink)"><div class="glyphicon glyphicon-trash" style="color: goldenrod"> Eliminar</div></a>
+                                }
+                            }
+                        </td>
+                    </tr>
+                                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

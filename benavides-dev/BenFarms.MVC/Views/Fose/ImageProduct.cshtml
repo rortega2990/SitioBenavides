@@ -1,0 +1,49 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.ProductPage
+@{
+    ViewBag.Title = "Imagen de Producto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="background-color: @Html.Raw(Model.ProductPageBgColor)">
+    <div class="row" style="margin-right: 0px">
+        <div class="col-md-4 col-sm-4 col-xs-12 bloque-descripcion-producto">
+            <div class="col-md-10 col-xs-12">
+                <div class="col-md-12">
+                    <h2 class="titulo-producto" style="color: @Html.Raw(Model.ProductPageColorTextTitle)">@Model.ProductPageTextTitle</h2>
+                    <h1 class="descripcio-primera" style="color: @Html.Raw(Model.ProductPageColorTextDescription1)">@Model.ProductPageTextDescription1</h1>
+                    <h4 class="descripcio-segunda" style="color: @Html.Raw(Model.ProductPageColorTextDescription2)">@Model.ProductPageTextDescription2</h4>
+                </div>
+            </div>
+            <div class="col-md-10 col-xs-12 col-xs-offset-0 col-sm-offset-0 bloque-izquierdo">
+                <div class="col-md-8 col-xs-12 margen-descripcion-izquierda" style="color: @Html.Raw(Model.ProductPageColorTextCharacteristic1)">
+                    <h4>@Model.ProductPageTextCharacteristic1</h4>
+                </div>
+                <div class="hidden-xs img-container-izquierda">
+                    <div class="col-md-10">
+                        <img class="img-responsive" src="~/Content/rsc/imgs/figura-producto2.png"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 bloque-centro-producto col-sm-4  ">
+            <div class="img-container-producto col-xs-12">
+                <img class="img-responsive img-producto" src="@Url.Content(Model.Product.ProductImage)" />
+            </div>
+        </div>
+        <div class="col-md-4 bloque-derecho col-xs-12 col-sm-4">
+            <div class="col-md-7 col-xs-12" style="color: @Html.Raw(Model.ProductPageColorTextCharacteristic2)">
+                <h4>@Model.ProductPageTextCharacteristic2</h4>
+            </div>
+            <div class="hidden-xs" style="margin-left: -240px">
+                <div class="col-md-7">
+                    <img class="img-responsive" src="~/Content/rsc/imgs/figura-producto.png"/>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    @{
+        //var idPromo = "~/Fose/Products/" + ViewBag.IdPromocion;
+    }
+    <div class="contenedor-regresar"><a class="regresar" href="@Url.Action("Products", "Fose", new{id=ViewBag.IdPromocion})"><  volver  ></a></div>
+</div>

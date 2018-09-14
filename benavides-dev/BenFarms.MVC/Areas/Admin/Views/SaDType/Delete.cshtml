@@ -1,0 +1,47 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.Elements.SaDTypeNumber
+
+@{
+    ViewBag.Title = "Eliminar Número de SaD";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "SaDActive";
+}
+
+<h2>Eliminar Número de SaD</h2>
+
+<div>
+    <h4>Número de SaD</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SaDTypeNumberCity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SaDTypeNumberCity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SaDTypeNumberPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SaDTypeNumberPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SaDTypeNumberActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SaDTypeNumberActive)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn blue">Eliminar</button>
+        @Html.ActionLink("Cancelar", "Index", "SaDType", null, htmlAttributes: new { @class = "btn default" })
+    }
+</div>

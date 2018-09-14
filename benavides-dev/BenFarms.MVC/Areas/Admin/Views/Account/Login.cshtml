@@ -1,0 +1,47 @@
+﻿@model BenFarms.MVC.Areas.Admin.Models.LoginViewModel
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutLogin.cshtml";
+    ViewBag.Title = "Log in";
+}
+
+<form class="login-form" action="~/Admin/Account/Login" method="post">
+    @Html.AntiForgeryToken()
+    <h3 class="form-title">Autenticación</h3>
+    <div class="alert alert-danger display-hide">
+        <button class="close" data-close="alert"></button>
+        <span> Entre un nombre de usuario y contraseña </span>
+    </div>
+    <div class="form-group">
+        <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+        @Html.LabelFor(m => m.username, new { @class = "control-label visible-ie8 visible-ie9" })
+        <div class="input-icon">
+            <i class="fa fa-user"></i>
+            @Html.TextBoxFor(m => m.username, new { @class = "form-control placeholder-no-fix", autocomplete = "off", placeholder = "Nombre de usuario" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.password, new { @class = "control-label visible-ie8 visible-ie9" })
+        <div class="input-icon">
+            <i class="fa fa-lock"></i>
+            @Html.PasswordFor(m => m.password, new { @class = "form-control placeholder-no-fix", autocomplete = "off", placeholder = "Contraseña" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-actions">
+        <button type="submit" class="btn green pull-right"> Entrar </button>
+        <label class="rememberme mt-checkbox mt-checkbox-outline">
+            @Html.CheckBoxFor(m => m.remember) Recordarme
+            @*@Html.CheckBoxFor(m => m.remember, new { value = "1" }) Recordarme*@
+            <span></span>
+        </label>        
+    </div>
+    <div class="form-actions">
+        <center>
+            <a href="~/Admin/Account/ForgotPassword"  style="text-decoration: none">
+                <h4>¿Olvidaste tu contraseña?</h4>
+            </a>
+        </center>
+    </div>
+</form>

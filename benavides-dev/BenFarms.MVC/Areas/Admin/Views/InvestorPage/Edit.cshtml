@@ -1,0 +1,104 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.InvestorPage
+
+@{
+    ViewBag.Title = "Editar Página de Inversionistas";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "InvestorPageEdit";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered" >
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="icon-layers font-red"></i>
+                    <span class="caption-subject font-red bold uppercase">
+                        Editar Página de Inversionistas -
+                        <span class="step-title"> Paso 1 de 1 </span>
+                    </span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <form class="form-horizontal" id="submit_form" method="POST" action="" >
+                    @Html.AntiForgeryToken()
+                        <div class="form-body">
+                            <div class="tab-content">
+                                <div class="alert alert-danger display-none">
+                                    <button class="close" data-dismiss="alert"></button> Se tienen varios errores. Por favor, revise nuevamente.
+                                </div>
+                                <div class="alert alert-success display-none">
+                                    <button class="close" data-dismiss="alert"></button> La validaión del formulario es correcta.
+                                </div>
+                                <div class="tab-pane active" id="tab1">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Encabezado</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Color de fondo</label>
+                                                            <div class="col-md-3">
+                                                                <input type="text" id="ColorHeadBgInvestorPage" name="ColorHeadBgInvestorPage" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.InvestorPageColorHeadBg)" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Texto Encabezado</label>
+                                                            <div class="col-md-3">
+                                                                <input type="text" id="HeadTextInvestorPage" name="HeadTextInvestorPage" class="form-control" value="@Model.InvestorPageHeadText"/>
+                                                            </div>
+                                                            <label class="control-label col-md-3">Color Texto Encabezado</label>
+                                                            <div class="col-md-3">
+                                                                <input type="text" id="ColorHeadTextInvestorPage" name="ColorHeadTextInvestorPage" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.InvestorPageColorHeadText)" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            
+                                                            <label class="control-label col-md-2">Título de Página</label>
+                                                            <div class="col-md-3">
+                                                                <textarea type="text" id="SubTextInvestorPage" name="SubTextInvestorPage" class="form-control"  style="height:150px">@Model.InvestorPageSubText</textarea>
+                                                            </div>
+                                                            <label class="control-label col-md-3">Color Título de Página</label>
+                                                            <div class="col-md-3">
+                                                                <input type="text" id="ColorSubTextInvestorPage" name="ColorSubTextInvestorPage" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.InvestorPageColorSubText)" />
+                                                            </div>
+                                                        </div>
+                                                    </div>                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <a class="btn green button-submit" id="btnApplyInvestor">
+                                        Aplicar
+                                        <i class="fa fa-check"></i>
+                                    </a>
+                                    <a class="btn blue" id="btnPreviewInvestor">
+                                        Vista Previa
+                                        <i class="fa fa-search"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

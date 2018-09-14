@@ -1,0 +1,54 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.BlogPage
+@{
+    ViewBag.Title = "Eliminar Página De Blog";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar Página Blog en Edición</h2>
+
+<div>
+    <h4>@Model.BlogPageCustomValue</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BlogPageCustomValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BlogPageCustomValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BlogPageActive)
+        </dt>
+
+        <dd>
+            @{
+                switch (@Model.BlogPageActive)
+                {
+                    case "Activada":
+                        <span class="label label-sm label-success"> Activa </span>break;
+                    case "Desactivada":
+                        <span class="label label-sm label-warning"> Desactivada </span>break;
+                    case "EnEdicion":
+                        <span class="label label-sm label-danger"> En Edición </span>break;
+                }
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BlogPageCreatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BlogPageCreatedDate)
+        </dd>
+
+    </dl>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn blue">Eliminar</button>
+        <a class="btn default" href="~/Admin/BlogPage">Cancelar</a>
+    }
+</div>

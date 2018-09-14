@@ -1,0 +1,141 @@
+﻿@using BenavidesFarm.DataModels.Models.Pages.Elements
+@model BenavidesFarm.DataModels.Models.Pages.PillarPage
+@{
+    ViewBag.Title = "Responsabilidad Social";
+}
+<style>
+    
+
+</style>
+@section styles {
+    <link href="@Url.Content("~/Content/css/pillar.css")" rel="stylesheet" type="text/css" />
+}
+<div class="row no-margin-left no-margin-right">
+    <img src="@Url.Content(Model.PillarPageImage)" width="100%" />
+</div>
+
+<div class="row no-margin-left no-margin-right" style="background-color: #20317c;">
+    <div class="container" style="margin-top: 85px; margin-bottom: 50px; color: #fff">
+        <div class="col-lg-12 pillarText1">
+            @Html.Raw(Model.PillarPageText1)
+        </div>
+        <div class="col-lg-12 pillarText2">
+            @Html.Raw(Model.PillarPageText2)
+        </div>
+    </div>
+    
+    <div class="container" style="margin-bottom: 50px;">
+
+        @{
+            for (var i = 0; i < 4; i++)
+            {
+                var descriptionId = "pillarDescription" + i;
+                var boxId = "pillarImageBox" + i;
+                
+                <div class="col-sm-3 ">
+                    <div class="pillarImageBox" id="@boxId">
+                        <div class="overbox">
+                        </div>
+                        <img src="@Url.Content(Model.Pillars[i].PillarImage)" alt="" class="img-responsive">
+                    </div>
+                    
+                    <div class="pillarTitle" id="@i">
+                        @Model.Pillars[i].PillarName
+                    </div>
+                    <div id="@descriptionId" class="pillarDescription">
+                        @Model.Pillars[i].PillarDescription
+                    </div>
+
+                </div>
+           
+            }
+        }
+
+
+        <div class="container" style="margin-top: 85px; margin-bottom: 50px; color: #fff">
+            <div class="col-lg-12 pillarText1">
+                <br />
+                <b>
+                    ¿Dudas o comentarios? Contáctanos aquí:
+                    <a href="mailto:rsc@benavides.com.mx" target="_top">rsc@benavides.com.mx</a>
+                </b>
+
+              
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row no-margin-left no-margin-right" style="background-color: #d7d7de; color: #20317c; font-size: 12px">
+    <div class="container" style="margin-top: 80px; margin-bottom: 80px;">
+        <div id="main-carousel" class="carousel slide" data-ride="carousel" data-interval="false" style="width:80%; margin: 0 auto">
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-id" data-slide-to="0" class="active"></li>
+            </ol>
+            <div class="carousel-inner">
+                @{
+                    <div class="item active">
+
+                            <div class="row quote">
+                                <div class="col-sm-2"><img class="img-responsive img-circle" src="@Url.Content(Model.Quotes[0].QuoteAuthorPhoto)"></div>
+                                <div class="col-sm-10 quoteText">
+                                    @Model.Quotes[0].QuoteText 
+<br /><span style="float: right; font-weight: bold">
+    - @Model.Quotes[0].QuoteAuthor; @Model.Quotes[0].QuoteAuthorSign
+</span>
+                                </div>
+                            </div>
+                            
+
+                        </div>
+
+                    for (int i = 1; i < Model.Quotes.Count; i++)
+                    {
+
+                        <div class="item">
+
+                            <div class="row quote">
+                                <div class="col-sm-2"><img class="img-responsive img-circle" src="@Url.Content(Model.Quotes[i].QuoteAuthorPhoto)"></div>
+                                <div class="col-sm-10 quoteText">
+                                    @Model.Quotes[i].QuoteText
+                                    <br /><span style="float: right; font-weight: bold">
+                                        - @Model.Quotes[i].QuoteAuthor; @Model.Quotes[i].QuoteAuthorSign
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    }
+                }
+            </div>
+            <a class="left carousel-control" href="#main-carousel" data-slide="prev"><img src="@Url.Content("~/Content/rsc/imgs/pillar-left-arrow.png")" class="img-responsive center-block"></a>
+            <a class="right carousel-control" href="#main-carousel" data-slide="next"><img src="@Url.Content("~/Content/rsc/imgs/pillar-right-arrow.png")" class="img-responsive center-block"></a>
+        </div>
+        
+    </div>
+</div>
+
+    @section scripts {
+        <section class="scripts">
+
+            <script type="text/javascript">
+
+                $(".pillarTitle").on("click", function (e) {
+                    var i = $(this).attr("id");
+                    if (!$(this).hasClass("active")) {
+                        $(".pillarTitle").removeClass("active");
+                        $(this).addClass("active");
+                        $(".pillarImageBox").removeClass("active");
+                        $(".pillarDescription").fadeOut(1000);
+                        $("#pillarImageBox" + i).addClass("active");
+                        $("#pillarDescription" + i).fadeIn(1000);
+                    }
+                    
+                });
+                
+               
+            </script>
+        </section>
+    }

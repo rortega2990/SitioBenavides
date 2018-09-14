@@ -1,0 +1,54 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.FosePage
+@{
+    ViewBag.Title = "Eliminar Página De Fose";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar Página Fose en Edición</h2>
+
+<div>
+    <h4>@Model.FosePageCustomValue</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FosePageCustomValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FosePageCustomValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FosePageActive)
+        </dt>
+
+        <dd>
+            @{
+                switch (@Model.FosePageActive)
+                {
+                    case "Activada":
+                        <span class="label label-sm label-success"> Activa </span>break;
+                    case "Desactivada":
+                        <span class="label label-sm label-warning"> Desactivada </span>break;
+                    case "EnEdicion":
+                        <span class="label label-sm label-danger"> En Edición </span>break;
+                }
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FosePageCreatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FosePageCreatedDate)
+        </dd>
+
+    </dl>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn blue">Eliminar</button>
+        <a class="btn default" href="~/Admin/FosePage">Cancelar</a>
+    }
+</div>

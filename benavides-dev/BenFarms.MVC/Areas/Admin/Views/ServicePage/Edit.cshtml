@@ -1,0 +1,196 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.ServicePage
+
+@{
+    ViewBag.Title = "Editar Página de Servicios";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "ServicePageEdit";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered" id="form_wizard_1">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="icon-layers font-red"></i>
+                    <span class="caption-subject font-red bold uppercase">
+                        Editar Página de Servicios -
+                        <span class="step-title"> Paso 1 de 2 </span>
+                    </span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <form class="form-horizontal" id="submit_form" method="POST" action="" enctype="multipart/form-data">
+                    @Html.AntiForgeryToken()
+                    <div class="form-wizard">
+                        <div class="form-body">
+                            <ul class="nav nav-pills nav-justified steps">
+                                <li>
+                                    <a href="#tab1" data-toggle="tab" class="step">
+                                        <span class="number"> 1 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Encabezado
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#tab2" data-toggle="tab" class="step">
+                                        <span class="number"> 2 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Texto de la Página
+                                        </span>
+                                    </a>
+                                </li>                                
+                            </ul>
+                            <div id="bar" class="progress progress-striped" role="progressbar">
+                                <div class="progress-bar progress-bar-success"> </div>
+                            </div>
+                            <div class="tab-content">
+                                <div class="alert alert-danger display-none">
+                                    <button class="close" data-dismiss="alert"></button> Se tienen varios errores. Por favor, revise nuevamente.
+                                </div>
+                                <div class="alert alert-success display-none">
+                                    <button class="close" data-dismiss="alert"></button> La validaión del formulario es correcta.
+                                </div>
+                                <div class="tab-pane active" id="tab1">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Encabezado</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Color de fondo</label>
+                                                            <div class="col-md-3">
+                                                                <input type="text" id="ColorFondoSerivicio" name="ColorFondoSerivicio" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.ServicePageColorHeadBg)" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Texto Encabezado 1</label>
+                                                            <div class="col-md-3">
+                                                                <input type="text" id="Texto1Servicio" name="Texto1Servicio" class="form-control" value="@Model.ServicePageHeadText1"/>
+                                                            </div>
+                                                            <label class="control-label col-md-2">Texto Encabezado 2</label>
+                                                            <div class="col-md-3">
+                                                                <input type="text" id="Texto2Servicio" name="Texto2Servicio" class="form-control" value="@Model.ServicePageHeadSubText1"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Color Texto Encabezado 1</label>
+                                                            <div class="col-md-3">
+                                                                <input type="text" id="ColorTexto1Servicio" name="ColorTexto1Servicio" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.ServicePageColorHeadText1)" />
+                                                            </div>
+                                                            <label class="control-label col-md-2">Color Texto Encabezado 2</label>
+                                                            <div class="col-md-3">
+                                                                <input type="text" id="ColorTexto2Servicio" name="ColorTexto2Servicio" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.ServicePageColorHeadSubText1)" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Logo Encabezado</label>
+                                                            <div class="col-md-3">
+                                                                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                        <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 200px;">
+                                                                            <img src="@Url.Content(Model.ServicePageImageLogo)" />
+                                                                        </div>
+                                                                        <div>
+                                                                            <span class="btn red btn-outline btn-file">
+                                                                                <span class="fileinput-new"> Seleccionar Imagen </span>
+                                                                                <span class="fileinput-exists"> Cambiar </span>
+                                                                                <input type="file" name="ImagenEncabezadoLogoServicio" id="ImagenEncabezadoLogoServicio">
+                                                                            </span>
+                                                                            <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                                                                        </div>
+                                                                    </div>
+                                                            </div>                                                            
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tab2">
+                                    <div class="row">
+                                        <div class="col-md-12">
+
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Texto de la Página</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Título de sección</label>
+                                                            <div class="col-md-3">
+                                                                <textarea type="text" class="form-control" id="TextoTituloServicio" name="TextoTituloServicio" style="height: 200px">@Model.ServicePageSubText</textarea>
+                                                            </div>
+                                                            <label class="control-label col-md-2">Descripción de sección</label>
+                                                            <div class="col-md-3">
+                                                                <textarea type="text" class="form-control" id="TextDescripcionServicio" name="TextDescripcionServicio" style="height: 200px">@Model.ServicePageSubTextDescription</textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Color Título de sección</label>
+                                                            <div class="col-md-3">
+                                                                <input type="text" id="ColorTextoTituloServicio" name="ColorTextoTituloServicio" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.ServicePageColorSubText)" />
+                                                            </div>
+                                                            <label class="control-label col-md-2">Color Descripción de sección</label>
+                                                            <div class="col-md-3">
+                                                                <input type="text" id="ColorTextDescripcionServicio" name="ColorTextDescripcionServicio" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.ServicePageColorSubTextDescription)" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <a href="javascript:;" class="btn default button-previous">
+                                        <i class="fa fa-angle-left"></i> Atrás
+                                    </a>
+                                    <a href="javascript:;" class="btn btn-outline green button-next">
+                                        Continuar
+                                        <i class="fa fa-angle-right"></i>
+                                    </a>
+                                    <a class="btn green button-submit" id="btnApplyService">
+                                        Aplicar
+                                        <i class="fa fa-check"></i>
+                                    </a>
+                                    <a class="btn blue" id="btnPreviewService">
+                                        Vista Previa
+                                        <i class="fa fa-search"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

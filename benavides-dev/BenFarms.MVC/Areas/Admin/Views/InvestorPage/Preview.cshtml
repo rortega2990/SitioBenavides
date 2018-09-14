@@ -1,0 +1,95 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.InvestorPage
+@{
+    ViewBag.Title = "Vista Previa Página de Inversionistas";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPreview.cshtml";
+    var colorHead = "color: " + Model.InvestorPageColorHeadText;
+    var colorSubHead = "color: " + Model.InvestorPageColorSubText;
+    var colorHeadBg = "background-color: " + Model.InvestorPageColorHeadBg;
+}
+
+<div class="banner" style="@Html.Raw(colorHeadBg)">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="banner-caption">
+                    <br>
+                    <span class="caption-lg" style="@Html.Raw(colorHead)">@Model.InvestorPageHeadText</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container margin-top-80 margin-bottom-80">
+    <div class="row margin-bottom-40 ">
+        <h2 class="titulo-contacto text-center" style="@Html.Raw(colorSubHead);">@Model.InvestorPageSubText</h2>
+    </div>
+    <div class="row margin-top-80">
+        @{
+            foreach (var x in Model.ReportTypes)
+            {
+                var idSelect = "idYearReport_" + x.ReportTypeId;
+                var fileReport = "filesReport_" + x.ReportTypeId;
+                var report = "report_" + x.ReportTypeId;
+                var divRaya = "divRaya_" + x.ReportTypeId;
+                var years = x.Years();
+
+                <div id="@report">
+
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-md-offset-2 col-xs-12 col-xs-offset-0 ">
+                            <h3 class="titulo-invercionista" style="color: #48c7f3;">@x.ReportName</h3>
+                        </div>
+
+                        <div class="col-md-1 col-md-offset-1 col-xs-5 col-sm-offset-2 col-sm-3 col-xs-offset-1">
+                            <span class="title-anno">Año</span>
+                            <div>
+                                <select id="@idSelect" onchange="javascript: getFilesNames(this);">
+                                    @{
+                                        foreach (var year in years)
+                                        {
+                                            <option value="@year">@year</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12">
+                            <h4>@x.ReportDescription</h4>
+                        </div>
+                    </div>
+
+                    <br />
+                    <div id="@fileReport">
+                        @{
+                            if (years.Count > 0)
+                            {
+                                var files = x.Files(years[0]);
+                                foreach (var file in files)
+                                {
+                                    var nameFile = @Url.Content(file.AddressFile);
+                                    <div class="row">
+                                        <div class="col-md-2 col-md-offset-4 col-sm-2 col-sm-offset-3" style="text-align: left; margin-top: 10px">
+                                            <span style="color: #4169e1; font-size: 16px; font-weight: 800">@file.DescriptionFile</span>
+                                        </div>
+                                        <div style="text-align: left; margin-top: 10px">
+                                            <a class="btn btn-success btn-descargar" target="_blank" href="@nameFile">Descargar</a>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        }
+                    </div>
+                    <div class="row no-margin-right margin-bottom-20" id="@divRaya">
+                        <div class="col-md-1 col-md-offset-5 col-sm-3 col-sm-offset-4 hidden-xs linea-roja  ">
+                        </div>
+                    </div>
+                    <br />
+                </div>
+            }
+        }
+    </div>
+</div> 

@@ -1,0 +1,80 @@
+﻿@model IEnumerable<BenavidesFarm.DataModels.Models.Pages.Elements.InterestArea>
+
+@{
+    ViewBag.Title = "Listado de Tipos de Área de Interés";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "TeamPageArea";
+}
+
+<div class="portlet light bordered">
+    <div class="portlet-title">
+        <div class="caption font-dark">
+            <i class="icon-settings font-dark"></i>
+            <span class="caption-subject bold uppercase"> Listado de Categorías de Áreas de Interés </span>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.ActionLink("Nueva Categoría de Área de Interés", "AddOrEdit",null,new { @class = "btn green" })
+                    @*<button id="btnNewInterestArea" class="">
+                        Nueva Categoría de Área de Interés
+                        <i class="fa fa-plus"></i>
+                    </button>*@
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped table-hover table-bordered" id="tableInterestArea">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.InterestAreaName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.InterestAreaActive)
+                    </th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.InterestAreaName
+                        </td>
+                        <td>
+                            @{
+                                if (item.InterestAreaActive == true)
+                                {
+                                    <span class="label label-sm label-success">Activa</span>
+                                }
+                                else
+                                {
+                                    <span class="label label-sm label-warning">Desactivada</span>
+                                }
+                            }
+                        </td>
+                        <td>
+                            @{
+                                var mAct = "~/Admin/InterestArea/AddOrEdit/" + item.InterestAreaId;
+                                <a href="@Url.Content(mAct)"><span class="fa" style="color:goldenrod">Editar</span></a>                               
+                            }
+                        </td>
+                        <td>
+                            @{
+                                var deleteLink = "~/Admin/InterestArea/ConfirmDeletion/" + item.InterestAreaId;
+                                if (item.InterestAreaActive == false)
+                                {
+                                    <a href="@Url.Content(deleteLink)"><span class="glyphicon glyphicon-trash" style="color: goldenrod"> Eliminar</span></a>
+                                }
+                            }
+                        </td>
+                    </tr>
+              }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+﻿@model List<BenavidesFarm.DataModels.Models.Pages.Elements.DocumentType>
+
+@{
+    ViewBag.Title = "Tipo de Documentos";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "ProviderPageActive";
+}
+
+
+<h2>Subir Tipos de Documentos</h2>
+
+<form class="form-horizontal" method="POST" action="" enctype="multipart/form-data" id="formDocumentType">
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Tipos de Documentos</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Tipo de Documento</label>
+            <div class="col-md-6">
+                <select class="bs-select form-control" id="TipoDocumento" required>
+                    @{
+                        foreach (var m in Model)
+                        {
+                            <option value="@m.DocumentTypeId">@m.DocumentName</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Texto descriptivo del archivo</label>
+            <div class="col-md-6">
+                <input id="textDescArchivo" name="textDescArchivo" class="form-control" type="text" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Archivo a subir</label>
+            <div class="col-md-6">
+                <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width:200px; height: 200px;"> </div>
+                    <div>
+                        <span class="btn red btn-outline btn-file">
+                            <span class="fileinput-new"> Seleccionar Archivo o Imagen </span>
+                            <span class="fileinput-exists"> Cambiar </span>
+                            <input type="file" name="ArchivoDocumento" id="ArchivoDocumento">
+                        </span>
+                        <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-6">
+                <a class="btn green button-submit" id="btnUploadFileDocument">Subir</a>
+                @Html.ActionLink("Cancelar", "Index", null, htmlAttributes: new { @class = "btn default" })
+            </div>
+        </div>
+    </div>
+</form>

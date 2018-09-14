@@ -1,0 +1,55 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.Elements.ReportFiles
+
+@{
+    ViewBag.Title = "Eliminar Archivo de Reporte";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "InvestorPageActive";
+}
+
+<h2>Eliminar Archivo de Reporte</h2>
+
+<div>
+    <h4>Archivo de Reporte</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AddressFile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AddressFile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescriptionFile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescriptionFile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.ReportType.ReportName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReportType.ReportName)
+        </dd>*@
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn blue">Eliminar</button>
+        @Html.ActionLink("Cancelar", "Index", null, htmlAttributes: new { @class = "btn default" })
+    }
+</div>

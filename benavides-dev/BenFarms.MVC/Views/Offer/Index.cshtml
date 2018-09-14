@@ -1,0 +1,97 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.OfferPage
+@{
+    var colorfondo = "background-color: " + Model.OfferPageFillColor;
+    ViewBag.Title = "Ofertas";
+}
+
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+    }
+</style>
+
+<div class="banner" style="@Html.Raw(colorfondo)">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="banner-caption">
+                    @Html.Raw(Model.MixText())
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    @{
+        if (Model.OfferImage.Substring(Model.OfferImage.LastIndexOf('.')) == ".pdf")
+        {
+            <div>
+                <div id="flipbookContainer"></div>
+            </div>
+        }
+        else
+        {
+            <div class="products">
+                <div class="zoom">
+                    <a class="btn btn-link btn-xs zoom-in"><span class="fa fa-plus"></span></a>
+                    <a class="btn btn-link btn-xs zoom-out"><span class="fa fa-minus"></span></a>
+                    <div class="zoom-slider-wrapper">
+                        <div class="zoom-slider">
+                            <a class="btn zoom-icon-handler ui-slider-handle"></a>
+                        </div>
+                    </div>
+                </div>
+                <span class="product" valueimage="@Url.Content(Model.OfferImage)" id="valueImage">
+                    <img src="@Url.Content(Model.OfferImage)" alt="" class="products-img img-responsive">
+                </span>
+            </div>
+        }
+    }
+<span valueimage="@Url.Content(Model.OfferImage)" id="valuePdf"> </span>
+
+@section scripts {
+    <section class="scripts">
+
+        <script type="text/javascript">
+
+            var flipBook;
+
+            $(document).ready(function() {
+                Initialize();
+            });
+
+            // Where all the fun happens
+            function Initialize() {
+
+                var pdf = $("#valuePdf").attr("valueimage");
+                if (pdf != null && pdf != "") {
+
+                    var options = {
+                        hard: 'none',
+                        webgl: true,
+                        height: 1000,
+                        duration: 800,
+
+                        //CONTROLS POSITION
+                        //default is "altPrev,pageNumber,altNext,outline,thumbnail,zoomIn,zoomOut,fullScreen,more"
+                        //this example remove outline and thumbnail; add download button in main bar
+                        mainControls: "altPrev,pageNumber,altNext,zoomIn,zoomOut,fullScreen,download,more",
+
+                        hideControls: "startPage,endPage"
+
+                    };
+
+                    flipBook = $("#flipbookContainer").flipBook(pdf, options);
+
+                    //NOTE:
+                    //Valid Control Names:
+                    //altPrev,pageNumber,altNext,outline,thumbnail,zoomIn,zoomOut,fullScreen,more
+                    //pageMode,startPage,endPage,download
+
+                    //We dont recommend putting pageNumber in moreControls, that doesn't make sense.
+                }
+            }
+        </script>
+    </section>
+}

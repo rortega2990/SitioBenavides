@@ -1,0 +1,130 @@
+﻿@model IEnumerable<BenavidesFarm.DataModels.Models.Pages.PromocionPage>
+
+@{
+    ViewBag.Title = "Promociones";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "FosePageIndex";
+
+    var listar = ViewBag.Listar == 1;
+
+    var idFose = "";
+    if (!listar)
+    {
+        idFose = "~/Admin/FosePage/EditPromocion?idFose=" + ViewBag.Fose;
+    }  
+}
+
+<div class="portlet light bordered">
+    <div class="portlet-title">
+        <div class="caption font-dark">
+            <i class="icon-settings font-dark"></i>
+            <span class="caption-subject bold uppercase"> Listado Páginas de Promociones de: @ViewBag.FosePage</span>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="btn-group">
+                        <a class="btn default" href="~/Admin/FosePage">Atrás</a>
+                    </div>
+                    <div class="btn-group">
+                        @{
+                            if (!string.IsNullOrEmpty(idFose))
+                            {
+                                <a href="@Url.Content(idFose)" class="btn sbold green"><i class="fa fa-plus"></i> Añadir Promoción </a>
+                            }
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped table-bordered table-hover order-column" id="sample_1">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PromocionPageCustomValue)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PromocionPageActive)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PromocionPageCreatedDate)
+                    </th>
+                    <th>Vista Previa</th>
+                    @{
+                        if (!listar)
+                        {
+                            <th>Editar</th>
+                            <th>Eliminar</th>
+                        }
+                    }
+                    <th>Productos</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => @item.PromocionPageCustomValue)
+                        </td>
+                        <td>
+                            @{
+                                switch (item.PromocionPageActive)
+                                {
+                                    case "Activada": <span class="label label-sm label-success"> Activa </span>break;
+                                    case "Desactivada": <span class="label label-sm label-warning"> Desactivada </span>break;
+                                    case "EnEdicion": <span class="label label-sm label-danger"> En Edición </span>break;
+                                    @*case "SinEditar": <span class="label label-sm label-danger"> Sin Editar </span>break;*@
+                                }
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PromocionPageCreatedDate)
+                        </td>
+                        <td>
+                            @{
+                                var mEdit = "~/Admin/FosePage/PreviewPromocion/" + item.PromocionPageId;
+                                <a href="@Url.Content(mEdit)" target="_blank"><li class="glyphicon glyphicon-search " style="color: lawngreen">Ver Página</li></a>
+                            }
+                        </td>
+                        @{
+                            if (!listar)
+                            {
+                                var mEditProm = "~/Admin/FosePage/EditPromocion?idPromo=" + item.PromocionPageId + "&idFose=" + item.FosePageId;
+                                var mAct = "~/Admin/FosePage/DeletePromocion?idPromo=" + item.PromocionPageId + "&idFose=" + item.FosePageId;
+
+                                if (item.PromocionPageActive == "EnEdicion")
+                                {
+                                    <td>
+                                        <a href="@Url.Content(mEditProm)"><li class="glyphicon glyphicon-edit " style="color: blue"> Editar Página </li></a>
+                                    </td>
+                                    <td>
+                                        
+                                        <a href="@Url.Content(mAct)"><li class="glyphicon glyphicon-trash" style="color: goldenrod"> Eliminar</li></a>
+                                    </td>
+                                }
+                            }
+                        }   
+                        <td>
+                            @{
+                                if (item.PromocionPageActive != "EnEdicion")
+                                {
+                                    var mProm = "~/Admin/FosePage/ListPromocionsProducts?idPromo=" + item.PromocionPageId + "&idFose=" + item.FosePageId + "&v=1";
+                                    <a href="@Url.Content(mProm)"><li class="glyphicon glyphicon-search" style="color: darkorchid"> Ver Productos</li></a>
+                                }
+                                else
+                                {
+                                    var mProm = "~/Admin/FosePage/ListPromocionsProducts?idPromo=" + item.PromocionPageId + "&idFose=" + item.FosePageId + "&v=2";
+                                    <a href="@Url.Content(mProm)"><li class="glyphicon glyphicon-edit" style="color: mediumblue"> Editar Productos</li></a>
+                                }
+                            }
+                        </td>
+                    </tr>
+                  }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,769 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.WhoWeArePage
+
+@{
+    ViewBag.Title = "Editar Página de Quiénes somos";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "WhoWeAreEdit";
+}
+
+
+@helper EmbedBoxImgStyleInWebPage()
+{
+    <style>
+        .box img{
+            position:relative !important
+        }
+    </style>   
+}
+
+@EmbedBoxImgStyleInWebPage()
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered" id="form_wizard_1">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="icon-layers font-red"></i>
+                    <span class="caption-subject font-red bold uppercase">
+                        Editar Página de Quiénes somos -
+                        <span class="step-title"> Paso 1 de 6 </span>
+                    </span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <form class="form-horizontal" id="submit_form" method="POST" action="" enctype="multipart/form-data">
+                    @*@Html.AntiForgeryToken()*@
+                    <div class="form-wizard">
+                        <div class="form-body">
+                            <input type="hidden" id="Id" value="@Model.Id" name="Id"/>
+                            <ul class="nav nav-pills nav-justified steps">
+                                <li>
+                                    <a href="#tabHeadImages" data-toggle="tab" class="step">
+                                        <span class="number"> 1 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Encabezado
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#tabWhoWeAre" data-toggle="tab" class="step">
+                                        <span class="number"> 2 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Quiénes somos
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#tabVision" data-toggle="tab" class="step">
+                                        <span class="number"> 3 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Visión
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#tabMision" data-toggle="tab" class="step">
+                                        <span class="number"> 4 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Misión
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#tabValues" data-toggle="tab" class="step">
+                                        <span class="number"> 5 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Valores
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#tabAd" data-toggle="tab" class="step">
+                                        <span class="number"> 6 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Internacional
+                                        </span>
+                                    </a>
+                                </li>   
+                                <li>
+                                    <a href="#tabHistory" data-toggle="tab" class="step">
+                                        <span class="number"> 7 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Historia
+                                        </span>
+                                    </a>
+                                </li>                                
+                            </ul>
+                            <div id="bar" class="progress progress-striped" role="progressbar">
+                                <div class="progress-bar progress-bar-success"> </div>
+                            </div>
+                            <div class="tab-content">
+                                <div class="alert alert-danger display-none">
+                                    <button class="close" data-dismiss="alert"></button> Se tienen varios errores. Por favor, revise nuevamente.
+                                </div>
+                                <div class="alert alert-success display-none">
+                                    <button class="close" data-dismiss="alert"></button> La validaión del formulario es correcta.
+                                </div>
+
+                                @*Header*@
+                                <div class="tab-pane active" id="tabHeadImages">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Imágnes de Encabezado</span>
+                                                    </div>
+                                                    <div class="actions">
+                                                        <a id="btnAddWhoWeAreHeadImage" class="btn btn-default btn-sm">
+                                                            <i class="fa fa-plus"></i> Adicionar
+                                                        </a>
+                                                        <a class="btn btn-sm btn-icon-only btn-default fullscreen" href="javascript:;"></a>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    @{
+                                                        var idsServer = "";
+                                                        var serverContainerPrefix = "serverImageContainer_";
+                                                        var clientContainerPrefix = "clientImageContainer_";
+                                                    }
+                                                    <div class="row" id="sortable_portlets">
+                                                        <div class="col-md-12 column sortable" id="sortablePortlets">
+                                                            @{
+                                                                for (int i = 0; i < Model.HeadImages.Count; i++)
+                                                                {
+
+                                                                    var iStr = i.ToString() + "_" + Model.HeadImages[i].Id.ToString();
+                                                                    var idHead = i;
+                                                                    var textoEncabezado = "HeadImages[" + iStr + "].Title";
+                                                                    var divEncabezado = serverContainerPrefix + "HeadImages_" + iStr;
+                                                                    var sectionId = Model.HeadImages[i].Id.ToString();
+                                                                    var colorEncabezado = "HeadImages[" + iStr + "].TileColor";
+                                                                    var headingId = "HeadImages[" + iStr + "].Id";
+
+
+
+                                                                    <div class="col-md-6 portlet portlet-sortable box blue-hoki" id="@divEncabezado">
+                                                                        <div class="portlet-title">
+                                                                            <div class="caption">
+                                                                                <i class="fa fa-gift"></i>Encabezado
+                                                                            </div>
+                                                                            <div class="actions">
+                                                                                <a class="btn btn-default btn-sm" id="@sectionId" onclick="javascript: deleteElemWhoWeAre(@divEncabezado);">
+                                                                                    <i class="fa fa-remove"></i> Eliminar
+                                                                                </a>
+                                                                                <a class="btn btn-sm btn-icon-only btn-default fullscreen" href="javascript:;"></a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="portlet-body">
+                                                                            <input type="hidden" id="@iStr" name="HeadImages.Index" value="@iStr" />
+                                                                            <input type="hidden" id="@headingId" name="@headingId" value="@Model.HeadImages[i].Id" />  
+                                                                            <div class="form-group">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-12">
+                                                                                            <label class="control-label">Color</label>
+                                                                                            <div>
+                                                                                                <input type="text" id="@colorEncabezado" name="@colorEncabezado" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.HeadImages[i].TileColor)" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-12">
+                                                                                            <label class="control-label">Título</label>
+                                                                                            <div>
+                                                                                                <input type="text" id="@textoEncabezado" name="@textoEncabezado" class="form-control" value="@Model.HeadImages[i].Title" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-12">
+                                                                                            <div style="margin-top: 20px">
+                                                                                                <span class="label label-sm label-success"> Activa </span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-12">
+
+
+
+
+                                                                                            <label class="control-label">Imagen</label>
+                                                                                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                                                <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 100px;">
+                                                                                                    <img src="@Url.Content(Model.HeadImages[i].ImageFileName)" />
+                                                                                                </div>
+
+                                                                                                @*<div>
+                                                                                                    <span class="btn red btn-outline btn-file">
+                                                                                                        <span class="fileinput-new"> Seleccionar Imagen </span>
+                                                                                                        <span class="fileinput-exists"> Cambiar </span>
+                                                                                                        <input type="file" name="clientImageContainer_AdSection.ImageFileName" id="clientImageContainer_AdSection.ImageFileName">
+                                                                                                    </span>
+                                                                                                    <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                                                                                                </div>*@
+                                                                                            </div>
+
+
+
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                }
+
+                                                                <div class="portlet portlet-sortable-empty"> </div>
+                                                            }
+                                                            <div class="portlet portlet-sortable-empty"> </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @*Who we are*@
+                                <div id="tabWhoWeAre" class="tab-pane">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Quiénes somos</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="row">
+                                                        <div class="col-xs-12 col-md-6">
+                                                            <label class="control-label">Título</label>
+                                                            <input type="text" class="form-control" id="WhoWeAreSection.Title" name="WhoWeAreSection.Title" value="@Model.WhoWeAreSection.Title" />
+                                                        </div>
+                                                        <div class="col-xs-12 col-md-6">
+                                                            <label class="control-label">Color del título</label>
+                                                            <input type="text" data-control="wheel" class="form-control demo"
+                                                                   id="WhoWeAreSection.TitleTextColor" name="WhoWeAreSection.TitleTextColor" value="@Html.Raw(Model.WhoWeAreSection.TitleTextColor)" />
+                                                        </div>
+
+                                                        <div class="col-xs-12 col-md-6">
+                                                            <label class="control-label">Color del mensaje</label>
+                                                            <input type="text" data-control="wheel" class="form-control demo"
+                                                                   id="WhoWeAreSection.MessageTextColor" name="WhoWeAreSection.MessageTextColor"
+                                                                   value="@Html.Raw(Model.WhoWeAreSection.MessageTextColor)" />
+                                                        </div>
+
+                                                        <div class="col-xs-12 col-md-6">
+                                                            <label class="control-label">Color de fondo</label>
+                                                            <input type="text" data-control="wheel" class="form-control demo"
+                                                                   id="WhoWeAreSection.BackgroundColor" name="WhoWeAreSection.BackgroundColor"
+                                                                   value="@Html.Raw(Model.WhoWeAreSection.BackgroundColor)" />
+                                                        </div>
+
+                                                        <div class="col-xs-12 col-md-12">
+                                                            <label class="control-label">Mensaje</label>
+                                                            <input type="text" class="form-control" id="WhoWeAreSection.Message" name="WhoWeAreSection.Message"
+                                                                   value="@Model.WhoWeAreSection.Message" />
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                @*Vision*@
+                                <div id="tabVision" class="tab-pane">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Visión</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="row">
+                                                        <div class="col-xs-12 col-md-6">
+                                                            <label class="control-label">Título</label>
+                                                            <input type="text" class="form-control" id="VisionSection.Title" name="VisionSection.Title" value="@Model.VisionSection.Title" />
+                                                        </div>
+                                                        <div class="col-xs-12 col-md-6">
+                                                            <label class="control-label">Color del título</label>
+                                                            <input type="text" data-control="wheel" class="form-control demo"
+                                                                   id="VisionSection.TitleTextColor" name="VisionSection.TitleTextColor" value="@Html.Raw(Model.VisionSection.TitleTextColor)" />
+                                                        </div>
+
+                                                        <div class="col-xs-12 col-md-6">
+                                                            <label class="control-label">Color del mensaje</label>
+                                                            <input type="text" data-control="wheel" class="form-control demo"
+                                                                   id="VisionSection.MessageTextColor" name="VisionSection.MessageTextColor"
+                                                                   value="@Html.Raw(Model.VisionSection.MessageTextColor)" />
+                                                        </div>
+
+                                                        <div class="col-xs-12 col-md-6">
+                                                            <label class="control-label">Color de fondo</label>
+                                                            <input type="text" data-control="wheel" class="form-control demo"
+                                                                   id="VisionSection.BackgroundColor" name="VisionSection.BackgroundColor"
+                                                                   value="@Html.Raw(Model.VisionSection.BackgroundColor)" />
+                                                        </div>
+
+                                                        <div class="col-xs-12 col-md-12">
+                                                            <label class="control-label">Mensaje</label>
+                                                            <input type="text" class="form-control" id="VisionSection.Message" name="VisionSection.Message"
+                                                                   value="@Model.VisionSection.Message" />
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                @*Mision*@
+                                <div id="tabMision" class="tab-pane">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Misión</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="row">
+                                                        <div class="col-xs-12 col-md-6">
+                                                            <label class="control-label">Título</label>
+                                                            <input type="text" class="form-control" id="MisionSection.Title" name="MisionSection.Title" value="@Model.MisionSection.Title" />
+                                                        </div>
+                                                        <div class="col-xs-12 col-md-6">
+                                                            <label class="control-label">Color del título</label>
+                                                            <input type="text" data-control="wheel" class="form-control demo"
+                                                                   id="MisionSection.TitleTextColor" name="MisionSection.TitleTextColor" value="@Html.Raw(Model.MisionSection.TitleTextColor)" />
+                                                        </div>
+
+                                                        <div class="col-xs-12 col-md-6">
+                                                            <label class="control-label">Color del mensaje</label>
+                                                            <input type="text" data-control="wheel" class="form-control demo"
+                                                                   id="MisionSection.MessageTextColor" name="MisionSection.MessageTextColor"
+                                                                   value="@Html.Raw(Model.MisionSection.MessageTextColor)" />
+                                                        </div>
+
+                                                        <div class="col-xs-12 col-md-6">
+                                                            <label class="control-label">Color de fondo</label>
+                                                            <input type="text" data-control="wheel" class="form-control demo"
+                                                                   id="MisionSection.BackgroundColor" name="MisionSection.BackgroundColor"
+                                                                   value="@Html.Raw(Model.MisionSection.BackgroundColor)" />
+                                                        </div>
+
+                                                        <div class="col-xs-12 col-md-12">
+                                                            <label class="control-label">Mensaje</label>
+                                                            <input type="text" class="form-control" id="MisionSection.Message" name="MisionSection.Message"
+                                                                   value="@Model.MisionSection.Message" />
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                @*Values*@
+                                <div class="tab-pane active" id="tabValues">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Valores</span>
+                                                    </div>
+                                                    <div class="actions">
+                                                        <a id="btnAddWhoWeAreValueImage" class="btn btn-default btn-sm">
+                                                            <i class="fa fa-plus"></i> Adicionar
+                                                        </a>
+                                                        <a class="btn btn-sm btn-icon-only btn-default fullscreen" href="javascript:;"></a>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="row" id="sortable_portlets_values">
+                                                        <div class="col-md-12 column sortable" id="sortablePortletsValues">
+                                                            @{
+                                                                for (int i = 0; i < Model.ValuesSection.Count; i++)
+                                                                {
+
+                                                                    var iStr = i.ToString() + "_" + Model.ValuesSection[i].Id.ToString();
+                                                                    var idHead = i;
+                                                                    var textoEncabezado = "ValuesSection[" + iStr + "].Title";
+                                                                    var divEncabezado = clientContainerPrefix + "ValuesSection_" + iStr;
+                                                                    var sectionId = Model.ValuesSection[i].Id.ToString();
+                                                                    var colorEncabezado = "ValuesSection[" + iStr + "].TileColor";
+                                                                    var headingId = "ValuesSection[" + iStr + "].Id";
+                                                                    var messageColor = "ValuesSection[" + iStr + "].TextColor";
+                                                                    var messageText = "ValuesSection[" + iStr + "].Text";
+                                                                    var image = "clientImageContainer_ValuesSection[" + iStr + "].ImageFileName";
+
+
+
+                                                                        <div class="col-md-6 portlet portlet-sortable box blue-hoki" id="@divEncabezado" style="height:305px; margin-top:5px; margin-bottom:5px">
+                                                                            <div class="portlet-title">
+                                                                                <div class="caption">
+                                                                                    <i class="fa fa-gift"></i>Valor
+                                                                                </div>
+                                                                                <div class="actions">
+                                                                                    <a class="btn btn-default btn-sm" id="@sectionId" onclick="javascript: deleteElemWhoWeAre(@divEncabezado);">
+                                                                                        <i class="fa fa-remove"></i> Eliminar
+                                                                                    </a>
+                                                                                    <a class="btn btn-sm btn-icon-only btn-default fullscreen" href="javascript:;"></a>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="portlet-body">
+                                                                                <input type="hidden" id="@iStr" name="ValuesSection.Index" value="@iStr" />
+                                                                                <input type="hidden" id="@headingId" name="@headingId" value="@Model.ValuesSection[i].Id" />
+                                                                                <div class="form-group">
+                                                                                    <div class="row col-md-12">
+                                                                                        <div class="col-md-6">
+                                                                                            <div class="row">
+                                                                                                <div class="col-md-12">
+                                                                                                    <label class="control-label">Color del título</label>
+                                                                                                    <div>
+                                                                                                        <input type="text" id="@colorEncabezado" name="@colorEncabezado" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.ValuesSection[i].TileColor)" />
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="row">
+                                                                                                <div class="col-md-12">
+                                                                                                    <label class="control-label">Color del mensaje</label>
+                                                                                                    <div>
+                                                                                                        <input type="text" id="@messageColor" name="@messageColor" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.ValuesSection[i].TextColor)" />
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="row">
+                                                                                                <div class="col-md-12">
+                                                                                                    <label class="control-label">Título</label>
+                                                                                                    <div>
+                                                                                                        <input type="text" id="@textoEncabezado" name="@textoEncabezado" class="form-control" value="@Model.ValuesSection[i].Title" />
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-md-6">
+                                                                                            <div class="row">
+                                                                                                <div class="col-md-12">
+                                                                                                    <label class="control-label">Imagen</label>
+                                                                                                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                                                        <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 180px; height: 100px;">
+                                                                                                            <img src="@Url.Content(Model.ValuesSection[i].ImageFileName)" />
+                                                                                                        </div>
+                                                                                                        <div>
+                                                                                                            <span class="btn red btn-outline btn-file">
+                                                                                                                <span class="fileinput-new"> Seleccionar Imagen </span>
+                                                                                                                <span class="fileinput-exists"> Cambiar </span>
+                                                                                                                <input type="file" name="@image" id="@image">
+                                                                                                            </span>
+                                                                                                            <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="row">
+                                                                                                <div class="col-md-12">
+                                                                                                    <div style="margin-top: 2px">
+                                                                                                        <span class="label label-sm label-success"> Activa </span>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row col-md-12">
+                                                                                        <div class="col-md-12">
+                                                                                            <label class="control-label">Mensaje</label>
+                                                                                            <div>
+                                                                                                <input type="text" id="@messageText" name="@messageText" class="form-control" value="@Model.ValuesSection[i].Text" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div> 
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                }
+
+                                                                <div class="portlet portlet-sortable-empty"> </div>
+                                                            }
+                                                            <div class="portlet portlet-sortable-empty"> </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @*Ad*@
+                                <div id="tabAd" class="tab-pane">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Internacional</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="row">
+                                                        <div class="col-xs-12 col-md-6">
+                                                            <label class="control-label">Título</label>
+                                                            <input type="text" class="form-control" id="AdSection.Title" name="AdSection.Title" value="@Model.AdSection.Title" />
+                                                        </div>
+                                                        <div class="col-xs-12 col-md-6">
+                                                            <label class="control-label">Color del título</label>
+                                                            <input type="text" data-control="wheel" class="form-control demo"
+                                                                   id="AdSection.TitleTextColor" name="AdSection.TitleTextColor" value="@Html.Raw(Model.AdSection.TitleTextColor)" />
+                                                        </div>
+
+                                                        <div class="col-xs-12 col-md-6">
+                                                            <label class="control-label">Color del mensaje</label>
+                                                            <input type="text" data-control="wheel" class="form-control demo"
+                                                                   id="AdSection.MessageTextColor" name="AdSection.MessageTextColor"
+                                                                   value="@Html.Raw(Model.AdSection.MessageTextColor)" />
+                                                        </div>
+
+                                                        <div class="col-xs-12 col-md-6">
+                                                            <label class="control-label">Color de fondo</label>
+                                                            <input type="text" data-control="wheel" class="form-control demo"
+                                                                   id="AdSection.BackgroundColor" name="AdSection.BackgroundColor"
+                                                                   value="@Html.Raw(Model.AdSection.BackgroundColor)" />
+                                                        </div>
+
+                                                        <div class="col-xs-12 col-md-12">
+                                                            <label class="control-label">Mensaje</label>
+                                                            <input type="text" class="form-control" id="AdSection.Message" name="AdSection.Message"
+                                                                   value="@Model.AdSection.Message" />
+                                                        </div>
+
+                                                        <div class="col-xs-12 col-md-6">
+                                                            <label class="control-label">Imagen</label>
+                                                            <br />
+                                                            <div class="fileinput fileinput-new" data-provides="fileinput" style="margin-bottom:10px">
+                                                                <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 200px">
+                                                                    <img src="@Url.Content(Model.AdSection.ImageFileName)" />
+                                                                </div>
+                                                                <div>
+                                                                    <span class="btn red btn-outline btn-file">
+                                                                        <span class="fileinput-new"> Seleccionar Imagen </span>
+                                                                        <span class="fileinput-exists"> Cambiar </span>
+                                                                        @{ 
+                                                                            var componentName = "clientImageContainer_AdSection.ImageFileName_" + Model.AdSection.Id.ToString();
+                                                                            <input type="file" name="@componentName" id="@componentName">
+                                                                        }
+                                                                    </span>
+                                                                    <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                @*History*@
+                                <div class="tab-pane active" id="tabHistory">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Historia</span>
+                                                    </div>
+                                                    <div class="actions">
+                                                        <a id="btnAddWhoWeAreHistoryImage" class="btn btn-default btn-sm">
+                                                            <i class="fa fa-plus"></i> Adicionar
+                                                        </a>
+                                                        <a class="btn btn-sm btn-icon-only btn-default fullscreen" href="javascript:;"></a>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="row" id="sortable_portlets_history">
+                                                        <div class="col-md-12 column sortable" id="sortablePortletsHistory">
+                                                            @{
+                                                                for (int i = 0; i < Model.HistoryImages.Count; i++)
+                                                                {
+
+                                                                    var iStr = i.ToString() + "_" + Model.HistoryImages[i].Id.ToString();
+                                                                    var idHead = i;
+                                                                    var textoEncabezado = "HistoryImages[" + iStr + "].Title";
+                                                                    var divEncabezado = clientContainerPrefix + "HistoryImages_" + iStr;
+                                                                    var sectionId = Model.HistoryImages[i].Id.ToString();
+                                                                    var colorEncabezado = "HistoryImages[" + iStr + "].TileColor";
+                                                                    var headingId = "HistoryImages[" + iStr + "].Id";
+                                                                    var messageColor = "HistoryImages[" + iStr + "].TextColor";
+                                                                    var messageText = "HistoryImages[" + iStr + "].Text";
+                                                                    var subtitleColor = "HistoryImages[" + iStr + "].SubTitleColor";
+                                                                    var subtite = "HistoryImages[" + iStr + "].SubTitle";
+                                                                    var image = "clientImageContainer_HistoryImages[" + iStr + "].ImageFileName";
+
+                                                                <div class="col-md-6 portlet portlet-sortable box blue-hoki"  style="height:430px; margin-top:5px;margin-bottom:5px" id="@divEncabezado">
+                                                                    <div class="portlet-title">
+                                                                        <div class="caption">
+                                                                            <i class="fa fa-gift"></i>Historia
+                                                                        </div>
+                                                                        <div class="actions">
+                                                                            <a class="btn btn-default btn-sm" id="@sectionId" onclick="javascript: deleteElemWhoWeAre(@divEncabezado);">
+                                                                                <i class="fa fa-remove"></i> Eliminar
+                                                                            </a>
+                                                                            <a class="btn btn-sm btn-icon-only btn-default fullscreen" href="javascript:;"></a>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="portlet-body">
+                                                                        <input type="hidden" id="@iStr" name="HistoryImages.Index" value="@iStr" />
+                                                                        <input type="hidden" id="@headingId" name="@headingId" value="@Model.HistoryImages[i].Id" />
+                                                                        <div class="form-group">
+                                                                            <div class="row col-md-12">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-12">
+                                                                                            <label class="control-label">Color del título</label>
+                                                                                            <div>
+                                                                                                <input type="text" id="@colorEncabezado" name="@colorEncabezado" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.HistoryImages[i].TileColor)" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-12">
+                                                                                            <label class="control-label">Color del subtítulo</label>
+                                                                                            <div>
+                                                                                                <input type="text" id="@subtitleColor" name="@subtitleColor" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.HistoryImages[i].SubTitleColor)" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-12">
+                                                                                            <label class="control-label">Color del mensaje</label>
+                                                                                            <div>
+                                                                                                <input type="text" id="@messageColor" name="@messageColor" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.HistoryImages[i].TextColor)" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-6" style="padding:0">
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-12">
+                                                                                            <label class="control-label">Imagen</label>
+                                                                                            <div class="fileinput fileinput-new" data-provides="fileinput" style="width: 180px; height: 100px;">
+                                                                                                <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 180px; height: 100px;">
+                                                                                                    <img src="@Url.Content(Model.HistoryImages[i].ImageFileName)" style="position:inherit" />
+                                                                                                </div>
+                                                                                                <div>
+                                                                                                    <span class="btn red btn-outline btn-file">
+                                                                                                        <span class="fileinput-new"> Seleccionar Imagen </span>
+                                                                                                        <span class="fileinput-exists"> Cambiar </span>
+                                                                                                        <input type="file" name="@image" id="@image">
+                                                                                                    </span>
+                                                                                                    <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-12">
+                                                                                            <div style="margin-top: 10px">
+                                                                                                <span class="label label-sm label-success"> Activa </span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row col-md-12">
+                                                                                    <div class="col-md-12">
+                                                                                        <label class="control-label">Título</label>
+                                                                                        <div>
+                                                                                            <input type="text" id="@textoEncabezado" name="@textoEncabezado" class="form-control" value="@Model.HistoryImages[i].Title" />
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                       
+                                                                                    <div class="col-md-12">
+                                                                                        <label class="control-label">Subtítulo</label>
+                                                                                        <div>
+                                                                                            <input type="text" id="@subtite" name="@subtite" class="form-control" value="@Model.HistoryImages[i].SubTitle" />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                       
+                                                                                <div class="col-md-12">
+                                                                                    <label class="control-label">Mensaje</label>
+                                                                                    <div>
+                                                                                        <input type="text" id="@messageText" name="@messageText" class="form-control" value="@Model.HistoryImages[i].Text" />
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                }
+
+                                                                <div class="portlet portlet-sortable-empty"> </div>
+                                                            }
+                                                            <div class="portlet portlet-sortable-empty"> </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                @*Form buttons*@
+                                <div class="form-actions">
+                                    <div class="row">
+                                        <div class="col-md-offset-3 col-md-9">
+                                            <a href="javascript:;" class="btn default button-previous">
+                                                <i class="fa fa-angle-left"></i> Atrás
+                                            </a>
+                                            <a href="javascript:;" class="btn btn-outline green button-next">
+                                                Continuar
+                                                <i class="fa fa-angle-right"></i>
+                                            </a>
+                                            <a class="btn green button-submit" id="btnApplyWhoWeAre">
+                                                Aplicar
+                                                <i class="fa fa-check"></i>
+                                            </a>
+                                            <a class="btn blue" id="btnPreviewWhoWeAre">
+                                                Vista Previa
+                                                <i class="fa fa-search"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <span id="idsServidor" idsServer="@idsServer" name="idsServidor"></span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,110 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.Elements.Branch
+
+@{
+    ViewBag.Title = "Eliminar Sucursal";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "BranchActive";
+}
+
+<h2>Eliminar Sucursal</h2>
+
+<div>
+    <h4>Sucursal</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BranchName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BranchName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BranchRegion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BranchRegion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BranchCeco)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BranchCeco)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BranchSap)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BranchSap)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BranchAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BranchAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BranchCity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BranchCity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BranchConsult)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BranchConsult)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BranchHour1)
+        </dt>
+
+        <dd>
+            @Model.GetHour()
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BranchLongitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BranchLongitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BranchLatitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BranchLatitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BranchActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BranchActive)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn blue">Eliminar</button>
+        @Html.ActionLink("Cancelar", "Index", "Branch", null, htmlAttributes: new { @class = "btn default" })
+    }
+</div>

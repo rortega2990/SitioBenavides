@@ -1,0 +1,244 @@
+﻿@{
+    ViewBag.Title = "DashBoard";
+    ViewBag.Page = "Home";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light portlet-fit bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="icon-layers font-green"></i>
+                    <span class="caption-subject font-green bold uppercase">Páginas</span>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="row">
+                    <div class="mt-element-step">
+                        <div class="row step-default">
+                            <div class="mt-step-desc">
+                                <div class="font-dark bold uppercase">Sección de Páginas a Administrar</div>
+                                <div class="caption-desc font-grey-cascade"></div>
+                                <br />
+                            </div>
+                            <div class="col-md-4 bg-grey mt-step-col">
+                                <div class="mt-step-number bg-white font-grey">1</div>
+                                <div class="mt-step-title uppercase font-grey-cascade">inicio</div>
+                                <div class="mt-step-content font-grey-cascade">Página de Inicio Benavides</div>
+                                <a class="btn btn-outline" href="~/Admin/HomePage">
+                                    Ver Lista de Páginas
+                                    <i class="icon-magnifier"></i>
+                                </a>
+                                <a class="btn btn-outline" href="~/Admin/HomePage/Edit">
+                                    Editar Página
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                </a>
+                            </div>
+                            <div class="col-md-4 bg-grey mt-step-col active">
+                                <div class="mt-step-number bg-white font-grey">2</div>
+                                <div class="mt-step-title uppercase font-grey-cascade">Quiénes somos</div>
+                                <div class="mt-step-content font-grey-cascade">Página de quiénes somos</div>
+                                <a class="btn btn-outline" href="~/Admin/WhoWeAre">
+                                    Ver Lista de Páginas
+                                    <i class="icon-magnifier"></i>
+                                </a>
+                                <a class="btn btn-outline" href="~/Admin/WhoWeAre/Edit">
+                                    Editar Página
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                </a>
+                            </div>
+                            <div class="col-md-4 bg-grey mt-step-col">
+                                <div class="mt-step-number bg-white font-grey">3</div>
+                                <div class="mt-step-title uppercase font-grey-cascade">blogs</div>
+                                <div class="mt-step-content font-grey-cascade">Página de Blogs</div>
+                                <a class="btn btn-outline" href="~/Admin/BlogPage">
+                                    Ver Lista de Páginas
+                                    <i class="icon-magnifier"></i>
+                                </a>
+                                <a class="btn btn-outline" href="~/Admin/BlogPage/Edit">
+                                    Editar Página
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="mt-element-step">
+                        <div class="row step-default">
+                            <div class="col-md-4 bg-grey mt-step-col ">
+                                <div class="mt-step-number bg-white font-grey">4</div>
+                                <div class="mt-step-title uppercase font-grey-cascade">tarjetas</div>
+                                <div class="mt-step-content font-grey-cascade">Página de Tarjetas Benavides</div>
+                                <a class="btn btn-outline" href="~/Admin/BillingPage">
+                                    Ver Lista de Páginas
+                                    <i class="icon-magnifier"></i>
+                                </a>
+                                <a class="btn btn-outline" href="~/Admin/BillingPage/Edit">
+                                    Editar Página
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                </a>
+                            </div>
+                            <div class="col-md-4 bg-grey mt-step-col active">
+                                <div class="mt-step-number bg-white font-grey">5</div>
+                                <div class="mt-step-title uppercase font-grey-cascade">fose</div>
+                                <div class="mt-step-content font-grey-cascade">Página de Promociones</div>
+                                <a class="btn btn-outline" href="~/Admin/FosePage">
+                                    Ver Lista de Páginas
+                                    <i class="icon-magnifier"></i>
+                                </a>
+                                <a class="btn btn-outline" href="~/Admin/FosePage/Edit">
+                                    Editar Página
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                </a>
+                            </div>
+                            <div class="col-md-4 bg-grey mt-step-col">
+                                <div class="mt-step-number bg-white font-grey">6</div>
+                                <div class="mt-step-title uppercase font-grey-cascade">sucursales</div>
+                                <div class="mt-step-content font-grey-cascade">Página de Sucursales</div>
+                                <a class="btn btn-outline" href="~/Admin/BranchPage">
+                                    Ver Lista de Páginas
+                                    <i class="icon-magnifier"></i>
+                                </a>
+                                <a class="btn btn-outline" href="~/Admin/BranchPage/Edit">
+                                    Editar Página
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="mt-element-step">
+                        <div class="row step-default">
+                            <div class="col-md-4 bg-grey mt-step-col ">
+                                <div class="mt-step-number bg-white font-grey">7</div>
+                                <div class="mt-step-title uppercase font-grey-cascade">servicios</div>
+                                <div class="mt-step-content font-grey-cascade">Página de Servicios</div>
+                                <a class="btn btn-outline" href="~/Admin/ServicePage">
+                                    Ver Lista de Páginas
+                                    <i class="icon-magnifier"></i>
+                                </a>
+                                <a class="btn btn-outline" href="~/Admin/ServicePage/Edit">
+                                    Editar Página
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                </a>
+                            </div>
+                            <div class="col-md-4 bg-grey mt-step-col active">
+                                <div class="mt-step-number bg-white font-grey">8</div>
+                                <div class="mt-step-title uppercase font-grey-cascade">sad</div>
+                                <div class="mt-step-content font-grey-cascade">Página de Servicio a Domicilio</div>
+                                <a class="btn btn-outline" href="~/Admin/SaDPage">
+                                    Ver Lista de Páginas
+                                    <i class="icon-magnifier"></i>
+                                </a>
+                                <a class="btn btn-outline" href="~/Admin/SaDPage/Edit">
+                                    Editar Página
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                </a>
+                            </div>
+                            <div class="col-md-4 bg-grey mt-step-col">
+                                <div class="mt-step-number bg-white font-grey">9</div>
+                                <div class="mt-step-title uppercase font-grey-cascade">inversionistas</div>
+                                <div class="mt-step-content font-grey-cascade">Página de Inversionistas</div>
+                                <a class="btn btn-outline" href="~/Admin/InvestorPage">
+                                    Ver Lista de Páginas
+                                    <i class="icon-magnifier"></i>
+                                </a>
+                                <a class="btn btn-outline" href="~/Admin/InvestorPage/Edit">
+                                    Editar Página
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="mt-element-step">
+                        <div class="row step-default">
+                            <div class="col-md-4 bg-grey mt-step-col ">
+                                <div class="mt-step-number bg-white font-grey">10</div>
+                                <div class="mt-step-title uppercase font-grey-cascade">proveedores</div>
+                                <div class="mt-step-content font-grey-cascade">Página de Proveedores</div>
+                                <a class="btn btn-outline" href="~/Admin/ProviderPage">
+                                    Ver Lista de Páginas
+                                    <i class="icon-magnifier"></i>
+                                </a>
+                                <a class="btn btn-outline" href="~/Admin/ProviderPage/Edit">
+                                    Editar Página
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                </a>
+                            </div>
+                            <div class="col-md-4 bg-grey mt-step-col active">
+                                <div class="mt-step-number bg-white font-grey">11</div>
+                                <div class="mt-step-title uppercase font-grey-cascade">contacto</div>
+                                <div class="mt-step-content font-grey-cascade">Página de Contacto</div>
+                                <a class="btn btn-outline" href="~/Admin/ContactPage">
+                                    Ver Lista de Páginas
+                                    <i class="icon-magnifier"></i>
+                                </a>
+                                <a class="btn btn-outline" href="~/Admin/ContactPage/Edit">
+                                    Editar Página
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                </a>
+                            </div>
+                            <div class="col-md-4 bg-grey mt-step-col">
+                                <div class="mt-step-number bg-white font-grey">12</div>
+                                <div class="mt-step-title uppercase font-grey-cascade">únete al equipo</div>
+                                <div class="mt-step-content font-grey-cascade">Página de Únete al Equipo</div>
+                                <a class="btn btn-outline" href="~/Admin/JoinTeamPage">
+                                    Ver Lista de Páginas
+                                    <i class="icon-magnifier"></i>
+                                </a>
+                                <a class="btn btn-outline" href="~/Admin/JoinTeamPage/Edit">
+                                    Editar Página
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="mt-element-step">
+                        <div class="row step-default">
+                            <div class="col-md-4 bg-grey mt-step-col ">
+                                <div class="mt-step-number bg-white font-grey">13</div>
+                                <div class="mt-step-title uppercase font-grey-cascade">privacidad</div>
+                                <div class="mt-step-content font-grey-cascade">Página de Privacidad</div>
+                                <a class="btn btn-outline" href="~/Admin/PrivacityPage">
+                                    Ver Lista de Páginas
+                                    <i class="icon-magnifier"></i>
+                                </a>
+                                <a class="btn btn-outline" href="~/Admin/PrivacityPage/Edit">
+                                    Editar Página
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                </a>
+                            </div>
+                            <div class="col-md-4 bg-grey mt-step-col active">
+                                <div class="mt-step-number bg-white font-grey">14</div>
+                                <div class="mt-step-title uppercase font-grey-cascade">térms. y condics</div>
+                                <div class="mt-step-content font-grey-cascade">Página de Términos y Condiciones</div>
+                                <a class="btn btn-outline" href="~/Admin/ConditionsTermsPage">
+                                    Ver Lista de Páginas
+                                    <i class="icon-magnifier"></i>
+                                </a>
+                                <a class="btn btn-outline" href="~/Admin/ConditionsTermsPage/Edit">
+                                    Editar Página
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

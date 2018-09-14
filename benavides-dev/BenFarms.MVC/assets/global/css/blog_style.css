@@ -1,0 +1,232 @@
+﻿ 
+.btn-blog-header {
+    border-radius: 0;
+    font-size: 24pt;
+    position: relative; 
+    margin-top:10px;   
+    margin-bottom:20px;
+    z-index: 2;
+}
+
+.blog-title-header{
+    margin-top: 100px;
+}
+
+
+.box {
+     cursor: pointer;
+     height: 250px;
+     position: relative;
+     overflow: hidden;
+     width: 380px;
+     margin: 0 10px 0 10px;
+ }
+
+.box img {
+    position: absolute;
+    left: 0;
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    -ms-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
+}
+
+.box2 {
+     cursor: pointer;
+     height: 250px;
+     position: relative;
+     overflow: hidden;
+     width: 380px;
+     margin: 0 10px 0 10px;
+ }
+
+.box2 img {
+    position: inherit;
+    left: 0;
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    -ms-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
+}
+
+.box2 .overbox {
+     background-color: rgba(218, 67, 67, 0.7);
+     position: absolute;
+     top: 0;
+     left: 0;
+     color: #fff;
+     z-index: 100;
+     -webkit-transition: all 300ms ease-out;
+     -moz-transition: all 300ms ease-out;
+     -o-transition: all 300ms ease-out;
+     -ms-transition: all 300ms ease-out;
+     transition: all 300ms ease-out;
+     opacity: 0;
+     width: 380px;
+     height: 250px;
+     padding: 80px 20px;
+ }
+
+
+.box .overbox {
+     background-color: rgba(218, 67, 67, 0.7);
+     position: absolute;
+     top: 0;
+     left: 0;
+     color: #fff;
+     z-index: 100;
+     -webkit-transition: all 300ms ease-out;
+     -moz-transition: all 300ms ease-out;
+     -o-transition: all 300ms ease-out;
+     -ms-transition: all 300ms ease-out;
+     transition: all 300ms ease-out;
+     opacity: 0;
+     width: 380px;
+     height: 250px;
+     padding: 80px 20px;
+ }
+.box:hover .overbox { opacity: 1; }
+
+.box .overtext {
+    -webkit-transition: all 300ms ease-out;
+     -moz-transition: all 300ms ease-out;
+     -o-transition: all 300ms ease-out;
+     -ms-transition: all 300ms ease-out;
+     transition: all 300ms ease-out;
+     transform: translateY(40px);
+     -webkit-transform: translateY(40px);
+    
+ }
+.box:hover .bt-details {
+        opacity:0;
+    }
+.box .overtext a{
+    color: white;
+    text-decoration:underline;
+}
+
+ 
+
+.box:hover img {
+        opacity:1;
+        transform:  scale(1.3,1.3);/*translateY(260px);*/
+        -webkit-transform: scale(1.3,1.3);/*translateY(260px);*/
+        
+    }
+
+
+.box2:hover .overbox { opacity: 1; }
+
+.box2 .overtext {
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    -ms-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
+    transform: translateY(40px);
+    -webkit-transform: translateY(40px);
+}
+
+.box2 .overtext a{
+    color: white;
+    text-decoration:underline;
+}
+
+ 
+
+.box2:hover img {
+        opacity:1;
+        transform:  scale(1.3,1.3);/*translateY(260px);*/
+        -webkit-transform: scale(1.3,1.3);/*translateY(260px);*/
+        
+    }
+
+.box2:hover .bt-details {
+        opacity:0;
+    }
+
+
+.bt-details{
+    z-index:200;
+    position:absolute;
+    padding-bottom: 5px;
+    width: 25%; 
+    text-align: center; 
+    margin-top: -25px;
+    background-color: red;
+    color: white; 
+    margin-left: 20px; 
+    border-radius: 5px 5px 0 0;
+    bottom:0px;
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    -ms-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
+
+}
+
+
+.bt-details a{
+    color:white;
+}
+
+
+
+
+
+ 
+
+
+@media (max-width: 414px) {
+    .btn-blog-header {
+        font-size: 10pt;
+    }
+
+    .blog-title-header {
+        margin-top: 5px;
+    }
+}
+
+@media(min-width: 768px) {
+    .btn-blog-header {
+        font-size: 16pt;
+         margin-bottom:5px;
+    }
+
+    .blog-title-header {
+        margin-top: 5px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .btn-blog-header {
+        font-size: 18pt;
+         margin-bottom:5px;
+    }
+
+    .blog-title-header {
+        margin-top: 5px;
+    }
+}
+
+
+@media (min-width: 1280px) {
+    .btn-blog-header {
+        font-size: 26pt;
+         
+    }
+
+    .blog-title-header {
+        margin-top: 100px;
+    }
+}
+
+ 
+
+
+
+
+ 

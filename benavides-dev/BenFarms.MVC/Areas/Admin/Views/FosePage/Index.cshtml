@@ -1,0 +1,121 @@
+﻿@model IEnumerable<BenavidesFarm.DataModels.Models.Pages.FosePage>
+
+@{
+    ViewBag.Title = "Listado de Páginas de Fose";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "FosePageIndex";
+}
+
+<div class="portlet light bordered">
+    <div class="portlet-title">
+        <div class="caption font-dark">
+            <i class="icon-settings font-dark"></i>
+            <span class="caption-subject bold uppercase"> Listado Páginas de Fose </span>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="btn-group">
+                        <a href="~/Admin/FosePage/Edit" class="btn sbold green"><i class="fa fa-plus"></i> Editar Página </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped table-bordered table-hover order-column" id="sample_1">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FosePageCustomValue)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FosePageActive)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FosePageCreatedDate)
+                    </th>
+                    <th>Vista Previa</th>
+                    <th>Promociones</th>
+                    <th>Activar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => @item.FosePageCustomValue)
+                        </td>
+                        <td>
+                            @{
+                                switch (item.FosePageActive)
+                                {
+                                    case "Activada": <span class="label label-sm label-success"> Activa </span>break;
+                                    case "Desactivada": <span class="label label-sm label-warning"> Desactivada </span>break;
+                                    case "EnEdicion": <span class="label label-sm label-danger"> En Edición </span>break;
+                                }
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FosePageCreatedDate)
+                        </td>
+                        <td>
+                            @{ var mEdit = "~/Admin/FosePage/Preview/" + item.FosePageId;}
+                            <a href="@Url.Content(mEdit)" target="_blank"><li class="glyphicon glyphicon-search " style="color:lawngreen">Ver Página</li></a>
+                        </td>
+                        <td>
+                            @{
+                                if (item.FosePageActive != "EnEdicion")
+                                {
+                                    var mProm = "~/Admin/FosePage/ListPromocions?idFose=" + item.FosePageId + "&v=1";
+                                    <a href="@Url.Content(mProm)"><li class="glyphicon glyphicon-search" style="color: darkorchid"> Ver Promociones</li></a>
+                                }
+                                else
+                                {
+                                    var mProm = "~/Admin/FosePage/ListPromocions?idFose=" + item.FosePageId + "&v=2";
+                                    <a href="@Url.Content(mProm)"><li class="glyphicon glyphicon-edit" style="color: mediumblue"> Editar Promociones</li></a>
+                                }
+                            }
+                        </td>
+
+                        <td>
+                            @{
+                                if (item.FosePageActive == "EnEdicion")
+                                {
+                                    if (item.Promocions.Count > 0)
+                                    {
+                                        bool estaCompleto = item.Promocions.All(promocionPage => promocionPage.ProductPages.Count != 0);
+                                        if (estaCompleto)
+                                        {
+                                            var mAct = "~/Admin/FosePage/Active/" + item.FosePageId;
+                                            <a href="@Url.Content(mAct)"><li class="fa fa-check" style="color: goldenrod">Activar</li></a>
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    if (item.FosePageActive == "Desactivada")
+                                    {
+                                        var mAct = "~/Admin/FosePage/Active/" + item.FosePageId;
+                                        <a href="@Url.Content(mAct)"><li class="fa fa-check" style="color: goldenrod">Activar</li></a>
+                                    }
+                                }
+                            }
+                        </td>
+                        <td>
+                            @{
+                                if (item.FosePageActive == "EnEdicion")
+                                {
+                                    var mAct = "~/Admin/FosePage/Delete/" + item.FosePageId;
+                                    <a href="@Url.Content(mAct)"><li class="glyphicon glyphicon-trash" style="color: goldenrod"> Eliminar</li></a>
+                                }
+                            }
+                        </td>
+                    </tr>
+                 }
+            </tbody>
+        </table>
+    </div>
+</div>

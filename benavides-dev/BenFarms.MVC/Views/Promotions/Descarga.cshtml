@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "Descarga";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+    }
+</style>
+
+
+@if (Request.Browser.IsMobileDevice)
+{
+
+    <script>
+        window.location.href = "/UploadedFiles/CatalogoMayo.pdf"
+    </script>    <div>
+        
+    </div>
+}
+else
+{
+    <div id="flipbookContainer"></div>
+}
+
+
+
+
+@section scripts {
+    <section class="scripts">
+
+        <script type="text/javascript">
+
+            var flipBook;
+
+            $(document).ready(function() {
+                Initialize();
+            });
+
+            // Where all the fun happens
+            function Initialize() {
+
+                var pdf = "/UploadedFiles/CatalogoMayo.pdf"
+                if (pdf != null && pdf != "") {
+
+                    var options = {
+                        hard: 'none',
+                        webgl: true,
+                        height: 1000,
+                        duration: 0,
+
+                        //CONTROLS POSITION
+                        //default is "altPrev,pageNumber,altNext,outline,thumbnail,zoomIn,zoomOut,fullScreen,more"
+                        //this example remove outline and thumbnail; add download button in main bar
+                        mainControls: "altPrev,pageNumber,altNext,zoomIn,zoomOut,fullScreen,download,more",
+
+                        hideControls: "startPage,endPage"
+
+                    };
+
+                    flipBook = $("#flipbookContainer").flipBook(pdf, options);
+
+                    //NOTE:
+                    //Valid Control Names:
+                    //altPrev,pageNumber,altNext,outline,thumbnail,zoomIn,zoomOut,fullScreen,more
+                    //pageMode,startPage,endPage,download
+
+                    //We dont recommend putting pageNumber in moreControls, that doesn't make sense.
+                }
+            }
+        </script>
+    </section>
+}
+
+
+
+@*<script>
+        window.location.href = "/Reports/Informe_2009_636354758114850584.pdf"
+    </script>*@
+
+
+
+

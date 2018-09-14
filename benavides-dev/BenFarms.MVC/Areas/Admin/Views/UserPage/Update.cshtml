@@ -1,0 +1,257 @@
+﻿@using BenFarms.MVC.Models
+@model BenFarms.MVC.Models.RegisterViewModel
+
+@{
+    ViewBag.Title = "Actualizar Datos de Usuario";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "UserPageIndex";
+}
+
+<style>
+    .error {
+        font-style: normal;
+        font-size: 12px;
+        color: tomato;
+        text-align: left !important;
+        /*border: 1px solid #e73d4a !important;*/
+    }
+</style>
+
+<h2>Actualizar Datos de Usuario</h2>
+
+<form role="form" action="" method="post" id="formUpdateInfo">
+    @Html.HiddenFor(model => model.UserId)
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <h4>Perfil de Usuario</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Names, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Names, new { htmlAttributes = new { @class = "form-control", required = true } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastName1, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.LastName1, new { htmlAttributes = new { @class = "form-control", required = true } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastName2, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.LastName2, new { htmlAttributes = new { @class = "form-control", required = true } })
+            </div>
+        </div>
+
+        <div class="form-group date">
+            @Html.LabelFor(m => m.BirthDate, new { @class = "control-label col-md-2" })
+            <div class="col-sm-6">
+                @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control input-sm", id = "BirthDate", name = "BirthDate", required = true })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.CGenre, new { @class = " control-label text-left col-md-2 control-label" })
+            <div class="text-left col-sm-6">
+                <label class="radio-inline" for="generoM">
+                    @Html.RadioButton("CGenre", "1", Model.CGenre == Genre.Male, new { id = "generoM", required = true })
+                    <img src="~/Content/rsc/icons/hombre.png" alt="">
+                </label>
+                <label class="radio-inline" for="generoF">
+                    @Html.RadioButton("CGenre", "2", Model.CGenre == Genre.Female, new { id = "generoF", required = true })
+                    <img src="~/Content/rsc/icons/mujer.png" alt="">
+                </label>
+            </div>
+            <label for="CGenre" class="error"></label>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+            <div class="col-md-6">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control input-sm", id = "Email", name = "Email", maxlength = "150", required = true })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-2 control-label" })
+            <div class="col-md-6">
+                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control input-sm", id = "PhoneNumber", name = "PhoneNumber" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CodePostal, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.CodePostal, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+            <div class="col-md-6">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control input-sm", id = "Password", name = "Password", minlength = "5", maxlength = "150", required = true })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+            <div class="col-md-6">
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control input-sm", id = "ConfirmPassword", name = "ConfirmPassword", required = true })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-6">
+                <button type="submit" class="btn green">Aceptar</button>
+                <a class="btn default" href="~/Admin/UserPage">Cancelar</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section scripts {
+    <section class="scripts">
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+
+                $("#PhoneNumber").inputmask("mask", {
+                    "mask": "(999) 999-9999"
+                });
+
+                $("#CodePostal").inputmask("mask", {
+                    "mask": "99999"
+                });
+
+                $("#BirthDate").inputmask("d/m/y", {
+                    "placeholder": "dd/mm/yyyy"
+                });
+
+                $("#formUpdateInfo").validate({
+                    rules: {
+                        Names: { required: true, minlength: 2, maxlength: 100, usercheck: true },
+                        LastName1: { required: true, minlength: 2, maxlength: 100, usercheck: true },
+                        LastName2: { required: true, minlength: 2, maxlength: 100, usercheck: true },
+                        BirthDate: { required: true },
+                        City: { minlength: 2, maxlength: 100, lettersDigits: true },
+                        CGenre: { required: true },
+                        Email: {
+                            required: true,
+                            emailcheck: true,
+                            maxlength: 150
+                        },
+                        Password: {
+                            required: true,
+                            pwcheck: true,
+                            minlength: 6,
+                            maxlength: 50
+                        },
+                        ConfirmPassword: {
+                            required: true,
+                            equalTo: "#Password"
+                        },
+                    },
+                    messages: {
+                        Names: {
+                            required: "El campo Nombre es requerido",
+                            minlength: jQuery.validator.format("Entre al menos {0} caracteres"),
+                            usercheck: "Solo se permiten letras."
+                        },
+                        LastName1: {
+                            required: "El campo Apellido Paterno es requerido",
+                            minlength: jQuery.validator.format("Entre al menos {0} caracteres"),
+                            usercheck: "Solo se permiten letras."
+                        },
+                        LastName2: {
+                            required: "El campo Apellido Materno es requerido",
+                            minlength: jQuery.validator.format("Entre al menos {0} caracteres"),
+                            usercheck: "Solo se permiten letras."
+                        },
+                        City: {
+                            minlength: jQuery.validator.format("Entre al menos {0} caracteres"),
+                            lettersDigits: "Solo se permiten letras, números y signos de puntuación."
+                        },
+                        CGenre: { required: "El campo Género es requerido" },
+                        BirthDate: {
+                            required: "El campo Fecha de nacimiento es requerido"
+                        },
+                        Email: {
+                            required: "El campo Email es requerido",
+                            emailcheck: "Entre una dirección de correo válida"
+                        },
+                        Password: {
+                            required: "El campo Contraseña es requerido",
+                            pwcheck: "La contraseña es débil. Entre letras minúsculas y mayúsculas, números y caracteres especiales: !,%,&,#,$,^,*,?,_,~",
+                            minlength: jQuery.validator.format("Entre al menos {0} caracteres")
+                        },
+                        ConfirmPassword: {
+                            required: "El campo Confirmar contraseña es requerido",
+                            equalTo: "La contraseña no coincide"
+                        }
+                    },
+                    submitHandler: function () {
+                        var w = GetUrlBase();
+                        $.ajax({
+                            type: 'POST',
+                            url: w + '/Admin/UserPage/EditInfo1',
+                            data: $("#formUpdateInfo").serialize(),
+                            success: function (responseData) {
+                                if (responseData.Success) {
+                                    bootbox.dialog({
+                                        message: responseData.Message,
+                                        title: "Información",
+                                        buttons: {
+                                            main: {
+                                                label: "Aceptar",
+                                                className: "blue",
+                                                callback: function () {
+                                                    window.location.href = w + '/Admin/UserPage';
+                                                }
+                                            }
+                                        }
+                                    });
+                                } else {
+                                    if (!responseData.Success) {
+                                        bootbox.dialog({
+                                            message: responseData.Message,
+                                            title: "Error",
+                                            buttons: {
+                                                main: {
+                                                    label: "Aceptar",
+                                                    className: "red"
+                                                }
+                                            }
+                                        });
+                                    }
+                                }
+                            },
+                            error:
+                                function (errormessage) {
+                                    bootbox.dialog({
+                                        message: "Ha ocurrido un error interno en el servidor.",
+                                        title: "Error",
+                                        buttons: {
+                                            main: {
+                                                label: "Aceptar",
+                                                className: "red"
+                                            }
+                                        }
+                                    });
+                                }
+                        });
+                    }
+                });
+            });
+
+        </script>
+    </section>
+}

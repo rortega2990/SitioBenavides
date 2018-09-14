@@ -1,0 +1,112 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using BenFarms.MVC.Areas.Admin.Models;
+using BenavidesFarm.DataModels.Models.Pages.Elements;
+using BenavidesFarm.DataModels.Models;
+using System.Threading.Tasks;
+
+namespace BenFarms.MVC.Areas.Admin.Services
+{
+    public class BranchAdministrationApplicationService
+    {
+        private readonly MyApplicationDbContext context;
+        public BranchAdministrationApplicationService(MyApplicationDbContext context)
+        {
+            this.context = context;
+        }
+
+        public async Task<AdministrationServiceResult> create(BranchInputModel inputData)
+        {
+            AdministrationServiceResult result = new AdministrationServiceResult();
+
+            var state = context.Estados.Where(st => st.Id == inputData.State).FirstOrDefault();
+            if (state != null)
+            {
+                var city = context.Municipios.Where(c => c.Id == inputData.City).FirstOrDefault();
+                if (city != null)
+                {
+                    
+                    if(inputData.BranchName.Trim().Length != 0)
+                    {
+                        if(inputData.BranchAddress.Trim().Length != 0)
+                        {
+                            Branch branch = getTargetBranch(inputData);
+
+                            if (branch != null)
+                            {
+                                branch.State = state;
+                                branch.City = city;
+                                if (inputData.BranchId == 0)
+                                {
+                                    context.Branchs.Add(branch);
+                                }
+                                else
+                                {
+                                    context.Entry(branch).State = System.Data.Entity.EntityState.Modified;
+                                }
+                            }
+                            else
+                            {
+                                result.Errors.Add("Sucursal no válida");
+                            }
+                            await context.SaveChangesAsync();
+                        }
+                        else
+                        {
+                            result.Errors.Add("Dirección de sucursal no válida");
+                        }
+                    }
+                    else
+                    {
+                        result.Errors.Add("Nombre de sucursal no válido");
+                    }
+                }
+                else
+                {
+                    result.Errors.Add("Ciudad no válida");
+                }
+            }
+            else
+            {
+                result.Errors.Add("Estado no válido");
+            }
+
+            return result;
+        }
+
+        private Branch getTargetBranch(BranchInputModel inputData)
+        {
+            Branch branch;
+            if (inputData.BranchId == 0)
+            {
+                branch = new Branch();
+            }
+            else
+            {
+                branch = context.Branchs.Where(b => b.BranchId == inputData.BranchId).FirstOrDefault();
+            }
+
+            if(branch != null)
+            {
+                branch.BranchName = inputData.BranchName;
+                branch.BranchRegion = inputData.BranchRegion;
+                branch.BranchLatitude = inputData.BranchLatitude;
+                branch.BranchLongitude = inputData.BranchLongitude;
+                branch.BranchSap = inputData.BranchSap;
+                branch.BranchHour1 = branch.BranchHour1;
+                branch.BranchHour2 = inputData.BranchHour2;
+                branch.BranchConsult = inputData.BranchConsult;
+                branch.BranchCeco = inputData.BranchCeco;
+                branch.BranchAddress = inputData.BranchAddress;
+                branch.BranchActive = inputData.BranchActive;
+                branch.BranchTwentyFourHours = inputData.BranchTwentyFourHours;
+                branch.BranchFose = inputData.BranchFose;
+            }
+           
+
+            return branch;
+        }
+    }
+}

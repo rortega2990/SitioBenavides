@@ -1,0 +1,139 @@
+﻿@using BenFarms.MVC.Models
+@model BenFarms.MVC.Models.LoginViewModel
+           
+<style>
+    #btnPerfil {
+        background-color: #ed202e;
+    }
+    
+     #perfilFormreg {
+        color: #ffffff;
+    } 
+    
+    #perfilFormreg legend {
+        text-align: center;
+        border: none;
+    }
+
+    #perfilFormreg dl dt {
+        float: left;
+        clear: left;
+        margin-right: 10px;
+        font-weight: bold;
+    }
+
+    #perfilFormreg .modal-header {
+        border: none;
+    }
+
+    .footer-links a {
+        color: #ffffff;
+        padding: 20px;
+    }
+</style>
+
+
+    <div class="modal fade" id="modal-tu-cuenta">
+        <div class="modal-dialog">
+            <div class="modal-content bg-color-blue-marine">
+                <form class="form-horizontal form-login" role="form" id="loginForm">
+                    @Html.AntiForgeryToken()
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <legend>!Bienvenido a Tarjeta Benavides¡</legend>
+                        <div class="row">
+                            <div class="col-sm-offset-3 col-sm-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.CardLogin, new { @class = "col-sm-3 control-label" })
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(m => m.CardLogin, new { @class = "form-control", id = "CardLogin", name = "CardLogin", required = true })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.PasswordLogin, new { @class = "col-sm-3 control-label" })
+                                    <div class="col-sm-9">
+                                        @Html.PasswordFor(m => m.PasswordLogin, new { @class = "form-control", id = "PasswordLogin", name = "PasswordLogin", required = true })
+                                    </div>
+                                </div>
+                                <span id="mensajeLogin" class="color-red"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="footer-login">
+                            <button type="submit" class="btn btn-primary" id="btnLogin">Entrar</button>
+                            <div class="row footer-links" style="margin-top: 15px">
+                                <div class="col-sm-offset-1 col-sm-10">
+                                    <a href="javascript:recuperarPass()">Olvidaste tu contraseña?</a>
+                                    <a data-toggle="modal" data-dismiss="modal" href="#modal-register">Aún no estas registrado?</a>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+@Html.Partial("_ForgotPasswordPartial", new ForgotPasswordViewModel())
+
+    
+    <div class="modal fade" id="modal-tu-cuenta-logged">
+        <div class="modal-dialog">
+            <div class="modal-content bg-color-blue-marine">
+                <form class="form-horizontal form-logged" role="form" id="perfilFormreg" method="POST" action="~/Perfil">
+                    @Html.AntiForgeryToken()
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <legend class="color-blue">¡Hola, <span id="nombreLoggeado"></span>!</legend>
+                        <div class="row">
+                            <div class="col-sm-offset-3 col-sm-6">
+                                <dl>
+                                    <dt>Tu saldo es de:</dt>
+                                    <dd id="saldoLoggeado"></dd>
+                                    <dt>Tu número de tarjeta es:</dt>
+                                    <dd id="tarjetaLoggeado"></dd>
+                                    @*<dt>Miembro Club Peques:</dt>
+                                        <dd id="clubLoggeado"></dd>*@
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="footer-logged">
+                            <button type="submit" class="btn btn-primary" id="btnPerfil">Ve a tu perfil</button>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-equipo">
+        <div class="modal-dialog">
+            <div class="modal-content bg-color-blue-marine">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    @*<legend>!Hola, <span id="nombreLoggeado" class="color-blue"></span></legend>*@
+                    <div class="row">
+                        <span id="mensajeUneteEquipo"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="footer-logged">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

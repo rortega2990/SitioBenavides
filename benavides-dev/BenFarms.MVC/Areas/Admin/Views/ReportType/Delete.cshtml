@@ -1,0 +1,47 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.Elements.ReportType
+
+@{
+    ViewBag.Title = "Eliminar Tipo de Reporte";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "InvestorPageActive";
+}
+
+<h2>Eliminar Tipo de Reporte</h2>
+
+<div>
+    <h4>Tipo de Reporte</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ReportName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReportName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReportDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReportDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReportActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReportActive)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn blue">Eliminar</button>
+        @Html.ActionLink("Cancelar", "Index", null, htmlAttributes: new { @class = "btn default" })
+    }
+</div>

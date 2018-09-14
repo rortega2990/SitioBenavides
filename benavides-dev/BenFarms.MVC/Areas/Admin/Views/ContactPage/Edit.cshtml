@@ -1,0 +1,241 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.ContactPage
+
+@{
+    ViewBag.Title = "Editar Página de Contacto";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "ContactPageEdit";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered" id="form_wizard_1">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="icon-layers font-red"></i>
+                    <span class="caption-subject font-red bold uppercase">
+                        Editar Página de Contacto -
+                        <span class="step-title"> Paso 1 de 2 </span>
+                    </span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <form class="form-horizontal" id="submit_form" method="POST" action="" enctype="multipart/form-data">
+                    @Html.AntiForgeryToken()
+                    <div class="form-wizard">
+                        <div class="form-body">
+                            <ul class="nav nav-pills nav-justified steps">
+                                <li>
+                                    <a href="#tab1" data-toggle="tab" class="step">
+                                        <span class="number"> 1 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Encabezado
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#tab2" data-toggle="tab" class="step">
+                                        <span class="number"> 2 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Texto de la Página
+                                        </span>
+                                    </a>
+                                </li>                                
+                            </ul>
+                            <div id="bar" class="progress progress-striped" role="progressbar">
+                                <div class="progress-bar progress-bar-success"> </div>
+                            </div>
+                            <div class="tab-content">
+                                <div class="alert alert-danger display-none">
+                                    <button class="close" data-dismiss="alert"></button> Se tienen varios errores. Por favor, revise nuevamente.
+                                </div>
+                                <div class="alert alert-success display-none">
+                                    <button class="close" data-dismiss="alert"></button> La validaión del formulario es correcta.
+                                </div>
+                                <div class="tab-pane active" id="tab1">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet box green">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers"></i>
+                                                        <span class="caption-subject uppercase">Encabezado</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="row  margin-top-10">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Color de fondo</label>
+                                                            <div class="col-md-4">
+                                                                <input type="text" id="BgColorHeadContactPage" name="BgColorHeadContactPage" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.ContactPageBgColorHead)" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Texto Encabezado</label>
+                                                            <div class="col-md-4">
+                                                                <input type="text" id="HeadTextContactPage" name="HeadTextContactPage" class="form-control" value="@Model.ContactPageHeadText" />
+                                                            </div>
+                                                            <label class="control-label col-md-2">Color Texto Encabezado</label>
+                                                            <div class="col-md-3">
+                                                                <input type="text" id="ColorHeadTextContactPage" name="ColorHeadTextContactPage" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.ContactPageColorHeadText)" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Título de Página</label>
+                                                            <div class="col-md-4">
+                                                                <textarea type="text" id="SubText1ContactPage" name="SubText1ContactPage" class="form-control" rows="5">@Html.Raw(Model.ContactPageSubText1)</textarea>
+                                                            </div>
+                                                            <label class="control-label col-md-2">Color del Texto Título de Página</label>
+                                                            <div class="col-md-3">
+                                                                <input type="text" id="ColorSubText1ContactPage" name="ColorSubText1ContactPage" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.ContactPageColorSubText1)" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2">Descripción del Título</label>
+                                                            <div class="col-md-4">
+                                                                <textarea type="text" id="SubText2ContactPage" name="SubText2ContactPage" class="form-control" rows="5">@Html.Raw(Model.ContactPageSubText2)</textarea>
+                                                            </div>
+                                                            <label class="control-label col-md-2">Color Descripción del Título</label>
+                                                            <div class="col-md-3">
+                                                                <input type="text" id="ColorSubText2ContactPage" name="ColorSubText2ContactPage" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.ContactPageColorSubText1)" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tab2">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet box green">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers"></i>
+                                                        <span class="caption-subject uppercase">Texto de la Página</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="row margin-top-10">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">Color del Texto de Detalles</label>
+                                                            <div class="col-md-6">
+                                                                <input type="text" id="ColorTextFooterContactPage" name="ColorTextFooterContactPage" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.ContactPageColorTextFooter)" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- BEGIN Portlet PORTLET-->
+
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="portlet">
+                                                                <div class="portlet-title">
+                                                                    <div class="caption">
+                                                                        <i class="fa fa-gift"></i>Contacto de Direccón
+                                                                    </div>
+                                                                </div>
+                                                                <div class="portlet-body">
+                                                                    <div class="row">
+                                                                        <div class="form-group">
+                                                                            <label class="control-label col-md-3">Dirección</label>
+                                                                            <div class="col-md-6">
+                                                                                <textarea type="text" id="AddressContactPage" name="AddressContactPage" class="form-control" style="width: 243px; height: 174px;" rows="20">@Model.ContactPageAddress</textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="control-label col-md-3">Teléfono</label>
+                                                                            <div class="col-md-6">
+                                                                                <input type="text" id="TelAddressContactPage" name="TelAddressContactPage" class="form-control" value="@Model.ContactPageTelAddress"/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="portlet">
+                                                                <div class="portlet-title">
+                                                                    <div class="caption">
+                                                                        <i class="fa fa-gift"></i>Servicio al Cliente
+                                                                    </div>
+                                                                </div>
+                                                                <div class="portlet-body">
+                                                                    <div class="row">
+                                                                        <div class="form-group">
+                                                                            <label class="control-label col-md-3">Email</label>
+                                                                            <div class="col-md-6">
+                                                                                <input type="email" id="EmailSaDContactPage" name="EmailSaDContactPage" class="form-control" value="@Model.ContactPageEmailSaD"/>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="control-label col-md-3">Teléfono</label>
+                                                                            <div class="col-md-6">
+                                                                                <input type="text" id="TelSaDContactPage" name="TelSaDContactPage" class="form-control" value="@Model.ContactPageTelSaD"/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="portlet">
+                                                                <div class="portlet-title">
+                                                                    <div class="caption">
+                                                                        <i class="fa fa-gift"></i>Atención a proveedores
+                                                                    </div>
+                                                                </div>
+                                                                <div class="portlet-body">
+                                                                    <div class="row">
+                                                                        <div class="form-group">
+                                                                            <label class="control-label col-md-3">Teléfono</label>
+                                                                            <div class="col-md-6">
+                                                                                <input type="text" id="TelAaPContactPage" name="TelAaPContactPage" class="form-control" value="@Model.ContactPageTelAaP"/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <a href="javascript:;" class="btn default button-previous">
+                                        <i class="fa fa-angle-left"></i> Atrás
+                                    </a>
+                                    <a href="javascript:;" class="btn btn-outline green button-next">
+                                        Continuar
+                                        <i class="fa fa-angle-right"></i>
+                                    </a>
+                                    <a class="btn green button-submit" id="btnApplyContact">
+                                        Aplicar
+                                        <i class="fa fa-check"></i>
+                                    </a>
+                                    <a class="btn blue" id="btnPreviewContact">
+                                        Vista Previa
+                                        <i class="fa fa-search"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

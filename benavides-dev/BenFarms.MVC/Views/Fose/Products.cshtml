@@ -1,0 +1,78 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.PromocionPage
+
+@{
+    ViewBag.Title = "Productos";
+    var colorgb = string.Format("width: 100%; height: auto; background-color: {0}; background-size: 100% 100%;", Model.PromocionPageColorHeadBg);
+}
+
+<p> @Model.PromocionPageCreatedDate</p>
+<div style="@Html.Raw(colorgb)">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-6 col-xs-6 " style="padding-left: 0px;margin-top: 60px">
+                <div class="row">
+                    <div class="col-md-3 col-sm-3 col-xs-4 col-xs-offset-1 col-sm-offset-0 col-md-offset-0">
+                        <img class="img-responsive" src="@Url.Content(Model.PromocionPageImageLogo1)">
+                    </div>
+                </div>
+                <div class="row">
+                    <span class="col-xs-12 col-xs-offset-1 col-md-offset-0 col-sm-offset-0 font-size-n7"
+                          style="color: @Html.Raw(Model.PromocionPageHeadtextColor)">
+                        <strong>
+                            @Html.Raw(Model.ToStringMix())
+                        </strong>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-4  col-sm-6 col-xs-6" style="padding-left: 0px;margin-top: 60px">
+                <div style="padding-left: 0px">
+                    <img class="img-responsive" src="@Url.Content(Model.PromocionPageImageLogo2)" style="padding-left: 0px; margin-bottom: 10%">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" style="margin-bottom: 10%">
+    <div class="row" style="margin-top: 5em">
+        <div class="row col-md-12 col-sm-12 col-xs-12 ">
+            <div class="container">
+                <span class="title-2em" style="font-weight: 800"><strong>@Model.PromocionPageSubText1</strong></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="row col-md-12 col-sm-12 col-xs-12 ">
+            <div class="container">
+                <span>@Model.PromocionPageSubText2</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 3em">
+        <div class="row col-md-12 col-sm-12 col-xs-12 ">
+            @{
+
+                    var count = Model.ProductPages.Count < 10 ? Model.ProductPages.Count : 9;
+                    var colorbtn = string.Format("background: {0}", Model.PromocionPageColorHeadBg);
+                    for (int i = 0; i < count; i++)
+                    {
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div style="background-color: #f3f3f3; margin: 2em 2em; border: 1px solid @Html.Raw(Model.PromocionPageColorHeadBg)" >
+                                <img class="img-responsive imgproducto" style="height: 50%;width: 50%;margin: 0 auto"
+                                     src="@Url.Content(Model.ProductPages[i].Product.ProductImage)">
+                            </div>
+                            <div class="divBntProducto">
+                                @{
+                                    //var id = "~/Fose/ImageProduct/" + Model.ProductPages[i].ProductPageId;
+                                }
+                                <a class="btn btn-producto" href="@Url.Action("ImageProduct", "Fose", new { id = Model.ProductPages[i].ProductPageId })" style="@Html.Raw(colorbtn)">@Model.ProductPages[i].Product.ProductSubtitle</a>
+                            </div>
+                        </div>
+                    }
+            }
+
+        </div>
+    </div>
+</div>
+

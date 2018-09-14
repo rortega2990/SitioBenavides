@@ -1,0 +1,46 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.ProviderPage
+@{
+    ViewBag.Title = "Proveedores";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="banner" style="background-color: @Html.Raw(Model.ProviderPageBgColorHead)">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="banner-caption">
+                    <br>
+                    <span class="caption-lg" style="color: @Html.Raw(Model.ProviderPageColorHeadText)">@Model.ProviderPageHeadText</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <p style="margin-top: 100px;text-align:left;@Html.Raw(Model.ProviderPageColorSubText);font-weight: bold; font-size: 3em;">@Model.ProviderPageSubText</p>
+    <div class="col-md-12" style="margin-top: 100px; margin-bottom: 300px;">
+        @{
+            foreach (var doc in Model.DocumentTypes)
+            {
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <h3 style="font-weight: 600; color: @Html.Raw(Model.ProviderPageColorSubText)">@doc.DocumentName</h3>
+                    </div>
+                    <div class="col-md-12">
+                        <h4 style="font-family: 'AG Book Rounded'; font-size: 20px; color: @Html.Raw(Model.ProviderPageColorSubText)">@doc.DocumentDescription</h4>
+                    </div>
+                    @{
+                        foreach (var file in doc.ProviderFiles)
+                        {
+                            <div class="col-md-12" style="margin-top: 20px;">
+                                <a style="text-align: left;" class=" btn bg-color-blue-xlight" href="@Url.Content(file.AddressFile)" target="_blank"><i class="fa fa-file-excel-o fa-2x"></i><span style="font-size: 20px; white-space: pre-line">@file.NameDescriptiveFile</span></a>
+                            </div>
+                        }
+                    }
+                </div>
+            }
+        }
+    </div>
+</div>
+

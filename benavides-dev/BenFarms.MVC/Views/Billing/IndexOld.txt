@@ -1,0 +1,16 @@
+<section class="beneficios padded-top-bottom bg-color-white">
+    <div class="row full-width">
+        <div class="col-xs-12 col-sm-5 full-width">
+            @*<img src="~/Content/rsc/imgs/tarjeta.png" alt="" class="img-responsive hidden-xs">
+            <img src="~/Content/rsc/imgs/tarjeta-xs.png" alt="" class="img-responsive visible-xs">*@
+            <img src="@Url.Content(Model.BenefitSection.BenefitSectionImage)" alt="" class="img-responsive hidden-xs">
+            <img src="@Url.Content(Model.BenefitSection.BenefitSectionImageXS)" alt="" class="img-responsive visible-xs">
+        </div>
+        <div class="col-xs-12 col-sm-7">
+            @Html.Raw(@Model.BenefitSection.BenefitSectionDiv)
+        </div>
+        <p class="absolute center-bottom color-blue padded-left-right">
+            @Html.Raw(@Model.BenefitSection.BenefitSectionParagraph)
+        </p>
+    </div>
+</section>

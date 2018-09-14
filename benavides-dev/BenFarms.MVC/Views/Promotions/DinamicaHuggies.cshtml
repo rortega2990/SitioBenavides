@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "DinamicaHuggies";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DinamicaHuggies</h2>
+
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+    }
+</style>
+
+
+<div class="products">
+    <div class="zoom">
+        <a class="btn btn-link btn-xs zoom-in"><span class="fa fa-plus"></span></a>
+        <a class="btn btn-link btn-xs zoom-out"><span class="fa fa-minus"></span></a>
+        <div class="zoom-slider-wrapper">
+            <div class="zoom-slider">
+                <a class="btn zoom-icon-handler ui-slider-handle"></a>
+            </div>
+        </div>
+    </div>
+    <span class="product" id="valueImage">
+        <img src="~/Content/rsc/imgs/landing concurso huggies-01.jpg" valueimage="~/Content/rsc/imgs/landing concurso huggies-01.jpg" alt="" class="products-img img-responsive" />
+    </span>
+</div>
+
+
+
+
+<span valueimage="~/Content/rsc/imgs/landing concurso huggies-01.jpg" id="valuePdf"> </span>
+
+
+

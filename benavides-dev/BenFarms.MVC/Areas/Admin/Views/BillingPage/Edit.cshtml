@@ -1,0 +1,442 @@
+﻿@model BenavidesFarm.DataModels.Models.Pages.BillingPage
+
+@{
+    ViewBag.Title = "Editar Página de Tarjetas";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Page = "CardPageEdit";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light bordered" id="form_wizard_1">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="icon-layers font-red"></i>
+                    <span class="caption-subject font-red bold uppercase">
+                        Editar Página de Tarjetas -
+                        <span class="step-title"> Paso 1 de 4 </span>
+                    </span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <form class="form-horizontal" id="submit_form" method="POST" action="" enctype="multipart/form-data">
+                    @*@Html.AntiForgeryToken()*@
+                    <div class="form-wizard">
+                        <div class="form-body">
+                            <ul class="nav nav-pills nav-justified steps">
+                                <li>
+                                    <a href="#tab1" data-toggle="tab" class="step">
+                                        <span class="number"> 1 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Encabezado
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#tab2" data-toggle="tab" class="step">
+                                        <span class="number"> 2 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Beneficios
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#tab3" data-toggle="tab" class="step">
+                                        <span class="number"> 3 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Aumenta Beneficios
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#tab4" data-toggle="tab" class="step">
+                                        <span class="number"> 4 </span>
+                                        <span class="desc">
+                                            <i class="fa fa-check"></i> Laboratorios
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div id="bar" class="progress progress-striped" role="progressbar">
+                                <div class="progress-bar progress-bar-success"> </div>
+                            </div>
+                            <div class="tab-content">
+                                <div class="alert alert-danger display-none">
+                                    <button class="close" data-dismiss="alert"></button> Se tienen varios errores. Por favor, revise nuevamente.
+                                </div>
+                                <div class="alert alert-success display-none">
+                                    <button class="close" data-dismiss="alert"></button> La validaión del formulario es correcta.
+                                </div>
+                                <div class="tab-pane active" id="tab1">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Imágenes de Encabezado</span>
+                                                    </div>
+                                                    <div class="actions">
+                                                        <a id="btnAdicionarEncabezado" class="btn btn-default btn-sm">
+                                                            <i class="fa fa-plus"></i> Adicionar
+                                                        </a>
+                                                        <a class="btn btn-sm btn-icon-only btn-default fullscreen" href="javascript:;"></a>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    @{
+                                                        var idsServer = "";
+                                                    }
+                                                    <div class="row" id="sortable_portlets">
+                                                        <div class="col-md-12 column sortable" id="sortablePortlets">
+                                                            @{
+                                                                for (int i = 0; i < Model.HeadImages.Count; i++)
+                                                                {
+                                                                    var idHead = Model.HeadImages[i].ImageSectionId;
+                                                                    idsServer += idHead + ",";
+                                                                    var divEncabezado = "server_divEncabezado_" + idHead;
+                                                                    var textoEncabezado = "server_TextEncabezado_" + idHead;
+                                                                    var colorEncabezado = "server_ColorTextEncabezado_" + idHead;
+                                                                    var activada = Model.HeadImages[i].ImageSectionPageId == Model.BillingPageId;
+
+                                                                    <div class="col-md-6 portlet portlet-sortable box blue-hoki" id="@divEncabezado">
+                                                                        <div class="portlet-title">
+                                                                            <div class="caption">
+                                                                                <i class="fa fa-gift"></i>Encabezado
+                                                                            </div>
+                                                                            <div class="actions">
+                                                                                <a class="btn btn-default btn-sm" id="@Model.HeadImages[i].ImageSectionId" onclick="javascript: deleteElemExistente(this);">
+                                                                                    <i class="fa fa-remove"></i> Eliminar
+                                                                                </a>
+                                                                                <a class="btn btn-sm btn-icon-only btn-default fullscreen" href="javascript:;"></a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="portlet-body">
+                                                                            <div class="form-group">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-12">
+                                                                                            <label class="control-label">Texto</label>
+                                                                                            <div>
+                                                                                                <input type="text" id="@textoEncabezado" name="@textoEncabezado" class="form-control" value="@Model.HeadImages[i].ImageSectionText" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-12">
+                                                                                            <label class="control-label">Color</label>
+                                                                                            <div>
+                                                                                                <input type="text" id="@colorEncabezado" name="@colorEncabezado" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.HeadImages[i].ImageSectionColorText)" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-12">
+                                                                                            <div style="margin-top: 20px"><span class="label label-sm label-success"> Activa </span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-12">
+                                                                                            <label class="control-label">Imagen</label>
+                                                                                            <div class="col-md-12">
+                                                                                                <label class="control-label">Imagen</label>
+                                                                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                                                    <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 100px;">
+                                                                                                        <img src="@Url.Content(Model.HeadImages[i].ImageSectionImage)" />
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                }
+                                                            }
+                                                            <div class="portlet portlet-sortable-empty"> </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="tab-pane" id="tab2">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Beneficios</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Imagen Tarjeta Web</label>
+                                                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 400px; height: 200px;">
+                                                                    <img src="@Url.Content(Model.BenefitSection.BenefitSectionImage)" />
+                                                                </div>
+                                                                <div>
+                                                                    <span class="btn red btn-outline btn-file">
+                                                                        <span class="fileinput-new"> Seleccionar Imagen </span>
+                                                                        <span class="fileinput-exists"> Cambiar </span>
+                                                                        <input type="file" name="BeneficiosTarjetaImagen" id="BeneficiosTarjetaImagen">
+                                                                    </span>
+                                                                    <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Imagen Tarjeta Movil</label>
+                                                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 400px; height: 200px;">
+                                                                    <img src="@Url.Content(Model.BenefitSection.BenefitSectionImageXS)" />
+                                                                </div>
+                                                                <div>
+                                                                    <span class="btn red btn-outline btn-file">
+                                                                        <span class="fileinput-new"> Seleccionar Imagen </span>
+                                                                        <span class="fileinput-exists"> Cambiar </span>
+                                                                        <input type="file" name="BeneficiosTarjetaImagenXs" id="BeneficiosTarjetaImagenXs">
+                                                                    </span>
+                                                                    <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-2">Beneficios - Lista</label>
+                                                        <div class="col-md-12">
+                                                            <textarea class="ckeditor form-control" name="BeneficiosTarjeta" id="BeneficiosTarjeta">@Html.Raw(Model.BenefitSection.BenefitSectionDiv)</textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group last">
+                                                        <label class="col-md-2">Beneficios - Párrafo</label>
+                                                        <div class="col-md-12">
+                                                            <textarea class="ckeditor form-control" name="BeneficiosTarjetaParrafo" id="BeneficiosTarjetaParrafo">@Html.Raw(Model.BenefitSection.BenefitSectionParagraph)</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tab3">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Aumenta Beneficios</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="form-body">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Imagen Tarjeta Superior</label>
+                                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                    <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 400px; height: 200px;">
+                                                                        <img src="@Url.Content(Model.IncrementBenefitSection.IncrementBenefitSectionImage1)" />
+                                                                    </div>
+                                                                    <div>
+                                                                        <span class="btn red btn-outline btn-file">
+                                                                            <span class="fileinput-new"> Seleccionar Imagen </span>
+                                                                            <span class="fileinput-exists"> Cambiar </span>
+                                                                            <input type="file" name="AumentaBeneficiosImagen1" id="AumentaBeneficiosImagen1">
+                                                                        </span>
+                                                                        <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Imagen Tarjeta Inferior</label>
+                                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                    <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 400px; height: 200px;">
+                                                                        <img src="@Url.Content(Model.IncrementBenefitSection.IncrementBenefitSectionImage2)" />
+                                                                    </div>
+                                                                    <div>
+                                                                        <span class="btn red btn-outline btn-file">
+                                                                            <span class="fileinput-new"> Seleccionar Imagen </span>
+                                                                            <span class="fileinput-exists"> Cambiar </span>
+                                                                            <input type="file" name="AumentaBeneficiosImagen2" id="AumentaBeneficiosImagen2">
+                                                                        </span>
+                                                                        <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Eliminar </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group last">
+                                                            <div class="col-md-12">
+                                                                <textarea class="ckeditor form-control" name="AumentaBeneficiosTarjeta" id="AumentaBeneficiosTarjeta">@Html.Raw(Model.IncrementBenefitSection.IncrementBenefitSectionDiv)</textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tab4">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light portlet-fit bordered">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="icon-layers font-green"></i>
+                                                        <span class="caption-subject font-green bold uppercase">Laboratorios</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">  
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label class="col-md-2">Título de sección</label>
+                                                                <div class="col-md-12">
+                                                                    <input type="text" class="form-control" id="TituloLaboratorios" name="TituloLaboratorios" value="@Model.LabSection.LabSectionTitle">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>                                                  
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="portlet light portlet-fit bordered">
+                                                                <div class="portlet-title">
+                                                                    <div class="caption">
+                                                                        <i class="icon-layers font-green"></i>
+                                                                        <span class="caption-subject font-green bold uppercase">Imágenes Carrusel</span>
+                                                                    </div>
+                                                                    <div class="actions">
+                                                                        <a id="btnAdicionarEncabezadoLab" class="btn btn-default btn-sm">
+                                                                            <i class="fa fa-plus"></i> Adicionar
+                                                                        </a>
+                                                                        <a class="btn btn-sm btn-icon-only btn-default fullscreen" href="javascript:;"></a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="portlet-body">
+                                                                    @{
+                                                                        var idsServerLab = "";
+                                                                    }
+                                                                    <div class="row" id="sortable_portlets">
+                                                                        <div class="col-md-12 column sortable" id="sortablePortletsLab">
+                                                                            @{
+                                                                                for (int i = 0; i < Model.LabSection.ImageSections.Count; i++)
+                                                                                {
+                                                                                    var idHead = Model.LabSection.ImageSections[i].ImageSectionId;
+                                                                                    idsServerLab += idHead + ",";
+                                                                                    var divEncabezado = "server_divEncabezadoLab_" + idHead;
+                                                                                    var textoEncabezado = "server_TextEncabezadoLab_" + idHead;
+                                                                                    var colorEncabezado = "server_ColorTextEncabezadoLab_" + idHead;
+                                                                                    var activada = Model.LabSection.ImageSections[i].ImageSectionPageId == Model.LabSectionId;
+
+                                                                                    <div class="col-md-6 portlet portlet-sortable box blue-hoki" id="@divEncabezado">
+                                                                                        <div class="portlet-title">
+                                                                                            <div class="caption">
+                                                                                                <i class="fa fa-gift"></i>Imagen Carrusel
+                                                                                            </div>
+                                                                                            <div class="actions">
+                                                                                                <a class="btn btn-default btn-sm" id="@Model.LabSection.ImageSections[i].ImageSectionId" onclick="javascript: deleteElemExistenteLab(this);">
+                                                                                                    <i class="fa fa-remove"></i> Eliminar
+                                                                                                </a>
+                                                                                                <a class="btn btn-sm btn-icon-only btn-default fullscreen" href="javascript:;"></a>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="portlet-body">
+                                                                                            <div class="form-group">
+                                                                                                <div class="col-md-6">
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-md-12">
+                                                                                                            <label class="control-label">Texto</label>
+                                                                                                            <div>
+                                                                                                                <input type="text" id="@textoEncabezado" name="@textoEncabezado" class="form-control" value="@Model.LabSection.ImageSections[i].ImageSectionText" />
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-md-12">
+                                                                                                            <label class="control-label">Color</label>
+                                                                                                            <div>
+                                                                                                                <input type="text" id="@colorEncabezado" name="@colorEncabezado" class="form-control demo" data-control="wheel" value="@Html.Raw(Model.LabSection.ImageSections[i].ImageSectionColorText)" />
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-md-12">
+                                                                                                            <div style="margin-top: 20px"><span class="label label-sm label-success"> Activa </span>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="col-md-6">
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-md-12">
+                                                                                                            <label class="control-label">Imagen</label>
+                                                                                                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                                                                <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 100px;">
+                                                                                                                    <img src="@Url.Content(Model.LabSection.ImageSections[i].ImageSectionImage)" />
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                }
+                                                                            }
+                                                                            <div class="portlet portlet-sortable-empty"> </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>        
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <a href="javascript:;" class="btn default button-previous">
+                                        <i class="fa fa-angle-left"></i> Atrás
+                                    </a>
+                                    <a href="javascript:;" class="btn btn-outline green button-next">
+                                        Continuar
+                                        <i class="fa fa-angle-right"></i>
+                                    </a>
+                                    <a class="btn green button-submit" id="btnApplyCard">
+                                        Aplicar
+                                        <i class="fa fa-check"></i>
+                                    </a>
+                                    <a class="btn blue" id="btnPreviewCard">
+                                        Vista Previa
+                                        <i class="fa fa-search"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <span id="idsServidor" idsServer="@idsServer" name="idsServidor"></span>
+                    <span id="idsServidorLab" idsserver="@idsServerLab" name="idsServidorLab"></span>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

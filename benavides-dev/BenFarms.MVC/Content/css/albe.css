@@ -1,0 +1,175 @@
+.banner {
+    width: 100% !important;
+    height: auto !important;
+}
+
+.margin-top-producto {
+    margin-top: 20px !important;
+}
+
+.margin-top-footer {
+    margin-top: 50px !important;
+}
+
+.btn-producto {
+    position: absolute !important;
+    bottom: 0px !important;
+
+    /*background: #232323 !important;*/
+    color: white;
+    width: 60%;
+!important;
+    border-radius: 0px !important;
+    margin: 0 auto !important;
+    padding: 0.7em !important;
+    font-size: 16px !important;
+    /*margin: 1em 1em !important;*/
+
+}
+
+.color-btn-soap {
+    background: #ff9194 !important;
+}
+
+.color-btn-fose {
+    background: #9fba0e !important;
+}
+
+.divBntProducto {
+    margin: 0 auto !important;
+    width: 65% !important;
+}
+
+.divImgProducto {
+    border: 1px solid #fed800 !important;
+    margin: 2em 2em !important;
+    background-color: #f3f3f3;
+}
+
+.divImgProductosoap {
+    border: 1px solid #ff9194 !important;
+    margin: 2em 2em !important;
+    background-color: #f3f3f3;
+}
+
+.imgproducto {
+    padding: 3em 3em !important;
+    }
+
+a.btn-producto:hover {
+    color: white;
+    background-color: #232323 !important;
+
+}
+
+.background-head {
+    width: 100%;
+    height: auto;
+    background-image: url('../rsc/imgs/foxe-rectangulo1.png');
+    background-size: 100% 100%;
+}
+
+.background-head-sad {
+    width: 100%;
+    height: auto;
+    background-size: 100% 100%;
+}
+
+.background-head-glori {
+    width: 100%;
+    height: auto;
+    background-color: #ff9194;
+    background-size: 100% 100%;
+}
+
+.background-head-unete {
+    width: 100%;
+    height: auto;
+
+}
+
+.btn-SAD {
+    position: absolute !important;
+    top: 0px !important;
+    /*background: #232323 !important;*/
+    color: white;
+    border-radius: 0px !important;
+    font-weight: 600;
+    font-size: 20px !important;
+    /*margin: 1em 1em !important;*/
+
+}
+
+.banner .banner-caption .caption-lg-menor {
+    font-size: 4.5em;
+}
+
+@media (max-width: 991px) {
+    .banner .banner-caption .caption-lg-menor {
+        font-size: 4em;
+    }
+}
+
+@media (max-width: 676px) {
+    .banner .banner-caption .caption-lg-menor {
+        font-size: 2em;
+    }
+}
+
+.title-2-5em {
+    font-size: 2.5em;
+}
+
+@media (max-width: 991px) {
+    .title-2-5em {
+        font-size: 1.8em;
+    }
+}
+
+@media (max-width: 676px) {
+    .title-2-5em {
+        font-size: 1.2em;
+    }
+}
+
+.title-2em {
+    font-size: 1.9em;
+}
+
+@media (max-width: 991px) {
+    .title-2em {
+        font-size: 1.4em;
+    }
+}
+
+@media (max-width: 676px) {
+    .title-2em {
+        font-size: 1.2em;
+    }
+
+}
+
+.borderPagos {
+
+    border: 1px solid #2a3479 !important;
+    padding-left: 0px !important;
+}
+.h-pagos{
+    height: 170px!important;
+}
+.font-size-n7{
+    font-size: 3em;
+}
+@media (max-width: 610px) {
+    .borderPagos {
+        border: none !important;
+        padding-left: 0px !important;
+    }
+    .h-pagos{
+        height: 70px!important;
+    }
+    .font-size-n7{
+        font-size: 1.5em;
+    }
+}
+

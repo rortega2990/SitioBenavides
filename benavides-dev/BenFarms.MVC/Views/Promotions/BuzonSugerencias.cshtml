@@ -1,0 +1,173 @@
+﻿
+@{
+    ViewBag.Title = "BuzonSugerencias";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="perfil-contacto" class="tab-pane" role="tabpanel">
+    <div class="container">
+        <div class="form_info_01">
+
+            <h2 class="color-blue weight-heavy title-2em" style="margin-top: 20px"> <i class="fa fa-envelope fa-1x"></i>  ¿Tienes Alguna Sugerencia?</h2>
+
+            <div class="row">
+                <form class="form-horizontal" id="perfilContactFormSugerencias" action="" role="form" style="padding-top:3em">
+                    <div class="col-md-offset-2 col-xs-12 col-md-3 col-sm-6">
+                        <div class="form-group">
+                            <label for="Email" class="control-label color-black">Tu correo electrónico:</label>
+                            <input type="email" class="form-control input-sm" id="Email" name="Email" value="">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Nombre" class="control-label color-black"> Nombre:</label>
+                            <input type="text" class="form-control input-sm" id="Nombre" name="Nombre" placeholder="">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Sucursal" class="control-label color-black"> Sucursal:</label>
+                            <input type="text" class="form-control input-sm" id="Sucursal" name="Sucursal" placeholder="">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="Comments" class="control-label color-black"> Comentarios:</label>
+                            <textarea style="height: 220px" class="form-control" id="Comments" name="Comments" placeholder=""></textarea>
+                        </div>
+
+                    </div>
+
+                    <div class="col-xs-12 col-md-12 col-sm-12">
+                        <div class="row">
+                            <div style="text-align: center;">
+                                <span id="mensajeContacto" class="color-red"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 20px">
+
+                        <button type="submit" class="btn" style="background-color: #48c7f3; color: white; border-radius: 0px; float: right; margin-right: 450px">Enviar</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <section class="scripts">
+        <script type="text/javascript">
+            $("#perfilContactFormSugerencias").validate({
+                rules: {
+                    Email: {
+                        required: false,
+                        emailcheck: false,
+                        maxlength: 150
+                    },
+
+                    Sucursal:{
+                        required: false,
+                    },
+
+                    Comments: {
+                        required: true,
+                        minlength: 20,
+                        maxlength: 1000
+                    }
+
+
+                },
+                messages: {
+
+                    Email: {
+                        required: "El campo Email es requerido",
+                        emailcheck: "Entre una dirección de correo válida"
+                    },
+
+                    Sucursal: {
+                        required:"El Campo Sucursal es requerido",
+                    },
+
+
+                    Comments: {
+                        required:"El Campo Comentarios es requerido",
+                        minlength:"Debe tener al menos 20 caractéres"
+                    },
+
+
+                },
+                submitHandler: function () {
+                    Loading('#form_info_01');
+                    var w = GetUrlBase();
+                    var data = new FormData();
+                    data.append("Nombre", $("#Nombre").val());
+                    data.append("Sucursal", $("#Sucursal").val());
+                    data.append("Comments", $("#Comments").val());
+                    data.append("Email", $("#Email").val());
+                    data.append("perfilContactFormSugerencias", $('#perfilContactFormSugerencias').serialize());
+                    $.ajax({
+                        type: 'POST',
+                        url: 'http://localhost:44658/Promotions/Contacto',
+                        data: $("#perfilContactFormSugerencias").serialize(),
+                        success: function (responseData) {
+                            if (responseData.Success) {
+                                UnLoading('#form_info_01');
+                                bootbox.dialog({
+                                    message: responseData.Message,
+                                    title: "Información",
+                                    buttons: {
+                                        main: {
+                                            label: "Aceptar",
+                                            className: "blue",
+                                            callback: function () {
+                                                window.location.href = w;
+                                            }
+                                        }
+                                    }
+                                });
+
+                            } else {
+                                if (!responseData.Success) {
+                                    UnLoading('#form_info_01');
+                                    bootbox.dialog({
+                                        message: responseData.Message,
+                                        title: "Error",
+                                        buttons: {
+                                            main: {
+                                                label: "Aceptar",
+                                                className: "red"
+                                            }
+                                        }
+                                    });
+                                }
+                            }
+                        },
+                        error:
+                    function (errormessage) {
+                        UnLoading('#form_info_01');
+                        bootbox.dialog({
+                            message: "Ha ocurrido un error interno en el servidor.",
+                            title: "Error",
+                            buttons: {
+                                main: {
+                                    label: "Aceptar",
+                                    className: "red"
+                                }
+                            }
+                        });
+                    }
+                    });
+                }
+            });
+
+
+
+
+        </script>
+
+
+
+
+    </section>
+
+}

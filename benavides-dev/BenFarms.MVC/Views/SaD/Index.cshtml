@@ -1,0 +1,98 @@
+﻿@using BenavidesFarm.DataModels.Models.Pages.Elements
+@model BenavidesFarm.DataModels.Models.Pages.SaDPage
+
+@{
+    ViewBag.Title = "Servicio a Domicilio";
+    ViewBag.Page = "SaD";
+}
+
+@*<div class="background-head-sad" style="background-image: url('@Url.Content(Model.SaDPageImageBg)');">
+    <div class="row no-margin-right no-margin-left">
+        <div class="col-md-6 col-sm-6 color-white padded-all ">
+            <div class="col-md-offset-3 margin-top-15-porciento ">
+                <h1 style="color:@Html.Raw(Model.SaDPageHeadTextColor1)">@Model.SaDPageHeadText1</h1>
+                <h3 style="color:@Html.Raw(Model.SaDPageHeadTextColor2)">@Model.SaDPageHeadText2</h3>
+            </div>
+        </div>
+        <div class="col-md-5 col-sm-6 no-padding-left no-padding-right float-rigth ">
+            <img class="img-responsive" src="@Url.Content(Model.SaDPageImageLogo)">
+        </div>
+    </div>
+</div>
+<div class="container margin-bottom-100">
+    <div class="col-md-12 text-center margin-top-40">
+        <h3 class="titulo-contacto" style="color:@Html.Raw(Model.SaDPageSubTextColor1)">Servicio a Domicilio</h3>
+    </div>
+    <div class="col-md-12 margin-top-30 text-center" style="border: 2px solid @Html.Raw(Model.SaDPageNumberPrincipalBgColor)">
+        @{
+            var bgNumber = string.Format("background-color: {0}", Model.SaDPageNumberPrincipalBgColor);
+            var colorNumber = string.Format("color: {0}", Model.SaDPageNumberPrincipalTextColor);
+        }
+        <div class="margin-top-14-negativo">
+            <a class="padding-btn-tel font-size-20" style="@Html.Raw(bgNumber);@Html.Raw(colorNumber)" href="tel:@Model.SaDPageNumberPrincipalText.Replace(" ", "")">@Model.SaDPageNumberPrincipalText</a>
+        </div>
+        <div class=" row margin-top-40">
+            <!--ESTE ES EL CAMPO QUE HAY QUE REPETIR-->
+            @{
+                foreach (SaDTypeNumber t in Model.SaDTypeNumbers)
+                {
+                    <div class="col-md-3 col-sm-3 col-xs-6 margin-bottom-20 ">
+                        <div class="col-md-12 text-left">
+                            <span class="col-md-12 localidad" style="color: #48c7f3;">@t.SaDTypeNumberCity</span>
+                        </div>
+                        <div class="col-md-12 text-left ">
+                            <span class="col-md-12"><a href="tel:@Html.Raw(t.SaDTypeNumberPhone)">@t.SaDTypeNumberPhone</a></span>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>*@
+
+<div class="background-head-sad" style="background-image: url('@Url.Content(Model.SaDPageImageBg)');">
+    <div class="row" style="margin-right: 0px!important;margin-left: 0px!important;">
+        <div class="col-md-6 " style="padding-left: 0px!important;margin-top: 3.4%">
+            <div class="banner col-md-3  col-sm-3 col-xs-12 col-xs-offset-0 "
+                 style="min-height: 2px!important;">
+                <div class="banner-caption col-md-offset-3 col-sm-offset-4 "
+                     style="text-align: left;padding: 0px;">
+                    <span class="caption-lg-menor" style="color:@Html.Raw(Model.SaDPageHeadTextColor1)">@Model.SaDPageHeadText1</span>
+                    <span class="title-2-5em" style="color:@Html.Raw(Model.SaDPageHeadTextColor2)">@Model.SaDPageHeadText2</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6" style="padding-left: 0px!important;padding-right: 0px !important;">
+            <img style="width: 100%;height: auto" class="img-responsive" src="@Url.Content(Model.SaDPageImageLogo)">
+        </div>
+        @*<img style="width: 100%;height: auto" class="img-responsive" src="../content/rsc/imgs/SaD-01_636486734171524958.png">*@
+
+    </div>
+</div>
+<div class="container" style="margin-bottom: 100px">
+    <div class="row" style="margin-top: 40px;padding: 6px 6px 6px 6px">
+        <div style="text-align: center; margin-bottom: 60px" >
+            <span class="title-2-5em" style="font-weight: 800!important;color:@Html.Raw(Model.SaDPageSubTextColor1)">Servicio a Domicilio</span>
+        </div>
+        <div style="border: 1px solid @Html.Raw(Model.SaDPageNumberPrincipalBgColor);padding-left: 0px;" class="col-md-12">
+            @{
+                var bgNumber = string.Format("background-color: {0}", Model.SaDPageNumberPrincipalBgColor);
+                var colorNumber = string.Format("color: {0}", Model.SaDPageNumberPrincipalTextColor);
+            }
+            <div class="col-md-4 col-md-offset-4 col-xs-10 col-xs-offset-1" style="@Html.Raw(bgNumber); position: absolute; margin-top: -26px;font-size: 30px;font-weight: 800">
+                <p style="text-align: center;margin: 0px"><a style="@Html.Raw(colorNumber)" href="tel:@Model.SaDPageNumberPrincipalText.Replace(" ", "")">@Model.SaDPageNumberPrincipalText</a></p>
+            </div>
+            <div class="row" style="margin-top: 60px;margin-bottom: 60px; line-height: 1">
+                @{
+                    foreach (SaDTypeNumber t in Model.SaDTypeNumbers)
+                    {
+                        <div class="col-md-3 col-sm-3 col-xs-6 " style="text-align: center;margin-bottom: 20px">
+                            <span class="col-md-12" style="color: #48c7f3">@t.SaDTypeNumberCity</span>
+                            <span class="col-md-12"><a href="tel:@Html.Raw(t.SaDTypeNumberPhone)">@t.SaDTypeNumberPhone</a></span>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
