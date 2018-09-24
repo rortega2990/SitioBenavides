@@ -1935,6 +1935,8 @@ namespace BenFarms.MVC.BeneficioInteligenteService {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://lms.com.mx/WSPortalBI")]
     public partial class Cliente {
         
+        private int idField;
+        
         private string imgTitularField;
         
         private string numTarjetaField;
@@ -1970,6 +1972,18 @@ namespace BenFarms.MVC.BeneficioInteligenteService {
         private ClubPeques cPequesField;
         
         private string tarjeta_intMontoAcumuladosField;
+        
+        private string uRLTuSaludField;
+        
+        /// <remarks/>
+        public int id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
         
         /// <remarks/>
         public string ImgTitular {
@@ -2148,6 +2162,16 @@ namespace BenFarms.MVC.BeneficioInteligenteService {
             }
             set {
                 this.tarjeta_intMontoAcumuladosField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string URLTuSalud {
+            get {
+                return this.uRLTuSaludField;
+            }
+            set {
+                this.uRLTuSaludField = value;
             }
         }
     }

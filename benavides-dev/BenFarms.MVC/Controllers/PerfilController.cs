@@ -365,7 +365,7 @@ namespace BenFarms.MVC.Controllers
             ////public  misBeneficiarioos = new List<MisBeneficiarios>;
             //regModel.misBene = misBeneficiarioos;
 
-            ViewBag.TuSaludURL = "";
+            ViewBag.TuSaludURL =  datosCliente.ReturnValue.URLTuSalud;
 
             regModel.ConditionsTermsPage = await storeDB.ConditionsTermsPages.FirstOrDefaultAsync(x => x.ConditionsTermsPageActive);
             return regModel;

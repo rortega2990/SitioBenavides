@@ -2548,10 +2548,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="https://beneficiointeligente.com.mx/WSBI/PortalBI.asmx">
+    <WebReferenceUrl Include="https://beneficiointeligente.com.mx/WSBITEST/PortalBI.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\BeneficioInteligenteService\</RelPath>
-      <UpdateFromURL>https://beneficiointeligente.com.mx/WSBI/PortalBI.asmx</UpdateFromURL>
+      <UpdateFromURL>https://beneficiointeligente.com.mx/WSBITEST/PortalBI.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

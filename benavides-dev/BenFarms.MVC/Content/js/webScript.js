@@ -580,7 +580,7 @@ $(document).ready(function () {
 
     $("#registerForm").validate({ 
         rules: {
-            Card: { required: true, minlength: 11, maxlength: 11, onlyDigits: true },
+            Card: { required: true, minlength: 11, maxlength: 11, onlyDigits: false },
             Names: { required: true, minlength: 2, maxlength: 100, usercheck: true },
             LastName1: { required: true, minlength: 2, maxlength: 100, usercheck: true },
             LastName2: { required: true, minlength: 2, maxlength: 100, usercheck: true },

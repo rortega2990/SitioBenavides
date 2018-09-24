@@ -441,7 +441,7 @@ namespace BenFarms.MVC.Controllers
             string username = "webmaster@benavides.com.mx";
             string password = "benavides.3";
             //const string to = "contactobi@benavides.com.mx";
-            const string to = "jmenar@benavides.com.mx";
+            const string to = "sugerenciaTI@benavides.com.mx";
 
             //jmenar@benavides.com.mx
 

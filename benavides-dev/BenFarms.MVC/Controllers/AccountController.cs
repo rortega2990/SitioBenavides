@@ -192,7 +192,8 @@ namespace BenFarms.MVC.Controllers
             }
 
             var service = new BeneficioInteligenteService.PortalBI();
-            var pass = service.EncriptarPassword(model.PasswordLogin);
+             var pass = service.EncriptarPassword(model.PasswordLogin);
+          //  var pass = "zHjr3pfXHfLvVpq2vHNamA ==";
             var result = service.ValidaAcceso("1", "998877", "1", model.CardLogin, pass);
 
             switch (result.ErrorCode)
@@ -222,7 +223,7 @@ namespace BenFarms.MVC.Controllers
                     HttpCookie aCookie = new HttpCookie("imageUser")
                     {
                         Value = string.IsNullOrEmpty(datosCliente.ReturnValue.ImgTitular) ? datosCliente.ReturnValue.Genero == 2 ? "~/Content/rsc/imgs/girl.png" : "~/Content/rsc/imgs/boy.png" : datosCliente.ReturnValue.ImgTitular.TrimEnd('"'),
-                        //Value = datosCliente.datosCliente.Genero == 2 ? "~/Content/rsc/imgs/girl.png" : "~/Content/rsc/imgs/boy.png",
+                        //Value = datosCliente.ReturnValue.Genero == 2 ? "~/Content/rsc/imgs/girl.png" : "~/Content/rsc/imgs/boy.png",
                         Expires = DateTime.Now.AddDays(1)
                     };
                     Response.Cookies.Add(aCookie);

@@ -33,6 +33,11 @@ namespace ExcelDataReaders
             Dictionary<String, Municipios> cities = new Dictionary<string, Municipios>();
 
 
+            Dictionary<String, int> MiArreglo = new Dictionary<String, int>();
+            MiArreglo.Add("roger", 2);
+
+
+
             StreamReader fileReader = new StreamReader(fileName,Encoding.UTF8);
             while (!fileReader.EndOfStream)
             {

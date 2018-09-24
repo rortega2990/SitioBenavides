@@ -26,7 +26,7 @@ namespace BenFarms.MVC.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://beneficiointeligente.com.mx/WSBI/PortalBI.asmx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://beneficiointeligente.com.mx/WSBITEST/PortalBI.asmx")]
         public string BenFarms_MVC_BeneficioInteligenteService_PortalBI {
             get {
                 return ((string)(this["BenFarms_MVC_BeneficioInteligenteService_PortalBI"]));

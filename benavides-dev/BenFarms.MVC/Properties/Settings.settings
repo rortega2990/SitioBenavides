@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="BenFarms_MVC_BeneficioInteligenteService_PortalBI" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">https://beneficiointeligente.com.mx/WSBI/PortalBI.asmx</Value>
+      <Value Profile="(Default)">https://beneficiointeligente.com.mx/WSBITEST/PortalBI.asmx</Value>
     </Setting>
   </Settings>
 </SettingsFile>

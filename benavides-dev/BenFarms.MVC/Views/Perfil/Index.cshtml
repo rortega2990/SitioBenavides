@@ -9,9 +9,12 @@
 <style>
     .btnEdit {
         background: #48c7f3 url("../../assets/pages/img/editbtn.jpg") no-repeat 10px 0;
-        height: 24px;
+        height: 32px;
         padding-left: 10px !important;
         width: 150px;
+        /*position: absolute;
+        left: 0;
+          float:left;*/
     }
 
     #perfilForm a {
@@ -23,9 +26,10 @@
     input, textarea {
         background-color: #e3e5e8 !important;
     }
-     tr.odd {
-         background-color: #f3ddde !important;
-     }
+
+    tr.odd {
+        background-color: #f3ddde !important;
+    }
 
     .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td {
         border: none;
@@ -41,9 +45,9 @@
         border-bottom: 3px solid red !important;
     }
 
-    tr.title th {
-        padding-bottom: 0 !important;
-    }
+        tr.title th {
+            padding-bottom: 0 !important;
+        }
 
 
     .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
@@ -97,12 +101,12 @@
 
 
     table.display tr.even.row_selected td {
-	background-color: #B0BED9;
-}
+        background-color: #B0BED9;
+    }
 
-table.display tr.odd.row_selected td {
-	background-color: #9FAFD1;
-}
+    table.display tr.odd.row_selected td {
+        background-color: #9FAFD1;
+    }
 
     table.dataTable.no-footer {
         border-bottom: none;
@@ -144,13 +148,13 @@ table.display tr.odd.row_selected td {
         border: none;
     }
 
-    .pagination > li > a:focus, .pagination > li > a:hover, .pagination > li > span:focus, .pagination > li > span:hover {
-        z-index: 2;
-        color: #ec2028;
-        background-color: transparent;
-        border: none;
-        background: none;
-    }
+        .pagination > li > a:focus, .pagination > li > a:hover, .pagination > li > span:focus, .pagination > li > span:hover {
+            z-index: 2;
+            color: #ec2028;
+            background-color: transparent;
+            border: none;
+            background: none;
+        }
 
 
 
@@ -235,9 +239,9 @@ table.display tr.odd.row_selected td {
         font-size: 22px;
         letter-spacing: 0.2em;
         margin: 0;
-        padding:0px;
+        padding: 0px;
         text-transform: uppercase;
-        color:black;
+        color: black;
     }
 
     .modalbox .content {
@@ -309,33 +313,33 @@ table.display tr.odd.row_selected td {
 
         @*<a class="close" href="#">X</a>*@
         <div class="form_info_12">
-                                        
+
             <form class="form-vertical" action="" method="POST" role="form" id="perfilSuscForm" enctype="multipart/form-data">
                 @Html.AntiForgeryToken()
                 @Html.HiddenFor(m => m.Card)
 
-                       
-                            <div class="form-group">
-                                <span style="font-size:x-large;" class="text-primary">Correo</span>&ensp;
-                                @Html.RadioButton("AceptaContactoCorreo", Model.AceptaContactoCorreo) Si
-                                @Html.RadioButton("AceptaContactoCorreo", !Model.AceptaContactoCorreo) No
-                               
 
-                                <br /><br />
-                             <span style="font-size:x-large;" class="text-primary">SMS</span>&ensp;&ensp;&ensp;&ensp;
-                             @Html.RadioButton("AceptaContactoSMS", Model.AceptaContactoSMS) Si
-                                @Html.RadioButton("AceptaContactoSMS", !Model.AceptaContactoSMS) No
+                <div class="form-group">
+                    <span style="font-size:x-large;" class="text-primary">Correo</span>&ensp;
+                    @Html.RadioButton("AceptaContactoCorreo", Model.AceptaContactoCorreo) Si
+                    @Html.RadioButton("AceptaContactoCorreo", !Model.AceptaContactoCorreo) No
 
-                            </div>
-                       
-                    <br />
-                    <br />
-                    <button type="submit" style="color:white;height:30px;"  class="btn btnEdit"> Aceptar</button>
+
+                    <br /><br />
+                    <span style="font-size:x-large;" class="text-primary">SMS</span>&ensp;&ensp;&ensp;&ensp;
+                    @Html.RadioButton("AceptaContactoSMS", Model.AceptaContactoSMS) Si
+                    @Html.RadioButton("AceptaContactoSMS", !Model.AceptaContactoSMS) No
+
+                </div>
+
+                <br />
+                <br />
+                <button type="submit" style="color:white;height:30px;" class="btn btnEdit"> Aceptar</button>
             </form>
 
 
 
-</div>
+        </div>
     </div>
 </div>
 
@@ -387,16 +391,24 @@ table.display tr.odd.row_selected td {
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(m => m.Card, new { @class = "control-label", style = "border:0px" })
-                                @Html.TextBoxFor(m => m.Card, new { @readonly = "readonly",   @class = "form-control input-sm",  id = "Card", name = "Card", required = true })
+                                @Html.TextBoxFor(m => m.Card, new { @readonly = "readonly", @class = "form-control input-sm", id = "Card", name = "Card", required = true })
                             </div>
 
                             <div class="form-group">
                                 <a data-toggle="modal" data-dismiss="modal" href="#modal-change-password">Cambia tu contraseña</a>
-                               <br />
-                                <a data-toggle="modal" data-dismiss="modal" href="#"  data-target="#myModal">Actualiza Suscripciones</a>
-                            </div>
+                                <br />
+                                <a data-toggle="modal" data-dismiss="modal" href="#" data-target="#myModal">Actualiza Suscripciones</a>
 
+
+
+
+
+                            </div>
                         </div>
+
+
+
+
                         <div class="col-sm-4">
                             <div class="form-group">
                                 @Html.LabelFor(m => m.LastName1, new { @class = "control-label", style = "border:0px" })
@@ -406,8 +418,8 @@ table.display tr.odd.row_selected td {
                                 @Html.LabelFor(m => m.CGenre, new { @class = "control-label", style = "border:0px" })
                                 <div class="col-xs-12 text-left" style="margin-bottom: 19px">
                                     @{
-                                                var sexFem = Model.CGenre == Genre.Female;
-                                                var sexMas = Model.CGenre == Genre.Male;
+                                        var sexFem = Model.CGenre == Genre.Female;
+                                        var sexMas = Model.CGenre == Genre.Male;
                                     }
                                     <label class="radio-inline" for="generoM">
                                         @Html.RadioButton("CGenre", "1", sexMas, new { id = "generoM", required = true })
@@ -427,12 +439,22 @@ table.display tr.odd.row_selected td {
 
                             <div class="form-group">
                                 <label class="control-label" for="BirthDate" style="border:0px">*Fecha de nacimiento:</label>
-                                <input class="form-control form-control-inline input-sm date-picker valid" id="BirthDate" name="BirthDate" required="True"  type="text" value="@Model.BirthDate" aria-required="true" aria-invalid="false" data-date-format='dd/mm/yyyy' disabled>
+                                <input class="form-control form-control-inline input-sm date-picker valid" id="BirthDate" name="BirthDate" required="True" type="text" value="@Model.BirthDate" aria-required="true" aria-invalid="false" data-date-format='dd/mm/yyyy' disabled>
                             </div>
 
                             <div class="form-group">
                                 <a data-toggle="tab" aria-controls="perfil-contacto" href="#perfil-contacto">¿Extraviaste tu tarjeta?</a>
                             </div>
+
+                            @*<div class="col-md-12" style="border:0px solid; text-align:left;" align="left">
+                                    <div class="form-group" align="left" style="padding:5px; text-align:left;">
+
+                                        <button type="submit" class="btn btn-default btnEdit" style="padding:5px;">Edita tus datos</button>
+
+                                    </div>
+                                </div>*@
+
+
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
@@ -463,102 +485,24 @@ table.display tr.odd.row_selected td {
                                 @*</div>*@
                             </div>
 
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-default btnEdit">Edita tus datos</button>
-                            </div>  
+
 
 
 
 
                         </div>
                     </div>
-                </form>
+                    <div class="col-md-12" style="margin:0px; padding:0px; left:0;  border:0px solid; text-align:left;" align="left">
+                        <div class="form-group" align="left" style="padding:5px; text-align:left;">
 
-
-                <br />
-                <br />
-
-              
-                                @*<div id="demo">
-                            <h2>Beneficiarios</h2>
-
-                            @if (Model != null)
-                            {
-                                <table id="myDataTable" class="display">
-                                    <thead>
-                                        <tr>
-                                            <th>Nombre</th>
-                                            <th>AppPat</th>
-                                            <th>AppMat</th>
-                                            <th>Parentesco</th>
-                                            <th>Correo</th>
-                                           <th>Genero</th>
-                                            <th>Fecha</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach (var item in Model.misBene)
-                                        {
-                                            <tr id="@item.ID">
-                                                <td>@item.Nombre</td>
-                                                <td>@item.AppPat</td>
-                                                <td>@item.AppMat</td>
-                                                <td>@item.Parentesco</td>
-                                                <td>@item.CorreoElec</td>
-                                               <td>@item.Genero</td>
-                                                <td>@item.FecNac</td>
-                                            </tr>
-                                        }
-
-
-                                    </tbody>
-                                </table>
-                            }
-                            <br />
-                            <button id="btnAddNewCompany" class="btn btn-primary" value="Ok"> + Agregar Beneficiario ...</button>
-                            <button id="btnDeleteCompany" class="btn btn-danger"  value="cancel">X Eliminar Beneficiario </button>
-
-
-
+                            <button type="submit" class="btn btn-default btnEdit " style="float:left; ">Edita tus datos</button>
 
                         </div>
+                    </div>
+                    <br />
+                    <br />
 
-
-
-                        <div id="processing_message" style="display:none" title="Processing">Please wait while your request is being processed...</div>
-
-
-
-                        <form id="formAddNewCompany" action="#" title="Agregar Beneficiario">
-                            <label id="lblAddError" class="error"></label>
-                            <br />
-                            <label for="name">Nombre</label><input type="text" name="name"   id="name" class="form-control input-sm required" rel="0" />
-                            <br />
-                            <label for="name">AppPat</label><input type="text" name="AppPat" class="form-control input-sm"  id="AppPat" rel="1" />
-                            <br />
-                            <label for="name">AppMat</label><input type="text" name="AppMat" class="form-control input-sm" id="AppMat" rel="2"  />
-                            <br />
-                            <label for="name">Parentesco</label><select name="Parentesco" id="Parentesco" rel="3">
-                                <option value="Padre">Padre</option>
-                                <option value="Madre">Madre</option>
-                                <option value="Hermano">Hermano</option>
-                            </select>
-                            <br />
-                            <label for="name">Correo</label><input type="text" class="form-control input-sm" name="Correo" id="Correo" rel="4" />
-                            <br />
-                            <label for="name">Genero</label><select name="Genero" id="Genero" rel="5">
-                                <option value="Masculino">Masculino</option>
-                                <option value="Femenino">Femenino</option>
-                            </select>
-                            <br />
-                            <label for="name">Fecha</label><input type="text"   rel="6"
-                                         class="form-control form-control-inline input-sm date-picker valid" id="BirthDate" name="Telefono"  aria-required="true" aria-invalid="false" data-date-format='dd/mm/yyyy'
-                                                                   />
-                            <br />
-                        </form>*@
-
-
-                <br /><br />
+                </form>
 
 
                 @if (string.IsNullOrWhiteSpace(TuSaludURL))
@@ -567,25 +511,108 @@ table.display tr.odd.row_selected td {
                 }
                 else
                 {
-                    <div class="col-md-12" style="margin-top: 20px;">
+                    <div class="col-md-12" style="margin-top: 10px; text-align:left; padding:0px;">
                         <a href="@TuSaludURL"
                            type="submit"
                            id="runReport"
                            target="_blank"
-                            class="btn bg-color-blue-xlight">
-                            Datos Tu Salud
+                           class="btn bg-color-blue-xlight">
+                            <i class="fa fa-stethoscope fa-2x"></i><span style="font-size: 20px; white-space: pre-line">  Actualiza tus datos y /o Agrega Beneficiarios</span>
                             @*@Reports.RunReport*@
                         </a>
                     </div>
 
-                        @*<a style="text-align: left;" class=" btn bg-color-blue-xlight" href="@Url.Content(file.AddressFile)" target="_blank"><i class="fa fa-file-excel-o fa-2x"></i><span style="font-size: 20px; white-space: pre-line">@file.NameDescriptiveFile</span></a>*@
-                   
+                    @*<a style="text-align: left;" class=" btn bg-color-blue-xlight" href="@Url.Content(file.AddressFile)" target="_blank"><i class="fa fa-file-excel-o fa-2x"></i><span style="font-size: 20px; white-space: pre-line">@file.NameDescriptiveFile</span></a>*@
+
                 }
 
 
+                @*<div id="demo">
+                        <h2>Beneficiarios</h2>
+
+                        @if (Model != null)
+                        {
+                            <table id="myDataTable" class="display">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>AppPat</th>
+                                        <th>AppMat</th>
+                                        <th>Parentesco</th>
+                                        <th>Correo</th>
+                                       <th>Genero</th>
+                                        <th>Fecha</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.misBene)
+                                    {
+                                        <tr id="@item.ID">
+                                            <td>@item.Nombre</td>
+                                            <td>@item.AppPat</td>
+                                            <td>@item.AppMat</td>
+                                            <td>@item.Parentesco</td>
+                                            <td>@item.CorreoElec</td>
+                                           <td>@item.Genero</td>
+                                            <td>@item.FecNac</td>
+                                        </tr>
+                                    }
 
 
-                
+                                </tbody>
+                            </table>
+                        }
+                        <br />
+                        <button id="btnAddNewCompany" class="btn btn-primary" value="Ok"> + Agregar Beneficiario ...</button>
+                        <button id="btnDeleteCompany" class="btn btn-danger"  value="cancel">X Eliminar Beneficiario </button>
+
+
+
+
+                    </div>
+
+
+
+                    <div id="processing_message" style="display:none" title="Processing">Please wait while your request is being processed...</div>
+
+
+
+                    <form id="formAddNewCompany" action="#" title="Agregar Beneficiario">
+                        <label id="lblAddError" class="error"></label>
+                        <br />
+                        <label for="name">Nombre</label><input type="text" name="name"   id="name" class="form-control input-sm required" rel="0" />
+                        <br />
+                        <label for="name">AppPat</label><input type="text" name="AppPat" class="form-control input-sm"  id="AppPat" rel="1" />
+                        <br />
+                        <label for="name">AppMat</label><input type="text" name="AppMat" class="form-control input-sm" id="AppMat" rel="2"  />
+                        <br />
+                        <label for="name">Parentesco</label><select name="Parentesco" id="Parentesco" rel="3">
+                            <option value="Padre">Padre</option>
+                            <option value="Madre">Madre</option>
+                            <option value="Hermano">Hermano</option>
+                        </select>
+                        <br />
+                        <label for="name">Correo</label><input type="text" class="form-control input-sm" name="Correo" id="Correo" rel="4" />
+                        <br />
+                        <label for="name">Genero</label><select name="Genero" id="Genero" rel="5">
+                            <option value="Masculino">Masculino</option>
+                            <option value="Femenino">Femenino</option>
+                        </select>
+                        <br />
+                        <label for="name">Fecha</label><input type="text"   rel="6"
+                                     class="form-control form-control-inline input-sm date-picker valid" id="BirthDate" name="Telefono"  aria-required="true" aria-invalid="false" data-date-format='dd/mm/yyyy'
+                                                               />
+                        <br />
+                    </form>*@
+
+
+
+
+
+
+
+
+
                 @*Html.ActionLink("link text", "someaction", "somecontroller", new { id = "123" }, null)*@
 
 
@@ -606,518 +633,520 @@ table.display tr.odd.row_selected td {
 
                     </div>
                 </section>
-            </div></div></div>
-
-            <div id="perfil-mis-compras" class="tab-pane" role="tabpanel">
-                <div class="container">
-                    <div class="form_info_01">
-                        <h2 class="color-blue weight-heavy">Mis compras</h2>
-                        <div role="tabpanel">
-                            <!-- Nav tabs -->
-                            <ul class="nav nav-tabs" role="tablist">
-                                <li role="presentation" class="active">
-                                    <a href="#tab-dinero-electronico" aria-controls="tab-dinero-electronico" role="tab" data-toggle="tab">Dinero Electrónico</a>
-                                </li>
-                                <li role="presentation">
-                                    <a href="#tab-piezas-gratis" aria-controls="tab-piezas-gratis" role="tab" data-toggle="tab">Piezas Gratis</a>
-                                </li>
-                            </ul>
-
-                            <!-- Tab panes -->
-                            <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane active" id="tab-dinero-electronico">
-
-                                    <div class="table-responsive">
-                                        <table class="table table-hover table-striped table-condensed" id="dineroElectronico">
-                                            <thead>
-                                                <tr>
-                                                    <th>Fecha</th>
-                                                    <th>Producto</th>
-                                                    <th>Sucursal</th>
-                                                    <th>Ticket</th>
-                                                    <th>Importe</th>
-                                                    <th>Dinero electrónico</th>
-                                                </tr>
-                                            </thead>
-                                        </table>
-                                    </div>
-
-                                </div>
-                                <div role="tabpanel" class="tab-pane" id="tab-piezas-gratis">
-
-                                    <div class="table-responsive">
-                                        <table class="table table-hover table-striped table-condensed" id="piezasGratis">
-                                            <thead>
-                                                <tr>
-                                                    <th>Producto</th>
-                                                    <th>Acumuladas</th>
-                                                    <th>Regla</th>
-                                                    <th>Vigencia</th>
-                                                </tr>
-                                            </thead>
-
-                                        </table>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
-            <div id="perfil-mis-promociones" class="tab-pane" role="tabpanel">
-                <div class="container">
-                    <div class="form_info_01">
-                        <h2 class="color-blue weight-heavy">Mis Promociones</h2>
-                        <div role="tabpanel">
-                            <!-- Nav tabs -->
-                            <ul class="nav nav-tabs" role="tablist">
-                                <li role="presentation" class="active">
-                                    <a href="#tab-mis-promociones" aria-controls="tab-mis-promociones" role="tab" data-toggle="tab">Mis Promociones</a>
-                                </li>
-                                <li role="presentation">
-                                    <a href="#tab-promociones-disponibles" aria-controls="tab-promociones-disponibles" role="tab" data-toggle="tab">Promociones Disponibles</a>
-                                </li>
-                            </ul>
+        </div>
+    </div>
 
-                            <!-- Tab panes -->
-                            <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane active" id="tab-mis-promociones">
+    <div id="perfil-mis-compras" class="tab-pane" role="tabpanel">
+        <div class="container">
+            <div class="form_info_01">
+                <h2 class="color-blue weight-heavy">Mis compras</h2>
+                <div role="tabpanel">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#tab-dinero-electronico" aria-controls="tab-dinero-electronico" role="tab" data-toggle="tab">Dinero Electrónico</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#tab-piezas-gratis" aria-controls="tab-piezas-gratis" role="tab" data-toggle="tab">Piezas Gratis</a>
+                        </li>
+                    </ul>
 
-                                    <div class="table-responsive">
-                                        <table class="table table-hover table-striped table-condensed" id="misPromociones">
-                                            <thead>
-                                                <tr>
-                                                    @*<th>Cupón</th>*@
-                                                    <th>Descripción</th>
-                                                    <th>Vigencia</th>
-                                                </tr>
-                                            </thead>
-                                        </table>
-                                    </div>
-
-                                </div>
-                                <div role="tabpanel" class="tab-pane" id="tab-promociones-disponibles">
-
-                                    <div class="table-responsive">
-                                        <table class="table table-hover table-striped table-condensed" id="promocionesDisponibles">
-                                            <thead>
-                                                <tr>
-                                                    <th>
-                                                        C&oacute;digo
-                                                    </th>
-                                                    <th>
-                                                        Producto
-                                                    </th>
-                                                    <th>
-                                                        Laboratorio
-                                                    </th>
-                                                    <th>
-                                                        Mec&aacute;nica
-                                                    </th>
-                                                    <th>CodigoGratis</th>
-                                                    <th>Vigencia</th>
-                                                    <th>LimitePiezas</th>
-                                                </tr>
-                                            </thead>
-
-                                        </table>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="perfil-mis-ofertas" class="tab-pane" role="tabpanel">
-                <div class="container">
-                    <div class="form_info_01">
-                        <h2 class="color-blue weight-heavy">Mis ofertas</h2><br>
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-6">
-                                <a href="#" class="thumbnail">
-                                    <img class="img-responsive" src="~/Content/rsc/imgs/oferta_01.png" alt="">
-                                </a>
-                            </div>
-                            <div class="col-xs-12 col-sm-6">
-                                <a href="#" class="thumbnail">
-                                    <img class="img-responsive" src="~/Content/rsc/imgs/oferta_01.png" alt="">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="perfil-suscripciones" class="tab-pane" role="tabpanel">
-                <div class="container">
-                    <div class="form_info_01">
-                        <h2 class="color-blue weight-heavy">Suscripciones</h2><br>
-                        <form class="form-vertical" action="" method="POST" role="form">
-                            <legend>Selecciona por cuál de los siguientes medios de comunicación, te gustaría ser contactado.</legend>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="tab-dinero-electronico">
 
                             <div class="table-responsive">
-                                <table class="table table-condensed">
+                                <table class="table table-hover table-striped table-condensed" id="dineroElectronico">
                                     <thead>
                                         <tr>
-                                            <th class="col-xs-6"></th>
-                                            <th>Correo Electónico</th>
-                                            <th>Celular</th>
+                                            <th>Fecha</th>
+                                            <th>Producto</th>
+                                            <th>Sucursal</th>
+                                            <th>Ticket</th>
+                                            <th>Importe</th>
+                                            <th>Dinero electrónico</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th>Tarjeta Benavides</th>
-                                            <td>
-                                                <label class="radio-inline">
-                                                    <input name="cb-email" type="radio" id="cb-email-si" value="si"> Si
-                                                </label>
-                                                <label class="radio-inline">
-                                                    <input name="cb-email" type="radio" id="cb-email-no" value="no"> No
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <label class="radio-inline">
-                                                    <input name="cp-email" type="radio" id="cp-email-si" value="si"> Si
-                                                </label>
-                                                <label class="radio-inline">
-                                                    <input name="cp-email" type="radio" id="cp-email-no" value="no"> No
-                                                </label>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>Club Peques</th>
-                                            <td>
-                                                <label class="radio-inline">
-                                                    <input name="cb-celular" type="radio" id="cb-celular-si" value="si"> Si
-                                                </label>
-                                                <label class="radio-inline">
-                                                    <input name="cb-celular" type="radio" id="cb-celular-no" value="no"> No
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <label class="radio-inline">
-                                                    <input name="cp-celular" type="radio" id="cp-celular-si" value="si"> Si
-                                                </label>
-                                                <label class="radio-inline">
-                                                    <input name="cp-celular" type="radio" id="cp-celular-no" value="no"> No
-                                                </label>
-                                            </td>
-                                        </tr>
-                                    </tbody>
                                 </table>
                             </div>
 
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div id="perfil-contacto" class="tab-pane" role="tabpanel">
-                <div class="container">
-                    <div class="form_info_01">
-                        <h2 class="color-blue weight-heavy" style="margin-top: 50px">Contacto</h2><br>
-                        <div class="row">
-                            <form class="form-horizontal" id="perfilContactForm" action="" role="form" style="padding-top:3em">
-                                <div class="col-md-offset-4 col-xs-12 col-md-3 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="Email" class="control-label color-black">Tu correo electrónico:</label>
-                                        <input type="email" class="form-control input-sm" id="Email" name="Email" value="@Model.Email">
-                                    </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="tab-piezas-gratis">
 
-                                    <div class="form-group">
-                                        <label for="Subject" class="control-label color-black">Tu asunto:</label>
-                                        <input type="text" class="form-control input-sm" id="Subject" name="Subject" placeholder="">
-                                    </div>
+                            <div class="table-responsive">
+                                <table class="table table-hover table-striped table-condensed" id="piezasGratis">
+                                    <thead>
+                                        <tr>
+                                            <th>Producto</th>
+                                            <th>Acumuladas</th>
+                                            <th>Regla</th>
+                                            <th>Vigencia</th>
+                                        </tr>
+                                    </thead>
 
-                                    <div class="form-group">
-                                        <label for="Comments" class="control-label color-black">Tus Comentarios:</label>
-                                        <textarea style="height: 220px" class="form-control" id="Comments" name="Comments" placeholder=""></textarea>
-                                    </div>
+                                </table>
+                            </div>
 
-                                </div>
-
-                                <div class="col-xs-12 col-md-12 col-sm-12">
-                                    <div class="row">
-                                        <div style="text-align: center;">
-                                            <span id="mensajeContacto" class="color-red"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-bottom: 20px">
-                                    <div class="col-xs-12 col-md-12">
-                                        <button type="submit" class="btn" style="background-color: #48c7f3; color: white; border-radius: 0px; float: right; margin-right: 50px">Enviar</button>
-                                    </div>
-                                </div>
-                            </form>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div id="perfil-mis-promociones" class="tab-pane" role="tabpanel">
+        <div class="container">
+            <div class="form_info_01">
+                <h2 class="color-blue weight-heavy">Mis Promociones</h2>
+                <div role="tabpanel">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#tab-mis-promociones" aria-controls="tab-mis-promociones" role="tab" data-toggle="tab">Mis Promociones</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#tab-promociones-disponibles" aria-controls="tab-promociones-disponibles" role="tab" data-toggle="tab">Promociones Disponibles</a>
+                        </li>
+                    </ul>
 
-            @*<div id="perfil-terminos-condiciones" class="tab-pane" role="tabpanel">
-                    @Html.Partial("_ConditionsTermsPartial", Model.ConditionsTermsPage)
-                </div>*@
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="tab-mis-promociones">
 
+                            <div class="table-responsive">
+                                <table class="table table-hover table-striped table-condensed" id="misPromociones">
+                                    <thead>
+                                        <tr>
+                                            @*<th>Cupón</th>*@
+                                            <th>Descripción</th>
+                                            <th>Vigencia</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
 
-            <div id="perfil-terminos-condiciones" class="tab-pane" role="tabpanel">
-                @*@Html.Partial("_ConditionsTermsPartial", Model.ConditionsTermsPage)*@
-
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1>TERMINOS Y CONDICIONES</h1>
-
-                            <p>
-                                El Programa de Recompensas Beneficio Inteligente, es el programa creado para reconocerte y premiarte por elegir Farmacias Benavides®. Cada vez que realices una compra con nosotros tendrás la posibilidad de recibir múltiples beneficios, que podrás utilizar dentro de Farmacias Benavides® y Farmacias ABC de México ® en tus próximas visitas.
-                                Al ingresar y usar el programa de Recompensas Beneficio Inteligente aceptas los términos descritos y todos los términos incorporados que se haga referencia. Farmacias Benavides se reserva el derecho de cambiar o modificar estos Términos de uso o cualquier política en cualquier momento y bajo su criterio. Si no estás de acuerdo con los términos, deberás de dejar de participar en el Programa de Recompensas Beneficio Inteligente.
-                            </p>
-
-                            <h2> Lineamientos Generales</h2>
-                            <p>
-                                1.	Al recibir la tarjeta de Recompensas Beneficio Inteligente el afiliado podrá acumular dinero electrónico y productos.
-                                <br />
-                                <br />
-                                2.	Para obtener los beneficios adicionales como Promociones exclusivas/Obsequio de Bienvenida y Cumpleaños el afiliado deberá de confirmar sus datos en el correo que el afiliado reciba al activar su tarjeta en la farmacia, a través del portal de Tarjeta Benavides: <a href="http://www.benavides.com.mx/TarjetaBenavides">http://www.benavides.com.mx/TarjetaBenavides</a> en el apartado de Beneficio Inteligente, o bien llamando al 01-800-444-2525.
-                                <br />
-                                <br />
-                                3.	Si el usuario no lleva su tarjeta y desea acumular productos en promociones del programa y dinero electrónico, puede solicitar al cajero la búsqueda de sus datos otorgando correo electrónico o número de teléfono y su nombre para que se registre su compra.
-                                <br />
-                                <br />
-                                4.	La tarjeta de Recompensas Beneficio Inteligente, no es una tarjeta de crédito, el monto en dinero electrónico acumulado en la tarjeta únicamente podrá utilizarse en Farmacias Benavides S.A. de C.V. y Farmacias ABC de México S.A., y no podrá ser canjeado por dinero en efectivo.
-                                <br />
-                                <br />
-                                5.	Benavides tiene el compromiso de proveer al cliente las últimas 20 transacciones realizadas a través del portal <a href="http://www.benavides.com.mx/TarjetaBenavides">www.benavides.com.mx/TarjetaBenavides</a> iniciando sesión con los datos de la tarjeta y contraseña creada por el usuario.
-                                <br />
-                                <br />
-                                6.	La acumulación de dinero electrónico no es aplicada para todos los productos o servicios en Farmacias Benavides. Consulte productos participantes en: <a href="http://www.benavides.com.mx/Perfil">www.benavides.com.mx/Perfil</a> (apartado mis promociones - Promociones Disponibles). Lo acumulado al 30 de noviembre 2017 vencerá el 31 de enero de 2018. (consulte restricciones)
-                                <br />
-                                <br />
-                                7.	Queda prohibida la compra a mayoreo (más de 10 unidades por producto) de cualquier producto, Farmacias Benavides se reserva el derecho de cancelar los montos o productos acumulados a consecuencia de cualquier mal uso que se pueda comprobar.                         <br />
-                                <br />
-                                8.	Mantener su información de contacto actualizada en el Programa de Recompensas Beneficio Inteligente es responsabilidad del afiliado.                        <br />
-                                <br />
-                                9.	Para obtener tu obsequio de bienvenida deberás dar clic en el e-mail que te será enviado o llamando al 0180 444 2525 y automáticamente la próxima vez que acudas a comprar en farmacia podrás adquirir tu obsequio, limitado a disponibilidad en farmacia.                        <br />
-                                <br />
-                                10.	Para poder redimir el dinero electrónico o productos gratis es necesario contar con la tarjeta  del Programa de Recompensas Beneficio Inteligente físicamente en el momento de solicitar el beneficio. Sólo se puede utilizar el dinero electrónico de una tarjeta a la vez. No es intercambiable entre afiliados.
-                            </p>
-                            <br />
-                            11.	El Usuario deberá proporcionar su cuenta de correo electrónico para poder hacer uso de su dinero electrónico en las farmacias (a partir del 1 de diciembre 2017 en Baja California Norte, Baja California Sur, Sinaloa, Sonora, para los demás estados de la república a partir del 1 de enero 2018).
-
-
-
-
-
-
-
-                            <h2> Proceso de Afiliación</h2>
-                            <p>
-                                •	Participar en el Programa de Recompensas Beneficio Inteligente y adquirir la tarjeta Azul es completamente gratis para el afiliado.
-                            </p>
-                            <p>
-                                •	Para ser parte del Programa de Recompensa Beneficio Inteligente se requiere solicitar la tarjeta en cualquier sucursal.
-                            </p>
-                            <p>
-                                •	Únicamente podrán afiliarse personas mayores de 18 años de edad.
-                            </p>
-                            <p>
-
-                                •	El cliente deberá proporcionar los siguientes datos para la activación de su tarjeta:
-                                o	Nombre <br />
-                                o	Apellidos <br />
-                                o	Fecha de Nacimiento <br />
-                                o	Sexo <br />
-                                o	Correo Electrónico <br />
-                                o	Celular <br />
-                                o	Código Postal***Dato opcional
-                            <p>
-
-                                •	La Tarjeta del Programa de Recompensas Beneficio Inteligente  es de uso permanente y permite a Farmacias Benavides y al afiliado ejercer dentro de las vigencias específicas los beneficios que el programa otorga.
-
-                            </p>
-
-                            </p>
-
-                            <br />
-
-
-                            <h3>Beneficios y Descripción del Programa:</h3>
-
-                            <p><b>Beneficios Tarjeta Beneficio Inteligente Azul</b></p>
-                            <p>
-                                •	Dinero electrónico en tus compras
-                            </p>
-                            <p>   •	Productos gratis por medio de acumulación en sus compras</p>
-
-                            <p>
-                                •	Promociones exclusivas
-                            </p>
-                            <p>  •	Obsequios de Bienvenida y Cumpleaños*</p>
-                            <p>•	Siete por Siete (7x7) Descuento especial para mayores de 55 años</p>
-
-                            <br />
-
-                            <p>
-                                <b> Dinero Electrónico:</b>
-                                Dinero que se acumula en la tarjeta según el porcentaje y ó cantidad que el articulo tenga en promoción o según la regla establecida en Farmacias Benavides al momento de la compra. El cliente podrá hacer uso de su dinero electrónico en cualquier compra presentando su Tarjeta del Programa de Recompensa Beneficio Inteligente. La acumulación de dinero aplica solo a productos participantes, consulte las restricciones.
-                            </p>
-
-                            <p>
-                                <b>    Acumulación de productos:</b>
-                                El cliente acumula las compras de “X” producto hasta completar el número de unidades suficientes para obtener su producto gratis dentro del periodo de tiempo vigente de la promoción.
-                            </p>
-                            <p>
-                                <b>
-                                    Promociones Exclusivas:
-                                </b>
-                                El cliente obtendrá en su tarjeta promociones exclusivas que serán informadas a través de correo electrónico, sms, folleto etc.
-                            </p>
-                            <p>
-                                <b>
-                                    Obsequios de Bienvenida al programa y Cumpleaños:
-                                </b>
-                                El cliente recibirá por medio de correo electrónico la notificación de que tiene un obsequio o promoción que podrá redimir en las farmacias. Esta promoción está sujeta a cambios sin previo aviso.
-                            </p>
-                            <p>
-                                <b>
-                                    Descuento INAPAM:
-                                </b>
-                                Descuento especial para mayores de 55 años (7% de descuento los primeros 7 días del mes, y 5% el resto del mes para mayores de 55 años en categorías de RX y OTC)
-                            </p>
-                            <p>
-                                Para conocer el saldo de dinero electrónico, se puede consultar la página de internet: <a href="http://www.benavides.com.mx">http://www.benavides.com.mx</a>, su ticket de la última compra o acudir a cualquier sucursal de Farmacias Benavides.
-                            </p>
-
-
-                            <p><b>Beneficios de Tarjeta Beneficio Inteligente Platino</b></p>
-                            <p>Los beneficios para los clientes que cuenten con una tarjeta del Programa de Recompensas Beneficio Inteligente Platino son los siguientes:</p>
-
-
-                            <p> •	Beneficios Generales de tarjeta azul </p>
-                            <p> •	1 consulta médica gratis en nuestros consultorios </p>
-                            <p> •	Seguro de vida por muerte accidental (suma asegurada de $210,000) </p>
-                            <p> •	Servicio de Ambulancia (2 servicios al año) </p>
-                            <p> •	Descuentos en laboratorios análisis clínicos  </p>
-                            <p> •	Descuento especial 3% en tienda (aplican restricciones) </p><br />
-                            <p> **Ver restricciones Beneficio Inteligente Platino </p>
-                            <p> Esta tarjeta solo estará a la venta hasta el 30 de Noviembre de 2018, los clientes que después de esta fecha tengan una tarjeta platino podrán hacer uso de sus beneficios hasta la fecha de su vencimiento (1 año a partir de su compra), posterior a esto el cliente podrá seguir utilizando su tarjeta pero solamente aplicarán los beneficios generales de la tarjeta azul. </p>
-
-                            <br />
-
-
-
-                            <br />
-                            <h3>Condiciones de Beneficios</h3>
-                            <p>
-                                •	Se debe de presentar la Tarjeta al momento de la compra para obtener los beneficios vigentes de redención de dinero electrónico y productos gratis del Programa de Recompensa Beneficio Inteligente.
-                            </p>
-                            <p>
-                                •	En caso de que por algún motivo (no presentar la tarjeta o caída del sistema) no se haya realizado la acumulación de dinero electrónico o acumulación de productos Farmacias Benavides otorga un plazo de 7 días naturales a partir de la compra para realizar la bonificación. El cliente deberá presentar el ticket en la sucursal y caja donde se generó la transacción para que se le pueda asignar el beneficio.
-                            <p>
-                            </p>
-                            <p>
-                                •	El beneficio de productos gratis está sujeto a disponibilidad de la sucursal.
-                            </p>
-                            <p>
-                                •	El beneficio y límites de los productos gratis dependerá de las negociaciones vigentes con los laboratorios/fabricantes, estas  pueden ser modificadas sin previo aviso, dependiendo siempre de la caducidad de la regla participante.
-                            </p>
-                            <p>
-                                •	Las promociones de acumulación pueden presentar límites de productos gratis en un determinado periodo de tiempo, estos  límites pueden ser consultados en el portal www.benavides.com.mx , o bien llamando al 01-800-444-2525.
-                            </p>
-                            <p>
-                                •	Todos los productos participantes en el programa de acumulación no son sujetos a devolución.
-
-                            </p>
-                            <p>
-                                •	No participan en acumulación de dinero electrónico los productos vigentes que participan en el plan de acumulación de productos.
-                            </p>
-                            <p>
-                                •	El dinero electrónico acumulado al 30 de noviembre de 2017 vencerá el día 31 de enero de 2018.
-                            </p>
-
-                            <p> •	El vencimiento de las tarjetas se realizará cada año en la fecha que Benavides considere, se dará aviso al cliente en este mismo apartado, por medio de correo electrónico, en sucursales y/o folleto. </p>
-
-                            <br />
-                            <h3>Reportes, dudas o aclaraciones</h3>
-                            <p>
-                                En caso de dudas, aclaraciones o cancelaciones de tu tarjeta del Programa de Recompensa Beneficio Inteligente podrás ser atendido a través de:
-                                <br /><br />
-
-                                Call Center: 01-800-444-2525 en un horario de lunes a viernes de 8am a 10pm sábado y domingo de 10 am a 6 pm. Correo electrónico: <a href="contactoBI@benavides.com.mx">contactoBI@benavides.com.mx</a>
-                                <br /><br />
-                                En caso de robo o extravío de tu tarjeta del Programa de Recompensa Beneficio Inteligente deberás reportarla de inmediato al Call Center (01-800-444-2525) o a <a href="contactoBI@benavides.com.mx">contactoBI@benavides.com.mx</a>
-
-                                <br />
-                                <br />
-                                Deberás contar con:
-                                <br />
-                                •	Número de tarjeta
-                                <br />
-                                •	Ticket relacionado a la compra que sé que evaluaría
-                                <br />
-                                •	Datos completos (validados por los ejecutivos) con los que se dio de alta la tarjeta.
-
-
-                                <br /><br />
-                                En caso de robo o extravío de tu tarjeta del Programa de Recompensas Beneficio Inteligente deberás reportarla de inmediato al Call Center (01-800-444-2525) o a contactoBI@benavides.com.mx para que Farmacias Benavides proceda a su anulación. Deberás de contar con el ticket de tu última compra. Farmacias Benavides en ningún caso se hará responsable del mal uso que se le hiciere de la tarjeta por parte de cualquier tercero.                         <br /><br />
-
-                                El reporte de robo o extravío, le permitirá a Farmacias Benavides analizar la situación específica y transferir los Beneficios identificados al momento del reporte en su totalidad a otro número de tarjeta sin costo para el titular. En ningún caso Farmacias Benavides tendrá la obligación de reponer cualquier pérdida de beneficios sufridos por actos de terceros.
-                                <br />
-                                <br />
-
-                                Para darte te baja o cancelar tu tarjeta del Programa de Recompensa Beneficio Inteligente llama al Call Center (01-800-444-2525) o envía un correo a contactoBI@benavides.com.mx Deberás proporcionar tu número de tarjeta y confirmar tus datos de contacto. Una vez que solicitas la cancelación de la tarjeta no podrás volver a usarla ni podrás revertir dicha cancelación, y perderás todos los beneficios del programa.
-                                <br />
-                                <br />
-
-                                El Aviso de Protección de Datos podrá consultarse en el sitio web <a href="http://www.benavides.com.mx">www.benavides.com.mx</a><br /><br />
-                                Para información acerca de tu seguro o en caso de siniestro, servicio de ambulancia, descuentos en laboratorio de análisis clínicos y orientación telefónica comunícate 01 800 444 25 25 Opción 1.
-
-
-
-                                <br />
-                                <br />
-                                <h3>*Restricciones Generales</h3>
-
-
-                            <p> No participan en acumulación de dinero electrónico Fórmulas Infantiles, tabaco, alcohol, recargas telefónicas, raspaditos, pago de servicios y medicamentos de fracción I, II, III y IV de patente. </p>
-                            <p> No participan en acumulación de dinero electrónico los productos vigentes que participan en el plan de acumulación. </p>
-                            <p> El Usuario deberá proporcionar su cuenta de correo electrónico para poder hacer uso de su dinero electrónico en las farmacias (a partir del 1 de diciembre 2017 en Baja California Norte, Baja California Sur, Sinaloa, Sonora, para los demás estados de la república a partir del 1 de enero 2018).  </p>
-                            <p> El dinero electrónico  acumulado al 30 de noviembre de 2017 vencerá el 31 de enero de 2018. </p>
-                            <p> Solo se pueden afiliar personas mayores a 18 años. </p>
-                            <p> No se brindará el beneficio de producto gratis si el cliente cumplió el límite de la promoción. </p>
-
-                            <p>
-                                Los clientes que utilicen un convenio institucional de ABF (Descritos debajo), para la compra de su medicamento, no podrán acumular puntos. Farmacias Benavides se reserva el derecho de evaluar qué tipo de convenios califican. Convenios que no participan:
-                                <br /><br />
-                                BANRURAL: BAA2, BAA3, BAA4, BAA5, BAA6, BAA8, BAB1, BAB2, BAB3, BAB6, BAB7, BABA, BAC1, BAC2, BAC3, BAC4, BAC5, BAC6, BACC, BACH, BACO, BACU, BACV, BAD2, BAD3, BAD4, BAD6, BAD7, BAD8, BAD9, BADE, BADF, BADU, BAE1, BAE2, BAE4, BAE5, BAE6, BAF1, BAF2, BAF3, BAF4, BAF5, BAF6, BAG2, BAG3, BAG7, BAG8, BAGS, BAGU, BAJU, BALE, BAMO, BAMR, BAN1, BAN2, BAN3, BAN4, BAN5, BAN7, BAN8, BAPE, BAQU, BARC, BASA, BASI , BATL, BATO, BAVA, BAVH, BAZ5, BAZ6, BAZA, BLDM, BTOR, CHBA, COBA, D2BA, D6BA, FPSB, QUBA, RBMA, TOBA.                         <br /><br />
-
-                                <br /><br />
-                                PEMEX: CASA, PCS1, PCS2, PCS3, PCS4, PCS5, PCS6, PCS7, PCS8, PCS9, PCSA, PCSZ, PEA1, PEA2, PEA3, PEAL, PEB1, PEB3, PEB4, PEB5, PEB6, PEB9, PEBI, PEC1, PEC2, PEC3, PEC4, PEC5, PEC6, PEC7, PEC8, PECH, PECO, PED2, PED3, PED4, PEDD, PEDF, PEDU, PEE4, PEE5, PEE6, PEE7, PEF2, PEF3, PEF4, PEF5, PEF6, PEF7, PEF8, PEFE, PEG1, PEG2, PEG3, PEG4, PEG5, PEIZ, PEJ5, PEJ6, PEJ7, PEJ8, PEJ9, PEJI, PEJU, PEK1, PEK2, PELI, PEMA, PEMH, PEMK, PEMM, PEMO, PEMT, PENL, PENS, PES1, PES3, PESA, PESB, PESC, PESJ, PESM, PESN, PESP, PESS, PETE, PEVA, PEVL, PEW2, PEW4, PEY5, PEY6, PEZA, PEZD, PEZF, PEZM, PST1, PST2, PST3, PST4, PST5, PST6, PST7, PTMC, PTMD.                         <br /><br />
-                            </p>
-
-                            <br />
-                            <br />
-                            <h3>**Restricciones para Tarjetas Beneficio Inteligente Platino</h3>
-
-                            <p> Aplican restricciones generales.  </p>
-                            <p> Para los clientes con tarjeta platino sus beneficios serán válidos únicamente en la vigencia estipulada en la tarjeta. El seguro  de vida y servicio de ambulancia que brinda la tarjeta platino solo es válida si los datos del cliente están registrados correctamente. </p>
-                            <p> Beneficios otorgados/operados y/o cargo de ACE Seguros, S.A. los beneficios adicionales No son responsabilidad de Farmacias Benavides S.A.B. DE C.V.:  </p>
-                            <p> SEGURO DE VIDA POR MUERTE ACCIDENTAL operado y a cargo de ACE Seguros ACE SEGUROS SA </p>
-                            <p> Hasta por $70,000 pesos de seguro de vida por muerte accidental, para las tarjetas adquiridas a partir del 13 de Mayo de 2015 el monto asegurado es de $210,000. </p>
-                            <p> Vigencia de 1 año para el seguro Aplica en caso de muerte accidental; incluso en caso de asaltos. </p>
-                            <p> Activación automática del seguro al comprar la tarjeta y registrase en sucursal. Podrás designar a tu beneficiario contactando a ACE Seguros. Para la reclamación del seguro, el beneficiario debe presentar la tarjeta y demostrar la relación. </p>
-                            <p> Dudas e información, comunícate a ACE Seguros en el teléfono 01 800 237 6266 o en la página www.acegroup.com/mx-es consulta también el aviso de privacidad de la aseguradora en dicha página. </p>
-                            <p> 2 AMBULANCIAS al año otorgado/operado y a cargo de ACE SEGUROS SA Se otorga el servicio 2 veces al año gratis. </p>
-                            <p> DESCUENTOS EN LABORATORIOS DE ANÁLISIS CLÍNICOS operado y a cargo de ACE SEGUROS SA, consulta laboratorios participantes llamando al 01 800 444 25 25 opción 1. </p>
-                            <p> Para uso exclusivo del titular de la tarjeta Únicamente en caso de emergencia, aplican restricciones Programa a nivel nacional las 24 horas y 365 días del año. Traslado al hospital más cercano Equipada con todos los servicios básicos de primeros auxilios y operada por paramédicos certificados  </p>
-                            <p> Envío de ambulancia por emergencia.- Si el beneficiario a consecuencia de accidente o enfermedad repentina que le provoque lesiones o traumatismos que pongan en peligro su vida, se gestionará su traslado al centro hospitalario más cercano y/o adecuado. Si fuera necesario por razones médicas, se realizará el traslado bajo supervisión médica, mediante ambulancia terrestre, de terapia intensiva, intermedia o estándar, dependiendo de la gravedad y circunstancias de cada caso.  </p>
-                            <p> Cualquier aspecto no considerado dentro de las condiciones y políticas del programa será revisado, evaluado y definido por Farmacias Benavides.  </p>
-                            <br /><br />
                         </div>
+                        <div role="tabpanel" class="tab-pane" id="tab-promociones-disponibles">
 
+                            <div class="table-responsive">
+                                <table class="table table-hover table-striped table-condensed" id="promocionesDisponibles">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                C&oacute;digo
+                                            </th>
+                                            <th>
+                                                Producto
+                                            </th>
+                                            <th>
+                                                Laboratorio
+                                            </th>
+                                            <th>
+                                                Mec&aacute;nica
+                                            </th>
+                                            <th>CodigoGratis</th>
+                                            <th>Vigencia</th>
+                                            <th>LimitePiezas</th>
+                                        </tr>
+                                    </thead>
+
+                                </table>
+                            </div>
+
+                        </div>
                     </div>
-
                 </div>
             </div>
+        </div>
+    </div>
+    <div id="perfil-mis-ofertas" class="tab-pane" role="tabpanel">
+        <div class="container">
+            <div class="form_info_01">
+                <h2 class="color-blue weight-heavy">Mis ofertas</h2><br>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <a href="#" class="thumbnail">
+                            <img class="img-responsive" src="~/Content/rsc/imgs/oferta_01.png" alt="">
+                        </a>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <a href="#" class="thumbnail">
+                            <img class="img-responsive" src="~/Content/rsc/imgs/oferta_01.png" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="perfil-suscripciones" class="tab-pane" role="tabpanel">
+        <div class="container">
+            <div class="form_info_01">
+                <h2 class="color-blue weight-heavy">Suscripciones</h2><br>
+                <form class="form-vertical" action="" method="POST" role="form">
+                    <legend>Selecciona por cuál de los siguientes medios de comunicación, te gustaría ser contactado.</legend>
+
+                    <div class="table-responsive">
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th class="col-xs-6"></th>
+                                    <th>Correo Electónico</th>
+                                    <th>Celular</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>Tarjeta Benavides</th>
+                                    <td>
+                                        <label class="radio-inline">
+                                            <input name="cb-email" type="radio" id="cb-email-si" value="si"> Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="cb-email" type="radio" id="cb-email-no" value="no"> No
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label class="radio-inline">
+                                            <input name="cp-email" type="radio" id="cp-email-si" value="si"> Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="cp-email" type="radio" id="cp-email-no" value="no"> No
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Club Peques</th>
+                                    <td>
+                                        <label class="radio-inline">
+                                            <input name="cb-celular" type="radio" id="cb-celular-si" value="si"> Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="cb-celular" type="radio" id="cb-celular-no" value="no"> No
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label class="radio-inline">
+                                            <input name="cp-celular" type="radio" id="cp-celular-si" value="si"> Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="cp-celular" type="radio" id="cp-celular-no" value="no"> No
+                                        </label>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="perfil-contacto" class="tab-pane" role="tabpanel">
+        <div class="container">
+            <div class="form_info_01">
+                <h2 class="color-blue weight-heavy" style="margin-top: 50px">Contacto</h2><br>
+                <div class="row">
+                    <form class="form-horizontal" id="perfilContactForm" action="" role="form" style="padding-top:3em">
+                        <div class="col-md-offset-4 col-xs-12 col-md-3 col-sm-6">
+                            <div class="form-group">
+                                <label for="Email" class="control-label color-black">Tu correo electrónico:</label>
+                                <input type="email" class="form-control input-sm" id="Email" name="Email" value="@Model.Email">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Subject" class="control-label color-black">Tu asunto:</label>
+                                <input type="text" class="form-control input-sm" id="Subject" name="Subject" placeholder="">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Comments" class="control-label color-black">Tus Comentarios:</label>
+                                <textarea style="height: 220px" class="form-control" id="Comments" name="Comments" placeholder=""></textarea>
+                            </div>
+
+                        </div>
+
+                        <div class="col-xs-12 col-md-12 col-sm-12">
+                            <div class="row">
+                                <div style="text-align: center;">
+                                    <span id="mensajeContacto" class="color-red"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 20px">
+                            <div class="col-xs-12 col-md-12">
+                                <button type="submit" class="btn" style="background-color: #48c7f3; color: white; border-radius: 0px; float: right; margin-right: 50px">Enviar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*<div id="perfil-terminos-condiciones" class="tab-pane" role="tabpanel">
+            @Html.Partial("_ConditionsTermsPartial", Model.ConditionsTermsPage)
+        </div>*@
+
+
+    <div id="perfil-terminos-condiciones" class="tab-pane" role="tabpanel">
+        @*@Html.Partial("_ConditionsTermsPartial", Model.ConditionsTermsPage)*@
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>TERMINOS Y CONDICIONES</h1>
+
+                    <p>
+                        El Programa de Recompensas Beneficio Inteligente, es el programa creado para reconocerte y premiarte por elegir Farmacias Benavides®. Cada vez que realices una compra con nosotros tendrás la posibilidad de recibir múltiples beneficios, que podrás utilizar dentro de Farmacias Benavides® y Farmacias ABC de México ® en tus próximas visitas.
+                        Al ingresar y usar el programa de Recompensas Beneficio Inteligente aceptas los términos descritos y todos los términos incorporados que se haga referencia. Farmacias Benavides se reserva el derecho de cambiar o modificar estos Términos de uso o cualquier política en cualquier momento y bajo su criterio. Si no estás de acuerdo con los términos, deberás de dejar de participar en el Programa de Recompensas Beneficio Inteligente.
+                    </p>
+
+                    <h2> Lineamientos Generales</h2>
+                    <p>
+                        1.	Al recibir la tarjeta de Recompensas Beneficio Inteligente el afiliado podrá acumular dinero electrónico y productos.
+                        <br />
+                        <br />
+                        2.	Para obtener los beneficios adicionales como Promociones exclusivas/Obsequio de Bienvenida y Cumpleaños el afiliado deberá de confirmar sus datos en el correo que el afiliado reciba al activar su tarjeta en la farmacia, a través del portal de Tarjeta Benavides: <a href="http://www.benavides.com.mx/TarjetaBenavides">http://www.benavides.com.mx/TarjetaBenavides</a> en el apartado de Beneficio Inteligente, o bien llamando al 01-800-444-2525.
+                        <br />
+                        <br />
+                        3.	Si el usuario no lleva su tarjeta y desea acumular productos en promociones del programa y dinero electrónico, puede solicitar al cajero la búsqueda de sus datos otorgando correo electrónico o número de teléfono y su nombre para que se registre su compra.
+                        <br />
+                        <br />
+                        4.	La tarjeta de Recompensas Beneficio Inteligente, no es una tarjeta de crédito, el monto en dinero electrónico acumulado en la tarjeta únicamente podrá utilizarse en Farmacias Benavides S.A. de C.V. y Farmacias ABC de México S.A., y no podrá ser canjeado por dinero en efectivo.
+                        <br />
+                        <br />
+                        5.	Benavides tiene el compromiso de proveer al cliente las últimas 20 transacciones realizadas a través del portal <a href="http://www.benavides.com.mx/TarjetaBenavides">www.benavides.com.mx/TarjetaBenavides</a> iniciando sesión con los datos de la tarjeta y contraseña creada por el usuario.
+                        <br />
+                        <br />
+                        6.	La acumulación de dinero electrónico no es aplicada para todos los productos o servicios en Farmacias Benavides. Consulte productos participantes en: <a href="http://www.benavides.com.mx/Perfil">www.benavides.com.mx/Perfil</a> (apartado mis promociones - Promociones Disponibles). Lo acumulado al 30 de noviembre 2017 vencerá el 31 de enero de 2018. (consulte restricciones)
+                        <br />
+                        <br />
+                        7.	Queda prohibida la compra a mayoreo (más de 10 unidades por producto) de cualquier producto, Farmacias Benavides se reserva el derecho de cancelar los montos o productos acumulados a consecuencia de cualquier mal uso que se pueda comprobar.                         <br />
+                        <br />
+                        8.	Mantener su información de contacto actualizada en el Programa de Recompensas Beneficio Inteligente es responsabilidad del afiliado.                        <br />
+                        <br />
+                        9.	Para obtener tu obsequio de bienvenida deberás dar clic en el e-mail que te será enviado o llamando al 0180 444 2525 y automáticamente la próxima vez que acudas a comprar en farmacia podrás adquirir tu obsequio, limitado a disponibilidad en farmacia.                        <br />
+                        <br />
+                        10.	Para poder redimir el dinero electrónico o productos gratis es necesario contar con la tarjeta  del Programa de Recompensas Beneficio Inteligente físicamente en el momento de solicitar el beneficio. Sólo se puede utilizar el dinero electrónico de una tarjeta a la vez. No es intercambiable entre afiliados.
+                    </p>
+                    <br />
+                    11.	El Usuario deberá proporcionar su cuenta de correo electrónico para poder hacer uso de su dinero electrónico en las farmacias (a partir del 1 de diciembre 2017 en Baja California Norte, Baja California Sur, Sinaloa, Sonora, para los demás estados de la república a partir del 1 de enero 2018).
+
+
+
+
+
+
+
+                    <h2> Proceso de Afiliación</h2>
+                    <p>
+                        •	Participar en el Programa de Recompensas Beneficio Inteligente y adquirir la tarjeta Azul es completamente gratis para el afiliado.
+                    </p>
+                    <p>
+                        •	Para ser parte del Programa de Recompensa Beneficio Inteligente se requiere solicitar la tarjeta en cualquier sucursal.
+                    </p>
+                    <p>
+                        •	Únicamente podrán afiliarse personas mayores de 18 años de edad.
+                    </p>
+                    <p>
+
+                        •	El cliente deberá proporcionar los siguientes datos para la activación de su tarjeta:
+                        o	Nombre <br />
+                        o	Apellidos <br />
+                        o	Fecha de Nacimiento <br />
+                        o	Sexo <br />
+                        o	Correo Electrónico <br />
+                        o	Celular <br />
+                        o	Código Postal***Dato opcional
+                    <p>
+
+                        •	La Tarjeta del Programa de Recompensas Beneficio Inteligente  es de uso permanente y permite a Farmacias Benavides y al afiliado ejercer dentro de las vigencias específicas los beneficios que el programa otorga.
+
+                    </p>
+
+                    </p>
+
+                    <br />
+
+
+                    <h3>Beneficios y Descripción del Programa:</h3>
+
+                    <p><b>Beneficios Tarjeta Beneficio Inteligente Azul</b></p>
+                    <p>
+                        •	Dinero electrónico en tus compras
+                    </p>
+                    <p>   •	Productos gratis por medio de acumulación en sus compras</p>
+
+                    <p>
+                        •	Promociones exclusivas
+                    </p>
+                    <p>  •	Obsequios de Bienvenida y Cumpleaños*</p>
+                    <p>•	Siete por Siete (7x7) Descuento especial para mayores de 55 años</p>
+
+                    <br />
+
+                    <p>
+                        <b> Dinero Electrónico:</b>
+                        Dinero que se acumula en la tarjeta según el porcentaje y ó cantidad que el articulo tenga en promoción o según la regla establecida en Farmacias Benavides al momento de la compra. El cliente podrá hacer uso de su dinero electrónico en cualquier compra presentando su Tarjeta del Programa de Recompensa Beneficio Inteligente. La acumulación de dinero aplica solo a productos participantes, consulte las restricciones.
+                    </p>
+
+                    <p>
+                        <b>    Acumulación de productos:</b>
+                        El cliente acumula las compras de “X” producto hasta completar el número de unidades suficientes para obtener su producto gratis dentro del periodo de tiempo vigente de la promoción.
+                    </p>
+                    <p>
+                        <b>
+                            Promociones Exclusivas:
+                        </b>
+                        El cliente obtendrá en su tarjeta promociones exclusivas que serán informadas a través de correo electrónico, sms, folleto etc.
+                    </p>
+                    <p>
+                        <b>
+                            Obsequios de Bienvenida al programa y Cumpleaños:
+                        </b>
+                        El cliente recibirá por medio de correo electrónico la notificación de que tiene un obsequio o promoción que podrá redimir en las farmacias. Esta promoción está sujeta a cambios sin previo aviso.
+                    </p>
+                    <p>
+                        <b>
+                            Descuento INAPAM:
+                        </b>
+                        Descuento especial para mayores de 55 años (7% de descuento los primeros 7 días del mes, y 5% el resto del mes para mayores de 55 años en categorías de RX y OTC)
+                    </p>
+                    <p>
+                        Para conocer el saldo de dinero electrónico, se puede consultar la página de internet: <a href="http://www.benavides.com.mx">http://www.benavides.com.mx</a>, su ticket de la última compra o acudir a cualquier sucursal de Farmacias Benavides.
+                    </p>
+
+
+                    <p><b>Beneficios de Tarjeta Beneficio Inteligente Platino</b></p>
+                    <p>Los beneficios para los clientes que cuenten con una tarjeta del Programa de Recompensas Beneficio Inteligente Platino son los siguientes:</p>
+
+
+                    <p> •	Beneficios Generales de tarjeta azul </p>
+                    <p> •	1 consulta médica gratis en nuestros consultorios </p>
+                    <p> •	Seguro de vida por muerte accidental (suma asegurada de $210,000) </p>
+                    <p> •	Servicio de Ambulancia (2 servicios al año) </p>
+                    <p> •	Descuentos en laboratorios análisis clínicos  </p>
+                    <p> •	Descuento especial 3% en tienda (aplican restricciones) </p><br />
+                    <p> **Ver restricciones Beneficio Inteligente Platino </p>
+                    <p> Esta tarjeta solo estará a la venta hasta el 30 de Noviembre de 2018, los clientes que después de esta fecha tengan una tarjeta platino podrán hacer uso de sus beneficios hasta la fecha de su vencimiento (1 año a partir de su compra), posterior a esto el cliente podrá seguir utilizando su tarjeta pero solamente aplicarán los beneficios generales de la tarjeta azul. </p>
+
+                    <br />
+
+
+
+                    <br />
+                    <h3>Condiciones de Beneficios</h3>
+                    <p>
+                        •	Se debe de presentar la Tarjeta al momento de la compra para obtener los beneficios vigentes de redención de dinero electrónico y productos gratis del Programa de Recompensa Beneficio Inteligente.
+                    </p>
+                    <p>
+                        •	En caso de que por algún motivo (no presentar la tarjeta o caída del sistema) no se haya realizado la acumulación de dinero electrónico o acumulación de productos Farmacias Benavides otorga un plazo de 7 días naturales a partir de la compra para realizar la bonificación. El cliente deberá presentar el ticket en la sucursal y caja donde se generó la transacción para que se le pueda asignar el beneficio.
+                    <p>
+                    </p>
+                    <p>
+                        •	El beneficio de productos gratis está sujeto a disponibilidad de la sucursal.
+                    </p>
+                    <p>
+                        •	El beneficio y límites de los productos gratis dependerá de las negociaciones vigentes con los laboratorios/fabricantes, estas  pueden ser modificadas sin previo aviso, dependiendo siempre de la caducidad de la regla participante.
+                    </p>
+                    <p>
+                        •	Las promociones de acumulación pueden presentar límites de productos gratis en un determinado periodo de tiempo, estos  límites pueden ser consultados en el portal www.benavides.com.mx , o bien llamando al 01-800-444-2525.
+                    </p>
+                    <p>
+                        •	Todos los productos participantes en el programa de acumulación no son sujetos a devolución.
+
+                    </p>
+                    <p>
+                        •	No participan en acumulación de dinero electrónico los productos vigentes que participan en el plan de acumulación de productos.
+                    </p>
+                    <p>
+                        •	El dinero electrónico acumulado al 30 de noviembre de 2017 vencerá el día 31 de enero de 2018.
+                    </p>
+
+                    <p> •	El vencimiento de las tarjetas se realizará cada año en la fecha que Benavides considere, se dará aviso al cliente en este mismo apartado, por medio de correo electrónico, en sucursales y/o folleto. </p>
+
+                    <br />
+                    <h3>Reportes, dudas o aclaraciones</h3>
+                    <p>
+                        En caso de dudas, aclaraciones o cancelaciones de tu tarjeta del Programa de Recompensa Beneficio Inteligente podrás ser atendido a través de:
+                        <br /><br />
+
+                        Call Center: 01-800-444-2525 en un horario de lunes a viernes de 8am a 10pm sábado y domingo de 10 am a 6 pm. Correo electrónico: <a href="contactoBI@benavides.com.mx">contactoBI@benavides.com.mx</a>
+                        <br /><br />
+                        En caso de robo o extravío de tu tarjeta del Programa de Recompensa Beneficio Inteligente deberás reportarla de inmediato al Call Center (01-800-444-2525) o a <a href="contactoBI@benavides.com.mx">contactoBI@benavides.com.mx</a>
+
+                        <br />
+                        <br />
+                        Deberás contar con:
+                        <br />
+                        •	Número de tarjeta
+                        <br />
+                        •	Ticket relacionado a la compra que sé que evaluaría
+                        <br />
+                        •	Datos completos (validados por los ejecutivos) con los que se dio de alta la tarjeta.
+
+
+                        <br /><br />
+                        En caso de robo o extravío de tu tarjeta del Programa de Recompensas Beneficio Inteligente deberás reportarla de inmediato al Call Center (01-800-444-2525) o a contactoBI@benavides.com.mx para que Farmacias Benavides proceda a su anulación. Deberás de contar con el ticket de tu última compra. Farmacias Benavides en ningún caso se hará responsable del mal uso que se le hiciere de la tarjeta por parte de cualquier tercero.                         <br /><br />
+
+                        El reporte de robo o extravío, le permitirá a Farmacias Benavides analizar la situación específica y transferir los Beneficios identificados al momento del reporte en su totalidad a otro número de tarjeta sin costo para el titular. En ningún caso Farmacias Benavides tendrá la obligación de reponer cualquier pérdida de beneficios sufridos por actos de terceros.
+                        <br />
+                        <br />
+
+                        Para darte te baja o cancelar tu tarjeta del Programa de Recompensa Beneficio Inteligente llama al Call Center (01-800-444-2525) o envía un correo a contactoBI@benavides.com.mx Deberás proporcionar tu número de tarjeta y confirmar tus datos de contacto. Una vez que solicitas la cancelación de la tarjeta no podrás volver a usarla ni podrás revertir dicha cancelación, y perderás todos los beneficios del programa.
+                        <br />
+                        <br />
+
+                        El Aviso de Protección de Datos podrá consultarse en el sitio web <a href="http://www.benavides.com.mx">www.benavides.com.mx</a><br /><br />
+                        Para información acerca de tu seguro o en caso de siniestro, servicio de ambulancia, descuentos en laboratorio de análisis clínicos y orientación telefónica comunícate 01 800 444 25 25 Opción 1.
+
+
+
+                        <br />
+                        <br />
+                        <h3>*Restricciones Generales</h3>
+
+
+                    <p> No participan en acumulación de dinero electrónico Fórmulas Infantiles, tabaco, alcohol, recargas telefónicas, raspaditos, pago de servicios y medicamentos de fracción I, II, III y IV de patente. </p>
+                    <p> No participan en acumulación de dinero electrónico los productos vigentes que participan en el plan de acumulación. </p>
+                    <p> El Usuario deberá proporcionar su cuenta de correo electrónico para poder hacer uso de su dinero electrónico en las farmacias (a partir del 1 de diciembre 2017 en Baja California Norte, Baja California Sur, Sinaloa, Sonora, para los demás estados de la república a partir del 1 de enero 2018).  </p>
+                    <p> El dinero electrónico  acumulado al 30 de noviembre de 2017 vencerá el 31 de enero de 2018. </p>
+                    <p> Solo se pueden afiliar personas mayores a 18 años. </p>
+                    <p> No se brindará el beneficio de producto gratis si el cliente cumplió el límite de la promoción. </p>
+
+                    <p>
+                        Los clientes que utilicen un convenio institucional de ABF (Descritos debajo), para la compra de su medicamento, no podrán acumular puntos. Farmacias Benavides se reserva el derecho de evaluar qué tipo de convenios califican. Convenios que no participan:
+                        <br /><br />
+                        BANRURAL: BAA2, BAA3, BAA4, BAA5, BAA6, BAA8, BAB1, BAB2, BAB3, BAB6, BAB7, BABA, BAC1, BAC2, BAC3, BAC4, BAC5, BAC6, BACC, BACH, BACO, BACU, BACV, BAD2, BAD3, BAD4, BAD6, BAD7, BAD8, BAD9, BADE, BADF, BADU, BAE1, BAE2, BAE4, BAE5, BAE6, BAF1, BAF2, BAF3, BAF4, BAF5, BAF6, BAG2, BAG3, BAG7, BAG8, BAGS, BAGU, BAJU, BALE, BAMO, BAMR, BAN1, BAN2, BAN3, BAN4, BAN5, BAN7, BAN8, BAPE, BAQU, BARC, BASA, BASI , BATL, BATO, BAVA, BAVH, BAZ5, BAZ6, BAZA, BLDM, BTOR, CHBA, COBA, D2BA, D6BA, FPSB, QUBA, RBMA, TOBA.                         <br /><br />
+
+                        <br /><br />
+                        PEMEX: CASA, PCS1, PCS2, PCS3, PCS4, PCS5, PCS6, PCS7, PCS8, PCS9, PCSA, PCSZ, PEA1, PEA2, PEA3, PEAL, PEB1, PEB3, PEB4, PEB5, PEB6, PEB9, PEBI, PEC1, PEC2, PEC3, PEC4, PEC5, PEC6, PEC7, PEC8, PECH, PECO, PED2, PED3, PED4, PEDD, PEDF, PEDU, PEE4, PEE5, PEE6, PEE7, PEF2, PEF3, PEF4, PEF5, PEF6, PEF7, PEF8, PEFE, PEG1, PEG2, PEG3, PEG4, PEG5, PEIZ, PEJ5, PEJ6, PEJ7, PEJ8, PEJ9, PEJI, PEJU, PEK1, PEK2, PELI, PEMA, PEMH, PEMK, PEMM, PEMO, PEMT, PENL, PENS, PES1, PES3, PESA, PESB, PESC, PESJ, PESM, PESN, PESP, PESS, PETE, PEVA, PEVL, PEW2, PEW4, PEY5, PEY6, PEZA, PEZD, PEZF, PEZM, PST1, PST2, PST3, PST4, PST5, PST6, PST7, PTMC, PTMD.                         <br /><br />
+                    </p>
+
+                    <br />
+                    <br />
+                    <h3>**Restricciones para Tarjetas Beneficio Inteligente Platino</h3>
+
+                    <p> Aplican restricciones generales.  </p>
+                    <p> Para los clientes con tarjeta platino sus beneficios serán válidos únicamente en la vigencia estipulada en la tarjeta. El seguro  de vida y servicio de ambulancia que brinda la tarjeta platino solo es válida si los datos del cliente están registrados correctamente. </p>
+                    <p> Beneficios otorgados/operados y/o cargo de ACE Seguros, S.A. los beneficios adicionales No son responsabilidad de Farmacias Benavides S.A.B. DE C.V.:  </p>
+                    <p> SEGURO DE VIDA POR MUERTE ACCIDENTAL operado y a cargo de ACE Seguros ACE SEGUROS SA </p>
+                    <p> Hasta por $70,000 pesos de seguro de vida por muerte accidental, para las tarjetas adquiridas a partir del 13 de Mayo de 2015 el monto asegurado es de $210,000. </p>
+                    <p> Vigencia de 1 año para el seguro Aplica en caso de muerte accidental; incluso en caso de asaltos. </p>
+                    <p> Activación automática del seguro al comprar la tarjeta y registrase en sucursal. Podrás designar a tu beneficiario contactando a ACE Seguros. Para la reclamación del seguro, el beneficiario debe presentar la tarjeta y demostrar la relación. </p>
+                    <p> Dudas e información, comunícate a ACE Seguros en el teléfono 01 800 237 6266 o en la página www.acegroup.com/mx-es consulta también el aviso de privacidad de la aseguradora en dicha página. </p>
+                    <p> 2 AMBULANCIAS al año otorgado/operado y a cargo de ACE SEGUROS SA Se otorga el servicio 2 veces al año gratis. </p>
+                    <p> DESCUENTOS EN LABORATORIOS DE ANÁLISIS CLÍNICOS operado y a cargo de ACE SEGUROS SA, consulta laboratorios participantes llamando al 01 800 444 25 25 opción 1. </p>
+                    <p> Para uso exclusivo del titular de la tarjeta Únicamente en caso de emergencia, aplican restricciones Programa a nivel nacional las 24 horas y 365 días del año. Traslado al hospital más cercano Equipada con todos los servicios básicos de primeros auxilios y operada por paramédicos certificados  </p>
+                    <p> Envío de ambulancia por emergencia.- Si el beneficiario a consecuencia de accidente o enfermedad repentina que le provoque lesiones o traumatismos que pongan en peligro su vida, se gestionará su traslado al centro hospitalario más cercano y/o adecuado. Si fuera necesario por razones médicas, se realizará el traslado bajo supervisión médica, mediante ambulancia terrestre, de terapia intensiva, intermedia o estándar, dependiendo de la gravedad y circunstancias de cada caso.  </p>
+                    <p> Cualquier aspecto no considerado dentro de las condiciones y políticas del programa será revisado, evaluado y definido por Farmacias Benavides.  </p>
+                    <br /><br />
+                </div>
+
+            </div>
+
+        </div>
+    </div>
 
 </section>
 
@@ -1128,92 +1157,6 @@ table.display tr.odd.row_selected td {
 @section scripts {
     <section class="scripts">
         <script type="text/javascript">
-
-
-
-
-
-            $("#perfilContactForm").validate({
-                rules: {
-                    Email: {
-                        required: true,
-                        emailcheck: true,
-                        maxlength: 150
-                    }
-                },
-                messages: {
-
-                    Email: {
-                        required: "El campo Email es requerido",
-                        emailcheck: "Entre una dirección de correo válida"
-                    }
-                },
-                submitHandler: function () {
-                    Loading('#form_info_01');
-                    var w = GetUrlBase();
-                    var data = new FormData();
-                    data.append("Subject", $("#Subject").val());
-                    data.append("Comments", $("#Comments").val());
-                    data.append("Email", $("#Email").val());
-                    data.append("PerfilContactForm", $('#perfilContactForm').serialize());
-                    $.ajax({
-                        type: 'POST',
-                        url: w + "/Contact",
-                        data: $("#perfilContactForm").serialize(),
-                        success: function (responseData) {
-                            if (responseData.Success) {
-                                UnLoading('#form_info_01');
-                                bootbox.dialog({
-                                    message: responseData.Message,
-                                    title: "Información",
-                                    buttons: {
-                                        main: {
-                                            label: "Aceptar",
-                                            className: "blue",
-                                            callback: function () {
-                                                window.location.href = w;
-                                            }
-                                        }
-                                    }
-                                });
-
-                            } else {
-                                if (!responseData.Success) {
-                                    UnLoading('#form_info_01');
-                                    bootbox.dialog({
-                                        message: responseData.Message,
-                                        title: "Error",
-                                        buttons: {
-                                            main: {
-                                                label: "Aceptar",
-                                                className: "red"
-                                            }
-                                        }
-                                    });
-                                }
-                            }
-                        },
-                        error:
-                            function (errormessage) {
-                                UnLoading('#form_info_01');
-                                bootbox.dialog({
-                                    message: "Ha ocurrido un error interno en el servidor.",
-                                    title: "Error",
-                                    buttons: {
-                                        main: {
-                                            label: "Aceptar",
-                                            className: "red"
-                                        }
-                                    }
-                                });
-                            }
-                    });
-                }
-            });
-
-
-
-
 
             $(function () {
                 $('#myform .radio').change(function () {
@@ -1269,7 +1212,7 @@ table.display tr.odd.row_selected td {
                     "sPaginationType": "full_numbers"
                 }).makeEditable({
 
-                   
+
                     "aoColumns": [
       //{
       //    //Empty object is used default editable settings
@@ -1640,13 +1583,13 @@ table.display tr.odd.row_selected td {
                     "order": [
                         [0, "asc"]
                     ] // set first column as a default sort by asc
-                });                 
+                });
 
 
             });
 
 
-      
+
 
 
 
@@ -1654,7 +1597,7 @@ table.display tr.odd.row_selected td {
         </script>
 
 
-      
 
-       </section>
+
+    </section>
 }
